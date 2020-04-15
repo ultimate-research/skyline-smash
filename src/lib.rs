@@ -1,5 +1,5 @@
 #![no_std]
-#![feature(const_if_match, const_loop)]
+#![feature(const_if_match, const_loop, track_caller)]
 
 pub mod crc32;
 

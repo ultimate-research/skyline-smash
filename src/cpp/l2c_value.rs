@@ -67,6 +67,7 @@ impl L2CValue {
         }
     }
 
+    #[track_caller]
     pub fn get_bool(&self) -> bool {
         if let Some(val) = self.try_get_bool() {
             val
@@ -83,6 +84,7 @@ impl L2CValue {
         }
     }
 
+    #[track_caller]
     pub fn get_int(&self) -> u64 {
         if let Some(val) = self.try_get_int() {
             val
@@ -99,6 +101,7 @@ impl L2CValue {
         }
     }
 
+    #[track_caller]
     pub fn get_num(&self) -> f32 {
         if let Some(val) = self.try_get_num() {
             val
@@ -115,6 +118,7 @@ impl L2CValue {
         }
     }
 
+    #[track_caller]
     pub fn get_ptr<T>(&self) -> *mut T {
         if let Some(val) = self.try_get_ptr() {
             val
