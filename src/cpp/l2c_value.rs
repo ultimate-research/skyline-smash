@@ -58,6 +58,70 @@ impl L2CValue {
             inner: L2CValueInner { raw_float: val }
         }
     }
+
+    pub fn try_get_bool(&self) -> Option<bool> {
+        if let L2CValueType::Bool = self.val_type {
+            Some(unsafe { self.inner.raw } & 1 != 0)
+        } else {
+            None
+        }
+    }
+
+    pub fn get_bool(&self) -> bool {
+        if let Some(val) = self.try_get_bool() {
+            val
+        } else {
+            panic!("L2CValue not a bool");
+        }
+    }
+
+    pub fn try_get_int(&self) -> Option<u64> {
+        if let L2CValueType::Int = self.val_type {
+            Some(unsafe { self.inner.raw })
+        } else {
+            None
+        }
+    }
+
+    pub fn get_int(&self) -> u64 {
+        if let Some(val) = self.try_get_int() {
+            val
+        } else {
+            panic!("L2CValue not an int");
+        }
+    }
+
+    pub fn try_get_num(&self) -> Option<f32> {
+        if let L2CValueType::Num = self.val_type {
+            Some(unsafe { self.inner.raw_float })
+        } else {
+            None
+        }
+    }
+
+    pub fn get_num(&self) -> f32 {
+        if let Some(val) = self.try_get_num() {
+            val
+        } else {
+            panic!("L2CValue not an float");
+        }
+    }
+
+    pub fn try_get_ptr<T>(&self) -> Option<*mut T> {
+        if let L2CValueType::Pointer = self.val_type {
+            Some(unsafe { self.inner.raw as *mut T })
+        } else {
+            None
+        }
+    }
+
+    pub fn get_ptr<T>(&self) -> *mut T {
+        if let Some(val) = self.try_get_ptr() {
+            val
+        } else {
+            panic!("L2CValue is not a pointer");
+        }
+    }
 }
 
 impl Default for L2CValueInner {
