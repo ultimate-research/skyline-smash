@@ -18101,7 +18101,15 @@ pub mod root {
             }
             #[inline]
             pub unsafe fn pop_lua_stack(&mut self, index: libc::c_int) -> L2CValue {
-                L2CAgent_pop_lua_stack(self, index)
+                let mut l2c_val = L2CValue::new();
+                asm!("mov x8, $0"
+                :                               // outputs
+                :  "r"(&mut l2c_val as *mut _)  // inputs
+                :  "x8"                         // clobbers
+                :                               // no options
+                );
+                L2CAgent_pop_lua_stack(self, index);
+                l2c_val
             }
             #[inline]
             pub unsafe fn get_lua_stack(
