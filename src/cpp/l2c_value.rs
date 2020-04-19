@@ -1,3 +1,5 @@
+use super::root::lib;
+
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union L2CValueInner {
@@ -185,5 +187,29 @@ impl super::root::lib::L2CAgent {
         }
 
         l2c_agent
+    }
+}
+
+impl super::root::lib::L2CAgent {
+    #[inline]
+    pub unsafe fn pop_lua_stack(&mut self, index: libc::c_int) -> L2CValue {
+        let mut l2c_val = L2CValue::new();
+        asm!("mov x8, $0"
+        :                               // outputs
+        :  "r"(&mut l2c_val as *mut _)  // inputs
+        :  "x8"                         // clobbers
+        :                               // no options
+        );
+        lib::L2CAgent_pop_lua_stack(self, index);
+        l2c_val
+    }
+}
+
+pub unsafe fn lua_const<S: AsRef<[u8]>>(string: S) -> libc::c_int {
+    let mut val : i32 = -1;
+    if lib::lua_bind_get_value(lua_bind_hash::lua_bind_hash(string), &mut val) {
+        val
+    } else{
+        -1
     }
 }
