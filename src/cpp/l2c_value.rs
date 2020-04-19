@@ -1,4 +1,5 @@
 use super::root::lib;
+use core::cell::UnsafeCell;
 
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -211,5 +212,49 @@ pub unsafe fn lua_const<S: AsRef<[u8]>>(string: S) -> libc::c_int {
         val
     } else{
         -1
+    }
+}
+
+pub struct LuaConst {
+    lua_bind_hash: u64,
+    // do not try this at home
+    cache: UnsafeCell<Option<i32>>,
+}
+
+impl LuaConst {
+    pub const fn new(lua_bind_hash: u64) -> Self {
+        Self {
+            lua_bind_hash,
+            cache: UnsafeCell::new(None)
+        }
+    }
+}
+
+//Release
+
+impl core::ops::Deref for LuaConst {
+    type Target = i32;
+
+    fn deref(&self) -> &Self::Target {
+        let cache = self.cache.get();
+
+        if let Some(ref val) = unsafe { *cache }  {
+            unsafe {
+                // if there is a bug with this implementation
+                // DEFINITELY start here
+                core::mem::transmute(val)
+            }
+        } else {
+            let mut val : i32 = -1;
+            if unsafe { lib::lua_bind_get_value(self.lua_bind_hash, &mut val) } {
+                unsafe {
+                    *cache = Some(val);
+
+                    (*cache).as_ref().unwrap()
+                }
+            } else{
+                &-1
+            }
+        }
     }
 }
