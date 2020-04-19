@@ -17923,10 +17923,6 @@ pub mod root {
             #[link_name = "\u{1}_ZN3lib18lua_bind_get_valueIiEEbmRT_"]
             pub fn lua_bind_get_value(arg1: u64, arg2: *mut libc::c_int) -> bool;
         }
-        extern "C" {
-            #[link_name = "\u{1}_ZN3lib9lua_constEPKc"]
-            pub fn lua_const(str: *const libc::c_char) -> libc::c_int;
-        }
 
         pub use super::super::l2c_value::*;
         pub type L2CVarType = L2CValueType;
@@ -18098,18 +18094,6 @@ pub mod root {
                 l2c_value: *mut root::lib::L2CValue,
             ) -> u64 {
                 L2CAgent_push_lua_stack(self, l2c_value)
-            }
-            #[inline]
-            pub unsafe fn pop_lua_stack(&mut self, index: libc::c_int) -> L2CValue {
-                let mut l2c_val = L2CValue::new();
-                asm!("mov x8, $0"
-                :                               // outputs
-                :  "r"(&mut l2c_val as *mut _)  // inputs
-                :  "x8"                         // clobbers
-                :                               // no options
-                );
-                L2CAgent_pop_lua_stack(self, index);
-                l2c_val
             }
             #[inline]
             pub unsafe fn get_lua_stack(

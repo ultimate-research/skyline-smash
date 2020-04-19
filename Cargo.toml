@@ -9,3 +9,4 @@ name = "smash"
 
 [dependencies]
 libc = { git = "https://github.com/ultimate-research/libc-nnsdk" }
+lua_bind_hash = "1.0.0"
