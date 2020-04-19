@@ -17917,6 +17917,10 @@ pub mod root {
         pub w: f32,
     }
     pub mod lib {
+        pub mod lua_const {
+            pub use crate::lua_const::*;
+        }
+
         #[allow(unused_imports)]
         use self::super::super::root;
         extern "C" {

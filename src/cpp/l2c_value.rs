@@ -206,14 +206,14 @@ impl super::root::lib::L2CAgent {
     }
 }
 
-pub unsafe fn lua_const<S: AsRef<[u8]>>(string: S) -> libc::c_int {
+/*pub unsafe fn lua_const<S: AsRef<[u8]>>(string: S) -> libc::c_int {
     let mut val : i32 = -1;
     if lib::lua_bind_get_value(lua_bind_hash::lua_bind_hash(string), &mut val) {
         val
     } else{
         -1
     }
-}
+}*/
 
 pub struct LuaConst {
     lua_bind_hash: u64,
