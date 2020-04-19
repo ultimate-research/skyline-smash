@@ -1,5 +1,5 @@
 #![no_std]
-#![feature(const_if_match, const_loop, track_caller)]
+#![feature(const_if_match, const_loop, track_caller, proc_macro_hygiene)]
 #![feature(asm)]
 
 pub mod crc32;
@@ -17,3 +17,5 @@ pub const fn hash40(string: &str) -> u64 {
     ((bytes.len() as u64) << 32) + crc32::crc32(bytes) as u64
 }
 
+
+mod lua_const;
