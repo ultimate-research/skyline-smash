@@ -1,5 +1,6 @@
 use super::root::lib;
 use core::cell::UnsafeCell;
+use core::cmp::Ordering;
 
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -231,6 +232,42 @@ impl LuaConst {
 }
 
 //Release
+
+impl From<LuaConst> for i32 {
+    fn from(lua_const: LuaConst) -> Self {
+        *lua_const
+    }
+}
+
+impl Clone for LuaConst {
+    fn clone(&self) -> Self {
+        LuaConst::new(self.lua_bind_hash)
+    }
+}
+
+impl<T: Into<i32> + Clone> PartialEq<T> for LuaConst {
+    fn eq(&self, other: &T) -> bool {
+        return **self == other.clone().into();
+    }
+}
+
+impl<T: Into<i32> + Clone> PartialOrd<T> for LuaConst {
+    fn partial_cmp(&self, other: &T) -> Option<Ordering> {
+        Some((**self).cmp(&(other.clone().into())))
+    }
+}
+
+impl PartialEq<LuaConst> for i32 {
+    fn eq(&self, other: &LuaConst) -> bool {
+        return *self == **other;
+    }
+}
+
+impl PartialOrd<LuaConst> for i32 {
+    fn partial_cmp(&self, other: &LuaConst) -> Option<Ordering> {
+        Some((*self).cmp(&**other))
+    }
+}
 
 impl core::ops::Deref for LuaConst {
     type Target = i32;
