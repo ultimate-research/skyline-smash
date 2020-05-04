@@ -179,7 +179,8 @@ pub mod root {
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct BattleObjectModuleAccessor {
-            pub _address: u8,
+            pub _address: u64,
+            pub info: u32
         }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
@@ -229,7 +230,7 @@ pub mod root {
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct FighterManager {
-            pub _address: u8,
+            pub _address: u64,
         }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
@@ -428,9 +429,7 @@ pub mod root {
         }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterEntryID {
-            pub _address: u8,
-        }
+        pub struct FighterEntryID(pub i32);
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct AttackSetOffKind {
@@ -468,8 +467,83 @@ pub mod root {
         }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
+        /// Use to hold hitbox data
+        ///
+        ///
+        /// # Potential Actual Struct
+        ///
+        /// ```
+        // offset_x : f32,
+        // offset_y : f32,
+        // offset_z : f32,
+        // offset2_x : f32,
+        // offset2_y : f32,
+        // offset2_z : f32,
+        // unk1: u64,
+        // power_: f32, //damage
+        // size_: f32, //size
+        // vector_: i32, //angle
+        // r_eff_: i32, //kbg
+        // r_fix_: i32, //fkb
+        // r_add_: i32, //bkb
+        // slip_: f32, //trip chance
+        // stop_frame_: f32, //hitlag multiplier
+        // stop_delay_: f32, //sdi multiplier
+        // node_: u64, //bone
+        // target_situation_: i32, //ground/air
+        // target_lr_: i32, //opponent's facing (for shulk back slash?)
+        // target_part_: i32, //collision part
+        // attr_: u64, //collision attribute
+        // sound_level_: i32, //SFX level
+        // sound_attr_: i32, //SFX type
+        // set_off_: i32, //clang/rebound
+        // no_scale_: bool, //ignore model scaling
+        // shield_: bool, //does it hit shields
+        // reflector_: bool, //reflectable
+        // absorber_: bool, //absorbable
+        // direct_: bool, //direct/indirect
+        // no_invincible_: bool, //ignore invincibility
+        // no_xlu_: bool, //ignore intangibility
+        // lr_check_: i32, // facing restrict
+        // catch_: bool, //is it a grab
+        // no_team_: bool, //friendly fire
+        // no_stop_: bool, //disable hitlag
+        // no_effect_: bool, //flinchless
+        // region_: i32, //type (ex: ATTACK_REGION_KICK)
+        // ignore_down_: bool, //ignore downed opponents
+        // check_type_: i32, //hitbits
+        // sub_shield_: u64, //shield damage
+        // camera_quake_: u64, //camera quake
+        // serial_hit_frame_: f32, //rehit rate
+        // force_reaction_: bool, //launch no matter what
+        // no_attacker_log_: bool, //ignore staling?
+        // no_weight_reaction_: bool, //set weight
+        // no_reaction_search_: bool, //search hitbox
+        // keep_rumble_: bool, //keep rumble
+        // composition_speed_: f32, //no idea
+        // target_pos_node_: u64, //which of opponent's bones is moved into position specified by target_pos_offset (used in autolink angles such as 368)
+        // target_pos_offset_x : f32, //where opponent is moved to (used in autolink angles such as 368)
+        // target_pos_offset_y : f32,
+        // target_pos_offset_z : f32,
+        // target_pos_frame_: f32, //how long it takes opponent to move into the position specified by target pos_offset (used in autolink angles such as 368)
+        // r_fix_damage_speed_up_: bool //whether or not to undergo balloon knockback during set knockback
+        /// ```
         pub struct AttackData {
-            pub _address: u8,
+            x: f32,
+            y: f32,
+            z: f32,
+            x2: i32,
+            y2: u64,
+            z3: u64,
+            power: f32,
+            size: f32,
+            angle: i32,
+            kbg: i32,
+            fkb: i32,
+            bkb: i32,
+            slip: i32,
+            hitlag: f32,
+            remainingUnks: [u64; 30]
         }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
@@ -4970,7 +5044,7 @@ pub mod root {
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
                         arg3: bool,
-                    ) -> u64;
+                    ) -> *mut root::app::AttackData;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind39AttackModule__set_power_mul_status_implEPNS_26BattleObjectModuleAccessorEf"]
@@ -7325,7 +7399,7 @@ pub mod root {
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind22PostureModule__lr_implEPNS_26BattleObjectModuleAccessorE"]
-                    pub fn lr(arg1: *mut root::app::BattleObjectModuleAccessor) -> u64;
+                    pub fn lr(arg1: *mut root::app::BattleObjectModuleAccessor) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind26PostureModule__set_lr_implEPNS_26BattleObjectModuleAccessorEf"]
@@ -17251,7 +17325,7 @@ pub mod root {
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app10sv_animcmd9is_excuteEP9lua_State"]
-                pub fn is_excute(arg1: u64);
+                pub fn is_excute(arg1: u64) -> bool;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app10sv_animcmd4stopEP9lua_State"]
@@ -17678,8 +17752,23 @@ pub mod root {
                 pub fn powf(arg1: f32, arg2: f32) -> f32;
             }
             extern "C" {
+                /// Returns a random integer in the range 0 to X-1
+                ///
+                /// # Arguments
+                ///
+                /// * `rand_type` - Hash of battle object type
+                /// * `upper_lim` - upper limit of random range
+                ///
+                /// # Example
+                ///
+                /// ```
+                /// let rand_val = app::sv_math::rand(hash40("fighter"), 100);
+                /// if rand_val == 0 {
+                ///     // do something with 1-in-100 chance for a fighter
+                /// }
+                /// ```
                 #[link_name = "\u{1}_ZN3app7sv_math4randEN3phx6Hash40Ei"]
-                pub fn rand(arg1: u64, arg2: libc::c_int) -> libc::c_int;
+                pub fn rand(rand_type: u64, upper_lim: libc::c_int) -> libc::c_int;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app7sv_math5randfEN3phx6Hash40Ef"]
@@ -17813,7 +17902,7 @@ pub mod root {
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app9sv_system29battle_object_module_accessorEP9lua_State"]
-                pub fn battle_object_module_accessor(arg1: u64) -> u64;
+                pub fn battle_object_module_accessor(arg1: u64) -> &'static mut root::app::BattleObjectModuleAccessor;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app9sv_system22battle_object_categoryEP9lua_State"]
