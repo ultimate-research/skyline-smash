@@ -529,21 +529,60 @@ pub mod root {
 		// r_fix_damage_speed_up_: bool //whether or not to undergo balloon knockback during set knockback
         /// ```
         pub struct AttackData {
-            x: f32,
-            y: f32,
-            z: f32,
-            x2: i32,
-            y2: u64,
-            z3: u64,
-            power: f32,
-            size: f32,
-            angle: i32,
-            kbg: i32,
-            fkb: i32,
-            bkb: i32,
-            slip: i32,
-            hitlag: f32,
-            remainingUnks: [u64; 30]
+      offset_x : f32,
+	  offset_y : f32,
+	  offset_z : f32,
+	  offset2_x : f32,
+      offset2_y : f32,
+      offset2_z : f32,
+      unk1: u64,
+      power_: f32, //damage
+      size_: f32, //size
+      vector_: i32, //angle
+      r_eff_: i32, //kbg
+      r_fix_: i32, //fkb
+      r_add_: i32, //bkb
+      slip_: f32, //trip chance
+      stop_frame_: f32, //hitlag multiplier
+      stop_delay_: f32, //sdi multiplier
+      node_: u64, //bone
+	  check_type_: u16, //hitbits
+      target_situation_: u16, //ground/air
+      target_lr_: u16, //opponent's facing (for shulk back slash?)
+      target_part_: u16, //collision part
+      attr_: u64, //collision attribute
+	  sound_attr_: u16, //SFX type
+	  sound_level_: u16, //SFX level
+	  set_off_: u16, //clang/rebound
+      no_scale_: bool, //ignore model scaling
+      shield_: bool, //does it hit shields
+      reflector_: bool, //reflectable
+      absorber_: bool, //absorbable
+      direct_: bool, //direct/indirect
+      no_invincible_: bool, //ignore invincibility
+      no_xlu_: bool, //ignore intangibility
+      lr_check_: u16,  //facing restrict
+      catch_: bool, //is it a grab
+      no_team_: bool, //friendly fire
+      no_stop_: bool, //disable hitlag
+      no_effect_: bool, //flinchless
+	  sub_shield_: u16, //shield damage
+      ignore_down_: bool, //ignore downed opponents
+      region_: u16, //type (ex: ATTACK_REGION_KICK)
+      camera_quake_: u16, //camera quake, used in expression scripts (ex: CAMMERA_QUAKE_L)
+      serial_hit_frame_: f32, //rehit rate
+      force_reaction_: bool, //launch no matter what
+      no_attacker_log_: bool, //ignore staling?
+      no_weight_reaction_: bool, //set weight
+      no_reaction_search_: bool, //search hitbox
+      keep_rumble_: bool, //keep rumble
+      composition_speed_: bool, //no idea but it shows up in moves like Lucas PKT2 and is used as a bool there
+      target_pos_node_: u64, //which of opponent's bones is moved into position specified by target_pos_offset (used in autolink angles such as 368)
+      target_pos_offset_x : f32, //where opponent is moved to (used in autolink angles such as 368)
+      target_pos_offset_y : f32,
+      target_pos_offset_z : f32,
+      target_pos_frame_: f32, //how long it takes opponent to move into the position specified by target pos_offset (used in autolink angles such as 368)
+      r_fix_damage_speed_up_: bool //whether or not to undergo balloon knockback during set knockback
         }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
