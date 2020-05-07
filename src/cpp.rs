@@ -529,21 +529,31 @@ pub mod root {
         // r_fix_damage_speed_up_: bool //whether or not to undergo balloon knockback during set knockback
         /// ```
         pub struct AttackData {
-            x: f32,
-            y: f32,
-            z: f32,
-            x2: i32,
-            y2: u64,
-            z3: u64,
-            power: f32,
-            size: f32,
-            angle: i32,
-            kbg: i32,
-            fkb: i32,
-            bkb: i32,
-            slip: i32,
-            hitlag: f32,
-            remainingUnks: [u64; 30]
+            pub x : f32,
+            pub y : f32,
+            pub z : f32,
+            pub unk1: u32,
+            pub x2 : f32,
+            pub y2 : f32,
+            pub z2 : f32,
+            pub unk2: u32,
+            pub power_: f32, //damage
+            pub size_: f32, //size
+            pub vector_: i32, //angle
+            pub r_eff_: i32, //kbg
+            pub r_fix_: i32, //fkb
+            pub r_add_: i32, //bkb
+            pub slip_: f32, //trip chance
+            pub stop_frame_: f32, //hitlag multiplier
+            pub stop_delay_: f32, //sdi multiplier
+            pub node_: u64, //bone
+            pub check_type_: u16, //hitbits
+            pub target_situation_: u16, //ground/air
+            pub target_lr_: u16, //opponent's facing (for shulk back slash?)
+            pub target_part_: u16, //collision part
+            pub attr_: u64, //collision attribute
+            pub sound_level_: u16, //SFX level
+            pub sound_attr_: u16, //SFX type
         }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
