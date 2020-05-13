@@ -548,25 +548,6 @@ pub mod root {
             pub y2 : f32,
             pub z2 : f32,
             pub unk2: u32,
-<<<<<<< HEAD
-            pub power_: f32, //damage
-            pub size_: f32, //size
-            pub vector_: i32, //angle
-            pub r_eff_: i32, //kbg
-            pub r_fix_: i32, //fkb
-            pub r_add_: i32, //bkb
-            pub slip_: f32, //trip chance
-            pub stop_frame_: f32, //hitlag multiplier
-            pub stop_delay_: f32, //sdi multiplier
-            pub node_: u64, //bone
-            pub check_type_: u16, //hitbits
-            pub target_situation_: u16, //ground/air
-            pub target_lr_: u16, //opponent's facing (for shulk back slash?)
-            pub target_part_: u16, //collision part
-            pub attr_: u64, //collision attribute
-            pub sound_level_: u16, //SFX level
-            pub sound_attr_: u16, //SFX type
-=======
             pub power: f32, //damage
             pub size: f32, //size
             pub vector: i32, //angle
@@ -584,7 +565,6 @@ pub mod root {
             pub attr: u64, //collision attribute
             pub sound_level: u16, //SFX level
             pub sound_attr: u16, //SFX type
->>>>>>> acd13d7003fa445fbf7de2fd3e3b29c563fad528
         }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
@@ -7404,13 +7384,6 @@ pub mod root {
                     /// }
                     /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind25PostureModule__pos_x_implEPNS_26BattleObjectModuleAccessorE"]
-<<<<<<< HEAD
-                    pub fn pos_x(arg1: *mut root::app::BattleObjectModuleAccessor) -> f32;
-                }
-                extern "C" {
-                    #[link_name = "\u{1}_ZN3app8lua_bind25PostureModule__pos_y_implEPNS_26BattleObjectModuleAccessorE"]
-                    pub fn pos_y(arg1: *mut root::app::BattleObjectModuleAccessor) -> f32;
-=======
                     pub fn pos_x(module_accessor: *mut root::app::BattleObjectModuleAccessor) -> f32;
                 }
                 extern "C" {
@@ -7430,7 +7403,6 @@ pub mod root {
                     /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind25PostureModule__pos_y_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn pos_y(module_accessor: *mut root::app::BattleObjectModuleAccessor) -> f32;
->>>>>>> acd13d7003fa445fbf7de2fd3e3b29c563fad528
                 }
                 extern "C" {
                     /// Returns stage Z position of the object
@@ -7440,11 +7412,7 @@ pub mod root {
                     /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
                     ///
                     #[link_name = "\u{1}_ZN3app8lua_bind25PostureModule__pos_z_implEPNS_26BattleObjectModuleAccessorE"]
-<<<<<<< HEAD
-                    pub fn pos_z(arg1: *mut root::app::BattleObjectModuleAccessor) -> f32;
-=======
                     pub fn pos_z(module_accessor: *mut root::app::BattleObjectModuleAccessor) -> f32;
->>>>>>> acd13d7003fa445fbf7de2fd3e3b29c563fad528
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind27PostureModule__set_pos_implEPNS_26BattleObjectModuleAccessorERKN3phx8Vector3fE"]
@@ -14946,11 +14914,7 @@ pub mod root {
                     /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind30StatusModule__status_kind_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn status_kind(
-<<<<<<< HEAD
-                        arg1: *mut root::app::BattleObjectModuleAccessor,
-=======
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
->>>>>>> acd13d7003fa445fbf7de2fd3e3b29c563fad528
                     ) -> i32;
                 }
                 extern "C" {
@@ -14994,13 +14958,8 @@ pub mod root {
                     /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind35StatusModule__prev_status_kind_implEPNS_26BattleObjectModuleAccessorEj"]
                     pub fn prev_status_kind(
-<<<<<<< HEAD
-                        arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: libc::c_uint,
-=======
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
                         index: libc::c_uint,
->>>>>>> acd13d7003fa445fbf7de2fd3e3b29c563fad528
                     ) -> i32;
                 }
                 extern "C" {
@@ -15028,15 +14987,6 @@ pub mod root {
                     /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind33StatusModule__situation_kind_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn situation_kind(
-<<<<<<< HEAD
-                        arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> i32;
-                }
-                extern "C" {
-                    #[link_name = "\u{1}_ZN3app8lua_bind38StatusModule__prev_situation_kind_implEPNS_26BattleObjectModuleAccessorE"]
-                    pub fn prev_situation_kind(
-                        arg1: *mut root::app::BattleObjectModuleAccessor,
-=======
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
                     ) -> i32;
                 }
@@ -15058,7 +15008,6 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind38StatusModule__prev_situation_kind_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn prev_situation_kind(
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
->>>>>>> acd13d7003fa445fbf7de2fd3e3b29c563fad528
                     ) -> i32;
                 }
                 extern "C" {
@@ -18308,14 +18257,6 @@ pub mod root {
             ) -> L2CValue;
         }
         extern "C" {
-            #[link_name = "\u{1}_ZN3lib8L2CAgent13get_lua_stackEiPNS_8L2CValueE"]
-            pub fn L2CAgent_get_lua_stack(
-                this: *mut root::lib::L2CAgent,
-                index: libc::c_int,
-                l2c_val: *mut root::lib::L2CValue,
-            );
-        }
-        extern "C" {
             #[link_name = "\u{1}_ZN3lib8L2CAgent20sv_set_function_hashEPvN3phx6Hash40E"]
             pub fn L2CAgent_sv_set_function_hash(
                 this: *mut root::lib::L2CAgent,
@@ -18352,12 +18293,11 @@ pub mod root {
                 L2CAgent_push_lua_stack(self, l2c_value)
             }
             #[inline]
-            pub unsafe fn get_lua_stack(
-                &mut self,
-                index: libc::c_int,
-                l2c_val: *mut root::lib::L2CValue,
-            ) {
-                L2CAgent_get_lua_stack(self, index, l2c_val)
+            pub unsafe fn pop_lua_stack(
+                &mut self, 
+                index: libc::c_int
+            ) -> L2CValue {
+                L2CAgent_pop_lua_stack(self, index)
             }
             #[inline]
             pub unsafe fn sv_set_function_hash(
