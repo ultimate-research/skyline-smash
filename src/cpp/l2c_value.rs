@@ -1,6 +1,7 @@
 use super::root::lib;
 use core::cell::UnsafeCell;
 use core::cmp::Ordering;
+use core::fmt;
 
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -30,8 +31,48 @@ pub enum L2CValueType {
 #[repr(C)]
 pub struct L2CValue {
     pub val_type: L2CValueType,
-    pub unk: u32,
+    pub unk1: u32,
     pub inner: L2CValueInner,
+    pub unk2: u8, // for enforcing X8 AArch64 struct behavior
+}
+
+impl fmt::Debug for L2CValue {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        unsafe {
+            match self.val_type {
+                L2CValueType::Void => f.debug_tuple("")
+                                        .field(&self.val_type)
+                                        .field(&self.inner.raw)
+                                        .finish(),
+                L2CValueType::Bool => f.debug_tuple("")
+                                        .field(&self.val_type)
+                                        .field(&(self.inner.raw != 0))
+                                        .finish(),
+                L2CValueType::Int => f.debug_tuple("")
+                                        .field(&self.val_type)
+                                        .field(&self.inner.raw)
+                                        .finish(),
+                L2CValueType::Num => f.debug_tuple("")
+                                        .field(&self.val_type)
+                                        .field(&self.inner.raw_float)
+                                        .finish(),
+                L2CValueType::InnerFunc => f.debug_tuple("")
+                                        .field(&self.val_type)
+                                        .field(&self.inner.raw_innerfunc)
+                                        .finish(),
+                L2CValueType::Hash => f.debug_tuple("")
+                                        .field(&self.val_type)
+                                        .field(&self.inner.raw)
+                                        .finish(),
+                _ => f.debug_tuple("")
+                        .field(&self.val_type)
+                        .field(&self.unk1)
+                        .field(&self.inner.raw)
+                        .field(&self.unk2)
+                        .finish()
+            }
+        }
+    }
 }
 
 impl L2CValue {
@@ -42,24 +83,27 @@ impl L2CValue {
     pub fn new_bool(val: bool) -> Self {
         Self {
             val_type: L2CValueType::Bool,
-            unk: 0,
-            inner: L2CValueInner { raw: val as u64 }
+            unk1: 0,
+            inner: L2CValueInner { raw: val as u64 },
+            unk2: 0
         }
     }
 
     pub fn new_int(val: u64) -> Self {
         Self {
             val_type: L2CValueType::Int,
-            unk: 0,
-            inner: L2CValueInner { raw: val as u64 }
+            unk1: 0,
+            inner: L2CValueInner { raw: val as u64 },
+            unk2: 0
         }
     }
 
     pub fn new_num(val: f32) -> Self {
         Self {
             val_type: L2CValueType::Num,
-            unk: 0,
-            inner: L2CValueInner { raw_float: val }
+            unk1: 0,
+            inner: L2CValueInner { raw_float: val },
+            unk2: 0
         }
     }
 
@@ -204,6 +248,14 @@ impl super::root::lib::L2CAgent {
         );
         lib::L2CAgent_pop_lua_stack(self, index);
         l2c_val
+    }
+}
+
+impl core::ops::Deref for super::root::lib::L2CAgent {
+    type Target = u64;
+    
+    fn deref(&self) -> &Self::Target {
+        &self.lua_state_agent
     }
 }
 

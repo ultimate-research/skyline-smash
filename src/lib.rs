@@ -7,6 +7,12 @@ pub mod crc32;
 #[doc(hidden)]
 pub mod cpp;
 
+#[doc(hidden)]
+pub mod common;
+
+#[doc(inline)]
+pub use common::root::*;
+
 #[doc(inline)]
 pub use cpp::root::*;
 
