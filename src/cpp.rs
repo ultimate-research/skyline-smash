@@ -548,23 +548,23 @@ pub mod root {
             pub y2 : f32,
             pub z2 : f32,
             pub unk2: u32,
-            pub power_: f32, //damage
-            pub size_: f32, //size
-            pub vector_: i32, //angle
-            pub r_eff_: i32, //kbg
-            pub r_fix_: i32, //fkb
-            pub r_add_: i32, //bkb
-            pub slip_: f32, //trip chance
-            pub stop_frame_: f32, //hitlag multiplier
-            pub stop_delay_: f32, //sdi multiplier
-            pub node_: u64, //bone
-            pub check_type_: u16, //hitbits
-            pub target_situation_: u16, //ground/air
-            pub target_lr_: u16, //opponent's facing (for shulk back slash?)
-            pub target_part_: u16, //collision part
-            pub attr_: u64, //collision attribute
-            pub sound_level_: u16, //SFX level
-            pub sound_attr_: u16, //SFX type
+            pub power: f32, //damage
+            pub size: f32, //size
+            pub vector: i32, //angle
+            pub r_eff: i32, //kbg
+            pub r_fix: i32, //fkb
+            pub r_add: i32, //bkb
+            pub slip: f32, //trip chance
+            pub stop_frame: f32, //hitlag multiplier
+            pub stop_delay: f32, //sdi multiplier
+            pub node: u64, //bone
+            pub check_type: u16, //hitbits
+            pub target_situation: u16, //ground/air
+            pub target_lr: u16, //opponent's facing (for shulk back slash?)
+            pub target_part: u16, //collision part
+            pub attr: u64, //collision attribute
+            pub sound_level: u16, //SFX level
+            pub sound_attr: u16, //SFX type
         }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
