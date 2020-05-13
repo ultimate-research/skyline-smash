@@ -13,20 +13,6 @@ pub union L2CValueInner {
     pub raw_innerfunc: *mut L2CInnerFunctionBase,
 }
 
-impl fmt::Debug for L2CValueInner {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        unsafe {
-            f.debug_tuple("")
-            .field(&self.raw)
-            .field(&self.raw_float)
-            .field(&self.raw_pointer)
-            .field(&self.raw_table)
-            .field(&self.raw_innerfunc)
-            .finish()
-        }
-    }
-}
-
 #[repr(u32)]
 #[derive(Copy, Clone, Debug)]
 pub enum L2CValueType {
@@ -41,13 +27,52 @@ pub enum L2CValueType {
     String = 8
 }
 
-#[derive(Copy, Clone, Default, Debug)]
+#[derive(Copy, Clone, Default)]
 #[repr(C)]
 pub struct L2CValue {
     pub val_type: L2CValueType,
     pub unk1: u32,
     pub inner: L2CValueInner,
     pub unk2: u8, // for enforcing X8 AArch64 struct behavior
+}
+
+impl fmt::Debug for L2CValue {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        unsafe {
+            match self.val_type {
+                L2CValueType::Void => f.debug_tuple("")
+                                        .field(&self.val_type)
+                                        .field(&self.inner.raw)
+                                        .finish(),
+                L2CValueType::Bool => f.debug_tuple("")
+                                        .field(&self.val_type)
+                                        .field(&(self.inner.raw != 0))
+                                        .finish(),
+                L2CValueType::Int => f.debug_tuple("")
+                                        .field(&self.val_type)
+                                        .field(&self.inner.raw)
+                                        .finish(),
+                L2CValueType::Num => f.debug_tuple("")
+                                        .field(&self.val_type)
+                                        .field(&self.inner.raw_float)
+                                        .finish(),
+                L2CValueType::InnerFunc => f.debug_tuple("")
+                                        .field(&self.val_type)
+                                        .field(&self.inner.raw_innerfunc)
+                                        .finish(),
+                L2CValueType::Hash => f.debug_tuple("")
+                                        .field(&self.val_type)
+                                        .field(&self.inner.raw)
+                                        .finish(),
+                _ => f.debug_tuple("")
+                        .field(&self.val_type)
+                        .field(&self.unk1)
+                        .field(&self.inner.raw)
+                        .field(&self.unk2)
+                        .finish()
+            }
+        }
+    }
 }
 
 impl L2CValue {
