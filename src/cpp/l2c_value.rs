@@ -13,6 +13,20 @@ pub union L2CValueInner {
     pub raw_innerfunc: *mut L2CInnerFunctionBase,
 }
 
+impl fmt::Debug for L2CValueInner {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        unsafe {
+            f.debug_tuple("")
+            .field(&self.raw)
+            .field(&self.raw_float)
+            .field(&self.raw_pointer)
+            .field(&self.raw_table)
+            .field(&self.raw_innerfunc)
+            .finish()
+        }
+    }
+}
+
 #[repr(u32)]
 #[derive(Copy, Clone, Debug)]
 pub enum L2CValueType {
@@ -120,7 +134,7 @@ impl L2CValue {
         if let Some(val) = self.try_get_bool() {
             val
         } else {
-            panic!("L2CValue not a bool");
+            panic!("L2CValue: {:?} not a bool", self);
         }
     }
 
@@ -137,7 +151,7 @@ impl L2CValue {
         if let Some(val) = self.try_get_int() {
             val
         } else {
-            panic!("L2CValue not an int");
+            panic!("L2CValue: {:?} not an int", self);
         }
     }
 
@@ -154,7 +168,7 @@ impl L2CValue {
         if let Some(val) = self.try_get_num() {
             val
         } else {
-            panic!("L2CValue not an float");
+            panic!("L2CValue: {:?} not a float", self);
         }
     }
 
@@ -171,7 +185,7 @@ impl L2CValue {
         if let Some(val) = self.try_get_ptr() {
             val
         } else {
-            panic!("L2CValue is not a pointer");
+            panic!("L2CValue: {:?} is not a pointer", self);
         }
     }
 }
@@ -233,21 +247,6 @@ impl super::root::lib::L2CAgent {
         }
 
         l2c_agent
-    }
-}
-
-impl super::root::lib::L2CAgent {
-    #[inline]
-    pub unsafe fn pop_lua_stack(&mut self, index: libc::c_int) -> L2CValue {
-        let mut l2c_val = L2CValue::new();
-        asm!("mov x8, $0"
-        :                               // outputs
-        :  "r"(&mut l2c_val as *mut _)  // inputs
-        :  "x8"                         // clobbers
-        :                               // no options
-        );
-        lib::L2CAgent_pop_lua_stack(self, index);
-        l2c_val
     }
 }
 

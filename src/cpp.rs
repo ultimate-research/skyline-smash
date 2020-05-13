@@ -18257,14 +18257,6 @@ pub mod root {
             ) -> L2CValue;
         }
         extern "C" {
-            #[link_name = "\u{1}_ZN3lib8L2CAgent13get_lua_stackEiPNS_8L2CValueE"]
-            pub fn L2CAgent_get_lua_stack(
-                this: *mut root::lib::L2CAgent,
-                index: libc::c_int,
-                l2c_val: *mut root::lib::L2CValue,
-            );
-        }
-        extern "C" {
             #[link_name = "\u{1}_ZN3lib8L2CAgent20sv_set_function_hashEPvN3phx6Hash40E"]
             pub fn L2CAgent_sv_set_function_hash(
                 this: *mut root::lib::L2CAgent,
@@ -18301,12 +18293,11 @@ pub mod root {
                 L2CAgent_push_lua_stack(self, l2c_value)
             }
             #[inline]
-            pub unsafe fn get_lua_stack(
-                &mut self,
-                index: libc::c_int,
-                l2c_val: *mut root::lib::L2CValue,
-            ) {
-                L2CAgent_get_lua_stack(self, index, l2c_val)
+            pub unsafe fn pop_lua_stack(
+                &mut self, 
+                index: libc::c_int
+            ) -> L2CValue {
+                L2CAgent_pop_lua_stack(self, index)
             }
             #[inline]
             pub unsafe fn sv_set_function_hash(
