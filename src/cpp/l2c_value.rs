@@ -50,6 +50,45 @@ pub struct L2CValue {
     pub unk2: u8, // for enforcing X8 AArch64 struct behavior
 }
 
+impl fmt::Debug for L2CValue {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        unsafe {
+            match self.val_type {
+                L2CValueType::Void => f.debug_tuple("")
+                                        .field(&self.val_type)
+                                        .field(&self.inner.raw)
+                                        .finish(),
+                L2CValueType::Bool => f.debug_tuple("")
+                                        .field(&self.val_type)
+                                        .field(&(self.inner.raw != 0))
+                                        .finish(),
+                L2CValueType::Int => f.debug_tuple("")
+                                        .field(&self.val_type)
+                                        .field(&self.inner.raw)
+                                        .finish(),
+                L2CValueType::Num => f.debug_tuple("")
+                                        .field(&self.val_type)
+                                        .field(&self.inner.raw_float)
+                                        .finish(),
+                L2CValueType::InnerFunc => f.debug_tuple("")
+                                        .field(&self.val_type)
+                                        .field(&self.inner.raw_innerfunc)
+                                        .finish(),
+                L2CValueType::Hash => f.debug_tuple("")
+                                        .field(&self.val_type)
+                                        .field(&self.inner.raw)
+                                        .finish(),
+                _ => f.debug_tuple("")
+                        .field(&self.val_type)
+                        .field(&self.unk1)
+                        .field(&self.inner.raw)
+                        .field(&self.unk2)
+                        .finish()
+            }
+        }
+    }
+}
+
 impl L2CValue {
     pub fn new_void() -> Self {
         Self::default()
