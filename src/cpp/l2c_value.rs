@@ -1,6 +1,7 @@
 use super::root::lib;
 use core::cell::UnsafeCell;
 use core::cmp::Ordering;
+use core::fmt;
 
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -10,6 +11,20 @@ pub union L2CValueInner {
     pub raw_pointer: *mut libc::c_void,
     pub raw_table: *mut L2CTable,
     pub raw_innerfunc: *mut L2CInnerFunctionBase,
+}
+
+impl fmt::Debug for L2CValueInner {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        unsafe {
+            f.debug_tuple("")
+            .field(&self.raw)
+            .field(&self.raw_float)
+            .field(&self.raw_pointer)
+            .field(&self.raw_table)
+            .field(&self.raw_innerfunc)
+            .finish()
+        }
+    }
 }
 
 #[repr(u32)]
@@ -26,12 +41,13 @@ pub enum L2CValueType {
     String = 8
 }
 
-#[derive(Copy, Clone, Default)]
+#[derive(Copy, Clone, Default, Debug)]
 #[repr(C)]
 pub struct L2CValue {
     pub val_type: L2CValueType,
-    pub unk: u32,
+    pub unk1: u32,
     pub inner: L2CValueInner,
+    pub unk2: u8, // for enforcing X8 AArch64 struct behavior
 }
 
 impl L2CValue {
@@ -42,24 +58,27 @@ impl L2CValue {
     pub fn new_bool(val: bool) -> Self {
         Self {
             val_type: L2CValueType::Bool,
-            unk: 0,
-            inner: L2CValueInner { raw: val as u64 }
+            unk1: 0,
+            inner: L2CValueInner { raw: val as u64 },
+            unk2: 0
         }
     }
 
     pub fn new_int(val: u64) -> Self {
         Self {
             val_type: L2CValueType::Int,
-            unk: 0,
-            inner: L2CValueInner { raw: val as u64 }
+            unk1: 0,
+            inner: L2CValueInner { raw: val as u64 },
+            unk2: 0
         }
     }
 
     pub fn new_num(val: f32) -> Self {
         Self {
             val_type: L2CValueType::Num,
-            unk: 0,
-            inner: L2CValueInner { raw_float: val }
+            unk1: 0,
+            inner: L2CValueInner { raw_float: val },
+            unk2: 0
         }
     }
 
@@ -204,6 +223,14 @@ impl super::root::lib::L2CAgent {
         );
         lib::L2CAgent_pop_lua_stack(self, index);
         l2c_val
+    }
+}
+
+impl core::ops::Deref for super::root::lib::L2CAgent {
+    type Target = u64;
+    
+    fn deref(&self) -> &Self::Target {
+        &self.lua_state_agent
     }
 }
 

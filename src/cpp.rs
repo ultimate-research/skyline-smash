@@ -164,6 +164,12 @@ pub mod root {
     }
     impl<T> ::core::cmp::Eq for __BindgenUnionField<T> {}
 
+    #[derive(Copy, Clone, Default, Debug)]
+    #[repr(C)]
+    pub struct lua_State {
+        pub _address: u64
+    }
+
     pub mod app {
         #[allow(unused_imports)]
         use self::super::super::root;
@@ -175,6 +181,11 @@ pub mod root {
             pub struct enSEType {
                 pub _address: u8,
             }
+        }
+        #[derive(Copy, Clone, Default, Debug)]
+        #[repr(C)]
+        pub struct BattleObject {
+            pub _address: u64
         }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
@@ -529,21 +540,31 @@ pub mod root {
         // r_fix_damage_speed_up_: bool //whether or not to undergo balloon knockback during set knockback
         /// ```
         pub struct AttackData {
-            x: f32,
-            y: f32,
-            z: f32,
-            x2: i32,
-            y2: u64,
-            z3: u64,
-            power: f32,
-            size: f32,
-            angle: i32,
-            kbg: i32,
-            fkb: i32,
-            bkb: i32,
-            slip: i32,
-            hitlag: f32,
-            remainingUnks: [u64; 30]
+            pub x : f32,
+            pub y : f32,
+            pub z : f32,
+            pub unk1: u32,
+            pub x2 : f32,
+            pub y2 : f32,
+            pub z2 : f32,
+            pub unk2: u32,
+            pub power_: f32, //damage
+            pub size_: f32, //size
+            pub vector_: i32, //angle
+            pub r_eff_: i32, //kbg
+            pub r_fix_: i32, //fkb
+            pub r_add_: i32, //bkb
+            pub slip_: f32, //trip chance
+            pub stop_frame_: f32, //hitlag multiplier
+            pub stop_delay_: f32, //sdi multiplier
+            pub node_: u64, //bone
+            pub check_type_: u16, //hitbits
+            pub target_situation_: u16, //ground/air
+            pub target_lr_: u16, //opponent's facing (for shulk back slash?)
+            pub target_part_: u16, //collision part
+            pub attr_: u64, //collision attribute
+            pub sound_level_: u16, //SFX level
+            pub sound_attr_: u16, //SFX type
         }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
@@ -638,7 +659,7 @@ pub mod root {
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct SituationKind {
-            pub _address: u8,
+            pub situation_kind: i32,
         }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
@@ -2168,7 +2189,7 @@ pub mod root {
                     pub fn damage(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind27DamageModule__reaction_implEPNS_26BattleObjectModuleAccessorEi"]
@@ -7349,15 +7370,15 @@ pub mod root {
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind25PostureModule__pos_x_implEPNS_26BattleObjectModuleAccessorE"]
-                    pub fn pos_x(arg1: *mut root::app::BattleObjectModuleAccessor) -> u64;
+                    pub fn pos_x(arg1: *mut root::app::BattleObjectModuleAccessor) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind25PostureModule__pos_y_implEPNS_26BattleObjectModuleAccessorE"]
-                    pub fn pos_y(arg1: *mut root::app::BattleObjectModuleAccessor) -> u64;
+                    pub fn pos_y(arg1: *mut root::app::BattleObjectModuleAccessor) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind25PostureModule__pos_z_implEPNS_26BattleObjectModuleAccessorE"]
-                    pub fn pos_z(arg1: *mut root::app::BattleObjectModuleAccessor) -> u64;
+                    pub fn pos_z(arg1: *mut root::app::BattleObjectModuleAccessor) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind27PostureModule__set_pos_implEPNS_26BattleObjectModuleAccessorERKN3phx8Vector3fE"]
@@ -14846,7 +14867,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind30StatusModule__status_kind_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn status_kind(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> i32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind35StatusModule__status_kind_next_implEPNS_26BattleObjectModuleAccessorE"]
@@ -14876,7 +14897,7 @@ pub mod root {
                     pub fn prev_status_kind(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_uint,
-                    ) -> u64;
+                    ) -> i32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind38StatusModule__change_status_force_implEPNS_26BattleObjectModuleAccessorEib"]
@@ -14890,13 +14911,13 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind33StatusModule__situation_kind_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn situation_kind(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> i32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind38StatusModule__prev_situation_kind_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn prev_situation_kind(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> i32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind39StatusModule__is_situation_changed_implEPNS_26BattleObjectModuleAccessorE"]
