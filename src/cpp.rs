@@ -7369,16 +7369,50 @@ pub mod root {
                     pub fn pos_2d(arg1: *mut root::app::BattleObjectModuleAccessor) -> u64;
                 }
                 extern "C" {
+                    /// Returns stage X position of the object
+                    ///
+                    /// # Arguments
+                    ///
+                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
+                    ///
+                    /// # Example
+                    ///
+                    /// ```
+                    /// // is on right side of the stage
+                    /// if PostureModule::pos_x(module_accessor) > 0 {
+                    ///     // ...
+                    /// }
+                    /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind25PostureModule__pos_x_implEPNS_26BattleObjectModuleAccessorE"]
-                    pub fn pos_x(arg1: *mut root::app::BattleObjectModuleAccessor) -> f32;
+                    pub fn pos_x(module_accessor: *mut root::app::BattleObjectModuleAccessor) -> f32;
                 }
                 extern "C" {
+                    /// Returns stage Y position of the object
+                    ///
+                    /// # Arguments
+                    ///
+                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
+                    ///
+                    /// # Example
+                    ///
+                    /// ```
+                    /// // is above Final Destination stage level
+                    /// if PostureModule::pos_y(module_accessor) > 0 {
+                    ///     // ...
+                    /// }
+                    /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind25PostureModule__pos_y_implEPNS_26BattleObjectModuleAccessorE"]
-                    pub fn pos_y(arg1: *mut root::app::BattleObjectModuleAccessor) -> f32;
+                    pub fn pos_y(module_accessor: *mut root::app::BattleObjectModuleAccessor) -> f32;
                 }
                 extern "C" {
+                    /// Returns stage Z position of the object
+                    ///
+                    /// # Arguments
+                    ///
+                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
+                    ///
                     #[link_name = "\u{1}_ZN3app8lua_bind25PostureModule__pos_z_implEPNS_26BattleObjectModuleAccessorE"]
-                    pub fn pos_z(arg1: *mut root::app::BattleObjectModuleAccessor) -> f32;
+                    pub fn pos_z(module_accessor: *mut root::app::BattleObjectModuleAccessor) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind27PostureModule__set_pos_implEPNS_26BattleObjectModuleAccessorERKN3phx8Vector3fE"]
