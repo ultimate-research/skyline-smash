@@ -172,10 +172,10 @@ pub mod root {
 
     pub mod app {
         #[allow(unused_imports)]
-        use self::super::super::root;
+        use super::super::root;
         pub mod SoundModule {
             #[allow(unused_imports)]
-            use self::super::super::super::root;
+            use super::super::super::root;
             #[repr(C)]
             #[derive(Debug, Copy, Clone)]
             pub struct enSEType {
@@ -1033,7 +1033,7 @@ pub mod root {
         }
         pub mod FL_sv_module_access {
             #[allow(unused_imports)]
-            use self::super::super::super::root;
+            use super::super::super::root;
             extern "C" {
                 #[link_name = "\u{1}_ZN3app19FL_sv_module_access5slopeEP9lua_State"]
                 pub fn slope(arg1: u64);
@@ -1049,10 +1049,10 @@ pub mod root {
         }
         pub mod lua_bind {
             #[allow(unused_imports)]
-            use self::super::super::super::root;
+            use super::super::super::root;
             pub mod MotionAnimcmdModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind43MotionAnimcmdModule__exec_motion_lines_implEPNS_26BattleObjectModuleAccessorEf"]
                     pub fn exec_motion_lines(
@@ -1160,7 +1160,7 @@ pub mod root {
             }
             pub mod LinkEventLassoHang {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind44LinkEventLassoHang__load_from_l2c_table_implEPNS_18LinkEventLassoHangERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -1183,7 +1183,7 @@ pub mod root {
             }
             pub mod TurnModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind25TurnModule__set_turn_implEPNS_26BattleObjectModuleAccessorEN3phx6Hash40Efbbb"]
                     pub fn set_turn(
@@ -1229,7 +1229,7 @@ pub mod root {
             }
             pub mod AreaContactLog {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind40AreaContactLog__load_from_l2c_table_implEPNS_14AreaContactLogERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -1251,7 +1251,7 @@ pub mod root {
             }
             pub mod FighterRidleyLinkEventMotion {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind54FighterRidleyLinkEventMotion__load_from_l2c_table_implEPNS_28FighterRidleyLinkEventMotionERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -1275,7 +1275,7 @@ pub mod root {
             }
             pub mod LinkEventCapturePulled {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind48LinkEventCapturePulled__load_from_l2c_table_implEPNS_22LinkEventCapturePulledERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -1299,7 +1299,7 @@ pub mod root {
             }
             pub mod ControlModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind35ControlModule__get_stick_angle_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn get_stick_angle(
@@ -2147,7 +2147,7 @@ pub mod root {
             }
             pub mod DamageModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind24DamageModule__sleep_implEPNS_26BattleObjectModuleAccessorEb"]
                     pub fn sleep(
@@ -2397,7 +2397,7 @@ pub mod root {
             }
             pub mod FighterWorkModuleImpl {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind38FighterWorkModuleImpl__calc_param_implEPNS_26BattleObjectModuleAccessorEbb"]
                     pub fn calc_param(
@@ -2416,7 +2416,7 @@ pub mod root {
             }
             pub mod BattleObjectSlow {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind27BattleObjectSlow__rate_implEPNS_16BattleObjectSlowE"]
                     pub fn rate(arg1: *mut root::app::BattleObjectSlow) -> u64;
@@ -2432,7 +2432,7 @@ pub mod root {
             }
             pub mod GimmickEventPipe {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind42GimmickEventPipe__load_from_l2c_table_implEPNS_16GimmickEventPipeERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -2454,7 +2454,7 @@ pub mod root {
             }
             pub mod LuaModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind27LuaModule__enable_line_implEPNS_26BattleObjectModuleAccessorENS_15LuaScriptLineIDE"]
                     pub fn enable_line(
@@ -2513,7 +2513,7 @@ pub mod root {
             }
             pub mod LinkEventCaptureDriver {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind48LinkEventCaptureDriver__load_from_l2c_table_implEPNS_22LinkEventCaptureDriverERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -2537,7 +2537,7 @@ pub mod root {
             }
             pub mod EffectModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind22EffectModule__req_implEPNS_26BattleObjectModuleAccessorEN3phx6Hash40ERKNS3_8Vector3fES7_fjibi"]
                     pub fn req(
@@ -3342,7 +3342,7 @@ pub mod root {
             }
             pub mod FighterPikminLinkEventWeaponPikminSyncPos {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind67FighterPikminLinkEventWeaponPikminSyncPos__load_from_l2c_table_implEPNS_41FighterPikminLinkEventWeaponPikminSyncPosERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -3366,7 +3366,7 @@ pub mod root {
             }
             pub mod CancelModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind35CancelModule__is_enable_cancel_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn is_enable_cancel(
@@ -3382,7 +3382,7 @@ pub mod root {
             }
             pub mod FighterPikminLinkEventWeaponPikminChangeMotion {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind72FighterPikminLinkEventWeaponPikminChangeMotion__load_from_l2c_table_implEPNS_46FighterPikminLinkEventWeaponPikminChangeMotionERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -3406,7 +3406,7 @@ pub mod root {
             }
             pub mod GimmickEventDrumCheckNeedLock {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind55GimmickEventDrumCheckNeedLock__load_from_l2c_table_implEPNS_29GimmickEventDrumCheckNeedLockERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -3430,7 +3430,7 @@ pub mod root {
             }
             pub mod GroundModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind31GroundModule__update_force_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn update_force(
@@ -4388,7 +4388,7 @@ pub mod root {
             }
             pub mod AbsorberModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind26AbsorberModule__clean_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn clean(arg1: *mut root::app::BattleObjectModuleAccessor) -> u64;
@@ -4656,7 +4656,7 @@ pub mod root {
             }
             pub mod LinkEventCaptureItem {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind46LinkEventCaptureItem__load_from_l2c_table_implEPNS_20LinkEventCaptureItemERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -4680,7 +4680,7 @@ pub mod root {
             }
             pub mod LinkEventCaptureFishingrodDamage {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind58LinkEventCaptureFishingrodDamage__load_from_l2c_table_implEPNS_32LinkEventCaptureFishingrodDamageERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -4704,7 +4704,7 @@ pub mod root {
             }
             pub mod AttackModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind28AttackModule__clear_all_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn clear_all(arg1: *mut root::app::BattleObjectModuleAccessor)
@@ -6077,7 +6077,7 @@ pub mod root {
             }
             pub mod FighterCutInManager {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind39FighterCutInManager__request_start_implEPNS_19FighterCutInManagerERNS_26BattleObjectModuleAccessorEPNS_15CutInTransactorENS_9CutInTypeEPKNS_9CutInDataENS_13CutInPriorityE"]
                     pub fn request_start(
@@ -6132,7 +6132,7 @@ pub mod root {
             }
             pub mod GimmickEventWarp {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind42GimmickEventWarp__load_from_l2c_table_implEPNS_16GimmickEventWarpERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -6154,7 +6154,7 @@ pub mod root {
             }
             pub mod GimmickEventDrumCheckNeedHide {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind55GimmickEventDrumCheckNeedHide__load_from_l2c_table_implEPNS_29GimmickEventDrumCheckNeedHideERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -6178,7 +6178,7 @@ pub mod root {
             }
             pub mod Circle {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind32Circle__load_from_l2c_table_implEPNS_6CircleERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -6200,7 +6200,7 @@ pub mod root {
             }
             pub mod FighterInklingLinkEventPaint {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind54FighterInklingLinkEventPaint__load_from_l2c_table_implEPNS_28FighterInklingLinkEventPaintERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -6224,7 +6224,7 @@ pub mod root {
             }
             pub mod FighterControlModuleImpl {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind55FighterControlModuleImpl__reserve_on_attack_button_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn reserve_on_attack_button(
@@ -6316,7 +6316,7 @@ pub mod root {
             }
             pub mod FighterRyuLinkEventFinalDeadDamage {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind60FighterRyuLinkEventFinalDeadDamage__load_from_l2c_table_implEPNS_34FighterRyuLinkEventFinalDeadDamageERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -6340,7 +6340,7 @@ pub mod root {
             }
             pub mod FighterMotionModuleImpl {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind48FighterMotionModuleImpl__add_body_type_hash_implEPNS_26BattleObjectModuleAccessorEN3phx6Hash40Ei"]
                     pub fn add_body_type_hash(
@@ -6502,7 +6502,7 @@ pub mod root {
             }
             pub mod FighterStopModuleImpl {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind42FighterStopModuleImpl__is_damage_stop_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn is_damage_stop(arg1: *mut root::app::BattleObjectModuleAccessor)
@@ -6517,7 +6517,7 @@ pub mod root {
             }
             pub mod WeaponShizueFishingrodLinkEventReel {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind61WeaponShizueFishingrodLinkEventReel__load_from_l2c_table_implEPNS_35WeaponShizueFishingrodLinkEventReelERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -6541,7 +6541,7 @@ pub mod root {
             }
             pub mod GimmickEventBarrel {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind44GimmickEventBarrel__load_from_l2c_table_implEPNS_18GimmickEventBarrelERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -6564,7 +6564,7 @@ pub mod root {
             }
             pub mod ArticleModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind36ArticleModule__generate_article_implEPNS_26BattleObjectModuleAccessorEibi"]
                     pub fn generate_article(
@@ -6930,7 +6930,7 @@ pub mod root {
             }
             pub mod LinkEventThrow {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind40LinkEventThrow__load_from_l2c_table_implEPNS_14LinkEventThrowERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -6952,7 +6952,7 @@ pub mod root {
             }
             pub mod CatchModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind27CatchModule__set_catch_implEPNS_26BattleObjectModuleAccessorEj"]
                     pub fn set_catch(
@@ -7014,7 +7014,7 @@ pub mod root {
             }
             pub mod DamageLog {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind35DamageLog__load_from_l2c_table_implEPNS_9DamageLogERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -7036,7 +7036,7 @@ pub mod root {
             }
             pub mod ShieldModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind24ShieldModule__clean_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn clean(arg1: *mut root::app::BattleObjectModuleAccessor) -> u64;
@@ -7304,7 +7304,7 @@ pub mod root {
             }
             pub mod FighterRyuLinkEventFinalMoveTarget {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind60FighterRyuLinkEventFinalMoveTarget__load_from_l2c_table_implEPNS_34FighterRyuLinkEventFinalMoveTargetERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -7328,7 +7328,7 @@ pub mod root {
             }
             pub mod DamageInfo {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind36DamageInfo__load_from_l2c_table_implEPNS_10DamageInfoERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -7350,7 +7350,7 @@ pub mod root {
             }
             pub mod PostureModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind28PostureModule__init_pos_implEPNS_26BattleObjectModuleAccessorERKN3phx8Vector3fEbb"]
                     pub fn init_pos(
@@ -7603,7 +7603,7 @@ pub mod root {
             }
             pub mod LinkEventTouchItem {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind44LinkEventTouchItem__load_from_l2c_table_implEPNS_18LinkEventTouchItemERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -7626,7 +7626,7 @@ pub mod root {
             }
             pub mod GimmickEventCatch {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind43GimmickEventCatch__load_from_l2c_table_implEPNS_17GimmickEventCatchERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -7648,7 +7648,7 @@ pub mod root {
             }
             pub mod MotionModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind32MotionModule__change_motion_implEPNS_26BattleObjectModuleAccessorEN3phx6Hash40Effbfbb"]
                     pub fn change_motion(
@@ -8274,7 +8274,7 @@ pub mod root {
             }
             pub mod WorkModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind26WorkModule__get_float_implEPNS_26BattleObjectModuleAccessorEi"]
                     pub fn get_float(
@@ -8626,7 +8626,7 @@ pub mod root {
             }
             pub mod Weapon {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind27Weapon__get_founder_id_implEPNS_6WeaponE"]
                     pub fn get_founder_id(arg1: *mut root::app::Weapon) -> u64;
@@ -8634,7 +8634,7 @@ pub mod root {
             }
             pub mod AttackAbsoluteData {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind44AttackAbsoluteData__load_from_l2c_table_implEPNS_18AttackAbsoluteDataERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -8657,7 +8657,7 @@ pub mod root {
             }
             pub mod SlopeModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind40SlopeModule__update_model_top_angle_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn update_model_top_angle(
@@ -8679,7 +8679,7 @@ pub mod root {
             }
             pub mod StopModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind32StopModule__cancel_hit_stop_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn cancel_hit_stop(
@@ -8796,7 +8796,7 @@ pub mod root {
             }
             pub mod OnCalcParamEvent {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind42OnCalcParamEvent__load_from_l2c_table_implEPNS_16OnCalcParamEventERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -8818,7 +8818,7 @@ pub mod root {
             }
             pub mod ShakeModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind21ShakeModule__req_implEPNS_26BattleObjectModuleAccessorEN3phx6Hash40EibRKNS3_8Vector2fEffbb"]
                     pub fn req(
@@ -8918,7 +8918,7 @@ pub mod root {
             }
             pub mod GimmickEventSlashEscape {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind49GimmickEventSlashEscape__load_from_l2c_table_implEPNS_23GimmickEventSlashEscapeERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -8942,7 +8942,7 @@ pub mod root {
             }
             pub mod ShadowModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind27ShadowModule__set_draw_implEPNS_26BattleObjectModuleAccessorENS_14ShadowDrawFlagEb"]
                     pub fn set_draw(
@@ -8972,7 +8972,7 @@ pub mod root {
             }
             pub mod SoundModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind34SoundModule__set_position_sub_implEPNS_26BattleObjectModuleAccessorERKN3phx8Vector3fE"]
                     pub fn set_position_sub(
@@ -9371,7 +9371,7 @@ pub mod root {
             }
             pub mod Article {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind34Article__get_battle_object_id_implEPNS_7ArticleE"]
                     pub fn get_battle_object_id(arg1: *mut root::app::Article) -> u64;
@@ -9379,7 +9379,7 @@ pub mod root {
             }
             pub mod GimmickEventDrumPos {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind45GimmickEventDrumPos__load_from_l2c_table_implEPNS_19GimmickEventDrumPosERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -9403,7 +9403,7 @@ pub mod root {
             }
             pub mod LinkEventYoshiTamagoDamageEffect {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind58LinkEventYoshiTamagoDamageEffect__load_from_l2c_table_implEPNS_32LinkEventYoshiTamagoDamageEffectERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -9427,7 +9427,7 @@ pub mod root {
             }
             pub mod FighterPikminLinkEventWeaponPikminSetFloat {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind68FighterPikminLinkEventWeaponPikminSetFloat__load_from_l2c_table_implEPNS_42FighterPikminLinkEventWeaponPikminSetFloatERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -9451,7 +9451,7 @@ pub mod root {
             }
             pub mod ItemInkPaintModuleImpl {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind49ItemInkPaintModuleImpl__apply_link_ink_paint_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn apply_link_ink_paint(
@@ -9461,7 +9461,7 @@ pub mod root {
             }
             pub mod FighterPitBFinalModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind33FighterPitBFinalModule__init_implEPNS_22FighterPitBFinalModuleE"]
                     pub fn init(arg1: *mut root::app::FighterPitBFinalModule) -> u64;
@@ -9500,7 +9500,7 @@ pub mod root {
             }
             pub mod BattleObjectWorld {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind49BattleObjectWorld__gravity_speed_coefficient_implEPNS_17BattleObjectWorldE"]
                     pub fn gravity_speed_coefficient(
@@ -9526,7 +9526,7 @@ pub mod root {
             }
             pub mod JostleModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind29JostleModule__set_status_implEPNS_26BattleObjectModuleAccessorEb"]
                     pub fn set_status(arg1: *mut root::app::BattleObjectModuleAccessor, arg2: bool);
@@ -9704,7 +9704,7 @@ pub mod root {
             }
             pub mod InkPaintModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind24InkPaintModule__ink_implEPNS_26BattleObjectModuleAccessorEj"]
                     pub fn ink(
@@ -9753,7 +9753,7 @@ pub mod root {
             }
             pub mod CaptureModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind29CaptureModule__set_nodes_implEPNS_26BattleObjectModuleAccessorEN3phx6Hash40ES4_f"]
                     pub fn set_nodes(
@@ -9996,7 +9996,7 @@ pub mod root {
             }
             pub mod FighterAreaModuleImpl {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind50FighterAreaModuleImpl__enable_fix_jostle_area_implEPNS_26BattleObjectModuleAccessorEff"]
                     pub fn enable_fix_jostle_area(
@@ -10024,7 +10024,7 @@ pub mod root {
             }
             pub mod GrabModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind26GrabModule__clear_all_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn clear_all(arg1: *mut root::app::BattleObjectModuleAccessor)
@@ -10148,7 +10148,7 @@ pub mod root {
             }
             pub mod FighterBayonettaFinalModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind44FighterBayonettaFinalModule__final_init_implEPNS_27FighterBayonettaFinalModuleERNS_26BattleObjectModuleAccessorE"]
                     pub fn final_init(
@@ -10243,7 +10243,7 @@ pub mod root {
             }
             pub mod ItemParamAccessor {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind45ItemParamAccessor__boss_common_param_int_implEPNS_17ItemParamAccessorENS_8ItemKindENS_18BossCommonParamIntE"]
                     pub fn boss_common_param_int(
@@ -10279,7 +10279,7 @@ pub mod root {
             }
             pub mod Item {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind24Item__start_inhaled_implEPNS_4ItemE"]
                     pub fn start_inhaled(arg1: *mut root::app::Item) -> u64;
@@ -10373,7 +10373,7 @@ pub mod root {
             }
             pub mod FighterPokemonLinkEventChange {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind55FighterPokemonLinkEventChange__load_from_l2c_table_implEPNS_29FighterPokemonLinkEventChangeERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -10397,7 +10397,7 @@ pub mod root {
             }
             pub mod ReflectorModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind27ReflectorModule__clean_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn clean(arg1: *mut root::app::BattleObjectModuleAccessor) -> u64;
@@ -10665,7 +10665,7 @@ pub mod root {
             }
             pub mod SearchModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind28SearchModule__clear_all_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn clear_all(arg1: *mut root::app::BattleObjectModuleAccessor)
@@ -10812,7 +10812,7 @@ pub mod root {
             }
             pub mod PhysicsModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind31PhysicsModule__reset_swing_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn reset_swing(
@@ -11227,7 +11227,7 @@ pub mod root {
             }
             pub mod SlowModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind24SlowModule__is_slow_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn is_slow(arg1: *mut root::app::BattleObjectModuleAccessor) -> bool;
@@ -11321,7 +11321,7 @@ pub mod root {
             }
             pub mod CameraModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind28CameraModule__reset_all_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn reset_all(arg1: *mut root::app::BattleObjectModuleAccessor)
@@ -11617,7 +11617,7 @@ pub mod root {
             }
             pub mod FighterPikminLinkEventWeaponPikminConstraint {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind70FighterPikminLinkEventWeaponPikminConstraint__load_from_l2c_table_implEPNS_44FighterPikminLinkEventWeaponPikminConstraintERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -11641,7 +11641,7 @@ pub mod root {
             }
             pub mod KineticEnergyNormal {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind35KineticEnergyNormal__get_accel_implEPNS_19KineticEnergyNormalE"]
                     pub fn get_accel(arg1: *mut root::app::KineticEnergyNormal) -> u64;
@@ -11722,7 +11722,7 @@ pub mod root {
             }
             pub mod KineticEnergy {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind29KineticEnergy__get_speed_implEPNS_13KineticEnergyE"]
                     pub fn get_speed(arg1: *mut root::app::KineticEnergy) -> u64;
@@ -11816,7 +11816,7 @@ pub mod root {
             }
             pub mod FighterParamAccessor2 {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind41FighterParamAccessor2__thrown_offset_implEPNS_21FighterParamAccessor2Eiii"]
                     pub fn thrown_offset(
@@ -11875,7 +11875,7 @@ pub mod root {
             }
             pub mod ReflectModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind30ReflectModule__reset_info_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn reset_info(
@@ -11976,7 +11976,7 @@ pub mod root {
             }
             pub mod GimmickEventNotify {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind44GimmickEventNotify__load_from_l2c_table_implEPNS_18GimmickEventNotifyERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -11999,7 +11999,7 @@ pub mod root {
             }
             pub mod FighterPikminLinkEventWeaponPikminSetPowerMulStatus {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind77FighterPikminLinkEventWeaponPikminSetPowerMulStatus__load_from_l2c_table_implEPNS_51FighterPikminLinkEventWeaponPikminSetPowerMulStatusERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -12023,7 +12023,7 @@ pub mod root {
             }
             pub mod WeaponKineticEnergyGravity {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind42WeaponKineticEnergyGravity__set_accel_implEPNS_26WeaponKineticEnergyGravityEf"]
                     pub fn set_accel(arg1: *mut root::app::WeaponKineticEnergyGravity, arg2: f32);
@@ -12048,7 +12048,7 @@ pub mod root {
             }
             pub mod WeaponShizueFishingrodLinkEventCliff {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind62WeaponShizueFishingrodLinkEventCliff__load_from_l2c_table_implEPNS_36WeaponShizueFishingrodLinkEventCliffERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -12072,7 +12072,7 @@ pub mod root {
             }
             pub mod LinkEventFinal {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind40LinkEventFinal__load_from_l2c_table_implEPNS_14LinkEventFinalERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -12094,7 +12094,7 @@ pub mod root {
             }
             pub mod LinkEvent {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind35LinkEvent__load_from_l2c_table_implEPNS_9LinkEventERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -12116,7 +12116,7 @@ pub mod root {
             }
             pub mod LinkEventCaptureMimikkyu {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind50LinkEventCaptureMimikkyu__load_from_l2c_table_implEPNS_24LinkEventCaptureMimikkyuERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -12140,7 +12140,7 @@ pub mod root {
             }
             pub mod LinkEventCapture {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind42LinkEventCapture__load_from_l2c_table_implEPNS_16LinkEventCaptureERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -12162,7 +12162,7 @@ pub mod root {
             }
             pub mod GimmickEventDrumEscape {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind48GimmickEventDrumEscape__load_from_l2c_table_implEPNS_22GimmickEventDrumEscapeERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -12186,7 +12186,7 @@ pub mod root {
             }
             pub mod GimmickEventPos {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind41GimmickEventPos__load_from_l2c_table_implEPNS_15GimmickEventPosERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -12208,7 +12208,7 @@ pub mod root {
             }
             pub mod GimmickEventTornadoEscape {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind51GimmickEventTornadoEscape__load_from_l2c_table_implEPNS_25GimmickEventTornadoEscapeERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -12232,7 +12232,7 @@ pub mod root {
             }
             pub mod FighterKineticEnergyGravity {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind43FighterKineticEnergyGravity__set_accel_implEPNS_27FighterKineticEnergyGravityEf"]
                     pub fn set_accel(arg1: *mut root::app::FighterKineticEnergyGravity, arg2: f32);
@@ -12293,7 +12293,7 @@ pub mod root {
             }
             pub mod ItemManager {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind41ItemManager__get_num_of_ownered_item_implEPNS_11ItemManagerEjNS_8ItemKindE"]
                     pub fn get_num_of_ownered_item(
@@ -12345,7 +12345,7 @@ pub mod root {
             }
             pub mod AreaModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind29AreaModule__force_update_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn force_update(
@@ -12590,7 +12590,7 @@ pub mod root {
             }
             pub mod ItemCameraModuleImpl {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind47ItemCameraModuleImpl__start_camera_subject_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn start_camera_subject(
@@ -12651,7 +12651,7 @@ pub mod root {
             }
             pub mod ItemDamageModuleImpl {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind42ItemDamageModuleImpl__is_smash_damage_implEPNS_26BattleObjectModuleAccessorEff"]
                     pub fn is_smash_damage(
@@ -12677,7 +12677,7 @@ pub mod root {
             }
             pub mod FighterManager {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind32FighterManager__entry_count_implEPNS_14FighterManagerE"]
                     pub fn entry_count(arg1: *mut root::app::FighterManager) -> u64;
@@ -12937,7 +12937,7 @@ pub mod root {
             }
             pub mod FighterStatusModuleImpl {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind53FighterStatusModuleImpl__set_fighter_status_data_implEPNS_26BattleObjectModuleAccessorEbibbbmjjj"]
                     pub fn set_fighter_status_data(
@@ -12969,7 +12969,7 @@ pub mod root {
             }
             pub mod KineticEnergyRotNormal {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind38KineticEnergyRotNormal__get_accel_implEPNS_22KineticEnergyRotNormalE"]
                     pub fn get_accel(arg1: *mut root::app::KineticEnergyRotNormal) -> u64;
@@ -13033,7 +13033,7 @@ pub mod root {
             }
             pub mod TeamModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind24TeamModule__team_no_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn team_no(arg1: *mut root::app::BattleObjectModuleAccessor) -> u64;
@@ -13107,7 +13107,7 @@ pub mod root {
             }
             pub mod ComboModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind21ComboModule__set_implEPNS_26BattleObjectModuleAccessorEi"]
                     pub fn set(arg1: *mut root::app::BattleObjectModuleAccessor, arg2: libc::c_int);
@@ -13123,7 +13123,7 @@ pub mod root {
             }
             pub mod BossManager {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind33BossManager__is_stoppable_se_implEPNS_11BossManagerE"]
                     pub fn is_stoppable_se(arg1: *mut root::app::BossManager) -> bool;
@@ -13152,7 +13152,7 @@ pub mod root {
             }
             pub mod AttackData {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind36AttackData__load_from_l2c_table_implEPNS_10AttackDataERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -13174,7 +13174,7 @@ pub mod root {
             }
             pub mod FighterInformation {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind34FighterInformation__hit_point_implEPNS_18FighterInformationE"]
                     pub fn hit_point(arg1: *mut root::app::FighterInformation) -> u64;
@@ -13285,7 +13285,7 @@ pub mod root {
             }
             pub mod FighterPikminLinkEventWeaponPikminOnFlag {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind66FighterPikminLinkEventWeaponPikminOnFlag__load_from_l2c_table_implEPNS_40FighterPikminLinkEventWeaponPikminOnFlagERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -13309,7 +13309,7 @@ pub mod root {
             }
             pub mod FighterKineticEnergyController {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind52FighterKineticEnergyController__mul_x_speed_max_implEPNS_30FighterKineticEnergyControllerEf"]
                     pub fn mul_x_speed_max(
@@ -13386,7 +13386,7 @@ pub mod root {
             }
             pub mod FighterPikminLinkEventWeaponPikminSyncLR {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind66FighterPikminLinkEventWeaponPikminSyncLR__load_from_l2c_table_implEPNS_40FighterPikminLinkEventWeaponPikminSyncLRERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -13410,7 +13410,7 @@ pub mod root {
             }
             pub mod WeaponRobotHominglaserLinkEventSearch {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind63WeaponRobotHominglaserLinkEventSearch__load_from_l2c_table_implEPNS_37WeaponRobotHominglaserLinkEventSearchERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -13434,7 +13434,7 @@ pub mod root {
             }
             pub mod GimmickEventDrumShake {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind47GimmickEventDrumShake__load_from_l2c_table_implEPNS_21GimmickEventDrumShakeERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -13458,7 +13458,7 @@ pub mod root {
             }
             pub mod FighterSpiritsSupportSkill {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind59FighterSpiritsSupportSkill__is_unsync_vis_whole_effect_implEPNS_26FighterSpiritsSupportSkillE"]
                     pub fn is_unsync_vis_whole_effect(
@@ -13474,7 +13474,7 @@ pub mod root {
             }
             pub mod StageManager {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind33StageManager__stage_all_stop_implEPNS_12StageManagerEb"]
                     pub fn stage_all_stop(
@@ -13489,7 +13489,7 @@ pub mod root {
             }
             pub mod GimmickEventPresenter {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind55GimmickEventPresenter__dispatch_event_from_fighter_implEPNS_21GimmickEventPresenterERNS_12GimmickEventE"]
                     pub fn dispatch_event_from_fighter(
@@ -13500,7 +13500,7 @@ pub mod root {
             }
             pub mod GimmickEventDrumRelease {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind49GimmickEventDrumRelease__load_from_l2c_table_implEPNS_23GimmickEventDrumReleaseERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -13524,7 +13524,7 @@ pub mod root {
             }
             pub mod FighterPikminLinkEventWeaponPikminSetInt {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind66FighterPikminLinkEventWeaponPikminSetInt__load_from_l2c_table_implEPNS_40FighterPikminLinkEventWeaponPikminSetIntERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -13548,7 +13548,7 @@ pub mod root {
             }
             pub mod GimmickEventTornadoShootInfo {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind54GimmickEventTornadoShootInfo__load_from_l2c_table_implEPNS_28GimmickEventTornadoShootInfoERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -13572,7 +13572,7 @@ pub mod root {
             }
             pub mod FighterKineticEnergyMotion {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind42FighterKineticEnergyMotion__set_angle_implEPNS_26FighterKineticEnergyMotionEf"]
                     pub fn set_angle(arg1: *mut root::app::FighterKineticEnergyMotion, arg2: f32);
@@ -13655,7 +13655,7 @@ pub mod root {
             }
             pub mod ModelModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind36ModelModule__set_rotation_order_implEPNS_26BattleObjectModuleAccessorENS_21MotionNodeRotateOrderE"]
                     pub fn set_rotation_order(
@@ -13882,7 +13882,7 @@ pub mod root {
             }
             pub mod GimmickEventTornadoMoveInfo {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind53GimmickEventTornadoMoveInfo__load_from_l2c_table_implEPNS_27GimmickEventTornadoMoveInfoERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -13906,7 +13906,7 @@ pub mod root {
             }
             pub mod KineticModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind30KineticModule__get_energy_implEPNS_26BattleObjectModuleAccessorEi"]
                     pub fn get_energy(
@@ -14114,7 +14114,7 @@ pub mod root {
             }
             pub mod BattleObjectManager {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind54BattleObjectManager__is_active_find_battle_object_implEPNS_19BattleObjectManagerEj"]
                     pub fn is_active_find_battle_object(
@@ -14125,7 +14125,7 @@ pub mod root {
             }
             pub mod LinkEventStarShot {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind43LinkEventStarShot__load_from_l2c_table_implEPNS_17LinkEventStarShotERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -14147,7 +14147,7 @@ pub mod root {
             }
             pub mod stWaterAreaInfo {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind41stWaterAreaInfo__load_from_l2c_table_implEPNS_15stWaterAreaInfoERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -14169,7 +14169,7 @@ pub mod root {
             }
             pub mod GimmickEventLadder {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind44GimmickEventLadder__load_from_l2c_table_implEPNS_18GimmickEventLadderERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -14192,7 +14192,7 @@ pub mod root {
             }
             pub mod ItemKineticModuleImpl {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind43ItemKineticModuleImpl__set_throw_param_implEPNS_26BattleObjectModuleAccessorERKN3phx8Vector3fES6_bj"]
                     pub fn set_throw_param(
@@ -14403,7 +14403,7 @@ pub mod root {
             }
             pub mod ItemModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind26ItemModule__have_item_implEPNS_26BattleObjectModuleAccessorENS_8ItemKindEiibb"]
                     pub fn have_item(
@@ -14833,7 +14833,7 @@ pub mod root {
             }
             pub mod FighterCloudLinkEventFinal {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind52FighterCloudLinkEventFinal__load_from_l2c_table_implEPNS_26FighterCloudLinkEventFinalERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -14857,7 +14857,7 @@ pub mod root {
             }
             pub mod ItemMotionAnimcmdModuleImpl {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind46ItemMotionAnimcmdModuleImpl__set_fix_rate_implEPNS_26BattleObjectModuleAccessorEf"]
                     pub fn set_fix_rate(
@@ -14868,7 +14868,7 @@ pub mod root {
             }
             pub mod StatusModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind40StatusModule__change_status_request_implEPNS_26BattleObjectModuleAccessorEib"]
                     pub fn change_status_request(
@@ -15056,7 +15056,7 @@ pub mod root {
             }
             pub mod VisibilityModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind26VisibilityModule__set_implEPNS_26BattleObjectModuleAccessorEN3phx6Hash40ES4_"]
                     pub fn set(
@@ -15190,7 +15190,7 @@ pub mod root {
             }
             pub mod ColorBlendModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind32ColorBlendModule__off_flash_implEPNS_26BattleObjectModuleAccessorEb"]
                     pub fn off_flash(
@@ -15299,7 +15299,7 @@ pub mod root {
             }
             pub mod HitModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind21HitModule__clean_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn clean(arg1: *mut root::app::BattleObjectModuleAccessor) -> u64;
@@ -15479,7 +15479,7 @@ pub mod root {
             }
             pub mod WeaponRobotHominglaserLinkEventBurst {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind62WeaponRobotHominglaserLinkEventBurst__load_from_l2c_table_implEPNS_36WeaponRobotHominglaserLinkEventBurstERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -15503,7 +15503,7 @@ pub mod root {
             }
             pub mod LinkEventMask {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind39LinkEventMask__load_from_l2c_table_implEPNS_13LinkEventMaskERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -15525,7 +15525,7 @@ pub mod root {
             }
             pub mod WeaponSnakeMissileKineticEnergyNormal {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind57WeaponSnakeMissileKineticEnergyNormal__set_direction_implEPNS_37WeaponSnakeMissileKineticEnergyNormalERKN3phx8Vector3fE"]
                     pub fn set_direction(
@@ -15536,7 +15536,7 @@ pub mod root {
             }
             pub mod LinkModule {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind21LinkModule__link_implEPNS_26BattleObjectModuleAccessorEij"]
                     pub fn link(
@@ -16378,7 +16378,7 @@ pub mod root {
             }
             pub mod WeaponShizueFishingrodLinkEventCut {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind60WeaponShizueFishingrodLinkEventCut__load_from_l2c_table_implEPNS_34WeaponShizueFishingrodLinkEventCutERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -16402,7 +16402,7 @@ pub mod root {
             }
             pub mod WeaponSnakeNikitaMissileKineticEnergyNormal {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind59WeaponSnakeNikitaMissileKineticEnergyNormal__set_rot_z_implEPNS_43WeaponSnakeNikitaMissileKineticEnergyNormalEf"]
                     pub fn set_rot_z(
@@ -16426,7 +16426,7 @@ pub mod root {
             }
             pub mod WeaponShizueFishingrodLinkEventShoot {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind62WeaponShizueFishingrodLinkEventShoot__load_from_l2c_table_implEPNS_36WeaponShizueFishingrodLinkEventShootERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -16450,7 +16450,7 @@ pub mod root {
             }
             pub mod GimmickEvent {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind38GimmickEvent__load_from_l2c_table_implEPNS_12GimmickEventERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -16472,7 +16472,7 @@ pub mod root {
             }
             pub mod GimmickEventSlashLockInfo {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind51GimmickEventSlashLockInfo__load_from_l2c_table_implEPNS_25GimmickEventSlashLockInfoERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -16496,7 +16496,7 @@ pub mod root {
             }
             pub mod FighterPikminLinkEventWeaponPikminChangeStatus {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind72FighterPikminLinkEventWeaponPikminChangeStatus__load_from_l2c_table_implEPNS_46FighterPikminLinkEventWeaponPikminChangeStatusERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -16520,7 +16520,7 @@ pub mod root {
             }
             pub mod GimmickEventSpring {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind44GimmickEventSpring__load_from_l2c_table_implEPNS_18GimmickEventSpringERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -16543,7 +16543,7 @@ pub mod root {
             }
             pub mod LinkEventPos {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind38LinkEventPos__load_from_l2c_table_implEPNS_12LinkEventPosERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -16565,7 +16565,7 @@ pub mod root {
             }
             pub mod Rhombus2 {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind34Rhombus2__load_from_l2c_table_implEPNS_8Rhombus2ERKN3lib8L2CValueE"]
                     pub fn load_from_l2c_table(
@@ -16587,7 +16587,7 @@ pub mod root {
             }
             pub mod FighterEntry {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind30FighterEntry__fighter_num_implEPNS_12FighterEntryE"]
                     pub fn fighter_num(arg1: *mut root::app::FighterEntry) -> u64;
@@ -16626,7 +16626,7 @@ pub mod root {
         }
         pub mod sv_animcmd {
             #[allow(unused_imports)]
-            use self::super::super::super::root;
+            use super::super::super::root;
             extern "C" {
                 #[link_name = "\u{1}_ZN3app10sv_animcmd18ADD_SPEED_NO_LIMITEP9lua_State"]
                 pub fn ADD_SPEED_NO_LIMIT(arg1: u64);
@@ -17462,7 +17462,7 @@ pub mod root {
         }
         pub mod sv_battle_object {
             #[allow(unused_imports)]
-            use self::super::super::super::root;
+            use super::super::super::root;
             extern "C" {
                 #[link_name = "\u{1}_ZN3app16sv_battle_object17add_speed_outsideEjiRKN3phx8Vector3fE"]
                 pub fn add_speed_outside() -> u64;
@@ -17554,7 +17554,7 @@ pub mod root {
         }
         pub mod sv_kinetic_energy {
             #[allow(unused_imports)]
-            use self::super::super::super::root;
+            use super::super::super::root;
             extern "C" {
                 #[link_name = "\u{1}_ZN3app17sv_kinetic_energy11clear_speedEP9lua_State"]
                 pub fn clear_speed(arg1: u64);
@@ -17774,7 +17774,7 @@ pub mod root {
         }
         pub mod sv_math {
             #[allow(unused_imports)]
-            use self::super::super::super::root;
+            use super::super::super::root;
             extern "C" {
                 #[link_name = "\u{1}_ZN3app7sv_math10vec2_angleEffff"]
                 pub fn vec2_angle(arg1: f32, arg2: f32, arg3: f32, arg4: f32) -> f32;
@@ -17935,7 +17935,7 @@ pub mod root {
         }
         pub mod sv_module_access {
             #[allow(unused_imports)]
-            use self::super::super::super::root;
+            use super::super::super::root;
             extern "C" {
                 #[link_name = "\u{1}_ZN3app16sv_module_access11color_blendEP9lua_State"]
                 pub fn color_blend(arg1: u64);
@@ -18007,7 +18007,7 @@ pub mod root {
         }
         pub mod sv_system {
             #[allow(unused_imports)]
-            use self::super::super::super::root;
+            use super::super::super::root;
             extern "C" {
                 #[link_name = "\u{1}_ZN3app9sv_system13battle_objectEP9lua_State"]
                 pub fn battle_object(arg1: u64) -> u64;
@@ -18123,7 +18123,7 @@ pub mod root {
         }
 
         #[allow(unused_imports)]
-        use self::super::super::root;
+        use super::super::root;
         extern "C" {
             #[link_name = "\u{1}_ZN3lib18lua_bind_get_valueIiEEbmRT_"]
             pub fn lua_bind_get_value(arg1: u64, arg2: *mut libc::c_int) -> bool;
@@ -18323,10 +18323,10 @@ pub mod root {
         }
         pub mod utility {
             #[allow(unused_imports)]
-            use self::super::super::super::root;
+            use super::super::super::root;
             pub mod Variadic {
                 #[allow(unused_imports)]
-                use self::super::super::super::super::root;
+                use super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZNK3lib7utility8Variadic10get_formatEv"]
                     pub fn get_format(variadic: *mut libc::c_void) -> *const libc::c_char;
@@ -18341,7 +18341,7 @@ pub mod root {
     }
     pub mod phx {
         #[allow(unused_imports)]
-        use self::super::super::root;
+        use super::super::root;
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct Vector2f {
