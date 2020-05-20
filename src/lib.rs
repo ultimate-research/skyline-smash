@@ -23,5 +23,15 @@ pub const fn hash40(string: &str) -> u64 {
     ((bytes.len() as u64) << 32) + crc32::crc32(bytes) as u64
 }
 
+impl phx::Hash40 {
+    pub fn new(string: &str) -> Self {
+        Self { hash : hash40(string) }
+    }
+
+    pub fn new_raw(raw: u64) -> Self {
+        Self { hash : raw }
+    }
+}
+
 
 mod lua_const;
