@@ -1654,7 +1654,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind31ControlModule__get_trigger_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn get_trigger(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> i32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind37ControlModule__get_trigger_count_implEPNS_26BattleObjectModuleAccessorEh"]
@@ -1686,7 +1686,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind31ControlModule__get_release_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn get_release(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> i32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind40ControlModule__check_button_trigger_implEPNS_26BattleObjectModuleAccessorEi"]
@@ -2975,7 +2975,7 @@ pub mod root {
                         arg2: *const root::phx::Vector3f,
                         arg3: f32,
                         arg4: bool,
-                    ) -> u64;
+                    ) -> i32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind40EffectModule__get_dead_effect_scale_implEPNS_26BattleObjectModuleAccessorERKN3phx8Vector3fEfb"]
@@ -2984,7 +2984,7 @@ pub mod root {
                         arg2: *const root::phx::Vector3f,
                         arg3: f32,
                         arg4: bool,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind39EffectModule__is_dead_effect_slant_implEPNS_26BattleObjectModuleAccessorERKN3phx8Vector3fEf"]
@@ -3525,7 +3525,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind30GroundModule__get_correct_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn get_correct(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> i32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind33GroundModule__set_collidable_implEPNS_26BattleObjectModuleAccessorEb"]
@@ -3681,7 +3681,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind36GroundModule__hang_cliff_pos_3f_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn hang_cliff_pos_3f(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> root::phx::Vector3f;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind43GroundModule__hang_can_entry_cliff_pos_implEPNS_26BattleObjectModuleAccessorE"]
@@ -4015,7 +4015,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind38GroundModule__get_cliff_id_uint32_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn get_cliff_id_uint32(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> u32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind29GroundModule__get_up_pos_implEPNS_26BattleObjectModuleAccessorE"]
@@ -5253,7 +5253,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind42AttackModule__get_damage_reaction_mul_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn get_damage_reaction_mul(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind39AttackModule__set_shield_stiff_mul_implEPNS_26BattleObjectModuleAccessorEf"]
@@ -5307,7 +5307,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind30AttackModule__get_inflict_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn get_inflict(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> i32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind32AttackModule__is_infliction_implEPNS_26BattleObjectModuleAccessorEj"]
@@ -5320,7 +5320,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind37AttackModule__get_inflict_status_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn get_inflict_status(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> i32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind39AttackModule__is_infliction_status_implEPNS_26BattleObjectModuleAccessorEj"]
@@ -6355,7 +6355,7 @@ pub mod root {
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: root::phx::Hash40,
                         arg3: bool,
-                    ) -> u64;
+                    ) -> i32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind51FighterMotionModuleImpl__is_valid_cancel_frame_implEPNS_26BattleObjectModuleAccessorEib"]
@@ -6371,7 +6371,7 @@ pub mod root {
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: root::phx::Hash40,
                         arg3: bool,
-                    ) -> u64;
+                    ) -> i32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind47FighterMotionModuleImpl__get_hit_xlu_frame_implEPNS_26BattleObjectModuleAccessorEN3phx6Hash40Eb"]
@@ -6379,7 +6379,7 @@ pub mod root {
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: root::phx::Hash40,
                         arg3: bool,
-                    ) -> u64;
+                    ) -> i32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind61FighterMotionModuleImpl__motion_kind_kirby_copy_original_implEPNS_26BattleObjectModuleAccessorEN3phx6Hash40E"]
@@ -6823,7 +6823,7 @@ pub mod root {
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
                         arg3: libc::c_int,
-                    ) -> u64;
+                    ) -> i32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind29ArticleModule__set_float_implEPNS_26BattleObjectModuleAccessorEifi"]
@@ -6840,7 +6840,7 @@ pub mod root {
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
                         arg3: libc::c_int,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind35ArticleModule__set_item_action_implEPNS_26BattleObjectModuleAccessorEiif"]
@@ -6907,7 +6907,7 @@ pub mod root {
                     pub fn get_article(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                    ) -> u64;
+                    ) -> i32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind33ArticleModule__get_joint_pos_implEPNS_26BattleObjectModuleAccessorEiN3phx6Hash40ENS_22ArticleOperationTargetE"]
@@ -7148,7 +7148,7 @@ pub mod root {
                     pub fn get_attack_mul(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind32ShieldModule__set_speed_mul_implEPNS_26BattleObjectModuleAccessorEfi"]
@@ -7163,7 +7163,7 @@ pub mod root {
                     pub fn get_speed_mul(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind31ShieldModule__set_life_mul_implEPNS_26BattleObjectModuleAccessorEfi"]
@@ -7178,7 +7178,7 @@ pub mod root {
                     pub fn get_life_mul(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind35ShieldModule__set_attack_limit_implEPNS_26BattleObjectModuleAccessorEfi"]
@@ -7220,7 +7220,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind30ShieldModule__get_team_no_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn get_team_no(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> i32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind30ShieldModule__set_no_team_implEPNS_26BattleObjectModuleAccessorEb"]
@@ -11456,7 +11456,7 @@ pub mod root {
                     pub fn get_player_no(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                    ) -> u64;
+                    ) -> i32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind33CameraModule__set_damage_fly_implEPNS_26BattleObjectModuleAccessorEi"]
@@ -11644,20 +11644,20 @@ pub mod root {
                 use self::super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind35KineticEnergyNormal__get_accel_implEPNS_19KineticEnergyNormalE"]
-                    pub fn get_accel(arg1: *mut root::app::KineticEnergyNormal) -> u64;
+                    pub fn get_accel(arg1: *mut root::app::KineticEnergyNormal) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind42KineticEnergyNormal__get_stable_speed_implEPNS_19KineticEnergyNormalE"]
                     pub fn get_stable_speed(arg1: *mut root::app::KineticEnergyNormal)
-                        -> u64;
+                        -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind35KineticEnergyNormal__get_brake_implEPNS_19KineticEnergyNormalE"]
-                    pub fn get_brake(arg1: *mut root::app::KineticEnergyNormal) -> u64;
+                    pub fn get_brake(arg1: *mut root::app::KineticEnergyNormal) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind41KineticEnergyNormal__get_limit_speed_implEPNS_19KineticEnergyNormalE"]
-                    pub fn get_limit_speed(arg1: *mut root::app::KineticEnergyNormal) -> u64;
+                    pub fn get_limit_speed(arg1: *mut root::app::KineticEnergyNormal) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind35KineticEnergyNormal__set_speed_implEPNS_19KineticEnergyNormalERKN3phx8Vector2fE"]
@@ -11725,15 +11725,15 @@ pub mod root {
                 use self::super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind29KineticEnergy__get_speed_implEPNS_13KineticEnergyE"]
-                    pub fn get_speed(arg1: *mut root::app::KineticEnergy) -> u64;
+                    pub fn get_speed(arg1: *mut root::app::KineticEnergy) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind31KineticEnergy__get_speed_x_implEPNS_13KineticEnergyE"]
-                    pub fn get_speed_x(arg1: *mut root::app::KineticEnergy) -> u64;
+                    pub fn get_speed_x(arg1: *mut root::app::KineticEnergy) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind31KineticEnergy__get_speed_y_implEPNS_13KineticEnergyE"]
-                    pub fn get_speed_y(arg1: *mut root::app::KineticEnergy) -> u64;
+                    pub fn get_speed_y(arg1: *mut root::app::KineticEnergy) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind31KineticEnergy__get_speed3f_implEPNS_13KineticEnergyE"]
@@ -12036,7 +12036,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind48WeaponKineticEnergyGravity__get_limit_speed_implEPNS_26WeaponKineticEnergyGravityE"]
                     pub fn get_limit_speed(
                         arg1: *mut root::app::WeaponKineticEnergyGravity,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind48WeaponKineticEnergyGravity__set_limit_speed_implEPNS_26WeaponKineticEnergyGravityEf"]
@@ -12263,25 +12263,25 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind43FighterKineticEnergyGravity__get_accel_implEPNS_27FighterKineticEnergyGravityE"]
                     pub fn get_accel(
                         arg1: *mut root::app::FighterKineticEnergyGravity,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind50FighterKineticEnergyGravity__get_stable_speed_implEPNS_27FighterKineticEnergyGravityE"]
                     pub fn get_stable_speed(
                         arg1: *mut root::app::FighterKineticEnergyGravity,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind49FighterKineticEnergyGravity__get_limit_speed_implEPNS_27FighterKineticEnergyGravityE"]
                     pub fn get_limit_speed(
                         arg1: *mut root::app::FighterKineticEnergyGravity,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind43FighterKineticEnergyGravity__get_brake_implEPNS_27FighterKineticEnergyGravityE"]
                     pub fn get_brake(
                         arg1: *mut root::app::FighterKineticEnergyGravity,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind57FighterKineticEnergyGravity__set_gravity_coefficient_implEPNS_27FighterKineticEnergyGravityEf"]
@@ -12680,32 +12680,32 @@ pub mod root {
                 use self::super::super::super::super::root;
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind32FighterManager__entry_count_implEPNS_14FighterManagerE"]
-                    pub fn entry_count(arg1: *mut root::app::FighterManager) -> u64;
+                    pub fn entry_count(arg1: *mut root::app::FighterManager) -> i32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind38FighterManager__total_fighter_num_implEPNS_14FighterManagerE"]
-                    pub fn total_fighter_num(arg1: *mut root::app::FighterManager) -> u64;
+                    pub fn total_fighter_num(arg1: *mut root::app::FighterManager) -> i32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind33FighterManager__get_entry_id_implEPNS_14FighterManagerEi"]
                     pub fn get_entry_id(
                         arg1: *mut root::app::FighterManager,
                         arg2: libc::c_int,
-                    ) -> u64;
+                    ) -> i32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind33FighterManager__get_entry_no_implEPNS_14FighterManagerENS_14FighterEntryIDE"]
                     pub fn get_entry_no(
                         arg1: *mut root::app::FighterManager,
                         arg2: root::app::FighterEntryID,
-                    ) -> u64;
+                    ) -> i32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind38FighterManager__get_fighter_entry_implEPNS_14FighterManagerENS_14FighterEntryIDE"]
                     pub fn get_fighter_entry(
                         arg1: *mut root::app::FighterManager,
                         arg2: root::app::FighterEntryID,
-                    ) -> u64;
+                    ) -> i32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind44FighterManager__get_fighter_information_implEPNS_14FighterManagerENS_14FighterEntryIDE"]
@@ -12742,7 +12742,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind44FighterManager__get_top_rank_player_num_implEPNS_14FighterManagerE"]
                     pub fn get_top_rank_player_num(
                         arg1: *mut root::app::FighterManager,
-                    ) -> u64;
+                    ) -> i32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind40FighterManager__get_top_rank_player_implEPNS_14FighterManagerEi"]
@@ -13957,21 +13957,21 @@ pub mod root {
                     pub fn get_sum_speed(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind35KineticModule__get_sum_speed_x_implEPNS_26BattleObjectModuleAccessorEi"]
                     pub fn get_sum_speed_x(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind35KineticModule__get_sum_speed_y_implEPNS_26BattleObjectModuleAccessorEi"]
                     pub fn get_sum_speed_y(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind40KineticModule__get_sum_speed_length_implEPNS_26BattleObjectModuleAccessorEi"]
@@ -13985,7 +13985,7 @@ pub mod root {
                     pub fn get_sum_speed3f(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                    ) -> u64;
+                    ) -> root::phx::Vector3f;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind36KineticModule__get_sum_rotation_implEPNS_26BattleObjectModuleAccessorEi"]
@@ -14045,7 +14045,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind36KineticModule__get_kinetic_type_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn get_kinetic_type(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> i32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind33KineticModule__enable_energy_implEPNS_26BattleObjectModuleAccessorEi"]
@@ -14491,7 +14491,7 @@ pub mod root {
                     pub fn get_have_item_kind(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                    ) -> u64;
+                    ) -> i32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind36ItemModule__get_have_item_trait_implEPNS_26BattleObjectModuleAccessorEi"]
@@ -15359,7 +15359,7 @@ pub mod root {
                     pub fn get_whole(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                    ) -> u64;
+                    ) -> i32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind31HitModule__set_check_catch_implEPNS_26BattleObjectModuleAccessorEbi"]
@@ -15406,7 +15406,7 @@ pub mod root {
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
                         arg3: libc::c_int,
-                    ) -> u64;
+                    ) -> i32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind32HitModule__get_total_status_implEPNS_26BattleObjectModuleAccessorEi"]
