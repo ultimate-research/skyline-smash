@@ -1528,6 +1528,21 @@ pub mod root {
                     ) -> u64;
                 }
                 extern "C" {
+                    /// Returns the current x-axis position of the main control stick in a -1 to 1 range. 
+                    /// (I.E. -1 = all the way left, 1 = all the way right, 0 = neutral)
+                    ///
+                    /// # Arguments
+                    ///
+                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
+                    ///
+                    /// # Example
+                    ///
+                    /// ```
+                    /// // if you are holding left during a taunt, take 2 points of damage
+                    /// if ControlModule::get_stick_x(module_accessor) < -0.5 && StatusModule::status_kind(module_accessor) == *FIGHTER_STATUS_KIND_APPEAL {
+                    ///     DamageModule::add_damage(module_accessor, 2.0, 0); 
+                    /// }
+                    /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind31ControlModule__get_stick_x_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn get_stick_x(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
@@ -1540,6 +1555,21 @@ pub mod root {
                     ) -> f32;
                 }
                 extern "C" {
+                    /// Returns the current y-axis position of the main control stick in a -1 to 1 range. 
+                    /// (I.E. -1 = all the way down, 1 = all the way up, 0 = neutral)
+                    ///
+                    /// # Arguments
+                    ///
+                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
+                    ///
+                    /// # Example
+                    ///
+                    /// ```
+                    /// // if you are holding down during a taunt, take 2 points of damage
+                    /// if ControlModule::get_stick_y(module_accessor) < -0.5 && StatusModule::status_kind(module_accessor) == *FIGHTER_STATUS_KIND_APPEAL {
+                    ///     DamageModule::add_damage(module_accessor, 2.0, 0); 
+                    /// }
+                    /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind31ControlModule__get_stick_y_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn get_stick_y(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
@@ -1886,6 +1916,32 @@ pub mod root {
                     ) -> i32;
                 }
                 extern "C" {
+                    /// returns the current "command flag" based on the player's current controller inputs. Command flags come in 4 different categories.
+                    ///
+                    /// The first category is for general inputs that are done very often (aerials, attacks, walking, dashing, jumping, etc).
+                    /// The second category is for less common inputs. Stuff like taunts, rolls, throws (and strangely, shielding).
+                    /// The third category is for things like item tossing.
+                    /// The fourth category is reserved exclusively for command inputs for ryu/ken/terry.
+                    ///
+                    /// When the function is called, it will poll inputs from *only* the specified category.
+                    ///
+                    /// # Arguments
+                    ///
+                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
+                    ///
+                    /// * 'category" - the desired category to poll inputs from, indexed from 0-3.... (0 meaning category 1, 1 meaning category 2, etc.)
+                    ///
+                    /// # Example
+                    ///
+                    /// ```
+                    /// // set a boolean to true if the player inputs a forward aerial.
+                    /// // because "cat"s can be represented as bitmasks, a useful way to compare them is with bitwise operations, as seen below
+                    /// let mut random_bool = false;
+                    /// let cat1 = ControlModule::get_command_flag_cat(module_accessor, 0);
+                    /// if (cat1 & *FIGHTER_PAD_CMD_CAT1_FLAG_ATTACK_AIR_F) != 0 {
+                    ///     random_bool = true;
+                    /// }
+                    /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind40ControlModule__get_command_flag_cat_implEPNS_26BattleObjectModuleAccessorEi"]
                     pub fn get_command_flag_cat(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
@@ -3691,7 +3747,7 @@ pub mod root {
                     ///
                     /// ```
                     /// // store the position of the current nearest cliff if the player is in the ledge hang status
-                    /// let mut pos: smash::phx::Vector3f = smash::phx::Vector3f {x:0.0, y:0.0, z:0.0};
+                    /// let mut pos: smash::phx::Vector3f = smash::phx::Vector3f { x: 0.0, y: 0.0, z: 0.0 };
                     /// if StatusModule::status_kind(module_accessor) == *FIGHTER_STATUS_KIND_CLIFF_WAIT {
                     ///     pos = GroundModule::hang_cliff_pos_3f(module_accessor);
                     /// }
@@ -5328,10 +5384,26 @@ pub mod root {
                     ) -> i32;
                 }
                 extern "C" {
+                    /// Returns whether or not you are *currently* hitting an opponent (in hitlag).
+                    ///
+                    /// # Arguments
+                    ///
+                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
+                    ///
+                    /// * 'collision_kind_mask' - a COLLISION_KIND_MASK_ const
+                    ///
+                    /// # Example
+                    ///
+                    /// ```
+                    /// // transition to instantly to WAIT when hitting someone and holding shield
+                    /// if AttackModule::is_infliction(boma, *COLLISION_KIND_MASK_HIT) && ControlModule::check_button_on(module_accessor, *CONTROL_PAD_BUTTON_GUARD) {
+                    ///     StatusModule::change_status_request_from_script(module_accessor, *FIGHTER_STATUS_KIND_WAIT, true); 
+                    /// }
+                    /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind32AttackModule__is_infliction_implEPNS_26BattleObjectModuleAccessorEj"]
                     pub fn is_infliction(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: libc::c_uint,
+                        arg2: libc::c_int,
                     ) -> bool;
                 }
                 extern "C" {
@@ -6368,6 +6440,22 @@ pub mod root {
                     ) -> u64;
                 }
                 extern "C" {
+                    /// Returns the earliest actionable frame of the specified motion
+                    ///
+                    /// # Arguments
+                    ///
+                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
+                    ///
+                    /// * 'motion_kind' - a hash of a motion_kind
+                    ///
+                    /// # Example
+                    ///
+                    /// ```
+                    /// // allow characters to act of of back aerial 2 frames sooner than normal
+                    /// if MotionModule::get_cancel_frame(module_accessor, Hash40::new("attack_air_b")) - MotionModule::frame(module_accessor) <= 2 {
+                    ///     CancelModule::enable_cancel(module_accessor);  
+                    /// }
+                    /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind46FighterMotionModuleImpl__get_cancel_frame_implEPNS_26BattleObjectModuleAccessorEN3phx6Hash40Eb"]
                     pub fn get_cancel_frame(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
@@ -7773,6 +7861,21 @@ pub mod root {
                     pub fn is_blend(arg1: *mut root::app::BattleObjectModuleAccessor) -> bool;
                 }
                 extern "C" {
+                    /// returns the hash of the current motion (animation)
+                    ///
+                    /// # Arguments
+                    ///
+                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
+                    ///
+                    /// # Example
+                    ///
+                    /// ```
+                    /// // make up air universally cancelable
+                    /// let curr_motion_kind = MotionModule::motion_kind(module_accessor);
+                    /// if curr_motion_kind == smash::hash40("attack_air_b") {
+                    ///     CancelModule::enable_cancel(module_accessor);
+                    /// }
+                    /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind30MotionModule__motion_kind_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn motion_kind(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
@@ -8515,6 +8618,27 @@ pub mod root {
                     );
                 }
                 extern "C" {
+                    /// sets the specified flag on/off depending on the specified bool 
+                    /// (I.E. false = off, true = on)
+                    ///
+                    /// # Arguments
+                    ///
+                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
+                    ///
+                    /// * 'on_or_off' - bool to represent the new state of the flag
+                    ///
+                    /// * 'work_id_flag' - a WORK_ID_FLAG_ const
+                    ///
+                    /// # Example
+                    ///
+                    /// ```
+                    /// // if you are doing an aerial and input a fast fall, set the fast fall flag on (enables fast falls at all points in an aerial)
+                    ///
+                    ///             //if your are doing an aerial                                                                                  and you input a fast-fall
+                    /// if StatusModule::status_kind(module_accessor) == *FIGHTER_STATUS_KIND_ATTACK_AIR && (ControlModule::get_command_flag_cat(module_accessor, 1) & *FIGHTER_PAD_CMD_CAT2_FLAG_FALL_JUMP) != 0 {
+                    ///     WorkModule::set_flag(module_accessor, true, *FIGHTER_STATUS_WORK_ID_FLAG_RESERVE_DIVE);
+                    /// }
+                    /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind25WorkModule__set_flag_implEPNS_26BattleObjectModuleAccessorEbi"]
                     pub fn set_flag(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
@@ -14128,7 +14252,7 @@ pub mod root {
                     /// 
                     /// ```
                     /// // halt all vertical speed --
-                    /// let stop_rise  = smash::phx::Vector3f {x:1.0, y:0.0, z:1.0};
+                    /// let stop_rise  = smash::phx::Vector3f { x: 1.0, y: 0.0, z: 1.0 };
                     /// KineticModule::mul_speed(module_accessor, &stop_rise, *FIGHTER_KINETIC_ENERGY_ID_GRAVITY);
                     /// ``` 
                     #[link_name = "\u{1}_ZN3app8lua_bind29KineticModule__mul_speed_implEPNS_26BattleObjectModuleAccessorERKN3phx8Vector3fEi"]
@@ -14153,7 +14277,7 @@ pub mod root {
                     /// 
                     /// ```
                     /// // send the character flying across the screen lol --
-                    /// let zoom  = smash::phx::Vector3f {x:10.0, y:1.0, z:1.0};
+                    /// let zoom  = smash::phx::Vector3f { x: 10.0, y: 1.0, z: 1.0 };
                     /// KineticModule::mul_accel(module_accessor, &zoom, *FIGHTER_KINETIC_ENERGY_ID_ENV_WIND);
                     /// ``` 
                     #[link_name = "\u{1}_ZN3app8lua_bind29KineticModule__mul_accel_implEPNS_26BattleObjectModuleAccessorERKN3phx8Vector3fEi"]
@@ -14271,7 +14395,7 @@ pub mod root {
                     ///
                     /// ```
                     /// // add 5 units of speed upwards
-                    /// let speed_vector = smash::phx::Vector3f {x:x_vel, y:0., z:0.};
+                    /// let speed_vector = smash::phx::Vector3f { x: x_vel, y: 0.0, z: 0.0 };
                     /// KineticModule::add_speed(module_accessor, &speed);
                     /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind29KineticModule__add_speed_implEPNS_26BattleObjectModuleAccessorERKN3phx8Vector3fE"]
