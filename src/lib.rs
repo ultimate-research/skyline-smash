@@ -33,5 +33,4 @@ impl phx::Hash40 {
     }
 }
 
-
 mod lua_const;
