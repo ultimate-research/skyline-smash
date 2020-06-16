@@ -12898,7 +12898,7 @@ pub mod root {
                     pub fn get_fighter_entry(
                         arg1: *mut root::app::FighterManager,
                         arg2: root::app::FighterEntryID,
-                    ) -> i32;
+                    ) -> u64;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind44FighterManager__get_fighter_information_implEPNS_14FighterManagerENS_14FighterEntryIDE"]
@@ -17873,7 +17873,7 @@ pub mod root {
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app16sv_battle_object15module_accessorEj"]
-                pub fn module_accessor(arg1: root::uint) -> u64;
+                pub fn module_accessor(arg1: root::uint) -> *mut root::app::BattleObjectModuleAccessor;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app16sv_battle_object4kindEj"]
