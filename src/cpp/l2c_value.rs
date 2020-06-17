@@ -305,29 +305,41 @@ impl Clone for LuaConst {
     }
 }
 
-impl<T: Into<i32> + Clone> PartialEq<T> for LuaConst {
-    fn eq(&self, other: &T) -> bool {
-        return **self == other.clone().into();
-    }
+macro_rules! lua_const_partialeq_impl {
+    (
+        $(
+            $ty:ty
+        )*
+    ) => {
+        $(
+            impl PartialEq<$ty> for LuaConst {
+                fn eq(&self, other: &$ty) -> bool {
+                    return **self == other.clone() as i32;
+                }
+            }
+
+            impl PartialOrd<$ty> for LuaConst {
+                fn partial_cmp(&self, other: &$ty) -> Option<Ordering> {
+                    Some((**self).cmp(&(other.clone() as i32)))
+                }
+            }
+
+            impl PartialEq<LuaConst> for $ty {
+                fn eq(&self, other: &LuaConst) -> bool {
+                    return *self as i32 == **other;
+                }
+            }
+
+            impl PartialOrd<LuaConst> for $ty {
+                fn partial_cmp(&self, other: &LuaConst) -> Option<Ordering> {
+                    Some((*self as i32).cmp(&**other))
+                }
+            }
+        )*
+    };
 }
 
-impl<T: Into<i32> + Clone> PartialOrd<T> for LuaConst {
-    fn partial_cmp(&self, other: &T) -> Option<Ordering> {
-        Some((**self).cmp(&(other.clone().into())))
-    }
-}
-
-impl PartialEq<LuaConst> for i32 {
-    fn eq(&self, other: &LuaConst) -> bool {
-        return *self == **other;
-    }
-}
-
-impl PartialOrd<LuaConst> for i32 {
-    fn partial_cmp(&self, other: &LuaConst) -> Option<Ordering> {
-        Some((*self).cmp(&**other))
-    }
-}
+lua_const_partialeq_impl!(i32 u32 u64);
 
 impl core::ops::Deref for LuaConst {
     type Target = i32;
