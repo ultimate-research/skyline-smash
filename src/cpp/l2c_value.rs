@@ -90,11 +90,16 @@ impl fmt::Debug for L2CValue {
 }
 
 impl L2CValue {
-    pub fn new_void() -> Self {
-        Self::default()
+    pub const fn new_void() -> Self {
+        Self {
+            val_type: L2CValueType::Void,
+            unk1: 0,
+            inner: L2CValueInner { raw: 0 as u64 },
+            unk2: 0
+        }
     }
 
-    pub fn new_bool(val: bool) -> Self {
+    pub const fn new_bool(val: bool) -> Self {
         Self {
             val_type: L2CValueType::Bool,
             unk1: 0,
@@ -103,7 +108,7 @@ impl L2CValue {
         }
     }
 
-    pub fn new_int(val: u64) -> Self {
+    pub const fn new_int(val: u64) -> Self {
         Self {
             val_type: L2CValueType::Int,
             unk1: 0,
@@ -112,7 +117,7 @@ impl L2CValue {
         }
     }
 
-    pub fn new_num(val: f32) -> Self {
+    pub const fn new_num(val: f32) -> Self {
         Self {
             val_type: L2CValueType::Num,
             unk1: 0,
@@ -279,6 +284,10 @@ impl LuaConst {
             lua_bind_hash,
             cache: UnsafeCell::new(None)
         }
+    }
+
+    pub fn as_lua_int(&self) -> L2CValue {
+        L2CValue::new_int(**self as u64)
     }
 }
 
