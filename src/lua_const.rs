@@ -1,6 +1,7 @@
 #![allow(non_upper_case_globals)]
 #![allow(non_snake_case)]
 #![allow(non_snake_case)]
+use crate::cpp::l2c_value::L2CValue;
 
 macro_rules! lua_consts {
     ($($ident:ident),* $(,)?) => {
@@ -22,6 +23,10 @@ macro_rules! lua_consts {
         )*
     };
 }
+
+pub const LUA_VOID: L2CValue = L2CValue::new_void();
+pub const LUA_TRUE: L2CValue = L2CValue::new_bool(true);
+pub const LUA_FALSE: L2CValue = L2CValue::new_bool(false);
 
 pub mod EffectScreenBlendType {
     lua_consts!(
