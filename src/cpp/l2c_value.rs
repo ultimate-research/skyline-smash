@@ -390,6 +390,34 @@ macro_rules! lua_const_partialeq_impl {
     };
 }
 
+impl PartialEq<L2CValue> for LuaConst {
+    #[track_caller]
+    fn eq(&self, other: &L2CValue) -> bool {
+        return *self == other.get_int() as i32;
+    }
+}
+
+impl PartialOrd<L2CValue> for LuaConst {
+    #[track_caller]
+    fn partial_cmp(&self, other: &L2CValue) -> Option<Ordering> {
+        Some((**self).cmp(&(other.get_int() as i32)))
+    }
+}
+
+impl PartialEq<LuaConst> for L2CValue {
+    #[track_caller]
+    fn eq(&self, other: &LuaConst) -> bool {
+        return self.get_int() as i32 == **other;
+    }
+}
+
+impl PartialOrd<LuaConst> for L2CValue {
+    #[track_caller]
+    fn partial_cmp(&self, other: &LuaConst) -> Option<Ordering> {
+        Some((self.get_int() as i32).cmp(&**other))
+    }
+}
+
 lua_const_partialeq_impl!(i32 u32 u64);
 
 impl core::ops::Deref for LuaConst {
