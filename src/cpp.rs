@@ -1528,7 +1528,7 @@ pub mod root {
                     ) -> u64;
                 }
                 extern "C" {
-                    /// Returns the current x-axis position of the main control stick in a -1 to 1 range. 
+                    /// Returns the current x-axis position of the main control stick in a -1 to 1 range.
                     /// (I.E. -1 = all the way left, 1 = all the way right, 0 = neutral)
                     ///
                     /// # Arguments
@@ -1540,7 +1540,7 @@ pub mod root {
                     /// ```
                     /// // if you are holding left during a taunt, take 2 points of damage
                     /// if ControlModule::get_stick_x(module_accessor) < -0.5 && StatusModule::status_kind(module_accessor) == *FIGHTER_STATUS_KIND_APPEAL {
-                    ///     DamageModule::add_damage(module_accessor, 2.0, 0); 
+                    ///     DamageModule::add_damage(module_accessor, 2.0, 0);
                     /// }
                     /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind31ControlModule__get_stick_x_implEPNS_26BattleObjectModuleAccessorE"]
@@ -1555,7 +1555,7 @@ pub mod root {
                     ) -> f32;
                 }
                 extern "C" {
-                    /// Returns the current y-axis position of the main control stick in a -1 to 1 range. 
+                    /// Returns the current y-axis position of the main control stick in a -1 to 1 range.
                     /// (I.E. -1 = all the way down, 1 = all the way up, 0 = neutral)
                     ///
                     /// # Arguments
@@ -1567,7 +1567,7 @@ pub mod root {
                     /// ```
                     /// // if you are holding down during a taunt, take 2 points of damage
                     /// if ControlModule::get_stick_y(module_accessor) < -0.5 && StatusModule::status_kind(module_accessor) == *FIGHTER_STATUS_KIND_APPEAL {
-                    ///     DamageModule::add_damage(module_accessor, 2.0, 0); 
+                    ///     DamageModule::add_damage(module_accessor, 2.0, 0);
                     /// }
                     /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind31ControlModule__get_stick_y_implEPNS_26BattleObjectModuleAccessorE"]
@@ -2601,10 +2601,10 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind22EffectModule__req_implEPNS_26BattleObjectModuleAccessorEN3phx6Hash40ERKNS3_8Vector3fES7_fjibi"]
                     pub fn req(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::phx::Hash40,
-                        arg3: *const root::phx::Vector3f,
-                        arg4: *const root::phx::Vector3f,
-                        arg5: f32,
+                        effHash: root::phx::Hash40,
+                        pos: *const root::phx::Vector3f,
+                        rot: *const root::phx::Vector3f,
+                        size: f32,
                         arg6: libc::c_uint,
                         arg7: libc::c_int,
                         arg8: bool,
@@ -2615,10 +2615,10 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind25EffectModule__req_2d_implEPNS_26BattleObjectModuleAccessorEN3phx6Hash40ERKNS3_8Vector3fES7_fj"]
                     pub fn req_2d(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::phx::Hash40,
-                        arg3: *const root::phx::Vector3f,
-                        arg4: *const root::phx::Vector3f,
-                        arg5: f32,
+                        effHash: root::phx::Hash40,
+                        pos: *const root::phx::Vector3f,
+                        rot: *const root::phx::Vector3f,
+                        size: f32,
                         arg6: libc::c_uint,
                     ) -> u64;
                 }
@@ -2626,11 +2626,11 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind31EffectModule__req_on_joint_implEPNS_26BattleObjectModuleAccessorEN3phx6Hash40ES4_RKNS3_8Vector3fES7_fS7_S7_bjii"]
                     pub fn req_on_joint(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::phx::Hash40,
+                        effHash: root::phx::Hash40,
                         arg3: root::phx::Hash40,
-                        arg4: *const root::phx::Vector3f,
-                        arg5: *const root::phx::Vector3f,
-                        arg6: f32,
+                        pos: *const root::phx::Vector3f,
+                        rot: *const root::phx::Vector3f,
+                        size: f32,
                         arg7: *const root::phx::Vector3f,
                         arg8: *const root::phx::Vector3f,
                         arg9: bool,
@@ -2643,11 +2643,11 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind36EffectModule__req_attach_ground_implEPNS_26BattleObjectModuleAccessorEN3phx6Hash40ERKNS_25GroundCollisionLineHandleERKNS3_8Vector3fESA_fSA_ji"]
                     pub fn req_attach_ground(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::phx::Hash40,
+                        effHash: root::phx::Hash40,
                         arg3: *const root::app::GroundCollisionLineHandle,
-                        arg4: *const root::phx::Vector3f,
-                        arg5: *const root::phx::Vector3f,
-                        arg6: f32,
+                        pos: *const root::phx::Vector3f,
+                        rot: *const root::phx::Vector3f,
+                        size: f32,
                         arg7: *const root::phx::Vector3f,
                         arg8: libc::c_uint,
                         arg9: libc::c_int,
@@ -2657,11 +2657,11 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind29EffectModule__req_follow_implEPNS_26BattleObjectModuleAccessorEN3phx6Hash40ES4_RKNS3_8Vector3fES7_fbjiiiibb"]
                     pub fn req_follow(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::phx::Hash40,
+                        effHash: root::phx::Hash40,
                         arg3: root::phx::Hash40,
-                        arg4: *const root::phx::Vector3f,
-                        arg5: *const root::phx::Vector3f,
-                        arg6: f32,
+                        pos: *const root::phx::Vector3f,
+                        rot: *const root::phx::Vector3f,
+                        size: f32,
                         arg7: bool,
                         arg8: libc::c_uint,
                         arg9: libc::c_int,
@@ -2676,9 +2676,9 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind32EffectModule__req_continual_implEPNS_26BattleObjectModuleAccessorEN3phx6Hash40ES4_fji"]
                     pub fn req_continual(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::phx::Hash40,
+                        effHash: root::phx::Hash40,
                         arg3: root::phx::Hash40,
-                        arg4: f32,
+                        size: f32,
                         arg5: libc::c_uint,
                         arg6: libc::c_int,
                     ) -> u64;
@@ -2700,11 +2700,11 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind27EffectModule__req_time_implEPNS_26BattleObjectModuleAccessorEN3phx6Hash40EiRKNS3_8Vector3fES7_fjbb"]
                     pub fn req_time(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::phx::Hash40,
+                        effHash: root::phx::Hash40,
                         arg3: libc::c_int,
-                        arg4: *const root::phx::Vector3f,
-                        arg5: *const root::phx::Vector3f,
-                        arg6: f32,
+                        pos: *const root::phx::Vector3f,
+                        rot: *const root::phx::Vector3f,
+                        size: f32,
                         arg7: libc::c_uint,
                         arg8: bool,
                         arg9: bool,
@@ -2714,12 +2714,12 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind34EffectModule__req_time_follow_implEPNS_26BattleObjectModuleAccessorEN3phx6Hash40ES4_iRKNS3_8Vector3fES7_fbj"]
                     pub fn req_time_follow(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::phx::Hash40,
+                        effHash: root::phx::Hash40,
                         arg3: root::phx::Hash40,
                         arg4: libc::c_int,
-                        arg5: *const root::phx::Vector3f,
-                        arg6: *const root::phx::Vector3f,
-                        arg7: f32,
+                        pos: *const root::phx::Vector3f,
+                        rot: *const root::phx::Vector3f,
+                        size: f32,
                         arg8: bool,
                         arg9: libc::c_uint,
                     ) -> u64;
@@ -2774,7 +2774,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind28EffectModule__kill_kind_implEPNS_26BattleObjectModuleAccessorEN3phx6Hash40Ebb"]
                     pub fn kill_kind(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::phx::Hash40,
+                        effHash: root::phx::Hash40,
                         arg3: bool,
                         arg4: bool,
                     ) -> u64;
@@ -2783,7 +2783,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind32EffectModule__kill_joint_id_implEPNS_26BattleObjectModuleAccessorEN3phx6Hash40Ebb"]
                     pub fn kill_joint_id(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::phx::Hash40,
+                        effHash: root::phx::Hash40,
                         arg3: bool,
                         arg4: bool,
                     ) -> u64;
@@ -5397,7 +5397,7 @@ pub mod root {
                     /// ```
                     /// // transition to instantly to WAIT when hitting someone and holding shield
                     /// if AttackModule::is_infliction(boma, *COLLISION_KIND_MASK_HIT) && ControlModule::check_button_on(module_accessor, *CONTROL_PAD_BUTTON_GUARD) {
-                    ///     StatusModule::change_status_request_from_script(module_accessor, *FIGHTER_STATUS_KIND_WAIT, true); 
+                    ///     StatusModule::change_status_request_from_script(module_accessor, *FIGHTER_STATUS_KIND_WAIT, true);
                     /// }
                     /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind32AttackModule__is_infliction_implEPNS_26BattleObjectModuleAccessorEj"]
@@ -6453,7 +6453,7 @@ pub mod root {
                     /// ```
                     /// // allow characters to act of of back aerial 2 frames sooner than normal
                     /// if MotionModule::get_cancel_frame(module_accessor, Hash40::new("attack_air_b")) - MotionModule::frame(module_accessor) <= 2 {
-                    ///     CancelModule::enable_cancel(module_accessor);  
+                    ///     CancelModule::enable_cancel(module_accessor);
                     /// }
                     /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind46FighterMotionModuleImpl__get_cancel_frame_implEPNS_26BattleObjectModuleAccessorEN3phx6Hash40Eb"]
@@ -7560,31 +7560,31 @@ pub mod root {
                 }
                 extern "C" {
                     /// Returns the current direction the current battle object is facing. -1 = left, 1 = right
-                    /// 
-                    /// # Arguments 
-                    /// 
-                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor 
-                    /// 
+                    ///
+                    /// # Arguments
+                    ///
+                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
+                    ///
                     #[link_name = "\u{1}_ZN3app8lua_bind22PostureModule__lr_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn lr(arg1: *mut root::app::BattleObjectModuleAccessor) -> f32;
                 }
                 extern "C" {
-                    /// Sets the direction faced for the current battle object. 
-                    /// 
-                    /// # Arguments 
-                    /// 
-                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor 
-                    /// 
+                    /// Sets the direction faced for the current battle object.
+                    ///
+                    /// # Arguments
+                    ///
+                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
+                    ///
                     /// * 'facing_dir' - The direction to set the character to... -1 = left, 1 = right
                     #[link_name = "\u{1}_ZN3app8lua_bind26PostureModule__set_lr_implEPNS_26BattleObjectModuleAccessorEf"]
                     pub fn set_lr(arg1: *mut root::app::BattleObjectModuleAccessor, arg2: f32);
                 }
                 extern "C" {
                     /// Reverses the direction that the current battle object is facing
-                    /// 
-                    /// # Arguments 
-                    /// 
-                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor 
+                    ///
+                    /// # Arguments
+                    ///
+                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
                     #[link_name = "\u{1}_ZN3app8lua_bind30PostureModule__reverse_lr_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn reverse_lr(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
@@ -7655,10 +7655,10 @@ pub mod root {
                 }
                 extern "C" {
                     /// Updates the current battle object's orientation. Usually used in conjunction with PostureModule::set_lr or PostureModule::reverse_lr
-                    /// 
-                    /// # Arguments 
-                    /// 
-                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor 
+                    ///
+                    /// # Arguments
+                    ///
+                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
                     #[link_name = "\u{1}_ZN3app8lua_bind35PostureModule__update_rot_y_lr_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn update_rot_y_lr(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
@@ -7901,7 +7901,7 @@ pub mod root {
                     );
                 }
                 extern "C" {
-                    /// Returns the current frame of the battle object's current animation as a float. 
+                    /// Returns the current frame of the battle object's current animation as a float.
                     ///
                     /// # Arguments
                     ///
@@ -7943,7 +7943,7 @@ pub mod root {
                     );
                 }
                 extern "C" {
-                    /// Returns the total amount of frames of the battle object's current animation as a float. 
+                    /// Returns the total amount of frames of the battle object's current animation as a float.
                     ///
                     /// # Arguments
                     ///
@@ -8618,7 +8618,7 @@ pub mod root {
                     );
                 }
                 extern "C" {
-                    /// sets the specified flag on/off depending on the specified bool 
+                    /// sets the specified flag on/off depending on the specified bool
                     /// (I.E. false = off, true = on)
                     ///
                     /// # Arguments
@@ -14154,19 +14154,19 @@ pub mod root {
                 }
                 extern "C" {
                     /// Returns the current x velocity based on the specified kinetic energy ID
-                    /// 
-                    /// # Arguments 
-                    /// 
-                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor 
+                    ///
+                    /// # Arguments
+                    ///
+                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
                     ///
                     /// * 'kinetic_energy_id' - A KINETIC_ENERGY_ID const
-                    /// 
-                    /// # Example 
-                    /// 
-                    /// ``` 
+                    ///
+                    /// # Example
+                    ///
+                    /// ```
                     /// // get current x motion-based velocity
                     /// let x_vel = KineticModule::get_sum_speed_x(module_accessor, *FIGHTER_KINETIC_ID_MOTION);
-                    /// ``` 
+                    /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind35KineticModule__get_sum_speed_x_implEPNS_26BattleObjectModuleAccessorEi"]
                     pub fn get_sum_speed_x(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
@@ -14175,19 +14175,19 @@ pub mod root {
                 }
                 extern "C" {
                     /// Returns the current y velocity based on the specified kinetic energy ID
-                    /// 
-                    /// # Arguments 
-                    /// 
-                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor 
+                    ///
+                    /// # Arguments
+                    ///
+                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
                     ///
                     /// * 'kinetic_energy_id' - A KINETIC_ENERGY_ID const
-                    /// 
-                    /// # Example 
-                    /// 
+                    ///
+                    /// # Example
+                    ///
                     /// ```
                     /// // get current y gravity-based velocity
                     /// let y_vel = KineticModule::get_sum_speed_y(module_accessor, *FIGHTER_KINETIC_ENERGY_ID_GRAVITY);
-                    /// ``` 
+                    /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind35KineticModule__get_sum_speed_y_implEPNS_26BattleObjectModuleAccessorEi"]
                     pub fn get_sum_speed_y(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
@@ -14203,19 +14203,19 @@ pub mod root {
                 }
                 extern "C" {
                     /// Returns the current velocity based on the specified kinetic energy ID as a Vector3f
-                    /// 
-                    /// # Arguments 
-                    /// 
-                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor 
+                    ///
+                    /// # Arguments
+                    ///
+                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
                     ///
                     /// * 'kinetic_energy_id' - A KINETIC_ENERGY_ID const
-                    /// 
-                    /// # Example 
-                    /// 
+                    ///
+                    /// # Example
+                    ///
                     /// ```
                     /// // get current gravity-based velocity as a Vector3f
                     /// let vel_3f = KineticModule::get_sum_speed3f(module_accessor, *FIGHTER_KINETIC_ENERGY_ID_GRAVITY);
-                    /// ``` 
+                    /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind35KineticModule__get_sum_speed3f_implEPNS_26BattleObjectModuleAccessorEi"]
                     pub fn get_sum_speed3f(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
@@ -14239,22 +14239,22 @@ pub mod root {
                 }
                 extern "C" {
                     /// multiplies the current (specified type of) speed by the provided vector3f
-                    /// 
-                    /// # Arguments 
-                    /// 
-                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor 
                     ///
-                    /// * 'Vector3f' - A reference to a smash::phx::Vector3f 
+                    /// # Arguments
+                    ///
+                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
+                    ///
+                    /// * 'Vector3f' - A reference to a smash::phx::Vector3f
                     ///
                     /// * 'kinetic_energy_id' - A KINETIC_ENERGY_ID const
-                    /// 
-                    /// # Example 
-                    /// 
+                    ///
+                    /// # Example
+                    ///
                     /// ```
                     /// // halt all vertical speed --
                     /// let stop_rise  = smash::phx::Vector3f { x: 1.0, y: 0.0, z: 1.0 };
                     /// KineticModule::mul_speed(module_accessor, &stop_rise, *FIGHTER_KINETIC_ENERGY_ID_GRAVITY);
-                    /// ``` 
+                    /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind29KineticModule__mul_speed_implEPNS_26BattleObjectModuleAccessorERKN3phx8Vector3fEi"]
                     pub fn mul_speed(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
@@ -14264,22 +14264,22 @@ pub mod root {
                 }
                 extern "C" {
                     /// multiplies the current (specified type of) acceleration by the provided vector3f
-                    /// 
-                    /// # Arguments 
-                    /// 
-                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor 
                     ///
-                    /// * 'Vector3f' - A reference to a smash::phx::Vector3f 
+                    /// # Arguments
+                    ///
+                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
+                    ///
+                    /// * 'Vector3f' - A reference to a smash::phx::Vector3f
                     ///
                     /// * 'kinetic_energy_id' - A KINETIC_ENERGY_ID const
-                    /// 
-                    /// # Example 
-                    /// 
+                    ///
+                    /// # Example
+                    ///
                     /// ```
                     /// // send the character flying across the screen lol --
                     /// let zoom  = smash::phx::Vector3f { x: 10.0, y: 1.0, z: 1.0 };
                     /// KineticModule::mul_accel(module_accessor, &zoom, *FIGHTER_KINETIC_ENERGY_ID_ENV_WIND);
-                    /// ``` 
+                    /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind29KineticModule__mul_accel_implEPNS_26BattleObjectModuleAccessorERKN3phx8Vector3fEi"]
                     pub fn mul_accel(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
@@ -14305,18 +14305,18 @@ pub mod root {
                 }
                 extern "C" {
                     /// Changes the current KINETIC_TYPE to the specified value
-                    /// 
-                    /// # Arguments 
-                    /// 
-                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor 
+                    ///
+                    /// # Arguments
+                    ///
+                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
                     ///
                     /// * 'kinetic_type' - a KINETIC_TYPE_ const
-                    /// 
-                    /// # Example 
-                    /// 
+                    ///
+                    /// # Example
+                    ///
                     /// ``` change kinetic type to "fly"
                     /// KineticModule::change_kinetic(module_accessor, *FIGHTER_KINETIC_TYPE_FLY);
-                    /// ``` 
+                    /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind34KineticModule__change_kinetic_implEPNS_26BattleObjectModuleAccessorEi"]
                     pub fn change_kinetic(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
@@ -14325,16 +14325,16 @@ pub mod root {
                 }
                 extern "C" {
                     /// Returns the current KINETIC_TYPE
-                    /// 
-                    /// # Arguments 
-                    /// 
-                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor 
-                    /// 
-                    /// # Example 
-                    /// 
+                    ///
+                    /// # Arguments
+                    ///
+                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
+                    ///
+                    /// # Example
+                    ///
                     /// ```
                     /// let current_kinetic_type = KineticModule::get_kinetic_type(module_accessor);
-                    /// ``` 
+                    /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind36KineticModule__get_kinetic_type_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn get_kinetic_type(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
@@ -18634,7 +18634,7 @@ pub mod root {
             }
             #[inline]
             pub unsafe fn pop_lua_stack(
-                &mut self, 
+                &mut self,
                 index: libc::c_int
             ) -> L2CValue {
                 L2CAgent_pop_lua_stack(self, index)
