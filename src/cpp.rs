@@ -829,11 +829,9 @@ pub mod root {
         pub struct FighterCutInManager {
             pub _address: u8,
         }
-        #[repr(C)]
+        #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
-        pub struct ItemKind {
-            pub _address: u8,
-        }
+        pub struct ItemKind (pub i32);
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct WeaponSnakeNikitaMissileKineticEnergyNormal {
@@ -3508,7 +3506,7 @@ pub mod root {
                     pub fn get_rhombus(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: bool,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind33GroundModule__modify_rhombus_implEPNS_26BattleObjectModuleAccessorEfff"]
@@ -3531,7 +3529,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind36GroundModule__get_circle_radius_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn get_circle_radius(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind31GroundModule__set_offset_x_implEPNS_26BattleObjectModuleAccessorEf"]
@@ -3548,18 +3546,35 @@ pub mod root {
                     );
                 }
                 extern "C" {
+                    /// returns the x offset for the current battle object's ECB's base. The base of the ECB rhombus is between the character's feet
+                    ///
+                    /// # Arguments
+                    ///
+                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
                     #[link_name = "\u{1}_ZN3app8lua_bind31GroundModule__get_offset_x_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn get_offset_x(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
+                    /// returns the y offset for the current battle object's ECB's base. The base of the ECB rhombus is between the character's feet
+                    ///
+                    /// # Arguments
+                    ///
+                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
                     #[link_name = "\u{1}_ZN3app8lua_bind31GroundModule__get_offset_y_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn get_offset_y(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
+                    /// Sets the offset for the current battle object's ECB (Environmental collision box)
+                    ///
+                    /// # Arguments
+                    ///
+                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
+                    ///
+                    /// * `offset_vector` - Pointer to a Vector2f which specifies the x and y values to set the new ECB offset to.
                     #[link_name = "\u{1}_ZN3app8lua_bind37GroundModule__set_rhombus_offset_implEPNS_26BattleObjectModuleAccessorERKN3phx8Vector2fE"]
                     pub fn set_rhombus_offset(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
@@ -3896,7 +3911,7 @@ pub mod root {
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind24GroundModule__get_z_implEPNS_26BattleObjectModuleAccessorE"]
-                    pub fn get_z(arg1: *mut root::app::BattleObjectModuleAccessor) -> u64;
+                    pub fn get_z(arg1: *mut root::app::BattleObjectModuleAccessor) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind32GroundModule__attach_ground_implEPNS_26BattleObjectModuleAccessorEb"]
@@ -4116,10 +4131,15 @@ pub mod root {
                     ) -> u64;
                 }
                 extern "C" {
+                    ///Returns the X position of the base of your ECB relative the the origin of the current stage.
+                    ///
+                    /// # Arguments
+                    ///
+                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
                     #[link_name = "\u{1}_ZN3app8lua_bind33GroundModule__get_center_pos_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn get_center_pos(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind29GroundModule__center_pos_implEPNS_26BattleObjectModuleAccessorE"]
@@ -5396,7 +5416,7 @@ pub mod root {
                     ///
                     /// ```
                     /// // transition to instantly to WAIT when hitting someone and holding shield
-                    /// if AttackModule::is_infliction(boma, *COLLISION_KIND_MASK_HIT) && ControlModule::check_button_on(module_accessor, *CONTROL_PAD_BUTTON_GUARD) {
+                    /// if AttackModule::is_infliction(module_accessor, *COLLISION_KIND_MASK_HIT) && ControlModule::check_button_on(module_accessor, *CONTROL_PAD_BUTTON_GUARD) {
                     ///     StatusModule::change_status_request_from_script(module_accessor, *FIGHTER_STATUS_KIND_WAIT, true);
                     /// }
                     /// ```
@@ -5413,10 +5433,26 @@ pub mod root {
                     ) -> i32;
                 }
                 extern "C" {
+                    /// Returns whether or not you have hit something during the current status
+                    ///
+                    /// # Arguments
+                    ///
+                    /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
+                    ///
+                    /// * 'collision_kind_mask' - a COLLISION_KIND_MASK_ const
+                    ///
+                    /// # Example
+                    ///
+                    /// ```
+                    /// // transition to instantly to WAIT when you've hit someone in the current status and are holding shield
+                    /// if AttackModule::is_infliction_status(module_accessor, *COLLISION_KIND_MASK_HIT) && ControlModule::check_button_on(module_accessor, *CONTROL_PAD_BUTTON_GUARD) {
+                    ///     StatusModule::change_status_request_from_script(module_accessor, *FIGHTER_STATUS_KIND_WAIT, true);
+                    /// }
+                    /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind39AttackModule__is_infliction_status_implEPNS_26BattleObjectModuleAccessorEj"]
                     pub fn is_infliction_status(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: libc::c_uint,
+                        arg2: libc::c_int,
                     ) -> bool;
                 }
                 extern "C" {
@@ -12905,7 +12941,7 @@ pub mod root {
                     pub fn get_fighter_information(
                         arg1: *mut root::app::FighterManager,
                         arg2: root::app::FighterEntryID,
-                    ) -> u64;
+                    ) -> *mut root::app::FighterInformation;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind42FighterManager__is_melee_mode_homerun_implEPNS_14FighterManagerE"]
@@ -18108,6 +18144,38 @@ pub mod root {
                 pub fn set_brake(arg1: u64);
             }
             extern "C" {
+                ///Sets the current speed
+                ///
+                /// This is a lua stack based function - it takes in one argument, the lua state, and relies on the current lua stack to
+                // figure out what args it is getting.
+                ///
+                /// # Arguments
+                ///
+                /// * `lua_state` - the lua state of the current L2CAgent
+                ///
+                /// # Example
+                ///
+                /// ```
+                /// l2c_agent.clear_lua_stack(); //clear the stack from any previous args
+                /// l2c_agent.push_lua_stack(&mut L2CValue::new_int(*FIGHTER_KINETIC_ENERGY_ID_CONTROL as u64)); //push the first arg, that being a KINETIC_ENERGY_ID const
+                /// l2c_agent.push_lua_stack(&mut L2CValue::new_num(5.0)); //push the second arg, that being a float of the new speed we want to set 
+                /// sv_kinetic_energy::set_speed(lua_state); //call the desired function with the lua state which will grab the args we previously pushed
+                /// ```
+                /// An L2CAgent can be obtained in multiple different contexts. One common place you'd have access to one is in `sys_line_system_control_fighter`
+                /// That function runs once-per-frame per-fighter. As an arg it takes an L2CFighterCommon, and when hooking it, we can use that L2CFighterCommon to get
+                /// an L2CAgent, which we can then use to manipulate the lua stack. To get an L2CAgent you might do something like this:
+                /// ```
+                /// use smash::lib::{L2CValue, L2CAgent};
+                /// use smash::lua2cpp::L2CFighterCommon;
+                /// use smash::app::sv_system;
+                /// #[skyline::hook(replace = smash::lua2cpp::L2CFighterCommon_sys_line_system_control_fighter)]
+                /// pub unsafe fn sys_line_system_control_fighter_hook(fighter: &mut L2CFighterCommon) -> L2CValue {
+                ///     let module_accessor = sv_system::battle_object_module_accessor(fighter.lua_state_agent); //you can also use an L2CFighterCommon to get a module_accessor
+                ///     let mut lua_state = fighter.lua_state_agent;
+                ///     let mut l2c_agent = L2CAgent::new(lua_state);
+                ///
+                ///     original!()(fighter)
+                /// }
                 #[link_name = "\u{1}_ZN3app17sv_kinetic_energy9set_speedEP9lua_State"]
                 pub fn set_speed(arg1: u64);
             }
