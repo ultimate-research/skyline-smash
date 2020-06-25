@@ -1048,6 +1048,19 @@ pub mod root {
                 pub fn link(arg1: u64);
             }
         }
+        
+        pub mod utility {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            pub fn get_category(module_accessor: &mut root::app::BattleObjectModuleAccessor) -> i32 {
+                return (module_accessor.info >> 28) as u8 as i32;
+            }
+
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app7utility8get_kindEPKNS_26BattleObjectModuleAccessorE"]
+                pub fn get_kind(module_accessor: &mut root::app::BattleObjectModuleAccessor) -> i32;
+            }
+        }
         pub mod lua_bind {
             #[allow(unused_imports)]
             use super::super::super::root;
