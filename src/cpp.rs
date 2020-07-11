@@ -18674,9 +18674,7 @@ pub mod root {
             pub unk28: u64,
             pub unk30: u64,
             pub unk38: u64,
-            pub lua_state_agentbase: u64,
-            pub unk48: [u64; 0x10],
-            pub global_table: L2CValue,
+            pub lua_state_agentbase: u64
         }
         extern "C" {
             #[link_name = "\u{1}_ZN3lib8L2CAgentC2EP9lua_State"]

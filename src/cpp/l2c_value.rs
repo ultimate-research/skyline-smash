@@ -371,9 +371,7 @@ impl super::root::lib::L2CAgent {
             unk28: 0,
             unk30: 0,
             unk38: 0,
-            lua_state_agentbase: 0,
-            unk48: [0; 0x10],
-            global_table: L2CValue::new_void(),
+            lua_state_agentbase: 0
         };
         unsafe {
             super::root::lib::L2CAgent_L2CAgent_constr(&mut l2c_agent, lua_state); 
