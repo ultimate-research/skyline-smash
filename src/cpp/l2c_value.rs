@@ -400,36 +400,57 @@ impl core::ops::Deref for super::root::lib::L2CAgent {
     }
 }*/
 
-pub struct LuaConst {
+pub type LuaConst = LuaConstant<i32>;
+
+pub trait IntoI32 {
+    fn into_i32(&self) -> i32;
+}
+
+impl IntoI32 for i32 {
+    fn into_i32(&self) -> i32 {
+        *self
+    }
+}
+
+
+pub unsafe trait IsI32Equiv: IntoI32 {}
+
+unsafe impl IsI32Equiv for i32 {}
+
+use core::marker::PhantomData;
+
+pub struct LuaConstant<T: IsI32Equiv> {
     lua_bind_hash: u64,
     // do not try this at home
     cache: UnsafeCell<Option<i32>>,
+    _r: PhantomData<T>,
 }
 
-impl LuaConst {
+impl<T: IsI32Equiv> LuaConstant<T> {
     pub const fn new(lua_bind_hash: u64) -> Self {
         Self {
             lua_bind_hash,
-            cache: UnsafeCell::new(None)
+            cache: UnsafeCell::new(None),
+            _r: PhantomData,
         }
     }
 
     pub fn as_lua_int(&self) -> L2CValue {
-        L2CValue::new_int(**self as u64)
+        L2CValue::new_int((*self).into_i32() as u64)
     }
 }
 
 //Release
 
-impl From<LuaConst> for i32 {
-    fn from(lua_const: LuaConst) -> Self {
-        *lua_const
+impl<T: IsI32Equiv> From<LuaConstant<T>> for i32 {
+    fn from(lua_const: LuaConstant<T>) -> i32 {
+        (*lua_const).into_i32()
     }
 }
 
-impl Clone for LuaConst {
+impl<T: IsI32Equiv> Clone for LuaConstant<T> {
     fn clone(&self) -> Self {
-        LuaConst::new(self.lua_bind_hash)
+        LuaConstant::new(self.lua_bind_hash)
     }
 }
 
@@ -497,8 +518,8 @@ impl PartialOrd<LuaConst> for L2CValue {
 
 lua_const_partialeq_impl!(i32 u32 u64);
 
-impl core::ops::Deref for LuaConst {
-    type Target = i32;
+impl<T: IsI32Equiv> core::ops::Deref for LuaConstant<T> {
+    type Target = T;
 
     fn deref(&self) -> &Self::Target {
         let cache = self.cache.get();
@@ -515,10 +536,12 @@ impl core::ops::Deref for LuaConst {
                 unsafe {
                     *cache = Some(val);
 
-                    (*cache).as_ref().unwrap()
+                    core::mem::transmute((*cache).as_ref().unwrap())
                 }
             } else{
-                &-1
+                unsafe {
+                    core::mem::transmute(&-1)
+                }
             }
         }
     }

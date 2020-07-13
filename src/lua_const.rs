@@ -2,25 +2,57 @@
 #![allow(non_snake_case)]
 #![allow(non_snake_case)]
 use crate::cpp::l2c_value::L2CValue;
+use crate::app::HitStatus;
+
+macro_rules! allowed_lua_const_types {
+    ($($ty:ty),* $(,)?) => {
+        $(
+            unsafe impl $crate::cpp::l2c_value::IsI32Equiv for $ty {}
+
+            impl core::ops::Deref for $ty {
+                type Target = i32;
+
+                fn deref(&self) -> &Self::Target {
+                    unsafe {
+                        core::mem::transmute(&self)
+                    }
+                }
+            }
+
+            impl crate::cpp::l2c_value::IntoI32 for $ty {
+                fn into_i32(&self) -> i32 {
+                    **self
+                }
+            }
+        )*
+    }
+}
+
+allowed_lua_const_types!(HitStatus);
 
 macro_rules! lua_consts {
-    ($($ident:ident),* $(,)?) => {
-        use crate::cpp::l2c_value::LuaConst;
+    ($($ident:ident $(-> $ret:ty)?),* $(,)?) => {
         use compile_time_lua_bind_hash::lua_bind_hash;
         $(
-            pub const $ident: LuaConst = LuaConst::new(
+            pub const $ident: lua_consts!(@ty $($ret)?) = <lua_consts!(@ty $($ret)?)>::new(
                 lua_bind_hash!($ident)
             );
         )*
     };
-    ($($ident:ident: $lit:literal),* $(,)?) => {
-        use crate::cpp::l2c_value::LuaConst;
+    ($($ident:ident: $lit:literal $(-> $ret:ty)?),* $(,)?) => {
         use compile_time_lua_bind_hash::lua_bind_hash;
         $(
-            pub const $ident: LuaConst = LuaConst::new(
+            pub const $ident: lua_consts!(@ty $($ret)?) = <lua_consts!(@ty $($ret)?)>::new(
                 lua_bind_hash!($lit)
             );
         )*
+    };
+    // Handle return type expansion
+    (@ty) => {
+        $crate::cpp::l2c_value::LuaConst
+    };
+    (@ty $ret:ty) => {
+        $crate::cpp::l2c_value::LuaConstant<$ret>
     };
 }
 
@@ -11155,7 +11187,7 @@ lua_consts!(
     HIT_HEIGHT_HIGH,
     HIT_HEIGHT_LOW,
     HIT_HEIGHT_TERM,
-    HIT_STATUS_INVINCIBLE,
+    HIT_STATUS_INVINCIBLE -> HitStatus,
     HIT_STATUS_MASK_ALL,
     HIT_STATUS_MASK_NI,
     HIT_STATUS_MASK_NORMAL,
