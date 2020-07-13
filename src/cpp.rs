@@ -1045,6 +1045,19 @@ pub mod root {
                 pub fn link(arg1: u64);
             }
         }
+        
+        pub mod utility {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            pub fn get_category(module_accessor: &mut root::app::BattleObjectModuleAccessor) -> i32 {
+                return (module_accessor.info >> 28) as u8 as i32;
+            }
+
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app7utility8get_kindEPKNS_26BattleObjectModuleAccessorE"]
+                pub fn get_kind(module_accessor: &mut root::app::BattleObjectModuleAccessor) -> i32;
+            }
+        }
         pub mod lua_bind {
             #[allow(unused_imports)]
             use super::super::super::root;
@@ -18527,6 +18540,26 @@ pub mod root {
             pub use crate::lua_const::*;
         }
 
+        extern "C" {
+            #[link_name = "\u{1}_ZNK3lib8L2CValueixEN3phx6Hash40E"]
+            pub fn L2CValue__index_hash40_mut<'a>(this: &'a mut root::lib::L2CValue, hash40: u64) -> &'a mut root::lib::L2CValue;
+
+            #[link_name = "\u{1}_ZNK3lib8L2CValueixEN3phx6Hash40E"]
+            pub fn L2CValue__index_hash40<'a>(this: &'a root::lib::L2CValue, hash40: u64) -> &'a root::lib::L2CValue;
+
+            #[link_name = "\u{1}_ZNK3lib8L2CValueixEi"]
+            pub fn L2CValue__index_int_mut<'a>(this: &'a mut root::lib::L2CValue, int: i32) -> &'a mut root::lib::L2CValue;
+
+            #[link_name = "\u{1}_ZNK3lib8L2CValueixEi"]
+            pub fn L2CValue__index_int<'a>(this: &'a root::lib::L2CValue, int: i32) -> &'a root::lib::L2CValue;
+
+            #[link_name = "\u{1}_ZNK3lib8L2CValueixERKS0_"]
+            pub fn L2CValue__index_L2CValue_mut<'a>(this: &'a mut root::lib::L2CValue, l2c_val: &L2CValue) -> &'a mut root::lib::L2CValue;
+
+            #[link_name = "\u{1}_ZNK3lib8L2CValueixERKS0_"]
+            pub fn L2CValue__index_L2CValue<'a>(this: &'a root::lib::L2CValue, l2c_val: &L2CValue) -> &'a root::lib::L2CValue;
+        }
+
         #[allow(unused_imports)]
         use super::super::root;
         extern "C" {
@@ -18638,7 +18671,7 @@ pub mod root {
             pub unk28: u64,
             pub unk30: u64,
             pub unk38: u64,
-            pub lua_state_agentbase: u64,
+            pub lua_state_agentbase: u64
         }
         extern "C" {
             #[link_name = "\u{1}_ZN3lib8L2CAgentC2EP9lua_State"]

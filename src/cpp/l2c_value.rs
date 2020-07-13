@@ -89,6 +89,81 @@ impl fmt::Debug for L2CValue {
     }
 }
 
+pub trait LuaTableIndex: Sized {
+    fn index_with<'a>(&self, l2c_val: &'a L2CValue) -> &'a L2CValue;
+    fn index_with_mut<'a>(&self, l2c_val: &'a mut L2CValue) -> &'a mut L2CValue;
+}
+
+impl LuaTableIndex for i32 {
+    fn index_with<'a>(&self, l2c_val: &'a L2CValue) -> &'a L2CValue {
+        unsafe {
+            crate::lib::L2CValue__index_int(l2c_val, *self)
+        }
+    }
+
+    fn index_with_mut<'a>(&self, l2c_val: &'a mut L2CValue) -> &'a mut L2CValue {
+        unsafe {
+            crate::lib::L2CValue__index_int_mut(l2c_val, *self)
+        }
+    }
+}
+
+impl LuaTableIndex for L2CValue {
+    fn index_with<'a>(&self, l2c_val: &'a L2CValue) -> &'a L2CValue {
+        unsafe {
+            crate::lib::L2CValue__index_L2CValue(l2c_val, self)
+        }
+    }
+
+    fn index_with_mut<'a>(&self, l2c_val: &'a mut L2CValue) -> &'a mut L2CValue {
+        unsafe {
+            crate::lib::L2CValue__index_L2CValue_mut(l2c_val, self)
+        }
+    }
+}
+
+impl LuaTableIndex for u64 {
+    fn index_with<'a>(&self, l2c_val: &'a L2CValue) -> &'a L2CValue {
+        unsafe {
+            crate::lib::L2CValue__index_hash40(l2c_val, *self)
+        }
+    }
+
+    fn index_with_mut<'a>(&self, l2c_val: &'a mut L2CValue) -> &'a mut L2CValue {
+        unsafe {
+            crate::lib::L2CValue__index_hash40_mut(l2c_val, *self)
+        }
+    }
+}
+
+impl LuaTableIndex for &str {
+    fn index_with<'a>(&self, l2c_val: &'a L2CValue) -> &'a L2CValue {
+        let hash = crate::hash40(*self);
+
+        hash.index_with(l2c_val)
+    }
+
+    fn index_with_mut<'a>(&self, l2c_val: &'a mut L2CValue) -> &'a mut L2CValue {
+        let hash = crate::hash40(*self);
+
+        hash.index_with_mut(l2c_val)
+    }
+}
+
+impl<Idx: LuaTableIndex> core::ops::Index<Idx> for L2CValue {
+    type Output = L2CValue;
+
+    fn index(&self, index: Idx) -> &Self::Output {
+        index.index_with(self)
+    }
+}
+
+impl<Idx: LuaTableIndex> core::ops::IndexMut<Idx> for L2CValue {
+    fn index_mut(&mut self, index: Idx) -> &mut Self::Output {
+        index.index_with_mut(self)
+    }
+}
+
 impl L2CValue {
     pub const fn new_void() -> Self {
         Self {
