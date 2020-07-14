@@ -24,6 +24,26 @@ macro_rules! allowed_lua_const_types {
                     **self
                 }
             }
+
+            impl PartialEq for $ty {
+                fn eq(&self, rhs: &Self) -> bool {
+                    **self == **rhs
+                }
+            }
+
+            impl From<i32> for $ty {
+                fn from(x: i32) -> Self {
+                    unsafe {
+                        core::mem::transmute(x)
+                    }
+                }
+            }
+
+            impl From<L2CValue> for $ty {
+                fn from(x: L2CValue) -> $ty {
+                    (x.get_int() as i32).into()
+                }
+            }
         )*
     }
 }
