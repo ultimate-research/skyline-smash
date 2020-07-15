@@ -44,6 +44,12 @@ macro_rules! allowed_lua_const_types {
                     (x.get_int() as i32).into()
                 }
             }
+
+            impl Into<L2CValue> for $ty {
+                fn into(self) -> L2CValue {
+                   (*self).into() 
+                }
+            }
         )*
     }
 }
