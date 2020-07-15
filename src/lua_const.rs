@@ -50,6 +50,12 @@ macro_rules! allowed_lua_const_types {
                    (*self).into() 
                 }
             }
+
+            impl Into<L2CValue> for crate::cpp::l2c_value::LuaConstant<$ty> {
+                fn into(self) -> L2CValue {
+                   (**self).into() 
+                }
+            }
         )*
     }
 }
