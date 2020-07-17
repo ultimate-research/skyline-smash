@@ -195,6 +195,16 @@ pub mod root {
         }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
+        pub struct ItemObjectModuleAccessor {
+            pub battle_object_module_accessor : BattleObjectModuleAccessor;
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct Fighter {
+            pub _address: u64,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
         pub struct LinkEventLassoHang {
             pub _address: u8,
         }
@@ -1061,6 +1071,110 @@ pub mod root {
                 pub fn get_kind(module_accessor: &mut root::app::BattleObjectModuleAccessor) -> i32;
             }
         }
+
+        pub mod smashball {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app9smashball16is_training_modeEv"]
+                pub fn is_training_mode(
+                    arg1: libc::c_void,
+                )-> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app9smashball15set_post_effectERNS_18ItemModuleAccessorEjb"]
+                pub fn set_post_effect(
+                    arg1: *mut root::app::ItemModuleAccessor,
+                    arg2: u64,
+                    arg3: bool,
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app9smashball23force_clear_post_effectERNS_18ItemModuleAccessorE"]
+                pub fn force_clear_post_effect(
+                    arg1: *mut root::app::ItemModuleAccessor,
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app9smashball14get_auto_handiEj"]
+                pub fn get_auto_handi(
+                    arg1: u64,
+                )-> i32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app9smashball19escape_from_fighterERNS_18ItemModuleAccessorE"]
+                pub fn escape_from_fighter(
+                    arg1: *mut root::app::ItemModuleAccessor,
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app9smashball13chase_fighterERNS_18ItemModuleAccessorE"]
+                pub fn chase_fighter(
+                    arg1: *mut root::app::ItemModuleAccessor,
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app9smashball26get_equip_draw_ability_numENS_14FighterEntryIDE"]
+                pub fn get_equip_draw_ability_num(
+                    arg1: *mut root::app::FighterEntryID,
+                )-> i32;
+            }
+
+        }
+
+        pub mod FighterSpecializer_Jack {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app23FighterSpecializer_Jack15add_rebel_gaugeERNS_26BattleObjectModuleAccessorENS_14FighterEntryIDEf"]
+                pub fn add_rebel_gauge(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                    arg2: i32,
+                    arg3: f32,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app23FighterSpecializer_Jack16is_cut_in_effectERNS_26BattleObjectModuleAccessorE"]
+                pub fn is_cut_in_effect(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                ) -> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app23FighterSpecializer_Jack17call_final_moduleERNS_7FighterEi"]
+                pub fn call_final_module(
+                    arg1: *mut root::app::Fighter,
+                    arg2: i32
+                ) -> u64
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app23FighterSpecializer_Jack17set_cut_in_effectERNS_26BattleObjectModuleAccessorE"]
+                pub fn set_cut_in_effect(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                ) -> u64
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app23FighterSpecializer_Jack17set_doyle_suspendERNS_26BattleObjectModuleAccessorEb"]
+                pub fn set_doyle_suspend(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                    arg2: bool,
+                ) -> u64
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app23FighterSpecializer_Jack24final_module_hit_successEv"]
+                pub fn final_module_hit_success(
+                    arg1: libc::c_void
+                ) -> u64
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app23FighterSpecializer_Jack27check_doyle_summon_dispatchERNS_26BattleObjectModuleAccessorEbb"]
+                pub fn check_doyle_summon_dispatch(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                    arg2: bool,
+                    arg3: bool,
+                ) -> u64
+            }
+        }
+
         pub mod lua_bind {
             #[allow(unused_imports)]
             use super::super::super::root;
