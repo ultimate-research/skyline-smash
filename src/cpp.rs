@@ -726,14 +726,11 @@ pub mod root {
         pub struct ItemStatusParamFloat {
             pub _address: u8,
         }
-        ///A transparent struct to specify types of HIT_STATUS's
-        /// Example:
-        ///```
-        ///HitModule::set_whole(module_accessor, app::HitStatus(*HIT_STATUS_XLU), 0);
-        ///```
-        #[repr(transparent)]
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct HitStatus (pub i32);
+        pub struct HitStatus {
+            pub _address: u8,
+        }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct HitStopMulTarget {
@@ -3708,14 +3705,14 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind26GroundModule__correct_implEPNS_26BattleObjectModuleAccessorENS_17GroundCorrectKindE"]
                     pub fn correct(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::GroundCorrectKind,
+                        GroundCorrectKind: libc::c_int,
                     ) -> u64;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind30GroundModule__set_correct_implEPNS_26BattleObjectModuleAccessorENS_17GroundCorrectKindE"]
                     pub fn set_correct(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::GroundCorrectKind,
+                        GroundCorrectKind: libc::c_int,
                     );
                 }
                 extern "C" {
@@ -3801,7 +3798,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind34GroundModule__set_cliff_check_implEPNS_26BattleObjectModuleAccessorENS_20GroundCliffCheckKindE"]
                     pub fn set_cliff_check(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::GroundCliffCheckKind,
+                        GroundCliffCheckKind: libc::c_int,
                     );
                 }
                 extern "C" {
@@ -3859,7 +3856,7 @@ pub mod root {
                     pub fn can_entry_cliff_hang_data(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_uint,
-                        arg3: root::app::GroundCliffCheckKind,
+                        GroundCliffCheckKind: libc::c_int,
                     ) -> u64;
                 }
                 extern "C" {
@@ -4186,7 +4183,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind37GroundModule__get_touch_line_raw_implEPNS_26BattleObjectModuleAccessorENS_13GroundTouchIDE"]
                     pub fn get_touch_line_raw(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::GroundTouchID,
+                        GroundTouchID: libc::c_int,
                     ) -> u64;
                 }
                 extern "C" {
@@ -4632,7 +4629,7 @@ pub mod root {
                     pub fn set_status(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                        arg3: root::app::ShieldStatus,
+                        ShieldStatus: libc::c_int,
                         arg4: libc::c_int,
                     );
                 }
@@ -4640,7 +4637,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind35AbsorberModule__set_status_all_implEPNS_26BattleObjectModuleAccessorENS_12ShieldStatusEi"]
                     pub fn set_status_all(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::ShieldStatus,
+                        ShieldStatus: libc::c_int,
                         arg3: libc::c_int,
                     );
                 }
@@ -4691,7 +4688,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind30AbsorberModule__set_front_implEPNS_26BattleObjectModuleAccessorENS_11ShieldFrontEi"]
                     pub fn set_front(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::ShieldFront,
+                        ShieldFront: libc::c_int,
                         arg3: libc::c_int,
                     );
                 }
@@ -4802,7 +4799,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind36AbsorberModule__set_shield_type_implEPNS_26BattleObjectModuleAccessorENS_10ShieldTypeEii"]
                     pub fn set_shield_type(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::ShieldType,
+                        ShieldType: libc::c_int,
                         arg3: libc::c_int,
                         arg4: libc::c_int,
                     );
@@ -5677,7 +5674,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind41AttackModule__set_attacker_attribute_implEPNS_26BattleObjectModuleAccessorENS_17AttackerAttributeE"]
                     pub fn set_attacker_attribute(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::AttackerAttribute,
+                        AttackerAttribute: libc::c_int,
                     );
                 }
                 extern "C" {
@@ -5979,7 +5976,7 @@ pub mod root {
                     pub fn set_special_paint(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                        arg3: root::app::SpecialPaintKind,
+                        SpecialPaintKind: libc::c_int,
                     );
                 }
                 extern "C" {
@@ -6238,7 +6235,7 @@ pub mod root {
                     pub fn set_set_off(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                        arg3: root::app::AttackSetOffKind,
+                        AttackSetOffKind: libc::c_int,
                     );
                 }
                 extern "C" {
@@ -6278,7 +6275,7 @@ pub mod root {
                     pub fn set_attack_height(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                        arg3: root::app::AttackHeight,
+                        AttackHeight: libc::c_int,
                         arg4: bool,
                     );
                 }
@@ -6286,7 +6283,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind40AttackModule__set_attack_height_all_implEPNS_26BattleObjectModuleAccessorENS_12AttackHeightEb"]
                     pub fn set_attack_height_all(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::AttackHeight,
+                        AttackHeight: libc::c_int,
                         arg3: bool,
                     );
                 }
@@ -6863,7 +6860,7 @@ pub mod root {
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
                         arg3: root::phx::Hash40,
-                        arg4: root::app::ArticleOperationTarget,
+                        ArticleOperationTarget: libc::c_int,
                         arg5: libc::c_uint,
                         arg6: bool,
                     ) -> u64;
@@ -6873,7 +6870,7 @@ pub mod root {
                     pub fn shoot(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                        arg3: root::app::ArticleOperationTarget,
+                        ArticleOperationTarget: libc::c_int,
                         arg4: bool,
                     ) -> u64;
                 }
@@ -6882,7 +6879,7 @@ pub mod root {
                     pub fn shoot_exist(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                        arg3: root::app::ArticleOperationTarget,
+                        ArticleOperationTarget: libc::c_int,
                         arg4: bool,
                     ) -> u64;
                 }
@@ -6899,7 +6896,7 @@ pub mod root {
                     pub fn motion_kind(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                        arg3: root::app::ArticleOperationTarget,
+                        ArticleOperationTarget: libc::c_int,
                     ) -> u64;
                 }
                 extern "C" {
@@ -6940,7 +6937,7 @@ pub mod root {
                     pub fn motion_kind_2nd(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                        arg3: root::app::ArticleOperationTarget,
+                        ArticleOperationTarget: libc::c_int,
                     ) -> u64;
                 }
                 extern "C" {
@@ -7000,7 +6997,7 @@ pub mod root {
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
                         arg3: libc::c_int,
-                        arg4: root::app::ArticleOperationTarget,
+                        ArticleOperationTarget: libc::c_int,
                     ) -> u64;
                 }
                 extern "C" {
@@ -7017,7 +7014,7 @@ pub mod root {
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
                         arg3: bool,
-                        arg4: root::app::ArticleOperationTarget,
+                        ArticleOperationTarget: libc::c_int,
                     );
                 }
                 extern "C" {
@@ -7027,7 +7024,7 @@ pub mod root {
                         arg2: libc::c_int,
                         arg3: root::phx::Hash40,
                         arg4: root::phx::Hash40,
-                        arg5: root::app::ArticleOperationTarget,
+                        ArticleOperationTarget: libc::c_int,
                     );
                 }
                 extern "C" {
@@ -7036,7 +7033,7 @@ pub mod root {
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
                         arg3: root::phx::Hash40,
-                        arg4: root::app::ArticleOperationTarget,
+                        ArticleOperationTarget: libc::c_int,
                     );
                 }
                 extern "C" {
@@ -7121,7 +7118,7 @@ pub mod root {
                     pub fn remove(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                        arg3: root::app::ArticleOperationTarget,
+                        ArticleOperationTarget: libc::c_int,
                     ) -> u64;
                 }
                 extern "C" {
@@ -7129,7 +7126,7 @@ pub mod root {
                     pub fn remove_exist(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                        arg3: root::app::ArticleOperationTarget,
+                        ArticleOperationTarget: libc::c_int,
                     ) -> u64;
                 }
                 extern "C" {
@@ -7180,7 +7177,7 @@ pub mod root {
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
                         arg3: root::phx::Hash40,
-                        arg4: root::app::ArticleOperationTarget,
+                        ArticleOperationTarget: libc::c_int,
                     ) -> u64;
                 }
                 extern "C" {
@@ -7189,7 +7186,7 @@ pub mod root {
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
                         arg3: root::phx::Hash40,
-                        arg4: root::app::ArticleOperationTarget,
+                        ArticleOperationTarget: libc::c_int,
                     ) -> u64;
                 }
             }
@@ -7328,7 +7325,7 @@ pub mod root {
                     pub fn set_status(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                        arg3: root::app::ShieldStatus,
+                        ShieldStatus: libc::c_int,
                         arg4: libc::c_int,
                     );
                 }
@@ -7336,7 +7333,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind33ShieldModule__set_status_all_implEPNS_26BattleObjectModuleAccessorENS_12ShieldStatusEi"]
                     pub fn set_status_all(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::ShieldStatus,
+                        ShieldStatus: libc::c_int,
                         arg3: libc::c_int,
                     );
                 }
@@ -7387,7 +7384,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind28ShieldModule__set_front_implEPNS_26BattleObjectModuleAccessorENS_11ShieldFrontEi"]
                     pub fn set_front(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::ShieldFront,
+                        ShieldFront: libc::c_int,
                         arg3: libc::c_int,
                     );
                 }
@@ -7498,7 +7495,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind34ShieldModule__set_shield_type_implEPNS_26BattleObjectModuleAccessorENS_10ShieldTypeEii"]
                     pub fn set_shield_type(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::ShieldType,
+                        ShieldType: libc::c_int,
                         arg3: libc::c_int,
                         arg4: libc::c_int,
                     );
@@ -8940,7 +8937,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind26WorkModule__clear_all_implEPNS_26BattleObjectModuleAccessorENS_8WorkKindE"]
                     pub fn clear_all(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::WorkKind,
+                        WorkKind: libc::c_int,
                     );
                 }
                 extern "C" {
@@ -9043,21 +9040,21 @@ pub mod root {
                     pub fn set_other_stop(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                        arg3: root::app::StopOtherKind,
+                        StopOtherKind: libc::c_int,
                     );
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind31StopModule__get_other_stop_implEPNS_26BattleObjectModuleAccessorENS_13StopOtherKindE"]
                     pub fn get_other_stop(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::StopOtherKind,
+                        StopOtherKind: libc::c_int,
                     ) -> u64;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind34StopModule__cancel_other_stop_implEPNS_26BattleObjectModuleAccessorENS_13StopOtherKindE"]
                     pub fn cancel_other_stop(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::StopOtherKind,
+                        StopOtherKind: libc::c_int,
                     ) -> u64;
                 }
                 extern "C" {
@@ -9299,7 +9296,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind27ShadowModule__set_draw_implEPNS_26BattleObjectModuleAccessorENS_14ShadowDrawFlagEb"]
                     pub fn set_draw(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::ShadowDrawFlag,
+                        ShadowDrawFlag: libc::c_int,
                         arg3: bool,
                     );
                 }
@@ -9341,7 +9338,7 @@ pub mod root {
                         arg4: bool,
                         arg5: bool,
                         arg6: bool,
-                        arg7: root::app::SoundModule::enSEType,
+                        enSEType: libc::c_int,
                     ) -> u64;
                 }
                 extern "C" {
@@ -9703,7 +9700,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind33SoundModule__play_status_bgm_implEPNS_26BattleObjectModuleAccessorENS_15enStatusBGMTypeE"]
                     pub fn play_status_bgm(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::enStatusBGMType,
+                        enStatusBGMType: libc::c_int,
                     ) -> u64;
                 }
                 extern "C" {
@@ -10600,7 +10597,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind45ItemParamAccessor__boss_common_param_int_implEPNS_17ItemParamAccessorENS_8ItemKindENS_18BossCommonParamIntE"]
                     pub fn boss_common_param_int(
                         arg1: *mut root::app::ItemParamAccessor,
-                        arg2: root::app::ItemKind,
+                        ItemKind: libc::c_int,
                         arg3: root::app::BossCommonParamInt,
                     ) -> u64;
                 }
@@ -10608,7 +10605,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind43ItemParamAccessor__is_valid_self_param_implEPNS_17ItemParamAccessorENS_8ItemKindEN3phx6Hash40E"]
                     pub fn is_valid_self_param(
                         arg1: *mut root::app::ItemParamAccessor,
-                        arg2: root::app::ItemKind,
+                        ItemKind: libc::c_int,
                         arg3: root::phx::Hash40,
                     ) -> bool;
                 }
@@ -10616,7 +10613,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind44ItemParamAccessor__get_self_param_float_implEPNS_17ItemParamAccessorENS_8ItemKindEN3phx6Hash40E"]
                     pub fn get_self_param_float(
                         arg1: *mut root::app::ItemParamAccessor,
-                        arg2: root::app::ItemKind,
+                        ItemKind: libc::c_int,
                         arg3: root::phx::Hash40,
                     ) -> u64;
                 }
@@ -10624,7 +10621,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind42ItemParamAccessor__get_self_param_int_implEPNS_17ItemParamAccessorENS_8ItemKindEN3phx6Hash40E"]
                     pub fn get_self_param_int(
                         arg1: *mut root::app::ItemParamAccessor,
-                        arg2: root::app::ItemKind,
+                        ItemKind: libc::c_int,
                         arg3: root::phx::Hash40,
                     ) -> u64;
                 }
@@ -10776,7 +10773,7 @@ pub mod root {
                     pub fn set_status(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                        arg3: root::app::ShieldStatus,
+                        ShieldStatus: libc::c_int,
                         arg4: libc::c_int,
                     );
                 }
@@ -10784,7 +10781,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind36ReflectorModule__set_status_all_implEPNS_26BattleObjectModuleAccessorENS_12ShieldStatusEi"]
                     pub fn set_status_all(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::ShieldStatus,
+                        ShieldStatus: libc::c_int,
                         arg3: libc::c_int,
                     );
                 }
@@ -10835,7 +10832,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind31ReflectorModule__set_front_implEPNS_26BattleObjectModuleAccessorENS_11ShieldFrontEi"]
                     pub fn set_front(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::ShieldFront,
+                        ShieldFront: libc::c_int,
                         arg3: libc::c_int,
                     );
                 }
@@ -10946,7 +10943,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind37ReflectorModule__set_shield_type_implEPNS_26BattleObjectModuleAccessorENS_10ShieldTypeEii"]
                     pub fn set_shield_type(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::ShieldType,
+                        ShieldType: libc::c_int,
                         arg3: libc::c_int,
                         arg4: libc::c_int,
                     );
@@ -11776,7 +11773,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind29CameraModule__set_status_implEPNS_26BattleObjectModuleAccessorENS_12CameraStatusEi"]
                     pub fn set_status(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::CameraStatus,
+                        CameraStatus: libc::c_int,
                         arg3: libc::c_int,
                     );
                 }
@@ -12651,7 +12648,7 @@ pub mod root {
                     pub fn get_num_of_ownered_item(
                         arg1: *mut root::app::ItemManager,
                         arg2: libc::c_uint,
-                        arg3: root::app::ItemKind,
+                        ItemKind: libc::c_int,
                     ) -> u64;
                 }
                 extern "C" {
@@ -13049,21 +13046,21 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind33FighterManager__get_entry_no_implEPNS_14FighterManagerENS_14FighterEntryIDE"]
                     pub fn get_entry_no(
                         arg1: *mut root::app::FighterManager,
-                        arg2: root::app::FighterEntryID,
+                        FighterEntryID: libc::c_int,
                     ) -> i32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind38FighterManager__get_fighter_entry_implEPNS_14FighterManagerENS_14FighterEntryIDE"]
                     pub fn get_fighter_entry(
                         arg1: *mut root::app::FighterManager,
-                        arg2: root::app::FighterEntryID,
+                        FighterEntryID: libc::c_int,
                     ) -> u64;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind44FighterManager__get_fighter_information_implEPNS_14FighterManagerENS_14FighterEntryIDE"]
                     pub fn get_fighter_information(
                         arg1: *mut root::app::FighterManager,
-                        arg2: root::app::FighterEntryID,
+                        FighterEntryID: libc::c_int,
                     ) -> *mut root::app::FighterInformation;
                 }
                 extern "C" {
@@ -13115,7 +13112,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind36FighterManager__get_fighter_pos_implEPNS_14FighterManagerENS_14FighterEntryIDEi"]
                     pub fn get_fighter_pos(
                         arg1: *mut root::app::FighterManager,
-                        arg2: root::app::FighterEntryID,
+                        FighterEntryID: libc::c_int,
                         arg3: libc::c_int,
                     ) -> u64;
                 }
@@ -13139,7 +13136,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind30FighterManager__set_final_implEPNS_14FighterManagerENS_14FighterEntryIDENS_21FighterAvailableFinalEj"]
                     pub fn set_final(
                         arg1: *mut root::app::FighterManager,
-                        arg2: root::app::FighterEntryID,
+                        FighterEntryID: libc::c_int,
                         arg3: root::app::FighterAvailableFinal,
                         arg4: libc::c_uint,
                     );
@@ -13154,14 +13151,14 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind49FighterManager__get_beat_point_diff_from_top_implEPNS_14FighterManagerENS_14FighterEntryIDE"]
                     pub fn get_beat_point_diff_from_top(
                         arg1: *mut root::app::FighterManager,
-                        arg2: root::app::FighterEntryID,
+                        FighterEntryID: libc::c_int,
                     ) -> u64;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind40FighterManager__set_final_fear_face_implEPNS_14FighterManagerENS_14FighterEntryIDEi"]
                     pub fn set_final_fear_face(
                         arg1: *mut root::app::FighterManager,
-                        arg2: root::app::FighterEntryID,
+                        FighterEntryID: libc::c_int,
                         arg3: libc::c_int,
                     );
                 }
@@ -13233,14 +13230,14 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind42FighterManager__is_rebirth_plate_line_implEPNS_14FighterManagerENS_14FighterEntryIDE"]
                     pub fn is_rebirth_plate_line(
                         arg1: *mut root::app::FighterManager,
-                        arg2: root::app::FighterEntryID,
+                        FighterEntryID: libc::c_int,
                     ) -> bool;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind38FighterManager__set_position_lock_implEPNS_14FighterManagerENS_14FighterEntryIDEb"]
                     pub fn set_position_lock(
                         arg1: *mut root::app::FighterManager,
-                        arg2: root::app::FighterEntryID,
+                        FighterEntryID: libc::c_int,
                         arg3: bool,
                     );
                 }
@@ -13484,21 +13481,21 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind39BossManager__notify_on_boss_defeat_implEPNS_11BossManagerENS_11FighterKindE"]
                     pub fn notify_on_boss_defeat(
                         arg1: *mut root::app::BossManager,
-                        arg2: root::app::FighterKind,
+                        FighterKind: libc::c_int,
                     ) -> u64;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind43BossManager__notify_on_boss_keyoff_bgm_implEPNS_11BossManagerENS_11FighterKindE"]
                     pub fn notify_on_boss_keyoff_bgm(
                         arg1: *mut root::app::BossManager,
-                        arg2: root::app::FighterKind,
+                        FighterKind: libc::c_int,
                     ) -> u64;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind37BossManager__notify_on_boss_dead_implEPNS_11BossManagerENS_11FighterKindE"]
                     pub fn notify_on_boss_dead(
                         arg1: *mut root::app::BossManager,
-                        arg2: root::app::FighterKind,
+                        FighterKind: libc::c_int,
                     ) -> u64;
                 }
             }
@@ -14875,7 +14872,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind26ItemModule__have_item_implEPNS_26BattleObjectModuleAccessorENS_8ItemKindEiibb"]
                     pub fn have_item(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::ItemKind,
+                        ItemKind: libc::c_int,
                         arg3: libc::c_int,
                         arg4: libc::c_int,
                         arg5: bool,
@@ -14978,7 +14975,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind47ItemModule__get_have_item_status_param_int_implEPNS_26BattleObjectModuleAccessorENS_18ItemStatusParamIntEi"]
                     pub fn get_have_item_status_param_int(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::ItemStatusParamInt,
+                        ItemStatusParamInt: libc::c_int,
                         arg3: libc::c_int,
                     ) -> u64;
                 }
@@ -14986,7 +14983,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind49ItemModule__get_have_item_status_param_float_implEPNS_26BattleObjectModuleAccessorENS_20ItemStatusParamFloatEi"]
                     pub fn get_have_item_status_param_float(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::ItemStatusParamFloat,
+                        ItemStatusParamFloat: libc::c_float,
                         arg3: libc::c_int,
                     ) -> u64;
                 }
@@ -14994,7 +14991,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind48ItemModule__get_have_item_status_param_bool_implEPNS_26BattleObjectModuleAccessorENS_19ItemStatusParamBoolEi"]
                     pub fn get_have_item_status_param_bool(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::ItemStatusParamBool,
+                        ItemStatusParamBool: bool,
                         arg3: libc::c_int,
                     ) -> u64;
                 }
@@ -15177,7 +15174,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind28ItemModule__attach_item_implEPNS_26BattleObjectModuleAccessorENS_8ItemKindEib"]
                     pub fn attach_item(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::ItemKind,
+                        ItemKind: libc::c_int,
                         arg3: libc::c_int,
                         arg4: bool,
                     ) -> u64;
@@ -15202,7 +15199,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind31ItemModule__is_attach_item_implEPNS_26BattleObjectModuleAccessorENS_8ItemKindE"]
                     pub fn is_attach_item(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::ItemKind,
+                        ItemKind: libc::c_int,
                     ) -> bool;
                 }
                 extern "C" {
@@ -15242,7 +15239,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind29ItemModule__eject_attach_implEPNS_26BattleObjectModuleAccessorENS_8ItemKindEbb"]
                     pub fn eject_attach(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::ItemKind,
+                        ItemKind: libc::c_int,
                         arg3: bool,
                         arg4: bool,
                     ) -> u64;
@@ -15251,7 +15248,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind28ItemModule__drop_attach_implEPNS_26BattleObjectModuleAccessorENS_8ItemKindEff"]
                     pub fn drop_attach(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::ItemKind,
+                        ItemKind: libc::c_int,
                         arg3: f32,
                         arg4: f32,
                     ) -> u64;
@@ -15269,7 +15266,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind29ItemModule__scale_attach_implEPNS_26BattleObjectModuleAccessorENS_8ItemKindEf"]
                     pub fn scale_attach(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::ItemKind,
+                        ItemKind: libc::c_int,
                         arg3: f32,
                     ) -> u64;
                 }
@@ -15277,7 +15274,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind39ItemModule__set_attach_item_action_implEPNS_26BattleObjectModuleAccessorENS_8ItemKindEif"]
                     pub fn set_attach_item_action(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::ItemKind,
+                        ItemKind: libc::c_int,
                         arg3: libc::c_int,
                         arg4: f32,
                     );
@@ -15505,7 +15502,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind37StatusModule__set_situation_kind_implEPNS_26BattleObjectModuleAccessorENS_13SituationKindEb"]
                     pub fn set_situation_kind(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::SituationKind,
+                        SituationKind: libc::c_int,
                         arg3: bool,
                     );
                 }
@@ -15527,10 +15524,10 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind32StatusModule__init_settings_implEPNS_26BattleObjectModuleAccessorENS_13SituationKindEijNS_20GroundCliffCheckKindEbiiii"]
                     pub fn init_settings(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::SituationKind,
+                        SituationKind: libc::c_int,
                         arg3: libc::c_int,
                         arg4: libc::c_uint,
-                        arg5: root::app::GroundCliffCheckKind,
+                        GroundCliffCheckKind: libc::c_int,
                         arg6: bool,
                         arg7: libc::c_int,
                         arg8: libc::c_int,
@@ -15801,7 +15798,7 @@ pub mod root {
                     pub fn set_status(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                        arg3: root::app::HitStatus,
+                        HitStatus: libc::c_int,
                         arg4: libc::c_int,
                     );
                 }
@@ -15810,7 +15807,7 @@ pub mod root {
                     pub fn set_status_joint(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: root::phx::Hash40,
-                        arg3: root::app::HitStatus,
+                        HitStatus: libc::c_int,
                         arg4: libc::c_int,
                     );
                 }
@@ -15819,7 +15816,7 @@ pub mod root {
                     pub fn set_status_joint_default(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: root::phx::Hash40,
-                        arg3: root::app::HitStatus,
+                        HitStatus: libc::c_int,
                         arg4: libc::c_int,
                     );
                 }
@@ -15827,7 +15824,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind30HitModule__set_status_all_implEPNS_26BattleObjectModuleAccessorENS_9HitStatusEi"]
                     pub fn set_status_all(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::HitStatus,
+                        HitStatus: libc::c_int,
                         arg3: libc::c_int,
                     );
                 }
@@ -15838,18 +15835,18 @@ pub mod root {
                     ///
                     /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
                     ///
-                    /// * 'HitStatus' - a transparent struct to denote a HIT_STATUS const
+                    /// * 'HitStatus' - a HIT_STATUS const
                     ///
                     /// # Example
                     ///
                     /// ```
                     /// // set character to be entirely intangible
-                    /// HitModule::set_whole(module_accessor, smash::app::HitStatus(*HIT_STATUS_XLU), 0);
+                    /// HitModule::set_whole(module_accessor, *HIT_STATUS_XLU, 0);
                     /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind25HitModule__set_whole_implEPNS_26BattleObjectModuleAccessorENS_9HitStatusEi"]
                     pub fn set_whole(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::HitStatus,
+                        HitStatus: libc::c_int,
                         arg3: libc::c_int,
                     );
                 }
@@ -15925,7 +15922,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind41HitModule__set_total_status_disguise_implEPNS_26BattleObjectModuleAccessorENS_9HitStatusEi"]
                     pub fn set_total_status_disguise(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::HitStatus,
+                        HitStatus: libc::c_int,
                         arg3: libc::c_int,
                     );
                 }
@@ -15948,7 +15945,7 @@ pub mod root {
                     pub fn set_hit_stop_mul(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: f32,
-                        arg3: root::app::HitStopMulTarget,
+                        HitStopMulTarget: libc::c_int,
                         arg4: f32,
                     );
                 }
@@ -16103,7 +16100,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind35LinkModule__search_parent_attr_implEPNS_26BattleObjectModuleAccessorENS_13LinkAttributeE"]
                     pub fn search_parent_attr(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::LinkAttribute,
+                        LinkAttribute: libc::c_int,
                     ) -> u64;
                 }
                 extern "C" {
@@ -16736,7 +16733,7 @@ pub mod root {
                     pub fn set_attribute(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                        arg3: root::app::LinkAttribute,
+                        LinkAttribute: libc::c_int,
                         arg4: bool,
                     );
                 }
@@ -16745,14 +16742,14 @@ pub mod root {
                     pub fn chk_attribute(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                        arg3: root::app::LinkAttribute,
+                        LinkAttribute: libc::c_int,
                     ) -> u64;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind37LinkModule__chk_linked_attribute_implEPNS_26BattleObjectModuleAccessorENS_13LinkAttributeE"]
                     pub fn chk_linked_attribute(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: root::app::LinkAttribute,
+                        LinkAttribute: libc::c_int,
                     ) -> u64;
                 }
                 extern "C" {
