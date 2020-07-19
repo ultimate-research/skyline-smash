@@ -18299,6 +18299,7 @@ pub mod root {
                 ///
                 ///     original!()(fighter)
                 /// }
+                /// ```
                 #[link_name = "\u{1}_ZN3app17sv_kinetic_energy9set_speedEP9lua_State"]
                 pub fn set_speed(arg1: u64);
             }
@@ -18558,6 +18559,7 @@ pub mod root {
                 ///     let lua_state = fighter.lua_state_agent;
                 ///     let module_accessor = app::sv_system::battle_object_module_accessor(lua_state);
                 /// }
+                /// ```
                 #[link_name = "\u{1}_ZN3app9sv_system29battle_object_module_accessorEP9lua_State"]
                 pub fn battle_object_module_accessor(arg1: u64) -> &'static mut root::app::BattleObjectModuleAccessor;
             }
