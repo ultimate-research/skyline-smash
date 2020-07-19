@@ -195,6 +195,16 @@ pub mod root {
         }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
+        pub struct ItemModuleAccessor {
+            pub battle_object_module_accessor : BattleObjectModuleAccessor,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct Fighter {
+            pub _address: u64,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
         pub struct LinkEventLassoHang {
             pub _address: u8,
         }
@@ -1058,6 +1068,106 @@ pub mod root {
                 pub fn get_kind(module_accessor: &mut root::app::BattleObjectModuleAccessor) -> i32;
             }
         }
+
+        pub mod smashball {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app9smashball16is_training_modeEv"]
+                pub fn is_training_mode()-> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app9smashball15set_post_effectERNS_18ItemModuleAccessorEjb"]
+                pub fn set_post_effect(
+                    arg1: *mut root::app::ItemModuleAccessor,
+                    arg2: u32,
+                    arg3: bool,
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app9smashball23force_clear_post_effectERNS_18ItemModuleAccessorE"]
+                pub fn force_clear_post_effect(
+                    arg1: *mut root::app::ItemModuleAccessor,
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app9smashball14get_auto_handiEj"]
+                pub fn get_auto_handi(
+                    arg1: u32,
+                )-> i32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app9smashball19escape_from_fighterERNS_18ItemModuleAccessorE"]
+                pub fn escape_from_fighter(
+                    arg1: *mut root::app::ItemModuleAccessor,
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app9smashball13chase_fighterERNS_18ItemModuleAccessorE"]
+                pub fn chase_fighter(
+                    arg1: *mut root::app::ItemModuleAccessor,
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app9smashball26get_equip_draw_ability_numENS_14FighterEntryIDE"]
+                pub fn get_equip_draw_ability_num(
+                    arg1: root::app::FighterEntryID,
+                )-> i32;
+            }
+
+        }
+
+        pub mod FighterSpecializer_Jack {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app23FighterSpecializer_Jack15add_rebel_gaugeERNS_26BattleObjectModuleAccessorENS_14FighterEntryIDEf"]
+                pub fn add_rebel_gauge(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                    arg2: root::app::FighterEntryID,
+                    arg3: f32,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app23FighterSpecializer_Jack16is_cut_in_effectERNS_26BattleObjectModuleAccessorE"]
+                pub fn is_cut_in_effect(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                ) -> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app23FighterSpecializer_Jack17call_final_moduleERNS_7FighterEi"]
+                pub fn call_final_module(
+                    arg1: *mut root::app::Fighter,
+                    arg2: i32
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app23FighterSpecializer_Jack17set_cut_in_effectERNS_26BattleObjectModuleAccessorE"]
+                pub fn set_cut_in_effect(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app23FighterSpecializer_Jack17set_doyle_suspendERNS_26BattleObjectModuleAccessorEb"]
+                pub fn set_doyle_suspend(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                    arg2: bool,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app23FighterSpecializer_Jack24final_module_hit_successEv"]
+                pub fn final_module_hit_success() -> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app23FighterSpecializer_Jack27check_doyle_summon_dispatchERNS_26BattleObjectModuleAccessorEbb"]
+                pub fn check_doyle_summon_dispatch(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                    arg2: bool,
+                    arg3: bool,
+                ) -> u64;
+            }
+        }
+
         pub mod lua_bind {
             #[allow(unused_imports)]
             use super::super::super::root;
@@ -14199,19 +14309,19 @@ pub mod root {
                     ) -> f32;
                 }
                 extern "C" {
-                    /// Returns the current x velocity based on the specified kinetic energy ID
+                    /// Returns the current x velocity based on the specified kinetic energy attribute
                     ///
                     /// # Arguments
                     ///
                     /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
                     ///
-                    /// * 'kinetic_energy_id' - A KINETIC_ENERGY_ID const
+                    /// * 'kinetic_energy_reserve_attribute' - A KINETIC_ENERGY_RESERVE_ATTRIBUTE_ const
                     ///
                     /// # Example
                     ///
                     /// ```
-                    /// // get current x motion-based velocity
-                    /// let x_vel = KineticModule::get_sum_speed_x(module_accessor, *FIGHTER_KINETIC_ID_MOTION);
+                    /// // get current x velocity
+                    /// let x_vel = KineticModule::get_sum_speed_x(module_accessor, *KINETIC_ENERGY_RESERVE_ATTRIBUTE_MAIN);
                     /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind35KineticModule__get_sum_speed_x_implEPNS_26BattleObjectModuleAccessorEi"]
                     pub fn get_sum_speed_x(
@@ -14220,19 +14330,19 @@ pub mod root {
                     ) -> f32;
                 }
                 extern "C" {
-                    /// Returns the current y velocity based on the specified kinetic energy ID
+                    /// Returns the current y velocity based on the specified kinetic energy attribute
                     ///
                     /// # Arguments
                     ///
                     /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
                     ///
-                    /// * 'kinetic_energy_id' - A KINETIC_ENERGY_ID const
+                    /// * 'kinetic_energy_reserve_attribute' - A KINETIC_ENERGY_RESERVE_ATTRIBUTE_ const
                     ///
                     /// # Example
                     ///
                     /// ```
-                    /// // get current y gravity-based velocity
-                    /// let y_vel = KineticModule::get_sum_speed_y(module_accessor, *FIGHTER_KINETIC_ENERGY_ID_GRAVITY);
+                    /// // get current y velocity
+                    /// let y_vel = KineticModule::get_sum_speed_y(module_accessor, *KINETIC_ENERGY_RESERVE_ATTRIBUTE_MAIN);
                     /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind35KineticModule__get_sum_speed_y_implEPNS_26BattleObjectModuleAccessorEi"]
                     pub fn get_sum_speed_y(
@@ -14248,19 +14358,19 @@ pub mod root {
                     ) -> u64;
                 }
                 extern "C" {
-                    /// Returns the current velocity based on the specified kinetic energy ID as a Vector3f
+                    /// Returns the current velocity based on the specified kinetic energy attribute as a Vector3f
                     ///
                     /// # Arguments
                     ///
                     /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
                     ///
-                    /// * 'kinetic_energy_id' - A KINETIC_ENERGY_ID const
+                    /// * 'kinetic_energy_reserve_attribute' - A KINETIC_ENERGY_RESERVE_ATTRIBUTE_ const
                     ///
                     /// # Example
                     ///
                     /// ```
-                    /// // get current gravity-based velocity as a Vector3f
-                    /// let vel_3f = KineticModule::get_sum_speed3f(module_accessor, *FIGHTER_KINETIC_ENERGY_ID_GRAVITY);
+                    /// // get current velocity as a Vector3f
+                    /// let vel_3f = KineticModule::get_sum_speed3f(module_accessor, *KINETIC_ENERGY_RESERVE_ATTRIBUTE_MAIN);
                     /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind35KineticModule__get_sum_speed3f_implEPNS_26BattleObjectModuleAccessorEi"]
                     pub fn get_sum_speed3f(
@@ -18431,6 +18541,20 @@ pub mod root {
                 pub fn battle_object(arg1: u64) -> u64;
             }
             extern "C" {
+                /// Returns a BattleObjectModuleAccessor
+                ///
+                /// # Arguments
+                ///
+                /// * `lua_state`
+                /// a lua_state is commonly obtained from an L2CAgent - however because of "cool Rust magic"
+                /// we can also obtain it from things that deref into L2CAgent's, like L2CFighterCommon's.
+                ///
+                /// # Example
+                /// ```
+                ///  pub fn once_per_fighter_frame(fighter : &mut L2CFighterCommon) {
+                ///     let lua_state = fighter.lua_state_agent;
+                ///     let module_accessor = app::sv_system::battle_object_module_accessor(lua_state);
+                /// }
                 #[link_name = "\u{1}_ZN3app9sv_system29battle_object_module_accessorEP9lua_State"]
                 pub fn battle_object_module_accessor(arg1: u64) -> &'static mut root::app::BattleObjectModuleAccessor;
             }
