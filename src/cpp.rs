@@ -14312,19 +14312,19 @@ pub mod root {
                     ) -> f32;
                 }
                 extern "C" {
-                    /// Returns the current x velocity based on the specified kinetic energy ID
+                    /// Returns the current x velocity based on the specified kinetic energy attribute
                     ///
                     /// # Arguments
                     ///
                     /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
                     ///
-                    /// * 'kinetic_energy_id' - A KINETIC_ENERGY_ID const
+                    /// * 'kinetic_energy_reserve_attribute' - A KINETIC_ENERGY_RESERVE_ATTRIBUTE_ const
                     ///
                     /// # Example
                     ///
                     /// ```
-                    /// // get current x motion-based velocity
-                    /// let x_vel = KineticModule::get_sum_speed_x(module_accessor, *FIGHTER_KINETIC_ID_MOTION);
+                    /// // get current x velocity
+                    /// let x_vel = KineticModule::get_sum_speed_x(module_accessor, *KINETIC_ENERGY_RESERVE_ATTRIBUTE_MAIN);
                     /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind35KineticModule__get_sum_speed_x_implEPNS_26BattleObjectModuleAccessorEi"]
                     pub fn get_sum_speed_x(
@@ -14333,19 +14333,19 @@ pub mod root {
                     ) -> f32;
                 }
                 extern "C" {
-                    /// Returns the current y velocity based on the specified kinetic energy ID
+                    /// Returns the current y velocity based on the specified kinetic energy attribute
                     ///
                     /// # Arguments
                     ///
                     /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
                     ///
-                    /// * 'kinetic_energy_id' - A KINETIC_ENERGY_ID const
+                    /// * 'kinetic_energy_reserve_attribute' - A KINETIC_ENERGY_RESERVE_ATTRIBUTE_ const
                     ///
                     /// # Example
                     ///
                     /// ```
-                    /// // get current y gravity-based velocity
-                    /// let y_vel = KineticModule::get_sum_speed_y(module_accessor, *FIGHTER_KINETIC_ENERGY_ID_GRAVITY);
+                    /// // get current y velocity
+                    /// let y_vel = KineticModule::get_sum_speed_y(module_accessor, *KINETIC_ENERGY_RESERVE_ATTRIBUTE_MAIN);
                     /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind35KineticModule__get_sum_speed_y_implEPNS_26BattleObjectModuleAccessorEi"]
                     pub fn get_sum_speed_y(
@@ -14361,19 +14361,19 @@ pub mod root {
                     ) -> u64;
                 }
                 extern "C" {
-                    /// Returns the current velocity based on the specified kinetic energy ID as a Vector3f
+                    /// Returns the current velocity based on the specified kinetic energy attribute as a Vector3f
                     ///
                     /// # Arguments
                     ///
                     /// * `module_accessor` - Pointer to BattleObjectModuleAccessor
                     ///
-                    /// * 'kinetic_energy_id' - A KINETIC_ENERGY_ID const
+                    /// * 'kinetic_energy_reserve_attribute' - A KINETIC_ENERGY_RESERVE_ATTRIBUTE_ const
                     ///
                     /// # Example
                     ///
                     /// ```
-                    /// // get current gravity-based velocity as a Vector3f
-                    /// let vel_3f = KineticModule::get_sum_speed3f(module_accessor, *FIGHTER_KINETIC_ENERGY_ID_GRAVITY);
+                    /// // get current velocity as a Vector3f
+                    /// let vel_3f = KineticModule::get_sum_speed3f(module_accessor, *KINETIC_ENERGY_RESERVE_ATTRIBUTE_MAIN);
                     /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind35KineticModule__get_sum_speed3f_implEPNS_26BattleObjectModuleAccessorEi"]
                     pub fn get_sum_speed3f(
@@ -18544,6 +18544,20 @@ pub mod root {
                 pub fn battle_object(arg1: u64) -> u64;
             }
             extern "C" {
+                /// Returns a BattleObjectModuleAccessor
+                ///
+                /// # Arguments
+                ///
+                /// * `lua_state`
+                /// a lua_state is commonly obtained from an L2CAgent - however because of "cool Rust magic"
+                /// we can also obtain it from things that deref into L2CAgent's, like L2CFighterCommon's.
+                ///
+                /// # Example
+                /// ```
+                ///  pub fn once_per_fighter_frame(fighter : &mut L2CFighterCommon) {
+                ///     let lua_state = fighter.lua_state_agent;
+                ///     let module_accessor = app::sv_system::battle_object_module_accessor(lua_state);
+                /// }
                 #[link_name = "\u{1}_ZN3app9sv_system29battle_object_module_accessorEP9lua_State"]
                 pub fn battle_object_module_accessor(arg1: u64) -> &'static mut root::app::BattleObjectModuleAccessor;
             }
