@@ -1843,6 +1843,21 @@ pub mod root {
                     ) -> i32;
                 }
                 extern "C" {
+                    /// Returns whether or not the current module_accessor has pressed the specified CONTROL_PAD_BUTTON on the same frame this function was run
+                    ///
+                    /// # Arguments
+                    ///
+                    /// * `moudule_accessor` - a pointer to BattleObjectModuleAccessor
+                    ///
+                    /// * `control_pad_button` - a CONTROL_PAD_BUTTON lua const
+                    ///
+                    /// # Example
+                    ///
+                    /// ``` if the player has just pressed the jump button, add 5 percent.
+                    /// if ControlModule::check_button_trigger(module_accessor, *CONTROL_PAD_BUTTON_JUMP) {
+                    ///     DamageModule::add_damage(boma, 5.0, 0);
+                    /// }
+                    /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind40ControlModule__check_button_trigger_implEPNS_26BattleObjectModuleAccessorEi"]
                     pub fn check_button_trigger(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
@@ -1857,6 +1872,21 @@ pub mod root {
                     ) -> bool;
                 }
                 extern "C" {
+                    /// Returns whether or not the current module_accessor is holding the specified CONTROL_PAD_BUTTON on the same frame this function was run
+                    ///
+                    /// # Arguments
+                    ///
+                    /// * `moudule_accessor` - a pointer to BattleObjectModuleAccessor
+                    ///
+                    /// * `control_pad_button` - a CONTROL_PAD_BUTTON lua const
+                    ///
+                    /// # Example
+                    ///
+                    /// ``` if the player is holding the guard (shield) button, add 5 percent.
+                    /// if ControlModule::check_button_on(module_accessor, *CONTROL_PAD_BUTTON_GUARD) {
+                    ///     DamageModule::add_damage(boma, 5.0, 0);
+                    /// }
+                    /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind35ControlModule__check_button_on_implEPNS_26BattleObjectModuleAccessorEi"]
                     pub fn check_button_on(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
@@ -1864,6 +1894,21 @@ pub mod root {
                     ) -> bool;
                 }
                 extern "C" {
+                    /// Returns whether or not the current module_accessor is NOT holding the specified CONTROL_PAD_BUTTON on the same frame this function was run
+                    ///
+                    /// # Arguments
+                    ///
+                    /// * `moudule_accessor` - a pointer to BattleObjectModuleAccessor
+                    ///
+                    /// * `control_pad_button` - a CONTROL_PAD_BUTTON lua const
+                    ///
+                    /// # Example
+                    ///
+                    /// ``` if the player is not holding the guard (shield) button, add 1 percent.
+                    /// if ControlModule::check_button_off(module_accessor, *CONTROL_PAD_BUTTON_GUARD) {
+                    ///     DamageModule::add_damage(boma, 1.0, 0);
+                    /// }
+                    /// ```
                     #[link_name = "\u{1}_ZN3app8lua_bind36ControlModule__check_button_off_implEPNS_26BattleObjectModuleAccessorEi"]
                     pub fn check_button_off(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
