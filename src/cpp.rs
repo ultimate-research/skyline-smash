@@ -18764,7 +18764,7 @@ pub mod root {
             use super::super::super::root;
             extern "C" {
                 #[link_name = "\u{1}_ZN3app9sv_system13battle_objectEP9lua_State"]
-                pub fn battle_object(arg1: u64) -> u64;
+                pub fn battle_object(arg1: u64) -> &'static mut root::app::Fighter;
             }
             extern "C" {
                 /// Returns a BattleObjectModuleAccessor
