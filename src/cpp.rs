@@ -8056,11 +8056,11 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind30PostureModule__base_scale_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn base_scale(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind25PostureModule__scale_implEPNS_26BattleObjectModuleAccessorE"]
-                    pub fn scale(arg1: *mut root::app::BattleObjectModuleAccessor) -> u64;
+                    pub fn scale(arg1: *mut root::app::BattleObjectModuleAccessor) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind29PostureModule__set_scale_implEPNS_26BattleObjectModuleAccessorEfb"]
