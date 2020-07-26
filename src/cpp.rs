@@ -1276,7 +1276,7 @@ pub mod root {
                 #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave26get_special_lw_param_frameERNS_26BattleObjectModuleAccessorEN3phx6Hash40E"]
                 pub fn get_special_lw_param_frame(
                     arg1: *mut root::app::BattleObjectModuleAccessor,
-                    arg2: root::phx::hash40,
+                    arg2: root::phx::Hash40,
                 ) -> f32;
             }
             extern "C" {
