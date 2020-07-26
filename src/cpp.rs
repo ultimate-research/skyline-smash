@@ -8074,13 +8074,13 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind30PostureModule__init_scale_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn init_scale(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind31PostureModule__owner_scale_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn owner_scale(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind35PostureModule__set_owner_scale_implEPNS_26BattleObjectModuleAccessorEf"]
