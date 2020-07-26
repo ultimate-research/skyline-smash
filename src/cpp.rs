@@ -1171,6 +1171,40 @@ pub mod root {
             }
         }
 
+        pub mod FighterSpecializer_Brave {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave12lot_criticalERNS_7FighterE"]
+                pub fn lot_critical(
+                    arg1: *mut root::app::Fighter,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave15alloc_log_groupERNS_26BattleObjectModuleAccessorEi"]
+                pub fn alloc_log_group(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                    arg2: i32,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave17call_final_moduleERNS_7FighterEi"]
+                pub fn call_final_module(
+                    arg1: *mut root::app::Fighter,
+                    arg2: i32,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave17check_flying_ceilERNS_26BattleObjectModuleAccessorEfff"]
+                pub fn check_flying_ceil(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                    arg2: f32,
+                    arg3: f32,
+                    arg4: f32,
+                ) -> u64;
+            }
+        }
+
         pub mod lua_bind {
             #[allow(unused_imports)]
             use super::super::super::root;
@@ -7672,11 +7706,11 @@ pub mod root {
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind23PostureModule__pos_implEPNS_26BattleObjectModuleAccessorE"]
-                    pub fn pos(arg1: *mut root::app::BattleObjectModuleAccessor) -> u64;
+                    pub fn pos(arg1: *mut root::app::BattleObjectModuleAccessor) -> root::phx::Vector3f;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind26PostureModule__pos_2d_implEPNS_26BattleObjectModuleAccessorE"]
-                    pub fn pos_2d(arg1: *mut root::app::BattleObjectModuleAccessor) -> u64;
+                    pub fn pos_2d(arg1: *mut root::app::BattleObjectModuleAccessor) -> root::phx::Vector2f;
                 }
                 extern "C" {
                     /// Returns stage X position of the object
