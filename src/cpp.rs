@@ -215,6 +215,16 @@ pub mod root {
         }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
+        pub struct FighterBraveSpecialLwCommand {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterBraveSpecialLwVariousKind {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
         pub struct FighterRidleyLinkEventMotion {
             pub _address: u8,
         }
@@ -1166,6 +1176,174 @@ pub mod root {
                 pub fn check_doyle_summon_dispatch(
                     arg1: *mut root::app::BattleObjectModuleAccessor,
                     arg2: bool,
+                    arg3: bool,
+                ) -> u64;
+            }
+        }
+
+        pub mod FighterSpecializer_Brave {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave12lot_criticalERNS_7FighterE"]
+                pub fn lot_critical(
+                    arg1: *mut root::app::Fighter,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave15alloc_log_groupERNS_26BattleObjectModuleAccessorEi"]
+                pub fn alloc_log_group(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                    arg2: i32,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave17call_final_moduleERNS_7FighterEi"]
+                pub fn call_final_module(
+                    arg1: *mut root::app::Fighter,
+                    arg2: i32,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave17check_flying_ceilERNS_26BattleObjectModuleAccessorEfff"]
+                pub fn check_flying_ceil(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                    arg2: f32,
+                    arg3: f32,
+                    arg4: f32,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave18adjust_flying_ceilERNS_26BattleObjectModuleAccessorEfff"]
+                pub fn adjust_flying_ceil(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                    arg2: f32,
+                    arg3: f32,
+                    arg4: f32,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave21get_flying_target_posEv"]
+                pub fn get_flying_target_pos() -> root::phx::Vector2f;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave23special_lw_close_windowERNS_7FighterEbbb"]
+                pub fn special_lw_close_window(
+                    arg1: *mut root::app::Fighter,
+                    arg2: bool,
+                    arg3: bool,
+                    arg4: bool,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave23special_lw_open_commandERNS_7FighterE"]
+                pub fn special_lw_open_command(
+                    arg1: *mut root::app::Fighter,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave23special_lw_select_indexERNS_7FighterEi"]
+                pub fn special_lw_command_index(
+                    arg1: *mut root::app::Fighter,
+                    arg2: i32,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave24final_module_hit_successEv"]
+                pub fn final_module_hit_success() -> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave24special_lw_cursor_decideERNS_7FighterE"]
+                pub fn special_lw_cursor_decide(
+                    arg1: *mut root::app::Fighter,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave25special_lw_active_commandERNS_7FighterE"]
+                pub fn special_lw_active_command(
+                    arg1: *mut root::app::Fighter,
+                ) -> i32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave25special_lw_decide_commandERNS_7FighterENS_28FighterBraveSpecialLwCommandEi"]
+                pub fn special_lw_decide_command(
+                    arg1: *mut root::app::Fighter,
+                    arg2: root::app::FighterBraveSpecialLwCommand,
+                    arg3: i32,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave26get_special_lw_param_frameERNS_26BattleObjectModuleAccessorEN3phx6Hash40E"]
+                pub fn get_special_lw_param_frame(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                    arg2: root::phx::Hash40,
+                ) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave27special_lw_deactive_commandERNS_7FighterE"]
+                pub fn special_lw_deactive_command(
+                    arg1: *mut root::app::Fighter,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave27special_lw_on_start_commandERNS_7FighterE"]
+                pub fn special_lw_on_start_command(
+                    arg1: *mut root::app::Fighter,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave29special_lw_start_cursor_blinkERNS_7FighterE"]
+                pub fn special_lw_start_cursor_blink(
+                    arg1: *mut root::app::Fighter,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave30get_special_lw_command_sp_costERKNS_26BattleObjectModuleAccessorENS_28FighterBraveSpecialLwCommandEb"]
+                pub fn get_special_lw_command_sp_cost(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                    arg2: root::app::FighterBraveSpecialLwCommand,
+                    arg3: bool,
+                ) -> i32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave31special_lw_start_select_commandERNS_7FighterE"]
+                pub fn special_lw_select_command(
+                    arg1: *mut root::app::Fighter,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave33get_special_lw_command_from_indexERNS_7FighterEi"]
+                pub fn get_special_lw_command_from_index(
+                    arg1: *mut root::app::Fighter,
+                    arg2: i32,
+                ) -> i32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave34get_special_lw_various_motion_kindERNS_26BattleObjectModuleAccessorENS_32FighterBraveSpecialLwVariousKindEb"]
+                pub fn get_special_lw_various_motion_kind(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                    arg2: root::app::FighterBraveSpecialLwVariousKind,
+                    arg3: bool,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave35get_special_lw_various_kind2commandENS_32FighterBraveSpecialLwVariousKindE"]
+                pub fn get_special_lw_various_kind2command(
+                    arg1: root::app::FighterBraveSpecialLwVariousKind,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave6add_spERNS_7FighterEf"]
+                pub fn add_sp(
+                    arg1: *mut root::app::Fighter,
+                    arg2: f32,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave6set_spERNS_7FighterEfb"]
+                pub fn set_sp(
+                    arg1: *mut root::app::Fighter,
+                    arg2: f32,
                     arg3: bool,
                 ) -> u64;
             }
@@ -7672,11 +7850,11 @@ pub mod root {
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind23PostureModule__pos_implEPNS_26BattleObjectModuleAccessorE"]
-                    pub fn pos(arg1: *mut root::app::BattleObjectModuleAccessor) -> u64;
+                    pub fn pos(arg1: *mut root::app::BattleObjectModuleAccessor) -> root::phx::Vector3f;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind26PostureModule__pos_2d_implEPNS_26BattleObjectModuleAccessorE"]
-                    pub fn pos_2d(arg1: *mut root::app::BattleObjectModuleAccessor) -> u64;
+                    pub fn pos_2d(arg1: *mut root::app::BattleObjectModuleAccessor) -> root::phx::Vector2f;
                 }
                 extern "C" {
                     /// Returns stage X position of the object
@@ -7878,11 +8056,11 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind30PostureModule__base_scale_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn base_scale(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind25PostureModule__scale_implEPNS_26BattleObjectModuleAccessorE"]
-                    pub fn scale(arg1: *mut root::app::BattleObjectModuleAccessor) -> u64;
+                    pub fn scale(arg1: *mut root::app::BattleObjectModuleAccessor) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind29PostureModule__set_scale_implEPNS_26BattleObjectModuleAccessorEfb"]
@@ -7896,13 +8074,13 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind30PostureModule__init_scale_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn init_scale(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind31PostureModule__owner_scale_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn owner_scale(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind35PostureModule__set_owner_scale_implEPNS_26BattleObjectModuleAccessorEf"]
@@ -18586,7 +18764,7 @@ pub mod root {
             use super::super::super::root;
             extern "C" {
                 #[link_name = "\u{1}_ZN3app9sv_system13battle_objectEP9lua_State"]
-                pub fn battle_object(arg1: u64) -> u64;
+                pub fn battle_object(arg1: u64) -> &'static mut root::app::Fighter;
             }
             extern "C" {
                 /// Returns a BattleObjectModuleAccessor
