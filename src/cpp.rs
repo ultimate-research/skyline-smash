@@ -1243,7 +1243,7 @@ pub mod root {
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave23special_lw_select_indexERNS_7FighterEi"]
-                pub fn special_lw_command_index(
+                pub fn special_lw_select_index(
                     arg1: *mut root::app::Fighter,
                     arg2: i32,
                 ) -> u64;
