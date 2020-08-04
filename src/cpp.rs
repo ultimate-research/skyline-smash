@@ -189,19 +189,34 @@ pub mod root {
         }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
+        pub struct Article {
+            pub battle_object : BattleObject,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct Fighter {
+            pub battle_object : BattleObject,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct Weapon {
+            pub battle_object : BattleObject,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
         pub struct BattleObjectModuleAccessor {
             pub _address: u64,
             pub info: u32
         }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct ItemModuleAccessor {
+        pub struct FighterModuleAccessor {
             pub battle_object_module_accessor : BattleObjectModuleAccessor,
         }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct Fighter {
-            pub _address: u64,
+        pub struct ItemModuleAccessor {
+            pub battle_object_module_accessor : BattleObjectModuleAccessor,
         }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
@@ -634,16 +649,6 @@ pub mod root {
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct FighterAvailableFinal {
-            pub _address: u8,
-        }
-        #[repr(C)]
-        #[derive(Debug, Copy, Clone)]
-        pub struct Weapon {
-            pub _address: u8,
-        }
-        #[repr(C)]
-        #[derive(Debug, Copy, Clone)]
-        pub struct Article {
             pub _address: u8,
         }
         #[repr(C)]
@@ -1130,6 +1135,144 @@ pub mod root {
 
         }
 
+        pub mod FighterSpecializer_Pikmin {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app25FighterSpecializer_Pikmin11hold_pikminERNS_21FighterModuleAccessorEi"]
+                pub fn hold_pikmin(
+                    arg1: *mut root::app::FighterModuleAccessor,
+                    arg2: i32,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app25FighterSpecializer_Pikmin17reduce_pikmin_allERNS_21FighterModuleAccessorE"]
+                pub fn reduce_pikmin_all(
+                    arg1: *mut root::app::FighterModuleAccessor,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app25FighterSpecializer_Pikmin19set_glare_fog_colorERNS_21FighterModuleAccessorEf"]
+                pub fn set_glare_fog_color(
+                    arg1: *mut root::app::FighterModuleAccessor,
+                    arg2: f32,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app25FighterSpecializer_Pikmin18liberty_pikmin_allERNS_21FighterModuleAccessorE"]
+                pub fn liberty_pikmin_all(
+                    arg1: *mut root::app::FighterModuleAccessor,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app25FighterSpecializer_Pikmin24update_hold_pikmin_paramERNS_21FighterModuleAccessorE"]
+                pub fn update_hold_pikmin_param(
+                    arg1: *mut root::app::FighterModuleAccessor,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app25FighterSpecializer_Pikmin35reduce_pikmin_all_change_top_pikminERNS_21FighterModuleAccessorE"]
+                pub fn reduce_pikmin_all_change_top_pikmin(
+                    arg1: *mut root::app::FighterModuleAccessor,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app25FighterSpecializer_Pikmin28sort_pikmin_no_change_statusERNS_21FighterModuleAccessorE"]
+                pub fn sort_pikmin_no_change_status(
+                    arg1: *mut root::app::FighterModuleAccessor,
+                ) -> u64;
+            }
+
+        }
+
+        pub mod FighterSpecializer_Inkling {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling11get_ink_maxERNS_7FighterE"]
+                pub fn get_ink_max(
+                    arg1: *mut root::app::Fighter,
+                ) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling13request_paintERNS_7FighterEN3phx6Hash40ERNS3_8Vector3fERNS3_8Vector2fEf"]
+                pub fn request_paint(
+                    arg1: *mut root::app::Fighter,
+                    arg2: root::phx::Hash40,
+                    arg3: *const root::phx::Vector3f,
+                    arg4: *const root::phx::Vector2f,
+                    arg5: f32,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling15get_ink_work_idEj"]
+                pub fn get_ink_work_id(
+                    arg1: *mut root::app::Fighter,
+                    arg2: u64,
+                ) -> i32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling15is_body_visibleERNS_7FighterE"]
+                pub fn is_body_visible(
+                    arg1: *mut root::app::Fighter,
+                ) -> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling18generate_rollerinkERNS_7FighterE"]
+                pub fn generate_rollerink(
+                    arg1: *mut root::app::Fighter,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling19check_roller_groundERNS_7FighterERKN3phx8Vector2fES6_RS4_S7_b"]
+                pub fn check_roller_ground(
+                    arg1: *mut root::app::Fighter,
+                    arg2: *const root::phx::Vector2f,
+                    arg3: *const root::phx::Vector2f,
+                    arg4: *mut root::phx::Vector2f,
+                    arg5: *mut root::phx::Vector2f,
+                    arg6: bool,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling21get_sub_ink_special_nERNS_7FighterE"]
+                pub fn get_sub_ink_special_n(
+                    arg1: *mut root::app::Fighter,
+                ) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling22get_sub_ink_special_lwERNS_7FighterE"]
+                pub fn get_sub_ink_special_lw(
+                    arg1: *mut root::app::Fighter,
+                ) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling22is_paintable_rollerinkERNS_7FighterE"]
+                pub fn is_paintable_rollerink(
+                    arg1: *mut root::app::Fighter,
+                ) -> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling23get_roller_check_velo_yERNS_7FighterE"]
+                pub fn get_roller_check_velo_y(
+                    arg1: *mut root::app::Fighter,
+                ) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling8lack_inkERNS_7FighterE"]
+                pub fn lack_ink(
+                    arg1: *mut root::app::Fighter,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling10change_inkERNS_7FighterEf"]
+                pub fn change_ink(
+                    arg1: *mut root::app::Fighter,
+                    arg2: f32,
+                ) -> u64;
+            }
+        }
+
         pub mod FighterSpecializer_Jack {
             #[allow(unused_imports)]
             use super::super::super::root;
@@ -1345,6 +1488,43 @@ pub mod root {
                     arg1: *mut root::app::Fighter,
                     arg2: f32,
                     arg3: bool,
+                ) -> u64;
+            }
+        }
+
+        pub mod WeaponSpecializer_PTrainerPTrainer {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app34WeaponSpecializer_PTrainerPTrainer20display_final_windowERNS_6WeaponEi"]
+                pub fn display_final_window(
+                    arg1: *mut root::app::Weapon,
+                    arg2: i32,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app34WeaponSpecializer_PTrainerPTrainer11owner_stockERNS_6WeaponE"]
+                pub fn owner_stock(
+                    arg1: *mut root::app::Weapon,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app34WeaponSpecializer_PTrainerPTrainer10play_voiceERNS_6WeaponEi"]
+                pub fn play_voice(
+                    arg1: *mut root::app::Weapon,
+                    arg2: i32
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app34WeaponSpecializer_PTrainerPTrainer22request_change_pokemonERNS_6WeaponE"]
+                pub fn request_change_pokemon(
+                    arg1: *mut root::app::Weapon,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app34WeaponSpecializer_PTrainerPTrainer11wait_motionERNS_6WeaponE"]
+                pub fn wait_motion(
+                    arg1: *mut root::app::Weapon,
                 ) -> u64;
             }
         }
@@ -18764,7 +18944,7 @@ pub mod root {
             use super::super::super::root;
             extern "C" {
                 #[link_name = "\u{1}_ZN3app9sv_system13battle_objectEP9lua_State"]
-                pub fn battle_object(arg1: u64) -> &'static mut root::app::Fighter;
+                pub fn battle_object(arg1: u64) -> &'static mut root::app::BattleObject;
             }
             extern "C" {
                 /// Returns a BattleObjectModuleAccessor
