@@ -187,7 +187,7 @@ pub mod root {
         pub struct BattleObject {
             pub _address: u64
         }
-        #[repr(C)]
+/*        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct Article {
             pub battle_object : *mut root::app::BattleObject,
@@ -201,14 +201,14 @@ pub mod root {
         #[derive(Debug, Copy, Clone)]
         pub struct Weapon {
             pub battle_object : *mut root::app::BattleObject,
-        }
+        }*/
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct BattleObjectModuleAccessor {
             pub _address: u64,
             pub info: u32
         }
-        #[repr(C)]
+/*        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct FighterModuleAccessor {
             pub battle_object_module_accessor : *mut root::app::BattleObjectModuleAccessor,
@@ -217,7 +217,7 @@ pub mod root {
         #[derive(Debug, Copy, Clone)]
         pub struct ItemModuleAccessor {
             pub battle_object_module_accessor : *mut root::app::BattleObjectModuleAccessor,
-        }
+        }*/
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct LinkEventLassoHang {
@@ -19044,6 +19044,11 @@ pub mod root {
     pub type Result = u32;
     pub type ThreadFunc = ::core::option::Option<unsafe extern "C" fn(arg1: *mut libc::c_void)>;
     pub type VoidFn = ::core::option::Option<unsafe extern "C" fn()>;
+    pub type Fighter = app::BattleObject;
+    pub type Weapon = app::BattleObject;
+    pub type Article = app::BattleObject;
+    pub type FighterModuleAccessor = app::BattleObjectModuleAccessor;
+    pub type ItemModuleAccessor = app::BattleObjectModuleAccessor;
     #[repr(C)]
     #[derive(Debug, Copy, Clone)]
     pub struct Vector2f {
