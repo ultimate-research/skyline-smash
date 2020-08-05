@@ -190,17 +190,17 @@ pub mod root {
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct Article {
-            pub battle_object : *BattleObject,
+            pub battle_object : *mut root::app::BattleObject,
         }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct Fighter {
-            pub battle_object : *BattleObject,
+            pub battle_object : *mut root::app::BattleObject,
         }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct Weapon {
-            pub battle_object : *BattleObject,
+            pub battle_object : *mut root::app::BattleObject,
         }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
@@ -211,12 +211,12 @@ pub mod root {
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct FighterModuleAccessor {
-            pub battle_object_module_accessor : *BattleObjectModuleAccessor,
+            pub battle_object_module_accessor : *mut root::app::BattleObjectModuleAccessor,
         }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct ItemModuleAccessor {
-            pub battle_object_module_accessor : *BattleObjectModuleAccessor,
+            pub battle_object_module_accessor : *mut root::app::BattleObjectModuleAccessor,
         }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
