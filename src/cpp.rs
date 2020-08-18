@@ -1137,7 +1137,7 @@ pub mod root {
             extern "C" {
                 #[link_name = "\u{1}_ZN3app12boss_private20calc_boss_hp_mul_sumENS_8ItemKindERNS_26BattleObjectModuleAccessorE"]
                 pub fn calc_boss_hp_mul(
-                    arg1: app::ItemKind,
+                    arg1: root::app::ItemKind,
                     arg2: *mut root::app::BattleObjectModuleAccessor
                 )-> u64;
             }
@@ -1156,14 +1156,14 @@ pub mod root {
             extern "C" {
                 #[link_name = "\u{1}_ZN3app12boss_private18common_param_floatENS_8ItemKindENS_20BossCommonParamFloatE"]
                 pub fn common_param_float(
-                    arg1: app::ItemKind,
+                    arg1: root::app::ItemKind,
                     arg2: app::BossCommonParamFloat
                 )-> u64;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app12boss_private16common_param_intENS_8ItemKindENS_18BossCommonParamIntE"]
                 pub fn common_param_int(
-                    arg1: app::ItemKind,
+                    arg1: root::app::ItemKind,
                     arg2: app::BossCommonParamInt
                 )-> u64;
             }
@@ -1171,7 +1171,7 @@ pub mod root {
                 #[link_name = "\u{1}_ZN3app12boss_private37count_same_probability_mul_from_tableEP9lua_StateNS_8ItemKindEN3phx6Hash40Ef"]
                 pub fn count_same_probability_mul_from_table(
                     arg1: u64,
-                    arg2: app::ItemKind,
+                    arg2: root::app::ItemKind,
                     arg3: root::phx::Hash40,
                     arg4: f32
                 )-> u64;
@@ -1180,7 +1180,7 @@ pub mod root {
                 #[link_name = "\u{1}_ZN3app12boss_private32count_target_in_range_from_paramEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
                 pub fn count_target_in_range_from_param(
                     arg1: u64,
-                    arg2: app::ItemKind,
+                    arg2: root::app::ItemKind,
                     arg3: root::phx::Hash40,
                     arg4: f32
                 )-> u64;
@@ -1189,7 +1189,7 @@ pub mod root {
                 #[link_name = "\u{1}_ZN3app12boss_private11create_bossEP9lua_StateNS_8ItemKindEi"]
                 pub fn create_boss(
                     arg1: u64,
-                    arg2: app::ItemKind,
+                    arg2: root::app::ItemKind,
                     arg3: i32
                 )-> u64;
             }
@@ -1197,7 +1197,7 @@ pub mod root {
                 #[link_name = "\u{1}_ZN3app12boss_private13create_weaponEP9lua_StateNS_8ItemKindEffff"]
                 pub fn create_weapon(
                     arg1: u64,
-                    arg2: app::ItemKind,
+                    arg2: root::app::ItemKind,
                     arg3: f32,
                     arg4: f32,
                     arg5: f32,
@@ -1208,7 +1208,7 @@ pub mod root {
                 #[link_name = "\u{1}_ZN3app12boss_private28create_weapon_with_variationEP9lua_StateNS_8ItemKindEiffff"]
                 pub fn create_weapon_with_variation(
                     arg1: u64,
-                    arg2: app::ItemKind,
+                    arg2: root::app::ItemKind,
                     arg3: i32,
                     arg4: f32,
                     arg5: f32,
@@ -1271,7 +1271,7 @@ pub mod root {
                 #[link_name = "\u{1}_ZN3app12boss_private22main_energy_from_paramEP9lua_StateNS_8ItemKindEN3phx6Hash40Ef"]
                 pub fn main_energy_from_param(
                     arg1: u64,
-                    arg2: app::ItemKind,
+                    arg2: root::app::ItemKind,
                     arg3: root::phx::Hash40,
                     arg4: f32
                 )-> u64;
@@ -1280,7 +1280,7 @@ pub mod root {
                 #[link_name = "\u{1}_ZN3app12boss_private30main_energy_from_param_inheritEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
                 pub fn main_energy_from_param_inherit(
                     arg1: u64,
-                    arg2: app::ItemKind,
+                    arg2: root::app::ItemKind,
                     arg3: root::phx::Hash40
                 )-> u64;
             }
@@ -1288,7 +1288,7 @@ pub mod root {
                 #[link_name = "\u{1}_ZN3app12boss_private38main_energy_from_param_inherit_no_bossEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
                 pub fn main_energy_from_param_inherit_no_boss(
                     arg1: u64,
-                    arg2: app::ItemKind,
+                    arg2: root::app::ItemKind,
                     arg3: root::phx::Hash40
                 )-> u64;
             }
@@ -1296,7 +1296,7 @@ pub mod root {
                 #[link_name = "\u{1}_ZN3app12boss_private30main_energy_from_param_no_bossEP9lua_StateNS_8ItemKindEN3phx6Hash40Ef"]
                 pub fn main_energy_from_param_no_boss(
                     arg1: u64,
-                    arg2: app::ItemKind,
+                    arg2: root::app::ItemKind,
                     arg3: root::phx::Hash40,
                     arg4: f32
                 )-> u64;
@@ -1305,7 +1305,7 @@ pub mod root {
                 #[link_name = "\u{1}_ZN3app12boss_private13search_targetEP9lua_StateNS_8ItemKindEf"]
                 pub fn search_target(
                     arg1: u64,
-                    arg2: app::ItemKind,
+                    arg2: root::app::ItemKind,
                     arg3: f32
                 )-> u64;
             }
@@ -1313,7 +1313,7 @@ pub mod root {
                 #[link_name = "\u{1}_ZN3app12boss_private13select_actionEP9lua_StateNS_8ItemKindEN3phx6Hash40ES5_"]
                 pub fn select_action(
                     arg1: u64,
-                    arg2: app::ItemKind,
+                    arg2: root::app::ItemKind,
                     arg3: root::phx::Hash40,
                     arg4: root::phx::Hash40
                 )-> u64;
@@ -1322,7 +1322,7 @@ pub mod root {
                 #[link_name = "\u{1}_ZN3app12boss_private16self_param_floatEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
                 pub fn self_param_float(
                     arg1: u64,
-                    arg2: app::ItemKind,
+                    arg2: root::app::ItemKind,
                     arg3: root::phx::Hash40
                 )-> f32;
             }
@@ -1330,7 +1330,7 @@ pub mod root {
                 #[link_name = "\u{1}_ZN3app12boss_private14self_param_intEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
                 pub fn self_param_int(
                     arg1: u64,
-                    arg2: app::ItemKind,
+                    arg2: root::app::ItemKind,
                     arg3: root::phx::Hash40
                 )-> f32;
             }
@@ -1385,7 +1385,7 @@ pub mod root {
                 #[link_name = "\u{1}_ZN3app12boss_private41set_action_probability_mul_2nd_from_tableEP9lua_StateNS_8ItemKindEN3phx6Hash40Ef"]
                 pub fn set_action_probability_mul_2nd_from_table(
                     arg1: u64,
-                    arg2: app::ItemKind,
+                    arg2: root::app::ItemKind,
                     arg3: root::phx::Hash40,
                     arg4: f32
                 )-> u64;
@@ -1394,7 +1394,7 @@ pub mod root {
                 #[link_name = "\u{1}_ZN3app12boss_private37set_action_probability_mul_from_tableEP9lua_StateNS_8ItemKindEN3phx6Hash40Ef"]
                 pub fn set_action_probability_mul_from_table(
                     arg1: u64,
-                    arg2: app::ItemKind,
+                    arg2: root::app::ItemKind,
                     arg3: root::phx::Hash40,
                     arg4: f32
                 )-> u64;
@@ -1416,7 +1416,7 @@ pub mod root {
                 #[link_name = "\u{1}_ZN3app12boss_private22sub1_energy_from_paramEP9lua_StateNS_8ItemKindEN3phx6Hash40Ef"]
                 pub fn sub1_energy_from_param(
                     arg1: u64,
-                    arg2: app::ItemKind,
+                    arg2: root::app::ItemKind,
                     arg3: root::phx::Hash40,
                     arg4: f32
                 )-> u64;
@@ -1425,7 +1425,7 @@ pub mod root {
                 #[link_name = "\u{1}_ZN3app12boss_private30sub1_energy_from_param_inheritEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
                 pub fn sub1_energy_from_param_inherit(
                     arg1: u64,
-                    arg2: app::ItemKind,
+                    arg2: root::app::ItemKind,
                     arg3: root::phx::Hash40
                 )-> u64;
             }
@@ -1433,7 +1433,7 @@ pub mod root {
                 #[link_name = "\u{1}_ZN3app12boss_private34sub1_energy_from_param_inherit_allEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
                 pub fn sub1_energy_from_param_inherit_all(
                     arg1: u64,
-                    arg2: app::ItemKind,
+                    arg2: root::app::ItemKind,
                     arg3: root::phx::Hash40
                 )-> u64;
             }
@@ -1441,7 +1441,7 @@ pub mod root {
                 #[link_name = "\u{1}_ZN3app12boss_private42sub1_energy_from_param_inherit_all_no_bossEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
                 pub fn sub1_energy_from_param_inherit_all_no_boss(
                     arg1: u64,
-                    arg2: app::ItemKind,
+                    arg2: root::app::ItemKind,
                     arg3: root::phx::Hash40
                 )-> u64;
             }
@@ -1449,7 +1449,7 @@ pub mod root {
                 #[link_name = "\u{1}_ZN3app12boss_private38sub1_energy_from_param_inherit_no_bossEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
                 pub fn sub1_energy_from_param_inherit_no_boss(
                     arg1: u64,
-                    arg2: app::ItemKind,
+                    arg2: root::app::ItemKind,
                     arg3: root::phx::Hash40
                 )-> u64;
             }
@@ -1457,7 +1457,7 @@ pub mod root {
                 #[link_name = "\u{1}_ZN3app12boss_private30sub1_energy_from_param_no_bossEP9lua_StateNS_8ItemKindEN3phx6Hash40Ef"]
                 pub fn sub1_energy_from_param_no_boss(
                     arg1: u64,
-                    arg2: app::ItemKind,
+                    arg2: root::app::ItemKind,
                     arg3: root::phx::Hash40,
                     arg4: f32
                 )-> u64;
