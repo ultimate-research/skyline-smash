@@ -1092,6 +1092,51 @@ pub mod root {
             }
         }
 
+        pub mod debug {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app5debug17add_debug_commandEP9lua_StatePKci"]
+                pub fn add_debug_command(
+                    arg1: u64,
+                    arg2: libc::c_schar,
+                    arg3: i32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app5debug9draw_lineEP9lua_StateRKN3phx8Vector2fES6_i"]
+                pub fn draw_line(
+                    arg1: u64,
+                    arg2: *const root::phx::Vector2f,
+                    arg3: *const root::phx::Vector2f,
+                    arg4: i32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app5debug9log_fatalEPKc"]
+                pub fn log_fatal(
+                    arg1: libc::c_schar
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app5debug8log_infoEPKc"]
+                pub fn log_info(
+                    arg1: libc::c_schar
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app5debug14set_draw_colorEP9lua_Stateffff"]
+                pub fn set_draw_color(
+                    arg1: u64,
+                    arg2: f32,
+                    arg3: f32,
+                    arg4: f32,
+                    arg5: f32
+                )-> u64;
+            }
+        }
+
+
         pub mod item_private {
             #[allow(unused_imports)]
             use super::super::super::root;
