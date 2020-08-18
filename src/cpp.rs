@@ -639,7 +639,12 @@ pub mod root {
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct ItemCommonParamFloat {
-            pub _address: u8,
+            pub _address: f32,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct BossCommonParamFloat {
+            pub _address: f32,
         }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
@@ -1000,7 +1005,7 @@ pub mod root {
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct BossCommonParamInt {
-            pub _address: u8,
+            pub _address: i32,
         }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
@@ -1010,7 +1015,7 @@ pub mod root {
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct ItemCommonParamInt {
-            pub _address: u8,
+            pub _address: i32,
         }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
@@ -1084,6 +1089,396 @@ pub mod root {
             extern "C" {
                 #[link_name = "\u{1}_ZN3app7utility8get_kindEPKNS_26BattleObjectModuleAccessorE"]
                 pub fn get_kind(module_accessor: &mut root::app::BattleObjectModuleAccessor) -> i32;
+            }
+        }
+
+        pub mod item_private {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12item_private24regist_status_alias_hashEP9lua_StateiN3phx6Hash40E"]
+                pub fn regist_status_alias_hash(
+                    arg1: u64,
+                    arg2: i32,
+                    arg3: root::phx::Hash40
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12item_private22restore_yoshi_hit_infoEP9lua_State"]
+                pub fn restore_yoshi_hit_info(
+                    arg1: u64
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12item_private25send_event_mewtowo_thrownEP9lua_StateRKN3phx8Vector3fE"]
+                pub fn send_event_mewtowo_thrown(
+                    arg1: u64,
+                    arg2: *const root::phx::Vector3f
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12item_private41set_postponed_damage_check_on_process_hitEP9lua_Stateb"]
+                pub fn set_postponed_damage_check_on_process_hit(
+                    arg1: u64,
+                    arg2: bool
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12item_private22setup_ground_collisionEP9lua_State"]
+                pub fn setup_ground_collision(
+                    arg1: u64
+                )-> u64;
+            }
+        }
+
+        pub mod boss_private {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private20calc_boss_hp_mul_sumENS_8ItemKindERNS_26BattleObjectModuleAccessorE"]
+                pub fn calc_boss_hp_mul(
+                    arg1: app::ItemKind,
+                    arg2: *mut root::app::BattleObjectModuleAccessor
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private16clear_energy_allEP9lua_State"]
+                pub fn clear_energy_all(
+                    arg1: u64
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private17clear_sub1_energyEP9lua_State"]
+                pub fn clear_sub1_energy(
+                    arg1: u64
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private18common_param_floatENS_8ItemKindENS_20BossCommonParamFloatE"]
+                pub fn common_param_float(
+                    arg1: app::ItemKind,
+                    arg2: app::BossCommonParamFloat
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private16common_param_intENS_8ItemKindENS_18BossCommonParamIntE"]
+                pub fn common_param_int(
+                    arg1: app::ItemKind,
+                    arg2: app::BossCommonParamInt
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private37count_same_probability_mul_from_tableEP9lua_StateNS_8ItemKindEN3phx6Hash40Ef"]
+                pub fn count_same_probability_mul_from_table(
+                    arg1: u64,
+                    arg2: app::ItemKind,
+                    arg3: root::phx::Hash40,
+                    arg4: f32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private32count_target_in_range_from_paramEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
+                pub fn count_target_in_range_from_param(
+                    arg1: u64,
+                    arg2: app::ItemKind,
+                    arg3: root::phx::Hash40,
+                    arg4: f32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private11create_bossEP9lua_StateNS_8ItemKindEi"]
+                pub fn create_boss(
+                    arg1: u64,
+                    arg2: app::ItemKind,
+                    arg3: i32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private13create_weaponEP9lua_StateNS_8ItemKindEffff"]
+                pub fn create_weapon(
+                    arg1: u64,
+                    arg2: app::ItemKind,
+                    arg3: f32,
+                    arg4: f32,
+                    arg5: f32,
+                    arg6: f32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private28create_weapon_with_variationEP9lua_StateNS_8ItemKindEiffff"]
+                pub fn create_weapon_with_variation(
+                    arg1: u64,
+                    arg2: app::ItemKind,
+                    arg3: i32,
+                    arg4: f32,
+                    arg5: f32,
+                    arg6: f32,
+                    arg7: f32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private26get_action_probability_mulEP9lua_StateN3phx6Hash40E"]
+                pub fn get_action_probability_mul(
+                    arg1: u64,
+                    arg2: root::phx::Hash40
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private30get_action_probability_mul_2ndEP9lua_StateN3phx6Hash40E"]
+                pub fn get_action_probability_mul_2nd(
+                    arg1: u64,
+                    arg2: root::phx::Hash40
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private14get_damage_mulEj"]
+                pub fn get_damage_mul(
+                    arg1: libc::c_uint
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private31get_status_kind_from_alias_hashEP9lua_StateN3phx6Hash40E"]
+                pub fn get_status_kind_from_alias_hash(
+                    arg1: u64,
+                    arg2: rooot::phx::Hash40
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private15is_boss_no_deadEv"]
+                pub fn is_boss_no_dead()-> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private12is_boss_stopEv"]
+                pub fn is_boss_stop()-> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private18is_multi_play_modeEb"]
+                pub fn is_multi_play_mode(
+                    arg1: bool
+                )-> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private15is_stoppable_seEv"]
+                pub fn is_stoppable_se()-> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private15is_target_aliveEP9lua_State"]
+                pub fn is_target_alive(
+                    arg1: u64
+                )-> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private22main_energy_from_paramEP9lua_StateNS_8ItemKindEN3phx6Hash40Ef"]
+                pub fn main_energy_from_param(
+                    arg1: u64,
+                    arg2: app::ItemKind,
+                    arg3: root::phx::Hash40,
+                    arg4: f32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private30main_energy_from_param_inheritEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
+                pub fn main_energy_from_param_inherit(
+                    arg1: u64,
+                    arg2: app::ItemKind,
+                    arg3: root::phx::Hash40
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private38main_energy_from_param_inherit_no_bossEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
+                pub fn main_energy_from_param_inherit_no_boss(
+                    arg1: u64,
+                    arg2: app::ItemKind,
+                    arg3: root::phx::Hash40
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private30main_energy_from_param_no_bossEP9lua_StateNS_8ItemKindEN3phx6Hash40Ef"]
+                pub fn main_energy_from_param_no_boss(
+                    arg1: u64,
+                    arg2: app::ItemKind,
+                    arg3: root::phx::Hash40,
+                    arg4: f32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private13search_targetEP9lua_StateNS_8ItemKindEf"]
+                pub fn search_target(
+                    arg1: u64,
+                    arg2: app::ItemKind,
+                    arg3: f32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private13select_actionEP9lua_StateNS_8ItemKindEN3phx6Hash40ES5_"]
+                pub fn select_action(
+                    arg1: u64,
+                    arg2: app::ItemKind,
+                    arg3: root::phx::Hash40,
+                    arg4: root::phx::Hash40
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private16self_param_floatEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
+                pub fn self_param_float(
+                    arg1: u64,
+                    arg2: app::ItemKind,
+                    arg3: root::phx::Hash40
+                )-> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private14self_param_intEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
+                pub fn self_param_int(
+                    arg1: u64,
+                    arg2: app::ItemKind,
+                    arg3: root::phx::Hash40
+                )-> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private23send_event_on_boss_deadEP9lua_State"]
+                pub fn send_event_on_boss_dead(
+                    arg1: u64
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private25send_event_on_boss_defeatEP9lua_State"]
+                pub fn send_event_on_boss_defeat(
+                    arg1: u64
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private25send_event_on_boss_finishEP9lua_StateN3phx6Hash40E"]
+                pub fn send_event_on_boss_finish(
+                    arg1: u64,
+                    arg2: root::phx::Hash40
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private29send_event_on_boss_keyoff_bgmEP9lua_State"]
+                pub fn send_event_on_boss_keyoff_bgm(
+                    arg1: u64
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private30send_event_on_start_boss_entryEj"]
+                pub fn send_event_on_boss_entry(
+                    arg1: u64
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private26set_action_probability_mulEP9lua_StateN3phx6Hash40Ef"]
+                pub fn set_action_probability_mul(
+                    arg1: u64,
+                    arg2: root::phx::Hash40,
+                    arg3: f32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private30set_action_probability_mul_2ndEP9lua_StateN3phx6Hash40Ef"]
+                pub fn set_action_probability_mul_2nd(
+                    arg1: u64,
+                    arg2: root::phx::Hash40,
+                    arg3: f32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private41set_action_probability_mul_2nd_from_tableEP9lua_StateNS_8ItemKindEN3phx6Hash40Ef"]
+                pub fn set_action_probability_mul_2nd_from_table(
+                    arg1: u64,
+                    arg2: app::ItemKind,
+                    arg3: root::phx::Hash40,
+                    arg4: f32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private37set_action_probability_mul_from_tableEP9lua_StateNS_8ItemKindEN3phx6Hash40Ef"]
+                pub fn set_action_probability_mul_from_table(
+                    arg1: u64,
+                    arg2: app::ItemKind,
+                    arg3: root::phx::Hash40,
+                    arg4: f32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private12set_stage_shEP9lua_State"]
+                pub fn set_stage_sh(
+                    arg1: u64
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private21set_sub1_energy_angleEP9lua_Statef"]
+                pub fn set_sub1_energy_angle(
+                    arg1: u64,
+                    arg2: f32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private22sub1_energy_from_paramEP9lua_StateNS_8ItemKindEN3phx6Hash40Ef"]
+                pub fn sub1_energy_from_param(
+                    arg1: u64,
+                    arg2: app::ItemKind,
+                    arg3: root::phx::Hash40,
+                    arg4: f32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private30sub1_energy_from_param_inheritEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
+                pub fn sub1_energy_from_param_inherit(
+                    arg1: u64,
+                    arg2: app::ItemKind,
+                    arg3: root::phx::Hash40
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private34sub1_energy_from_param_inherit_allEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
+                pub fn sub1_energy_from_param_inherit_all(
+                    arg1: u64,
+                    arg2: app::ItemKind,
+                    arg3: root::phx::Hash40
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private42sub1_energy_from_param_inherit_all_no_bossEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
+                pub fn sub1_energy_from_param_inherit_all_no_boss(
+                    arg1: u64,
+                    arg2: app::ItemKind,
+                    arg3: root::phx::Hash40
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private38sub1_energy_from_param_inherit_no_bossEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
+                pub fn sub1_energy_from_param_inherit_no_boss(
+                    arg1: u64,
+                    arg2: app::ItemKind,
+                    arg3: root::phx::Hash40
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private30sub1_energy_from_param_no_bossEP9lua_StateNS_8ItemKindEN3phx6Hash40Ef"]
+                pub fn sub1_energy_from_param_no_boss(
+                    arg1: u64,
+                    arg2: app::ItemKind,
+                    arg3: root::phx::Hash40,
+                    arg4: f32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private17unable_energy_allEP9lua_State"]
+                pub fn unable_energy_all(
+                    arg1: u64
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private18unable_main_energyEP9lua_State"]
+                pub fn unable_main_energy(
+                    arg1: u64
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private18unable_sub1_energyEP9lua_State"]
+                pub fn unable_sub1_energy(
+                    arg1: u64
+                )-> u64;
             }
         }
 
@@ -1450,7 +1845,7 @@ pub mod root {
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave31special_lw_start_select_commandERNS_7FighterE"]
-                pub fn special_lw_select_command(
+                pub fn special_lw_start_select_command(
                     arg1: *mut root::app::Fighter,
                 ) -> u64;
             }
