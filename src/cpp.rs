@@ -1157,14 +1157,14 @@ pub mod root {
                 #[link_name = "\u{1}_ZN3app12boss_private18common_param_floatENS_8ItemKindENS_20BossCommonParamFloatE"]
                 pub fn common_param_float(
                     arg1: root::app::ItemKind,
-                    arg2: app::BossCommonParamFloat
+                    arg2: root::app::BossCommonParamFloat
                 )-> u64;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app12boss_private16common_param_intENS_8ItemKindENS_18BossCommonParamIntE"]
                 pub fn common_param_int(
                     arg1: root::app::ItemKind,
-                    arg2: app::BossCommonParamInt
+                    arg2: root::app::BossCommonParamInt
                 )-> u64;
             }
             extern "C" {
@@ -1240,7 +1240,7 @@ pub mod root {
                 #[link_name = "\u{1}_ZN3app12boss_private31get_status_kind_from_alias_hashEP9lua_StateN3phx6Hash40E"]
                 pub fn get_status_kind_from_alias_hash(
                     arg1: u64,
-                    arg2: rooot::phx::Hash40
+                    arg2: root::phx::Hash40
                 )-> u64;
             }
             extern "C" {
