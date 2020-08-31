@@ -8024,7 +8024,7 @@ pub mod root {
                         arg2: libc::c_int,
                         arg3: root::phx::Hash40,
                         arg4: root::app::ArticleOperationTarget,
-                    ) -> u64;
+                    ) -> root::phx::Vector3f;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind36ArticleModule__get_joint_rotate_implEPNS_26BattleObjectModuleAccessorEiN3phx6Hash40ENS_22ArticleOperationTargetE"]
