@@ -17,7 +17,7 @@ pub struct JostleData {
 }
 
 #[repr(C)]
-#[derive(Debug, Default)]
+#[derive(Debug)]
 pub struct CommonParams {
     pub params: super::Params,
     pub precede: i32,
