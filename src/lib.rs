@@ -4,6 +4,8 @@
 
 pub mod crc32;
 
+pub mod params;
+
 #[cfg(feature = "std")]
 pub mod resource;
 
