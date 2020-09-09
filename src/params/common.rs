@@ -1,13 +1,13 @@
 #[repr(C)]
-#[derive(Debug)]
-pub struct struct_special_command_stick_range {
+#[derive(Debug, Default)]
+pub struct SpecialCommandStickRange {
     pub min_angle: f32,
     pub max_angle: f32,
 }
 
 #[repr(C)]
-#[derive(Debug)]
-pub struct struct_jostle_data {
+#[derive(Debug, Default)]
+pub struct JostleData {
     pub speed_x_gg: f32,
     pub speed_x_ga: f32,
     pub speed_x_ag: f32,
@@ -168,8 +168,8 @@ pub struct CommonParams {
     pub damage_reaction_mul_min_ratio: f32,
     pub damage_reaction_mul_min_reaction: f32,
     pub damage_reaction_mul_max_reaction: f32,
-    //pub pattern_power_mul: [f32; 10],
-    pad_00: [u64; 3],
+    pub pattern_power_mul: *mut [f32; 10],
+    pad_00: [u64; 2],
     pub shield_pattern_power_mul: f32,
     pub attack_100_rebound_speed: f32,
     pub rebound_speed_no_cliff_stop: f32,
@@ -216,8 +216,8 @@ pub struct CommonParams {
     pub special_command_ab_button_life: u8,
     pub special_command_neutral_threshold: f32,
     pub super_special_command_life_max: u8,
-    //pub special_command_stick_range: [struct_special_command_stick_range; 7],
-    pad_01: [u32;  7],
+    pub special_command_stick_range: *mut [SpecialCommandStickRange; 7],
+    pad_01: [u64; 2],
     pub catch_dash_frame: i32,
     pub catch_dash_brake_mul: f32,
     pub catch_turn_frame: i32,
@@ -264,9 +264,10 @@ pub struct CommonParams {
     pub x189f0b0c96: i32,
     pub cliff_dive_flick_frame_value: i32,
     pub cliff_dive_cont_value: f32,
-    //pub cliff_catch_motion_rate: [f32; 8],
-    //pub x1dff572177: [f32; 4],
-    pad_02: [u64; 6],
+    pub cliff_catch_motion_rate: *mut [f32; 8],
+    pad_02: [u64; 2],
+    pub x1dff572177: *mut [f32; 4],
+    pad_03: [u64; 2],
     pub pass_flick_y: i32,
     pub pass_stick_y: f32,
     pub squat_pass_frame: f32,
@@ -679,8 +680,8 @@ pub struct CommonParams {
     pub charge_final_add_gauge_by_time_mul: f32,
     pub charge_final_gauge_decrease_start_frame: i32,
     pub charge_final_remove_frame: i32,
-    //pub x2873df4aed: [f32; 7],
-    pad_03: [u64; 3],
+    pub x2873df4aed: *mut [f32; 7],
+    pad_04: [u64; 2],
     pub x2d073b8b11: f32,
     pub x2d2bae85ee: f32,
     pub x2b0de64f73: f32,
@@ -745,8 +746,7 @@ pub struct CommonParams {
     pub attack_hi4_flick_y_hard: i32,
     pub attack_lw4_flick_y_easy: i32,
     pub attack_lw4_flick_y_hard: i32,
-    //pub jostle_data: struct_jostle_data,
-    pad_04: [u64; 3],
+    pub jostle_data: JostleData,
     pub escape_penalty_frame: i32,
     pub escape_penalty_max_count: i32,
     pub escape_penalty_recovry_frame: i32,
