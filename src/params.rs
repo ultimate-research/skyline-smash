@@ -11,23 +11,21 @@ pub trait Filepath {
     fn filepath() -> &'static str;
 }
 
-pub trait FromRawPtr<T> {
-    unsafe fn from_u64_mut(param_obj: u64) -> Result<&'static mut T, &'static str>;
-}
-
-macro_rules! impl_from_raw_ptr {
+macro_rules! impl_try_from_static_mut {
     (
         $(
             $ty:ty
         )*
     ) => {
         $(
-            impl FromRawPtr<$ty> for $ty {
-                unsafe fn from_u64_mut(param_obj: u64) -> Result<&'static mut $ty, &'static str> {
+            impl core::convert::TryFrom<u64> for &'static mut $ty {
+                type Error = &'static str;
+
+                fn try_from(param_obj: u64) -> Result<Self, Self::Error> {
                     if param_obj == 0 {
-                        panic!("Supplied from_u64_mut with a nullptr")
+                        Err("Supplied from_u64_mut with a nullptr")
                     } else {
-                        Ok(&mut *(param_obj as *mut $ty))
+                        unsafe { Ok(&mut *(param_obj as *mut $ty)) }
                     }
                 }
             }
@@ -35,4 +33,7 @@ macro_rules! impl_from_raw_ptr {
     };
 }
 
-impl_from_raw_ptr!(Params CommonParams);
+impl_try_from_static_mut!(Params CommonParams);
+
+type StaticParams = &'static mut Params;
+type StaticCommonParams = &'static mut CommonParams;
