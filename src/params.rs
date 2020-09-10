@@ -29,6 +29,14 @@ impl<'a> ParamsInfo<'a> {
     pub fn is_type<T: Filepath>(&self) -> bool {
         crate::hash40(T::filepath()) == *self.filepath_hash
     }
+
+    pub fn get<T: TryFrom<u64, Error = &'static str> + Filepath>(&self) -> Result<T, T::Error> {
+        if self.is_type::<T>() {
+            T::try_from(*self.object_ptr)
+        } else {
+            Err("Attempting to pull params object as invalid type!")
+        }
+    }
 }
 
 pub type Callback = fn(&ParamsInfo);
@@ -60,7 +68,7 @@ pub trait Filepath {
     fn filepath() -> &'static str;
 }
 
-macro_rules! impl_try_from_static_mut {
+macro_rules! impl_static_mut_traits {
     (
         $(
             $ty:ty
@@ -81,9 +89,15 @@ macro_rules! impl_try_from_static_mut {
                         }
                     }
                 }
+
+                impl Filepath for &'static mut $ty {
+                    fn filepath() -> &'static str {
+                        $ty::filepath()
+                    }
+                }
             }
         )*
     };
 }
 
-impl_try_from_static_mut!(Params CommonParams);
+impl_static_mut_traits!(CommonParams);
