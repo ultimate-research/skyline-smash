@@ -1,5 +1,7 @@
 pub mod common;
 pub use common::CommonParams;
+pub use core::convert::TryFrom;
+use paste::paste;
 
 #[repr(C)]
 #[derive(Debug, Default)]
@@ -18,14 +20,18 @@ macro_rules! impl_try_from_static_mut {
         )*
     ) => {
         $(
-            impl core::convert::TryFrom<u64> for &'static mut $ty {
-                type Error = &'static str;
+            paste! {
+                pub type [<Static $ty>] = &'static mut $ty;
 
-                fn try_from(param_obj: u64) -> Result<Self, Self::Error> {
-                    if param_obj == 0 {
-                        Err("Supplied from_u64_mut with a nullptr")
-                    } else {
-                        unsafe { Ok(&mut *(param_obj as *mut $ty)) }
+                impl core::convert::TryFrom<u64> for &'static mut $ty {
+                    type Error = &'static str;
+
+                    fn try_from(param_obj: u64) -> Result<Self, Self::Error> {
+                        if param_obj == 0 {
+                            Err("Supplied from_u64_mut with a nullptr")
+                        } else {
+                            unsafe { Ok(&mut *(param_obj as *mut $ty)) }
+                        }
                     }
                 }
             }
@@ -34,6 +40,3 @@ macro_rules! impl_try_from_static_mut {
 }
 
 impl_try_from_static_mut!(Params CommonParams);
-
-pub type StaticParams = &'static mut Params;
-pub type StaticCommonParams = &'static mut CommonParams;
