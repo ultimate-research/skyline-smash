@@ -35,5 +35,5 @@ macro_rules! impl_try_from_static_mut {
 
 impl_try_from_static_mut!(Params CommonParams);
 
-type StaticParams = &'static mut Params;
-type StaticCommonParams = &'static mut CommonParams;
+pub type StaticParams = &'static mut Params;
+pub type StaticCommonParams = &'static mut CommonParams;
