@@ -16,7 +16,7 @@ static RES_SERVICE_ADRP_SEARCH_CODE: &[u8] = &[
     0xe0, 0x03, 0x16, 0xaa, 0xf3, 0x03, 0x01, 0x2a, 0xf2, 0xef, 0x11, 0x94,
 ];
 
-fn find_subsequence(haystack: &[u8], needle: &[u8]) -> Option<usize> {
+pub fn find_subsequence(haystack: &[u8], needle: &[u8]) -> Option<usize> {
     haystack
         .windows(needle.len())
         .position(|window| window == needle)
