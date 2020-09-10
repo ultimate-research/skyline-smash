@@ -1,5 +1,9 @@
 pub mod common;
+pub mod fighter_param;
+
 pub use common::CommonParams;
+pub use fighter_param::FighterParams;
+
 pub use core::convert::TryFrom;
 use paste::paste;
 
@@ -72,7 +76,7 @@ macro_rules! impl_static_mut_traits {
     (
         $(
             $ty:ty
-        )*
+        ),*
     ) => {
         $(
             paste! {
@@ -100,4 +104,4 @@ macro_rules! impl_static_mut_traits {
     };
 }
 
-impl_static_mut_traits!(CommonParams);
+impl_static_mut_traits!(CommonParams, FighterParams);
