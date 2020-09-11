@@ -36,9 +36,13 @@ impl<'a> ParamsInfo<'a> {
         crate::hash40(T::filepath()) == *self.filepath_hash
     }
 
-    pub fn get<T: TryFrom<u64, Error = &'static str> + Filepath>(&self) -> Result<T, T::Error> {
+    pub fn get<T>(&self) -> Result<&'static mut T, <&'static mut T as TryFrom<u64>>::Error>
+    where
+        &'static mut T: TryFrom<u64, Error = &'static str>,
+        T: Filepath,
+    {
         if self.is_type::<T>() {
-            T::try_from(*self.object_ptr)
+            <&'static mut T>::try_from(*self.object_ptr)
         } else {
             Err("Attempting to pull params object as invalid type!")
         }
@@ -95,12 +99,6 @@ macro_rules! impl_static_mut_traits {
                         }
                     }
                 }
-
-                impl Filepath for &'static mut $ty {
-                    fn filepath() -> &'static str {
-                        $ty::filepath()
-                    }
-                }
             }
         )*
     };
@@ -113,25 +111,24 @@ macro_rules! impl_table_index_traits {
         ),*
     ) => {
         $(
-            paste! {
-                impl core::ops::Index<i32> for $ty {
-                    type Output = FighterParamTable;
+            impl core::ops::Index<i32> for $ty {
+                type Output = FighterParamTable;
 
-                    fn index(&self, index: i32) -> &Self::Output {
-                        unsafe {
-                            &(*self.$table)[fighter_list::FIGHTER_LIST_ORDER[&index]]
-                        }
-                    }
-                }
-
-                impl core::ops::IndexMut<i32> for $ty {
-                    fn index_mut(&mut self, index: i32) -> &mut Self::Output {
-                        unsafe {
-                            &mut (*self.$table)[fighter_list::FIGHTER_LIST_ORDER[&index]]
-                        }
+                fn index(&self, index: i32) -> &Self::Output {
+                    unsafe {
+                        &(*self.$table)[fighter_list::FIGHTER_LIST_ORDER[&index]]
                     }
                 }
             }
+
+            impl core::ops::IndexMut<i32> for $ty {
+                fn index_mut(&mut self, index: i32) -> &mut Self::Output {
+                    unsafe {
+                        &mut (*self.$table)[fighter_list::FIGHTER_LIST_ORDER[&index]]
+                    }
+                }
+            }
+
         )*
     };
 }
