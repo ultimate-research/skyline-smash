@@ -1,8 +1,10 @@
 pub mod common;
 pub mod fighter_param;
+pub mod fighter_list;
 
-pub use common::CommonParams;
-pub use fighter_param::FighterParams;
+pub use common::*;
+pub use fighter_param::*;
+pub use fighter_list::*;
 
 pub use core::convert::TryFrom;
 use paste::paste;
@@ -102,6 +104,25 @@ macro_rules! impl_static_mut_traits {
             }
         )*
     };
+}
+
+// TODO: Put this in a macro for other param files with fighter_param tables
+impl core::ops::Index<i32> for FighterParams {
+    type Output = FighterParamTable;
+
+    fn index(&self, index: i32) -> &Self::Output {
+        unsafe {
+            &(*self.fighter_param_table)[fighter_list::FIGHTER_LIST_ORDER[&index]]
+        }
+    }
+}
+
+impl core::ops::IndexMut<i32> for FighterParams {
+    fn index_mut(&mut self, index: i32) -> &mut Self::Output {
+        unsafe {
+            &mut (*self.fighter_param_table)[fighter_list::FIGHTER_LIST_ORDER[&index]]
+        }
+    }
 }
 
 impl_static_mut_traits!(CommonParams, FighterParams);
