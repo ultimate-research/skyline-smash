@@ -636,16 +636,12 @@ pub mod root {
         pub struct FighterRyuLinkEventFinalDeadDamage {
             pub _address: u8,
         }
-        #[repr(C)]
+        #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
-        pub struct ItemCommonParamFloat {
-            pub _address: f32,
-        }
-        #[repr(C)]
+        pub struct ItemCommonParamFloat(f32);
+        #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
-        pub struct BossCommonParamFloat {
-            pub _address: f32,
-        }
+        pub struct BossCommonParamFloat(f32);
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct GroundCollisionLine {
@@ -1002,21 +998,17 @@ pub mod root {
         pub struct EffectScreenLayer {
             pub _address: u8,
         }
-        #[repr(C)]
+        #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
-        pub struct BossCommonParamInt {
-            pub _address: i32,
-        }
+        pub struct BossCommonParamInt(i32);
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct AttackerAttribute {
             pub _address: u8,
         }
-        #[repr(C)]
+        #[repr(trasparent)]
         #[derive(Debug, Copy, Clone)]
-        pub struct ItemCommonParamInt {
-            pub _address: i32,
-        }
+        pub struct ItemCommonParamInt(i32);
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct LinkEventCapture {
