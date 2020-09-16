@@ -173,15 +173,9 @@ pub mod root {
     pub mod app {
         #[allow(unused_imports)]
         use super::super::root;
-        pub mod SoundModule {
-            #[allow(unused_imports)]
-            use super::super::super::root;
-            #[repr(C)]
-            #[derive(Debug, Copy, Clone)]
-            pub struct enSEType {
-                pub _address: u8,
-            }
-        }
+        #[repr(transparent)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct enSEType(pub i32);
         #[derive(Copy, Clone, Default, Debug)]
         #[repr(C)]
         pub struct BattleObject {
@@ -343,11 +337,9 @@ pub mod root {
         pub struct MaterialAnimeKind {
             pub _address: u8,
         }
-        #[repr(C)]
+        #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
-        pub struct GroundTouchFlag {
-            pub _address: u8,
-        }
+        pub struct GroundTouchFlag(pub i32);
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct WeaponShizueFishingrodLinkEventShoot {
@@ -363,11 +355,9 @@ pub mod root {
         pub struct VisibilityMode {
             pub _address: u8,
         }
-        #[repr(C)]
+        #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
-        pub struct ShieldStatus {
-            pub _address: u8,
-        }
+        pub struct ShieldStatus(pub i32);
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct FighterPikminLinkEventWeaponPikminOnFlag {
@@ -383,11 +373,9 @@ pub mod root {
         pub struct GroundCollisionLineHandle {
             pub _address: u8,
         }
-        #[repr(C)]
+        #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
-        pub struct ArticleOperationTarget {
-            pub _address: u8,
-        }
+        pub struct ArticleOperationTarget(pub i32);
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct GimmickEventPos {
@@ -423,11 +411,9 @@ pub mod root {
         pub struct GimmickEventSpring {
             pub _address: u8,
         }
-        #[repr(C)]
+        #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
-        pub struct AttackHeight {
-            pub _address: u8,
-        }
+        pub struct AttackHeight(pub i32);
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct LinkEventMask {
@@ -473,14 +459,12 @@ pub mod root {
         pub struct LinkEventCaptureFishingrodDamage {
             pub _address: u8,
         }
-        #[repr(C)]
+        #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
         pub struct FighterEntryID(pub i32);
-        #[repr(C)]
+        #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
-        pub struct AttackSetOffKind {
-            pub _address: u8,
-        }
+        pub struct AttackSetOffKind(pub i32);
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct FighterSpiritsSupportSkill {
@@ -681,11 +665,9 @@ pub mod root {
         pub struct WeaponSnakeMissileKineticEnergyNormal {
             pub _address: u8,
         }
-        #[repr(C)]
+        #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
-        pub struct SituationKind {
-            pub situation_kind: i32,
-        }
+        pub struct SituationKind(pub i32);
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct LinkEventYoshiTamagoDamageEffect {
@@ -696,11 +678,9 @@ pub mod root {
         pub struct LuaScriptLineID {
             pub _address: u8,
         }
-        #[repr(C)]
+        #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
-        pub struct GroundCorrectKind {
-            pub _address: u8,
-        }
+        pub struct GroundCorrectKind(pub i32);
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct FighterPokemonLinkEventChange {
@@ -769,11 +749,9 @@ pub mod root {
         pub struct CutInData {
             pub _address: u8,
         }
-        #[repr(C)]
+        #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
-        pub struct StopOtherKind {
-            pub _address: u8,
-        }
+        pub struct StopOtherKind(pub i32);
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct WeaponShizueFishingrodLinkEventCliff {
@@ -892,11 +870,9 @@ pub mod root {
         pub struct ItemManager {
             pub _address: u8,
         }
-        #[repr(C)]
+        #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
-        pub struct WorkKind {
-            pub _address: u8,
-        }
+        pub struct WorkKind(pub i32);
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct FighterParamAccessor2 {
@@ -937,11 +913,9 @@ pub mod root {
         pub struct GimmickEventTornadoShootInfo {
             pub _address: u8,
         }
-        #[repr(C)]
+        #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterKind {
-            pub _address: u8,
-        }
+        pub struct FighterKind(pub i32);
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct FighterKineticEnergyController {
@@ -987,11 +961,9 @@ pub mod root {
         pub struct FighterPikminLinkEventWeaponPikminSyncLR {
             pub _address: u8,
         }
-        #[repr(C)]
+        #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
-        pub struct GroundTouchID {
-            pub _address: u8,
-        }
+        pub struct GroundTouchID(pub i32);
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct EffectScreenLayer {
@@ -1017,11 +989,9 @@ pub mod root {
         pub struct LinkEventCapture {
             pub _address: u8,
         }
-        #[repr(C)]
+        #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
-        pub struct ItemManagerItemKind {
-            pub _address: u8,
-        }
+        pub struct ItemManagerItemKind(pub i32);
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct WeaponShizueFishingrodLinkEventCut {
@@ -1037,16 +1007,12 @@ pub mod root {
         pub struct ItemKineticFlag {
             pub _address: u8,
         }
-        #[repr(C)]
+        #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
-        pub struct ShieldType {
-            pub _address: u8,
-        }
-        #[repr(C)]
+        pub struct ShieldType(pub i32);
+        #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
-        pub struct GroundCliffCheckKind {
-            pub _address: u8,
-        }
+        pub struct GroundCliffCheckKind(pub i32);
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct enStatusBGMType {
@@ -9744,7 +9710,7 @@ pub mod root {
                         arg4: bool,
                         arg5: bool,
                         arg6: bool,
-                        arg7: root::app::SoundModule::enSEType,
+                        arg7: root::app::enSEType,
                     ) -> u64;
                 }
                 extern "C" {
