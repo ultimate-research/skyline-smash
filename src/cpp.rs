@@ -1006,7 +1006,7 @@ pub mod root {
         pub struct AttackerAttribute {
             pub _address: u8,
         }
-        #[repr(trasparent)]
+        #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
         pub struct ItemCommonParamInt(i32);
         #[repr(C)]
