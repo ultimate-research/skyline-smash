@@ -165,15 +165,17 @@ pub mod root {
     impl<T> ::core::cmp::Eq for __BindgenUnionField<T> {}
 
     #[derive(Copy, Clone, Default, Debug)]
-    #[repr(transparent)]
-    pub struct lua_State (pub u64);
+    #[repr(C)]
+    pub struct lua_State {
+        pub _address: u64
+    }
 
     pub mod app {
         #[allow(unused_imports)]
         use super::super::root;
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
-        pub struct enSEType (pub i32);
+        pub struct enSEType(pub i32);
         #[derive(Copy, Clone, Default, Debug)]
         #[repr(C)]
         pub struct BattleObject {
@@ -210,183 +212,289 @@ pub mod root {
         pub struct ItemModuleAccessor {
             pub battle_object_module_accessor : BattleObjectModuleAccessor,
         }
-        #[repr(transparent)]
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct LinkEventLassoHang(pub i32);
-        #[repr(transparent)]
+        pub struct LinkEventLassoHang {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct AreaContactLog(pub i32);
-        #[repr(transparent)]
+        pub struct AreaContactLog {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterBraveSpecialLwCommand(pub i32);
-        #[repr(transparent)]
+        pub struct FighterBraveSpecialLwCommand {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterBraveSpecialLwVariousKind(pub i32);
-        #[repr(transparent)]
+        pub struct FighterBraveSpecialLwVariousKind {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterRidleyLinkEventMotion(pub i32);
-        #[repr(transparent)]
+        pub struct FighterRidleyLinkEventMotion {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct LinkEventCapturePulled(pub i32);
-        #[repr(transparent)]
+        pub struct LinkEventCapturePulled {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct DamageInfo(pub i32);
-        #[repr(transparent)]
+        pub struct DamageInfo {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct DamageNoReactionMode(pub i32);
-        #[repr(transparent)]
+        pub struct DamageNoReactionMode {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct BattleObjectSlow(pub i32);
-        #[repr(transparent)]
+        pub struct BattleObjectSlow {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct GimmickEventPipe(pub i32);
-        #[repr(transparent)]
+        pub struct GimmickEventPipe {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct CameraStatus(pub i32);
-        #[repr(transparent)]
+        pub struct CameraStatus {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterManager(pub i32);
-        #[repr(transparent)]
+        pub struct FighterManager {
+            pub _address: u64,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct stWaterAreaInfo(pub i32);
-        #[repr(transparent)]
+        pub struct stWaterAreaInfo {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct GimmickEventDrumCheckNeedHide(pub i32);
-        #[repr(transparent)]
+        pub struct GimmickEventDrumCheckNeedHide {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct LinkEventCaptureItem(pub i32);
-        #[repr(transparent)]
+        pub struct LinkEventCaptureItem {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct GimmickEventCatch(pub i32);
-        #[repr(transparent)]
+        pub struct GimmickEventCatch {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct WeaponRobotHominglaserLinkEventBurst(pub i32);
-        #[repr(transparent)]
+        pub struct WeaponRobotHominglaserLinkEventBurst {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterInformation(pub i32);
-        #[repr(transparent)]
+        pub struct FighterInformation {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct LinkEventPos(pub i32);
-        #[repr(transparent)]
+        pub struct LinkEventPos {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct LuaScriptStatusFuncID(pub i32);
-        #[repr(transparent)]
+        pub struct LuaScriptStatusFuncID {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct KineticEnergyNormal(pub i32);
-        #[repr(transparent)]
+        pub struct KineticEnergyNormal {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterPikminLinkEventWeaponPikminSetInt(pub i32);
-        #[repr(transparent)]
+        pub struct FighterPikminLinkEventWeaponPikminSetInt {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct OnCalcParamEvent(pub i32);
-        #[repr(transparent)]
+        pub struct OnCalcParamEvent {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct GimmickEventTornadoEscape(pub i32);
-        #[repr(transparent)]
+        pub struct GimmickEventTornadoEscape {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct MaterialAnimeKind(pub i32);
+        pub struct MaterialAnimeKind {
+            pub _address: u8,
+        }
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
         pub struct GroundTouchFlag(pub i32);
-        #[repr(transparent)]
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct WeaponShizueFishingrodLinkEventShoot(pub i32);
-        #[repr(transparent)]
+        pub struct WeaponShizueFishingrodLinkEventShoot {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct Rhombus2(pub i32);
-        #[repr(transparent)]
+        pub struct Rhombus2 {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct VisibilityMode(pub i32);
+        pub struct VisibilityMode {
+            pub _address: u8,
+        }
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
         pub struct ShieldStatus(pub i32);
-        #[repr(transparent)]
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterPikminLinkEventWeaponPikminOnFlag(pub i32);
-        #[repr(transparent)]
+        pub struct FighterPikminLinkEventWeaponPikminOnFlag {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct LinkEventCaptureDriver(pub i32);
-        #[repr(transparent)]
+        pub struct LinkEventCaptureDriver {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct GroundCollisionLineHandle(pub i32);
+        pub struct GroundCollisionLineHandle {
+            pub _address: u8,
+        }
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
         pub struct ArticleOperationTarget(pub i32);
-        #[repr(transparent)]
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct GimmickEventPos(pub i32);
-        #[repr(transparent)]
+        pub struct GimmickEventPos {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct GimmickEvent(pub i32);
-        #[repr(transparent)]
+        pub struct GimmickEvent {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct ShieldFront(pub i32);
-        #[repr(transparent)]
+        pub struct ShieldFront {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct WeaponRobotHominglaserLinkEventSearch(pub i32);
-        #[repr(transparent)]
+        pub struct WeaponRobotHominglaserLinkEventSearch {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterRyuLinkEventFinalMoveTarget(pub i32);
-        #[repr(transparent)]
+        pub struct FighterRyuLinkEventFinalMoveTarget {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct BossManager(pub i32);
-        #[repr(transparent)]
+        pub struct BossManager {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct GimmickEventSpring(pub i32);
+        pub struct GimmickEventSpring {
+            pub _address: u8,
+        }
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
         pub struct AttackHeight(pub i32);
-        #[repr(transparent)]
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct LinkEventMask(pub i32);
-        #[repr(transparent)]
+        pub struct LinkEventMask {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct LinkEventThrow(pub i32);
-        #[repr(transparent)]
+        pub struct LinkEventThrow {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterKineticEnergyGravity(pub i32);
-        #[repr(transparent)]
+        pub struct FighterKineticEnergyGravity {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct ItemParamAccessor(pub i32);
-        #[repr(transparent)]
+        pub struct ItemParamAccessor {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct GimmickEventTornadoMoveInfo(pub i32);
-        #[repr(transparent)]
+        pub struct GimmickEventTornadoMoveInfo {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct GimmickEventBarrel(pub i32);
-        #[repr(transparent)]
+        pub struct GimmickEventBarrel {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct LinkEventStarShot(pub i32);
-        #[repr(transparent)]
+        pub struct LinkEventStarShot {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct ItemSpecializedParamFloat(pub i32);
-        #[repr(transparent)]
+        pub struct ItemSpecializedParamFloat {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct LinkEventCaptureFishingrodDamage(pub i32);
+        pub struct LinkEventCaptureFishingrodDamage {
+            pub _address: u8,
+        }
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
         pub struct FighterEntryID(pub i32);
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
         pub struct AttackSetOffKind(pub i32);
-        #[repr(transparent)]
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterSpiritsSupportSkill(pub i32);
-        #[repr(transparent)]
+        pub struct FighterSpiritsSupportSkill {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterInklingLinkEventPaint(pub i32);
-        #[repr(transparent)]
+        pub struct FighterInklingLinkEventPaint {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct StageManager(pub i32);
-        #[repr(transparent)]
+        pub struct StageManager {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterKineticEnergyMotion(pub i32);
-        #[repr(transparent)]
+        pub struct FighterKineticEnergyMotion {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct GimmickEventDrumRelease(pub i32);
-        #[repr(transparent)]
+        pub struct GimmickEventDrumRelease {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct GimmickEventLadder(pub i32);
+        pub struct GimmickEventLadder {
+            pub _address: u8,
+        }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         /// Use to hold hitbox data
@@ -477,281 +585,444 @@ pub mod root {
             pub sound_level: u16, //SFX level
             pub sound_attr: u16, //SFX type
         }
-        #[repr(transparent)]
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct GimmickEventDrumPos(pub i32);
-        #[repr(transparent)]
+        pub struct GimmickEventDrumPos {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct GimmickEventDrumShake(pub i32);
-        #[repr(transparent)]
+        pub struct GimmickEventDrumShake {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct GimmickEventDrumCheckNeedLock(pub i32);
-        #[repr(transparent)]
+        pub struct GimmickEventDrumCheckNeedLock {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct ItemSize(pub i32);
-        #[repr(transparent)]
+        pub struct ItemSize {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterBayonettaFinalModule(pub i32);
-        #[repr(transparent)]
+        pub struct FighterBayonettaFinalModule {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct CutInTransactor(pub i32);
-        #[repr(transparent)]
+        pub struct CutInTransactor {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterRyuLinkEventFinalDeadDamage(pub i32);
-        #[repr(transparent)]
+        pub struct FighterRyuLinkEventFinalDeadDamage {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct ItemCommonParamFloat(pub i32);
-        #[repr(transparent)]
+        pub struct ItemCommonParamFloat {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct GroundCollisionLine(pub i32);
-        #[repr(transparent)]
+        pub struct GroundCollisionLine {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterAvailableFinal(pub i32);
-        #[repr(transparent)]
+        pub struct FighterAvailableFinal {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterPikminLinkEventWeaponPikminSyncPos(pub i32);
-        #[repr(transparent)]
+        pub struct FighterPikminLinkEventWeaponPikminSyncPos {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterPitBFinalModule(pub i32);
-        #[repr(transparent)]
+        pub struct FighterPitBFinalModule {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct QuickItemTreatType(pub i32);
-        #[repr(transparent)]
+        pub struct QuickItemTreatType {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct Item(pub i32);
-        #[repr(transparent)]
+        pub struct Item {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct ItemSpecializedParamInt(pub i32);
-        #[repr(transparent)]
+        pub struct ItemSpecializedParamInt {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct WeaponSnakeMissileKineticEnergyNormal(pub i32);
-        #[repr(transparent)]
-        #[derive(Debug, Copy, Clone)]
-        pub struct SituationKind {
-            pub situation_kind: i32,
+        pub struct WeaponSnakeMissileKineticEnergyNormal {
+            pub _address: u8,
         }
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
-        pub struct LinkEventYoshiTamagoDamageEffect(pub i32);
-        #[repr(transparent)]
+        pub struct SituationKind(pub i32);
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct LuaScriptLineID(pub i32);
+        pub struct LinkEventYoshiTamagoDamageEffect {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct LuaScriptLineID {
+            pub _address: u8,
+        }
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
         pub struct GroundCorrectKind(pub i32);
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterPokemonLinkEventChange {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct BattleObjectWorld {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GimmickEventSlashEscape {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct AttackAbsoluteData {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct MotionNodeRotateCompose {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GimmickEventWarp {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct LinkEvent {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct ItemStatusParamFloat {
+            pub _address: u8,
+        }
+        ///A transparent struct to specify types of HIT_STATUS's
+        /// Example:
+        ///```
+        ///HitModule::set_whole(module_accessor, app::HitStatus(*HIT_STATUS_XLU), 0);
+        ///```
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterPokemonLinkEventChange(pub i32);
-        #[repr(transparent)]
+        pub struct HitStatus (pub i32);
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct BattleObjectWorld(pub i32);
-        #[repr(transparent)]
+        pub struct HitStopMulTarget {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct GimmickEventSlashEscape(pub i32);
-        #[repr(transparent)]
+        pub struct FighterPikminLinkEventWeaponPikminSetPowerMulStatus {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct AttackAbsoluteData(pub i32);
-        #[repr(transparent)]
+        pub struct CutInType {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct MotionNodeRotateCompose(pub i32);
-        #[repr(transparent)]
-        #[derive(Debug, Copy, Clone)]
-        pub struct GimmickEventWarp(pub i32);
-        #[repr(transparent)]
-        #[derive(Debug, Copy, Clone)]
-        pub struct LinkEvent(pub i32);
-        #[repr(transparent)]
-        #[derive(Debug, Copy, Clone)]
-        pub struct ItemStatusParamFloat(pub i32);
-        #[repr(transparent)]
-        #[derive(Debug, Copy, Clone)]
-        pub struct HitStatus(pub i32);
-        #[repr(transparent)]
-        #[derive(Debug, Copy, Clone)]
-        pub struct HitStopMulTarget(pub i32);
-        #[repr(transparent)]
-        #[derive(Debug, Copy, Clone)]
-        pub struct FighterPikminLinkEventWeaponPikminSetPowerMulStatus(pub i32);
-        #[repr(transparent)]
-        #[derive(Debug, Copy, Clone)]
-        pub struct CutInType(pub i32);
-        #[repr(transparent)]
-        #[derive(Debug, Copy, Clone)]
-        pub struct CutInData(pub i32);
+        pub struct CutInData {
+            pub _address: u8,
+        }
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
         pub struct StopOtherKind(pub i32);
-        #[repr(transparent)]
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct WeaponShizueFishingrodLinkEventCliff(pub i32);
-        #[repr(transparent)]
+        pub struct WeaponShizueFishingrodLinkEventCliff {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct ItemStatusParamInt(pub i32);
-        #[repr(transparent)]
+        pub struct ItemStatusParamInt {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct MODEL_COLOR_TYPE(pub i32);
-        #[repr(transparent)]
+        pub struct MODEL_COLOR_TYPE {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct LinkEventFinal(pub i32);
-        #[repr(transparent)]
+        pub struct LinkEventFinal {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct ItemAiType(pub i32);
-        #[repr(transparent)]
+        pub struct ItemAiType {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct CutInPriority(pub i32);
-        #[repr(transparent)]
+        pub struct CutInPriority {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct ShadowDrawFlag(pub i32);
-        #[repr(transparent)]
+        pub struct ShadowDrawFlag {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct GimmickEventNotify(pub i32);
-        #[repr(transparent)]
+        pub struct GimmickEventNotify {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct KineticEnergyRotNormal(pub i32);
-        #[repr(transparent)]
+        pub struct KineticEnergyRotNormal {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct GimmickEventPresenter(pub i32);
-        #[repr(transparent)]
+        pub struct GimmickEventPresenter {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct BattleObjectManager(pub i32);
-        #[repr(transparent)]
+        pub struct BattleObjectManager {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct WeaponShizueFishingrodLinkEventReel(pub i32);
-        #[repr(transparent)]
+        pub struct WeaponShizueFishingrodLinkEventReel {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct AttackDirectionAxis(pub i32);
-        #[repr(transparent)]
+        pub struct AttackDirectionAxis {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct SpecialPaintKind(pub i32);
-        #[repr(transparent)]
+        pub struct SpecialPaintKind {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct ItemPickupSearchMode(pub i32);
-        #[repr(transparent)]
+        pub struct ItemPickupSearchMode {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterCutInManager(pub i32);
+        pub struct FighterCutInManager {
+            pub _address: u8,
+        }
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
         pub struct ItemKind (pub i32);
-        #[repr(transparent)]
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct WeaponSnakeNikitaMissileKineticEnergyNormal(pub i32);
-        #[repr(transparent)]
+        pub struct WeaponSnakeNikitaMissileKineticEnergyNormal {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct MotionNodeRotateOrder(pub i32);
-        #[repr(transparent)]
+        pub struct MotionNodeRotateOrder {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterPikminLinkEventWeaponPikminConstraint(pub i32);
-        #[repr(transparent)]
+        pub struct FighterPikminLinkEventWeaponPikminConstraint {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct Circle(pub i32);
-        #[repr(transparent)]
+        pub struct Circle {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterPikminLinkEventWeaponPikminChangeStatus(pub i32);
-        #[repr(transparent)]
+        pub struct FighterPikminLinkEventWeaponPikminChangeStatus {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct LinkAttribute(pub i32);
-        #[repr(transparent)]
+        pub struct LinkAttribute {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct ItemManager(pub i32);
+        pub struct ItemManager {
+            pub _address: u8,
+        }
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
         pub struct WorkKind(pub i32);
-        #[repr(transparent)]
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterParamAccessor2(pub i32);
-        #[repr(transparent)]
+        pub struct FighterParamAccessor2 {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct LinkEventCaptureMimikkyu(pub i32);
-        #[repr(transparent)]
+        pub struct LinkEventCaptureMimikkyu {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct MaterialAnimeLoopFlag(pub i32);
-        #[repr(transparent)]
+        pub struct MaterialAnimeLoopFlag {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct WeaponKineticEnergyGravity(pub i32);
-        #[repr(transparent)]
+        pub struct WeaponKineticEnergyGravity {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct EffectScreenBlendType(pub i32);
-        #[repr(transparent)]
+        pub struct EffectScreenBlendType {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct DamageLog(pub i32);
-        #[repr(transparent)]
+        pub struct DamageLog {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct GimmickEventDrumEscape(pub i32);
-        #[repr(transparent)]
+        pub struct GimmickEventDrumEscape {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct GimmickEventTornadoShootInfo(pub i32);
+        pub struct GimmickEventTornadoShootInfo {
+            pub _address: u8,
+        }
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
         pub struct FighterKind(pub i32);
-        #[repr(transparent)]
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterKineticEnergyController(pub i32);
-        #[repr(transparent)]
+        pub struct FighterKineticEnergyController {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterPikminLinkEventWeaponPikminSetFloat(pub i32);
-        #[repr(transparent)]
+        pub struct FighterPikminLinkEventWeaponPikminSetFloat {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct GimmickEventSlashLockInfo(pub i32);
-        #[repr(transparent)]
+        pub struct GimmickEventSlashLockInfo {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterCloudLinkEventFinal(pub i32);
-        #[repr(transparent)]
+        pub struct FighterCloudLinkEventFinal {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterPikminLinkEventWeaponPikminChangeMotion(pub i32);
-        #[repr(transparent)]
+        pub struct FighterPikminLinkEventWeaponPikminChangeMotion {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct ItemSlopeType(pub i32);
-        #[repr(transparent)]
+        pub struct ItemSlopeType {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct KineticEnergy(pub i32);
-        #[repr(transparent)]
+        pub struct KineticEnergy {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct ItemStatusParamBool(pub i32);
-        #[repr(transparent)]
+        pub struct ItemStatusParamBool {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterPikminLinkEventWeaponPikminSyncLR(pub i32);
+        pub struct FighterPikminLinkEventWeaponPikminSyncLR {
+            pub _address: u8,
+        }
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
         pub struct GroundTouchID(pub i32);
-        #[repr(transparent)]
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct EffectScreenLayer(pub i32);
-        #[repr(transparent)]
+        pub struct EffectScreenLayer {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct BossCommonParamInt(pub i32);
-        #[repr(transparent)]
+        pub struct BossCommonParamInt {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct AttackerAttribute(pub i32);
-        #[repr(transparent)]
+        pub struct AttackerAttribute {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct ItemCommonParamInt(pub i32);
-        #[repr(transparent)]
+        pub struct ItemCommonParamInt {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct LinkEventCapture(pub i32);
+        pub struct LinkEventCapture {
+            pub _address: u8,
+        }
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
         pub struct ItemManagerItemKind(pub i32);
-        #[repr(transparent)]
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct WeaponShizueFishingrodLinkEventCut(pub i32);
-        #[repr(transparent)]
+        pub struct WeaponShizueFishingrodLinkEventCut {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct FighterEntry(pub i32);
-        #[repr(transparent)]
+        pub struct FighterEntry {
+            pub _address: u8,
+        }
+        #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct ItemKineticFlag(pub i32);
+        pub struct ItemKineticFlag {
+            pub _address: u8,
+        }
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
         pub struct ShieldType(pub i32);
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
         pub struct GroundCliffCheckKind(pub i32);
-        #[repr(transparent)]
-        #[derive(Debug, Copy, Clone)]
-        pub struct enStatusBGMType(pub i32);
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
-        pub struct LinkEventTouchItem(pub i32);
+        pub struct enStatusBGMType {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct LinkEventTouchItem {
+            pub _address: u8,
+        }
         pub mod FL_sv_module_access {
             #[allow(unused_imports)]
             use super::super::super::root;
@@ -9439,7 +9710,7 @@ pub mod root {
                         arg4: bool,
                         arg5: bool,
                         arg6: bool,
-                        arg7: root::app::SoundModule::enSEType,
+                        arg7: root::app::enSEType,
                     ) -> u64;
                 }
                 extern "C" {
