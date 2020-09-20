@@ -1054,6 +1054,14 @@ pub mod root {
         pub struct LinkEventTouchItem {
             pub _address: u8,
         }
+        pub mod sv_information {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app14sv_information11is_ready_goEv"]
+                pub fn is_ready_go() -> bool;
+            }
+        }
         pub mod FL_sv_module_access {
             #[allow(unused_imports)]
             use super::super::super::root;
