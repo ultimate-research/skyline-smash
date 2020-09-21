@@ -8,7 +8,7 @@ edition = "2018"
 name = "smash"
 
 [dependencies]
-libc = { git = "https://github.com/ultimate-research/libc-nnsdk" }
+libc-nnsdk = { git = "https://github.com/ultimate-research/libc-nnsdk" }
 skyline = { git = "https://github.com/ultimate-research/skyline-rs" }
 lazy_static = "1.4"
 compile-time-lua-bind-hash = "1.1"
