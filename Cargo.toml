@@ -8,5 +8,5 @@ edition = "2018"
 name = "smash"
 
 [dependencies]
-libc = { git = "https://github.com/ultimate-research/libc-nnsdk" }
+libc-nnsdk = { git = "https://github.com/ultimate-research/libc-nnsdk" }
 compile-time-lua-bind-hash = "1.1"
