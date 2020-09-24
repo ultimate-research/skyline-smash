@@ -339,6 +339,7 @@ pub struct FileInfo {
 }
 
 #[repr(C)]
+#[derive(Debug, Clone)]
 pub struct SubFile {
     pub offset: u32,
     pub compressed_size: u32,
