@@ -1713,15 +1713,6 @@ pub mod root {
             }
         }
 
-        pub mod FighterInklingLinkEventPaint {
-            #[allow(unused_imports)]
-            use super::super::super::root;
-            extern "C" {
-                #[link_name = "\u{1}_ZN3app28FighterInklingLinkEventPaint13new_l2c_tableEv"]
-                pub fn new_l2c_table()-> u64;
-            }
-        }
-
         pub mod FighterSpecializer_Jack {
             #[allow(unused_imports)]
             use super::super::super::root;
@@ -7322,6 +7313,11 @@ pub mod root {
                         arg2: *const root::lib::L2CValue,
                     ) -> u64;
                 }
+                extern "C" {
+                    #[link_name = "\u{1}_ZN3app28FighterInklingLinkEventPaint13new_l2c_tableEv"]
+                    pub fn new_l2c_table()-> u64; 
+                    //This function isn't actually part of lua_bind::FighterInklingLinkEventPaint, but for now I'm just trying to test something and it won't build given its own module. 
+                }    
             }
             pub mod FighterControlModuleImpl {
                 #[allow(unused_imports)]
