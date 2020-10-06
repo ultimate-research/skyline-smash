@@ -1713,6 +1713,15 @@ pub mod root {
             }
         }
 
+        pub mod FighterInklingLinkEventPaint {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app28FighterInklingLinkEventPaint13new_l2c_tableEv"]
+                pub fn new_l2c_table()-> u64;
+            }
+        }
+
         pub mod FighterSpecializer_Jack {
             #[allow(unused_imports)]
             use super::super::super::root;
