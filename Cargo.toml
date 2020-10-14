@@ -10,5 +10,13 @@ description = "A library for helping mod Smash Ultimate using skyline-rs"
 name = "smash"
 
 [dependencies]
-libc-nnsdk = "0.0.1"
+libc-nnsdk = { git = "https://github.com/ultimate-research/libc-nnsdk" }
+skyline = { git = "https://github.com/ultimate-research/skyline-rs" }
+lazy_static = "1.4"
 compile-time-lua-bind-hash = "1.1"
+paste = "1.0"
+
+[features]
+default = [ "std" ]
+std = []
+params_internal = []

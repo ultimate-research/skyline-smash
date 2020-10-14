@@ -1,8 +1,13 @@
-#![no_std]
+#![cfg_attr(not(feature = "std"), no_std)]
 #![feature(const_if_match, const_loop, track_caller, proc_macro_hygiene)]
 #![feature(asm)]
 
 pub mod crc32;
+
+pub mod params;
+
+#[cfg(feature = "std")]
+pub mod resource;
 
 #[doc(hidden)]
 pub mod cpp;
@@ -25,11 +30,13 @@ pub const fn hash40(string: &str) -> u64 {
 
 impl phx::Hash40 {
     pub fn new(string: &str) -> Self {
-        Self { hash : hash40(string) }
+        Self {
+            hash: hash40(string),
+        }
     }
 
     pub fn new_raw(raw: u64) -> Self {
-        Self { hash : raw }
+        Self { hash: raw }
     }
 }
 
