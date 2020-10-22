@@ -73,7 +73,7 @@ lazy_static::lazy_static! {
     };
 }
 
-// 9.0.0 offsets
+// 9.0.1 offsets
 pub static mut LOADED_TABLES_OFFSET: usize = 0x50567a0;
 pub static mut RES_SERVICE_OFFSET: usize = 0x50567a8;
 
