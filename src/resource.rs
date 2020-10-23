@@ -73,9 +73,9 @@ lazy_static::lazy_static! {
     };
 }
 
-// 9.0.0 offsets
-pub static mut LOADED_TABLES_OFFSET: usize = 0x50557a0;
-pub static mut RES_SERVICE_OFFSET: usize = 0x50557a8;
+// 9.0.1 offsets
+pub static mut LOADED_TABLES_OFFSET: usize = 0x50567a0;
+pub static mut RES_SERVICE_OFFSET: usize = 0x50567a8;
 
 pub fn offset_to_addr(offset: usize) -> *const () {
     unsafe { (getRegionAddress(Region::Text) as *const u8).offset(offset as isize) as _ }
