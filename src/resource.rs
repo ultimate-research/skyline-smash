@@ -5,7 +5,7 @@ use skyline::hooks::{getRegionAddress, Region};
 use skyline::nn;
 
 pub static mut LOADED_TABLES_ADRP_OFFSET: usize = 0x324c3a0;
-pub static mut RES_SERVICE_ADRP_OFFSET: usize = 0x325a4b0;
+pub static mut RES_SERVICE_ADRP_OFFSET: usize = 0xaf0b04;
 static LOADED_TABLES_ADRP_SEARCH_CODE: &[u8] = &[
     0x28, 0x4b, 0x40, 0xb9, 0xf4, 0x03, 0x01, 0x2a, 0x1f, 0x01, 0x01, 0x6b, 0x29, 0x0a, 0x00, 0x54,
     0x36, 0x03, 0x40, 0xf9, 0xe0, 0x03, 0x16, 0xaa,
@@ -45,7 +45,7 @@ fn offset_from_ldr(ldr_offset: usize) -> usize {
 lazy_static::lazy_static! {
     static ref LOADED_TABLES_RES_SERVICE_OFFSETS : (usize, usize) = {
         unsafe {
-            let text_ptr = getRegionAddress(Region::Text) as *const u8;
+            /*let text_ptr = getRegionAddress(Region::Text) as *const u8;
             let text_size = (getRegionAddress(Region::Rodata) as usize) - (text_ptr as usize);
             let text = std::slice::from_raw_parts(text_ptr, text_size);
 
@@ -57,7 +57,7 @@ lazy_static::lazy_static! {
             if let Some(offset) = find_subsequence(text, RES_SERVICE_ADRP_SEARCH_CODE) {
                 RES_SERVICE_ADRP_OFFSET = offset
             } else {
-                println!("Error: no offset found for 'loaded_tables_adrp'. Defaulting to 8.0.0 offset. This likely won't work.");
+                println!("Error: no offset found for 'res_service_adrp'. Defaulting to 9.0.0 offset. This likely won't work.");
             }
 
             let adrp_offset = offset_from_adrp(LOADED_TABLES_ADRP_OFFSET);
@@ -66,15 +66,16 @@ lazy_static::lazy_static! {
 
             let adrp_offset = offset_from_adrp(RES_SERVICE_ADRP_OFFSET);
             let ldr_offset = offset_from_ldr(RES_SERVICE_ADRP_OFFSET + 4);
-            let res_service_offset = adrp_offset + ldr_offset;
+            let res_service_offset = adrp_offset + ldr_offset;*/
 
-            return (loaded_tables_offset, res_service_offset)
+            return (LOADED_TABLES_OFFSET, RES_SERVICE_OFFSET)
         }
     };
 }
 
-pub static mut LOADED_TABLES_OFFSET: usize = 0x4ed7200; // 8.0.0 offset
-pub static mut RES_SERVICE_OFFSET: usize = 0x4ee4228; // 8.1.0 offset
+// 9.0.1 offsets
+pub static mut LOADED_TABLES_OFFSET: usize = 0x50567a0;
+pub static mut RES_SERVICE_OFFSET: usize = 0x50567a8;
 
 pub fn offset_to_addr(offset: usize) -> *const () {
     unsafe { (getRegionAddress(Region::Text) as *const u8).offset(offset as isize) as _ }
@@ -339,6 +340,7 @@ pub struct FileInfo {
 }
 
 #[repr(C)]
+#[derive(Debug, Clone)]
 pub struct SubFile {
     pub offset: u32,
     pub compressed_size: u32,
