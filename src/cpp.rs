@@ -7625,7 +7625,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind49FighterStopModuleImpl__get_damage_stop_frame_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn get_damage_stop_frame(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> f32;
                 }
             }
             pub mod WeaponShizueFishingrodLinkEventReel {
@@ -8890,7 +8890,7 @@ pub mod root {
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind23MotionModule__rate_implEPNS_26BattleObjectModuleAccessorE"]
-                    pub fn rate(arg1: *mut root::app::BattleObjectModuleAccessor) -> u64;
+                    pub fn rate(arg1: *mut root::app::BattleObjectModuleAccessor) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind27MotionModule__set_rate_implEPNS_26BattleObjectModuleAccessorEf"]
@@ -8898,7 +8898,7 @@ pub mod root {
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind27MotionModule__rate_2nd_implEPNS_26BattleObjectModuleAccessorE"]
-                    pub fn rate_2nd(arg1: *mut root::app::BattleObjectModuleAccessor) -> u64;
+                    pub fn rate_2nd(arg1: *mut root::app::BattleObjectModuleAccessor) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind31MotionModule__set_rate_2nd_implEPNS_26BattleObjectModuleAccessorEf"]
@@ -8929,7 +8929,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind29MotionModule__prev_frame_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn prev_frame(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind28MotionModule__set_frame_implEPNS_26BattleObjectModuleAccessorEfb"]
@@ -9083,13 +9083,13 @@ pub mod root {
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind25MotionModule__weight_implEPNS_26BattleObjectModuleAccessorE"]
-                    pub fn weight(arg1: *mut root::app::BattleObjectModuleAccessor) -> u64;
+                    pub fn weight(arg1: *mut root::app::BattleObjectModuleAccessor) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind30MotionModule__prev_weight_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn prev_weight(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind43MotionModule__set_weight_change_motion_implEPNS_26BattleObjectModuleAccessorEf"]
@@ -9132,7 +9132,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind32MotionModule__end_frame_2nd_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn end_frame_2nd(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind29MotionModule__is_end_2nd_implEPNS_26BattleObjectModuleAccessorE"]
@@ -9228,7 +9228,7 @@ pub mod root {
                     pub fn end_frame_partial(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind35MotionModule__set_rate_partial_implEPNS_26BattleObjectModuleAccessorEif"]
@@ -9243,21 +9243,21 @@ pub mod root {
                     pub fn rate_partial(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind32MotionModule__frame_partial_implEPNS_26BattleObjectModuleAccessorEi"]
                     pub fn frame_partial(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind37MotionModule__prev_frame_partial_implEPNS_26BattleObjectModuleAccessorEi"]
                     pub fn prev_frame_partial(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind36MotionModule__set_frame_partial_implEPNS_26BattleObjectModuleAccessorEifb"]
@@ -9354,7 +9354,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind29MotionModule__whole_rate_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn whole_rate(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind33MotionModule__set_whole_rate_implEPNS_26BattleObjectModuleAccessorEf"]
@@ -9405,7 +9405,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind36MotionModule__trans_joint_scale_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn trans_joint_scale(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind41MotionModule__set_stop_interpolation_implEPNS_26BattleObjectModuleAccessorEfb"]
@@ -10910,11 +10910,11 @@ pub mod root {
                     pub fn ink(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_uint,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind28InkPaintModule__ink_max_implEPNS_26BattleObjectModuleAccessorE"]
-                    pub fn ink_max(arg1: *mut root::app::BattleObjectModuleAccessor) -> u64;
+                    pub fn ink_max(arg1: *mut root::app::BattleObjectModuleAccessor) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind28InkPaintModule__add_ink_implEPNS_26BattleObjectModuleAccessorEfj"]
@@ -10941,7 +10941,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind34InkPaintModule__get_ink_color_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn get_ink_color(
                         arg1: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> u64;
+                    ) -> f32;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind38InkPaintModule__set_special_paint_implEPNS_26BattleObjectModuleAccessorENS_16SpecialPaintKindE"]
