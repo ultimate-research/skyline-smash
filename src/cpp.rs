@@ -10569,6 +10569,84 @@ pub mod root {
                     );
                 }
             }
+            pub mod Fighter {
+                #[allow(unused_imports)]
+                use super::super::super::super::root;
+                extern "C" {
+                    #[link_name = "\u{1}_ZN3app7fighter23get_fighter_entry_countEv"]
+                    pub fn get_fighter_entry_count() -> i32;
+                }
+                extern "C" {
+                    #[link_name = "\u{1}_ZN3app7fighter20get_fighter_entry_idEj"]
+                    pub fn get_fighter_entry_id(arg1: u32) -> i32;
+                }
+                extern "C" {
+                    #[link_name = "\u{1}_ZN3app7fighter20get_id_from_entry_idEi"]
+                    pub fn get_id_from_entry_id(arg1: i32) -> u32;
+                }
+                extern "C" {
+                    #[link_name = "\u{1}_ZN3app7fighter21get_joint_from_hit_noEi"]
+                    pub fn get_joint_from_hit_no(arg1: i32) -> u64;
+                }
+                extern "C" {
+                    #[link_name = "\u{1}_ZN3app7fighter26is_absolutely_final_statusEv"]
+                    pub fn is_absolutely_final_status() -> bool;
+                }
+                extern "C" {
+                    #[link_name = "\u{1}_ZN3app7fighter18is_fighter_enabledEj"]
+                    pub fn is_fighter_enabled(arg1: u32) -> bool;
+                }
+                extern "C" {
+                    #[link_name = "\u{1}_ZN3app7fighter35is_final_status_or_stage_transitionEv"]
+                    pub fn is_final_status_or_stage_transition() -> bool;
+                }
+                extern "C" {
+                    #[link_name = "\u{1}_ZN3app7fighter26is_final_status_or_standbyEv"]
+                    pub fn is_final_status_or_standby() -> bool;
+                }
+                extern "C" {
+                    #[link_name = "\u{1}_ZN3app7fighter16is_have_on_mouthEj"]
+                    pub fn is_have_on_mouth(arg1: u32) -> bool;
+                }
+                extern "C" {
+                    #[link_name = "\u{1}_ZN3app7fighter11is_ready_goEv"]
+                    pub fn is_ready_go() -> bool;
+                }
+                extern "C" {
+                    #[link_name = "\u{1}_ZN3app7fighter14set_assistbeatEi"]
+                    pub fn set_assistbeat(arg1: i32) -> u64;
+                }
+                extern "C" {
+                    #[link_name = "\u{1}_ZN3app7fighter9set_finalEP9lua_Statehj"]
+                    pub fn set_final(
+                        arg1: u64,
+                        arg2: libc::c_uchar,
+                        arg3: u32
+                    ) -> u64;
+                }
+                extern "C" {
+                    #[link_name = "\u{1}_ZN3app7fighter22set_opponent_team_slowEP9lua_Stateii"]
+                    pub fn set_opponent_team_slow(
+                        arg1: u64,
+                        arg2: i32,
+                        arg3: i32
+                    ) -> u64;
+                }
+                extern "C" {
+                    #[link_name = "\u{1}_ZN3app7fighter22set_opponent_team_stopEP9lua_Statei"]
+                    pub fn set_opponent_team_stop(
+                        arg1: u64,
+                        arg2: i32
+                    ) -> u64;
+                }
+                extern "C" {
+                    #[link_name = "\u{1}_ZN3app7fighter14waist_joint_idEPKNS_26BattleObjectModuleAccessorE"]
+                    pub fn waist_joint_id(
+                        arg1: *mut root::app::BattleObjectModuleAccessor
+                    ) -> u64;
+                }
+            }
+
             pub mod Article {
                 #[allow(unused_imports)]
                 use super::super::super::super::root;
