@@ -813,11 +813,9 @@ pub mod root {
         pub struct WeaponShizueFishingrodLinkEventReel {
             pub _address: u8,
         }
-        #[repr(C)]
+        #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
-        pub struct AttackDirectionAxis {
-            pub _address: u8,
-        }
+        pub struct AttackDirectionAxis(pub i32)
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct SpecialPaintKind {
