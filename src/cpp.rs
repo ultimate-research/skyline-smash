@@ -815,7 +815,7 @@ pub mod root {
         }
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
-        pub struct AttackDirectionAxis(pub i32)
+        pub struct AttackDirectionAxis(pub i32);
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct SpecialPaintKind {
