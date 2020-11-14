@@ -425,6 +425,12 @@ impl From<LuaConst> for i32 {
     }
 }
 
+impl From<LuaConst> for u32 {
+    fn from(lua_const: LuaConst) -> Self {
+        *lua_const as u32
+    }
+}
+
 impl Clone for LuaConst {
     fn clone(&self) -> Self {
         LuaConst::new(self.lua_bind_hash)
