@@ -4,198 +4,192 @@ pub mod l2c_value;
 
 #[allow(non_snake_case, non_camel_case_types, non_upper_case_globals)]
 pub mod root {
-	use super::root;
+    use super::root;
 
-	type uint = u32;
+    type uint = u32;
 
-	#[repr(C)]
-	#[derive(Copy, Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
-	pub struct __BindgenBitfieldUnit<Storage, Align> {
-		storage: Storage,
-		align: [Align; 0],
-	}
-	impl<Storage, Align> __BindgenBitfieldUnit<Storage, Align> {
-		#[inline]
-		pub const fn new(storage: Storage) -> Self {
-			Self { storage, align: [] }
-		}
-	}
-	impl<Storage, Align> __BindgenBitfieldUnit<Storage, Align>
-	where
-		Storage: AsRef<[u8]> + AsMut<[u8]>,
-	{
-		#[inline]
-		pub fn get_bit(&self, index: usize) -> bool {
-			debug_assert!(index / 8 < self.storage.as_ref().len());
-			let byte_index = index / 8;
-			let byte = self.storage.as_ref()[byte_index];
-			let bit_index = if cfg!(target_endian = "big") {
-				7 - (index % 8)
-			} else {
-				index % 8
-			};
-			let mask = 1 << bit_index;
-			byte & mask == mask
-		}
-		#[inline]
-		pub fn set_bit(&mut self, index: usize, val: bool) {
-			debug_assert!(index / 8 < self.storage.as_ref().len());
-			let byte_index = index / 8;
-			let byte = &mut self.storage.as_mut()[byte_index];
-			let bit_index = if cfg!(target_endian = "big") {
-				7 - (index % 8)
-			} else {
-				index % 8
-			};
-			let mask = 1 << bit_index;
-			if val {
-				*byte |= mask;
-			} else {
-				*byte &= !mask;
-			}
-		}
-		#[inline]
-		pub fn get(&self, bit_offset: usize, bit_width: u8) -> u64 {
-			debug_assert!(bit_width <= 64);
-			debug_assert!(bit_offset / 8 < self.storage.as_ref().len());
-			debug_assert!((bit_offset + (bit_width as usize)) / 8 <= self.storage.as_ref().len());
-			let mut val = 0;
-			for i in 0..(bit_width as usize) {
-				if self.get_bit(i + bit_offset) {
-					let index = if cfg!(target_endian = "big") {
-						bit_width as usize - 1 - i
-					} else {
-						i
-					};
-					val |= 1 << index;
-				}
-			}
-			val
-		}
-		#[inline]
-		pub fn set(&mut self, bit_offset: usize, bit_width: u8, val: u64) {
-			debug_assert!(bit_width <= 64);
-			debug_assert!(bit_offset / 8 < self.storage.as_ref().len());
-			debug_assert!((bit_offset + (bit_width as usize)) / 8 <= self.storage.as_ref().len());
-			for i in 0..(bit_width as usize) {
-				let mask = 1 << i;
-				let val_bit_is_set = val & mask == mask;
-				let index = if cfg!(target_endian = "big") {
-					bit_width as usize - 1 - i
-				} else {
-					i
-				};
-				self.set_bit(index + bit_offset, val_bit_is_set);
-			}
-		}
-	}
+    #[repr(C)]
+    #[derive(Copy, Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+    pub struct __BindgenBitfieldUnit<Storage, Align> {
+        storage: Storage,
+        align: [Align; 0],
+    }
+    impl<Storage, Align> __BindgenBitfieldUnit<Storage, Align> {
+        #[inline]
+        pub const fn new(storage: Storage) -> Self {
+            Self { storage, align: [] }
+        }
+    }
+    impl<Storage, Align> __BindgenBitfieldUnit<Storage, Align>
+    where
+        Storage: AsRef<[u8]> + AsMut<[u8]>,
+    {
+        #[inline]
+        pub fn get_bit(&self, index: usize) -> bool {
+            debug_assert!(index / 8 < self.storage.as_ref().len());
+            let byte_index = index / 8;
+            let byte = self.storage.as_ref()[byte_index];
+            let bit_index = if cfg!(target_endian = "big") {
+                7 - (index % 8)
+            } else {
+                index % 8
+            };
+            let mask = 1 << bit_index;
+            byte & mask == mask
+        }
+        #[inline]
+        pub fn set_bit(&mut self, index: usize, val: bool) {
+            debug_assert!(index / 8 < self.storage.as_ref().len());
+            let byte_index = index / 8;
+            let byte = &mut self.storage.as_mut()[byte_index];
+            let bit_index = if cfg!(target_endian = "big") {
+                7 - (index % 8)
+            } else {
+                index % 8
+            };
+            let mask = 1 << bit_index;
+            if val {
+                *byte |= mask;
+            } else {
+                *byte &= !mask;
+            }
+        }
+        #[inline]
+        pub fn get(&self, bit_offset: usize, bit_width: u8) -> u64 {
+            debug_assert!(bit_width <= 64);
+            debug_assert!(bit_offset / 8 < self.storage.as_ref().len());
+            debug_assert!((bit_offset + (bit_width as usize)) / 8 <= self.storage.as_ref().len());
+            let mut val = 0;
+            for i in 0..(bit_width as usize) {
+                if self.get_bit(i + bit_offset) {
+                    let index = if cfg!(target_endian = "big") {
+                        bit_width as usize - 1 - i
+                    } else {
+                        i
+                    };
+                    val |= 1 << index;
+                }
+            }
+            val
+        }
+        #[inline]
+        pub fn set(&mut self, bit_offset: usize, bit_width: u8, val: u64) {
+            debug_assert!(bit_width <= 64);
+            debug_assert!(bit_offset / 8 < self.storage.as_ref().len());
+            debug_assert!((bit_offset + (bit_width as usize)) / 8 <= self.storage.as_ref().len());
+            for i in 0..(bit_width as usize) {
+                let mask = 1 << i;
+                let val_bit_is_set = val & mask == mask;
+                let index = if cfg!(target_endian = "big") {
+                    bit_width as usize - 1 - i
+                } else {
+                    i
+                };
+                self.set_bit(index + bit_offset, val_bit_is_set);
+            }
+        }
+    }
 
-	#[repr(C)]
-	#[derive(Default)]
-	pub struct __IncompleteArrayField<T>(::core::marker::PhantomData<T>, [T; 0]);
-	impl<T> __IncompleteArrayField<T> {
-		#[inline]
-		pub const fn new() -> Self {
-			__IncompleteArrayField(::core::marker::PhantomData, [])
-		}
-		#[inline]
-		pub fn as_ptr(&self) -> *const T {
-			self as *const _ as *const T
-		}
-		#[inline]
-		pub fn as_mut_ptr(&mut self) -> *mut T {
-			self as *mut _ as *mut T
-		}
-		#[inline]
-		pub unsafe fn as_slice(&self, len: usize) -> &[T] {
-			::core::slice::from_raw_parts(self.as_ptr(), len)
-		}
-		#[inline]
-		pub unsafe fn as_mut_slice(&mut self, len: usize) -> &mut [T] {
-			::core::slice::from_raw_parts_mut(self.as_mut_ptr(), len)
-		}
-	}
-	impl<T> ::core::fmt::Debug for __IncompleteArrayField<T> {
-		fn fmt(&self, fmt: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
-			fmt.write_str("__IncompleteArrayField")
-		}
-	}
-	#[repr(C)]
-	pub struct __BindgenUnionField<T>(::core::marker::PhantomData<T>);
-	impl<T> __BindgenUnionField<T> {
-		#[inline]
-		pub const fn new() -> Self {
-			__BindgenUnionField(::core::marker::PhantomData)
-		}
-		#[inline]
-		pub unsafe fn as_ref(&self) -> &T {
-			::core::mem::transmute(self)
-		}
-		#[inline]
-		pub unsafe fn as_mut(&mut self) -> &mut T {
-			::core::mem::transmute(self)
-		}
-	}
-	impl<T> ::core::default::Default for __BindgenUnionField<T> {
-		#[inline]
-		fn default() -> Self {
-			Self::new()
-		}
-	}
-	impl<T> ::core::clone::Clone for __BindgenUnionField<T> {
-		#[inline]
-		fn clone(&self) -> Self {
-			Self::new()
-		}
-	}
-	impl<T> ::core::marker::Copy for __BindgenUnionField<T> {}
-	impl<T> ::core::fmt::Debug for __BindgenUnionField<T> {
-		fn fmt(&self, fmt: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
-			fmt.write_str("__BindgenUnionField")
-		}
-	}
-	impl<T> ::core::hash::Hash for __BindgenUnionField<T> {
-		fn hash<H: ::core::hash::Hasher>(&self, _state: &mut H) {}
-	}
-	impl<T> ::core::cmp::PartialEq for __BindgenUnionField<T> {
-		fn eq(&self, _other: &__BindgenUnionField<T>) -> bool {
-			true
-		}
-	}
-	impl<T> ::core::cmp::Eq for __BindgenUnionField<T> {}
+    #[repr(C)]
+    #[derive(Default)]
+    pub struct __IncompleteArrayField<T>(::core::marker::PhantomData<T>, [T; 0]);
+    impl<T> __IncompleteArrayField<T> {
+        #[inline]
+        pub const fn new() -> Self {
+            __IncompleteArrayField(::core::marker::PhantomData, [])
+        }
+        #[inline]
+        pub fn as_ptr(&self) -> *const T {
+            self as *const _ as *const T
+        }
+        #[inline]
+        pub fn as_mut_ptr(&mut self) -> *mut T {
+            self as *mut _ as *mut T
+        }
+        #[inline]
+        pub unsafe fn as_slice(&self, len: usize) -> &[T] {
+            ::core::slice::from_raw_parts(self.as_ptr(), len)
+        }
+        #[inline]
+        pub unsafe fn as_mut_slice(&mut self, len: usize) -> &mut [T] {
+            ::core::slice::from_raw_parts_mut(self.as_mut_ptr(), len)
+        }
+    }
+    impl<T> ::core::fmt::Debug for __IncompleteArrayField<T> {
+        fn fmt(&self, fmt: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
+            fmt.write_str("__IncompleteArrayField")
+        }
+    }
+    #[repr(C)]
+    pub struct __BindgenUnionField<T>(::core::marker::PhantomData<T>);
+    impl<T> __BindgenUnionField<T> {
+        #[inline]
+        pub const fn new() -> Self {
+            __BindgenUnionField(::core::marker::PhantomData)
+        }
+        #[inline]
+        pub unsafe fn as_ref(&self) -> &T {
+            ::core::mem::transmute(self)
+        }
+        #[inline]
+        pub unsafe fn as_mut(&mut self) -> &mut T {
+            ::core::mem::transmute(self)
+        }
+    }
+    impl<T> ::core::default::Default for __BindgenUnionField<T> {
+        #[inline]
+        fn default() -> Self {
+            Self::new()
+        }
+    }
+    impl<T> ::core::clone::Clone for __BindgenUnionField<T> {
+        #[inline]
+        fn clone(&self) -> Self {
+            Self::new()
+        }
+    }
+    impl<T> ::core::marker::Copy for __BindgenUnionField<T> {}
+    impl<T> ::core::fmt::Debug for __BindgenUnionField<T> {
+        fn fmt(&self, fmt: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
+            fmt.write_str("__BindgenUnionField")
+        }
+    }
+    impl<T> ::core::hash::Hash for __BindgenUnionField<T> {
+        fn hash<H: ::core::hash::Hasher>(&self, _state: &mut H) {}
+    }
+    impl<T> ::core::cmp::PartialEq for __BindgenUnionField<T> {
+        fn eq(&self, _other: &__BindgenUnionField<T>) -> bool {
+            true
+        }
+    }
+    impl<T> ::core::cmp::Eq for __BindgenUnionField<T> {}
 
-	#[derive(Copy, Clone, Default, Debug)]
-	#[repr(C)]
-	pub struct lua_State {
-		pub _address: u64
-	}
+    #[derive(Copy, Clone, Default, Debug)]
+    #[repr(C)]
+    pub struct lua_State {
+        pub _address: u64
+    }
 
-	pub mod app {
-		#[allow(unused_imports)]
-		use super::super::root;
-		pub mod SoundModule {
-			#[allow(unused_imports)]
-			use super::super::super::root;
-			#[repr(C)]
-			#[derive(Debug, Copy, Clone)]
-			pub struct enSEType {
-				pub _address: u8,
-			}
-		}
-		#[derive(Copy, Clone, Default, Debug)]
-		#[repr(C)]
-		pub struct BattleObject {
-			pub _address: u64
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct Article {
-			pub battle_object : BattleObject,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct Fighter {
-			pub battle_object : BattleObject,
+    pub mod app {
+        #[allow(unused_imports)]
+        use super::super::root;
+        #[repr(transparent)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct enSEType(pub i32);
+        #[derive(Copy, Clone, Default, Debug)]
+        #[repr(C)]
+        pub struct BattleObject {
+            pub _address: u64
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct Article {
+            pub battle_object : BattleObject,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct Fighter {
+            pub battle_object : BattleObject,
 		}
 		extern "C" {
 			#[link_name = "\u{1}_ZN3app7fighter23get_fighter_entry_countEv"]
@@ -343,1777 +337,1739 @@ pub mod root {
 				Fighter_waist_joint_id(module_accessor)
 			}
 		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct Weapon {
-			pub battle_object : BattleObject,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct BattleObjectModuleAccessor {
-			pub _address: u64,
-			pub info: u32
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterModuleAccessor {
-			pub battle_object_module_accessor : BattleObjectModuleAccessor,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct ItemModuleAccessor {
-			pub battle_object_module_accessor : BattleObjectModuleAccessor,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct LinkEventLassoHang {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct AreaContactLog {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterBraveSpecialLwCommand {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterBraveSpecialLwVariousKind {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterRidleyLinkEventMotion {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct LinkEventCapturePulled {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct DamageInfo {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct DamageNoReactionMode {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct BattleObjectSlow {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct GimmickEventPipe {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct CameraStatus {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterManager {
-			pub _address: u64,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct stWaterAreaInfo {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct GimmickEventDrumCheckNeedHide {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct LinkEventCaptureItem {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct GimmickEventCatch {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct WeaponRobotHominglaserLinkEventBurst {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterInformation {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct LinkEventPos {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct LuaScriptStatusFuncID {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct KineticEnergyNormal {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterPikminLinkEventWeaponPikminSetInt {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct OnCalcParamEvent {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct GimmickEventTornadoEscape {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct MaterialAnimeKind {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct GroundTouchFlag {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct WeaponShizueFishingrodLinkEventShoot {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct Rhombus2 {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct VisibilityMode {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct ShieldStatus {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterPikminLinkEventWeaponPikminOnFlag {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct LinkEventCaptureDriver {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct GroundCollisionLineHandle {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct ArticleOperationTarget {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct GimmickEventPos {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct GimmickEvent {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct ShieldFront {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct WeaponRobotHominglaserLinkEventSearch {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterRyuLinkEventFinalMoveTarget {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct BossManager {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct GimmickEventSpring {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct AttackHeight {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct LinkEventMask {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct LinkEventThrow {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterKineticEnergyGravity {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct ItemParamAccessor {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct GimmickEventTornadoMoveInfo {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct GimmickEventBarrel {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct LinkEventStarShot {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct ItemSpecializedParamFloat {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct LinkEventCaptureFishingrodDamage {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterEntryID(pub i32);
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct AttackSetOffKind {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterSpiritsSupportSkill {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterInklingLinkEventPaint {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct StageManager {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterKineticEnergyMotion {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct GimmickEventDrumRelease {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct GimmickEventLadder {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		/// Use to hold hitbox data
-		///
-		///
-		/// # Potential Actual Struct
-		///
-		/// ```
-		// offset_x : f32,
-		// offset_y : f32,
-		// offset_z : f32,
-		// offset2_x : f32,
-		// offset2_y : f32,
-		// offset2_z : f32,
-		// unk1: u64,
-		// power_: f32, //damage
-		// size_: f32, //size
-		// vector_: i32, //angle
-		// r_eff_: i32, //kbg
-		// r_fix_: i32, //fkb
-		// r_add_: i32, //bkb
-		// slip_: f32, //trip chance
-		// stop_frame_: f32, //hitlag multiplier
-		// stop_delay_: f32, //sdi multiplier
-		// node_: u64, //bone
-		// target_situation_: i32, //ground/air
-		// target_lr_: i32, //opponent's facing (for shulk back slash?)
-		// target_part_: i32, //collision part
-		// attr_: u64, //collision attribute
-		// sound_level_: i32, //SFX level
-		// sound_attr_: i32, //SFX type
-		// set_off_: i32, //clang/rebound
-		// no_scale_: bool, //ignore model scaling
-		// shield_: bool, //does it hit shields
-		// reflector_: bool, //reflectable
-		// absorber_: bool, //absorbable
-		// direct_: bool, //direct/indirect
-		// no_invincible_: bool, //ignore invincibility
-		// no_xlu_: bool, //ignore intangibility
-		// lr_check_: i32, // facing restrict
-		// catch_: bool, //is it a grab
-		// no_team_: bool, //friendly fire
-		// no_stop_: bool, //disable hitlag
-		// no_effect_: bool, //flinchless
-		// region_: i32, //type (ex: ATTACK_REGION_KICK)
-		// ignore_down_: bool, //ignore downed opponents
-		// check_type_: i32, //hitbits
-		// sub_shield_: u64, //shield damage
-		// camera_quake_: u64, //camera quake
-		// serial_hit_frame_: f32, //rehit rate
-		// force_reaction_: bool, //launch no matter what
-		// no_attacker_log_: bool, //ignore staling?
-		// no_weight_reaction_: bool, //set weight
-		// no_reaction_search_: bool, //search hitbox
-		// keep_rumble_: bool, //keep rumble
-		// composition_speed_: f32, //no idea
-		// target_pos_node_: u64, //which of opponent's bones is moved into position specified by target_pos_offset (used in autolink angles such as 368)
-		// target_pos_offset_x : f32, //where opponent is moved to (used in autolink angles such as 368)
-		// target_pos_offset_y : f32,
-		// target_pos_offset_z : f32,
-		// target_pos_frame_: f32, //how long it takes opponent to move into the position specified by target pos_offset (used in autolink angles such as 368)
-		// r_fix_damage_speed_up_: bool //whether or not to undergo balloon knockback during set knockback
-		/// ```
-		pub struct AttackData {
-			pub x : f32,
-			pub y : f32,
-			pub z : f32,
-			pub unk1: u32,
-			pub x2 : f32,
-			pub y2 : f32,
-			pub z2 : f32,
-			pub unk2: u32,
-			pub power: f32, //damage
-			pub size: f32, //size
-			pub vector: i32, //angle
-			pub r_eff: i32, //kbg
-			pub r_fix: i32, //fkb
-			pub r_add: i32, //bkb
-			pub slip: f32, //trip chance
-			pub stop_frame: f32, //hitlag multiplier
-			pub stop_delay: f32, //sdi multiplier
-			pub node: u64, //bone
-			pub check_type: u16, //hitbits
-			pub target_situation: u16, //ground/air
-			pub target_lr: u16, //opponent's facing (for shulk back slash?)
-			pub target_part: u16, //collision part
-			pub attr: u64, //collision attribute
-			pub sound_level: u16, //SFX level
-			pub sound_attr: u16, //SFX type
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct GimmickEventDrumPos {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct GimmickEventDrumShake {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct GimmickEventDrumCheckNeedLock {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct ItemSize {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterBayonettaFinalModule {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct CutInTransactor {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterRyuLinkEventFinalDeadDamage {
-			pub _address: u8,
-		}
-		#[repr(transparent)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct ItemCommonParamFloat(f32);
-		#[repr(transparent)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct BossCommonParamFloat(f32);
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct GroundCollisionLine {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterAvailableFinal {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterPikminLinkEventWeaponPikminSyncPos {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterPitBFinalModule {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct QuickItemTreatType {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct Item {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct ItemSpecializedParamInt {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct WeaponSnakeMissileKineticEnergyNormal {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct SituationKind {
-			pub situation_kind: i32,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct LinkEventYoshiTamagoDamageEffect {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct LuaScriptLineID {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct GroundCorrectKind {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterPokemonLinkEventChange {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct BattleObjectWorld {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct GimmickEventSlashEscape {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct AttackAbsoluteData {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct MotionNodeRotateCompose {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct GimmickEventWarp {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct LinkEvent {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct ItemStatusParamFloat {
-			pub _address: u8,
-		}
-		///A transparent struct to specify types of HIT_STATUS's
-		/// Example:
-		///```
-		///HitModule::set_whole(module_accessor, app::HitStatus(*HIT_STATUS_XLU), 0);
-		///```
-		#[repr(transparent)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct HitStatus (pub i32);
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct HitStopMulTarget {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterPikminLinkEventWeaponPikminSetPowerMulStatus {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct CutInType {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct CutInData {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct StopOtherKind {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct WeaponShizueFishingrodLinkEventCliff {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct ItemStatusParamInt {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct MODEL_COLOR_TYPE {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct LinkEventFinal {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct ItemAiType {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct CutInPriority {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct ShadowDrawFlag {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct GimmickEventNotify {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct KineticEnergyRotNormal {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct GimmickEventPresenter {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct BattleObjectManager {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct WeaponShizueFishingrodLinkEventReel {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct AttackDirectionAxis {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct SpecialPaintKind {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct ItemPickupSearchMode {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterCutInManager {
-			pub _address: u8,
-		}
-		#[repr(transparent)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct ItemKind (pub i32);
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct WeaponSnakeNikitaMissileKineticEnergyNormal {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct MotionNodeRotateOrder {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterPikminLinkEventWeaponPikminConstraint {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct Circle {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterPikminLinkEventWeaponPikminChangeStatus {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct LinkAttribute {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct ItemManager {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct WorkKind {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterParamAccessor2 {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct LinkEventCaptureMimikkyu {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct MaterialAnimeLoopFlag {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct WeaponKineticEnergyGravity {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct EffectScreenBlendType {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct DamageLog {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct GimmickEventDrumEscape {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct GimmickEventTornadoShootInfo {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterKind {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterKineticEnergyController {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterPikminLinkEventWeaponPikminSetFloat {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct GimmickEventSlashLockInfo {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterCloudLinkEventFinal {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterPikminLinkEventWeaponPikminChangeMotion {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct ItemSlopeType {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct KineticEnergy {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct ItemStatusParamBool {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterPikminLinkEventWeaponPikminSyncLR {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct GroundTouchID {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct EffectScreenLayer {
-			pub _address: u8,
-		}
-		#[repr(transparent)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct BossCommonParamInt(i32);
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct AttackerAttribute {
-			pub _address: u8,
-		}
-		#[repr(transparent)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct ItemCommonParamInt(i32);
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct LinkEventCapture {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct ItemManagerItemKind {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct WeaponShizueFishingrodLinkEventCut {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct FighterEntry {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct ItemKineticFlag {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct ShieldType {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct GroundCliffCheckKind {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct enStatusBGMType {
-			pub _address: u8,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct LinkEventTouchItem {
-			pub _address: u8,
-		}
-		pub mod sv_information {
-			#[allow(unused_imports)]
-			use super::super::super::root;
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app14sv_information11is_ready_goEv"]
-				pub fn is_ready_go() -> bool;
-			}
-		}
-		pub mod FL_sv_module_access {
-			#[allow(unused_imports)]
-			use super::super::super::root;
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app19FL_sv_module_access5slopeEP9lua_State"]
-				pub fn slope(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app19FL_sv_module_access7captureEP9lua_State"]
-				pub fn capture(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app19FL_sv_module_access4linkEP9lua_State"]
-				pub fn link(arg1: u64);
-			}
-		}
-		
-		pub mod utility {
-			#[allow(unused_imports)]
-			use super::super::super::root;
-			pub fn get_category(module_accessor: &mut root::app::BattleObjectModuleAccessor) -> i32 {
-				return (module_accessor.info >> 28) as u8 as i32;
-			}
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct Weapon {
+            pub battle_object : BattleObject,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct BattleObjectModuleAccessor {
+            pub _address: u64,
+            pub info: u32
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterModuleAccessor {
+            pub battle_object_module_accessor : BattleObjectModuleAccessor,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct ItemModuleAccessor {
+            pub battle_object_module_accessor : BattleObjectModuleAccessor,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct LinkEventLassoHang {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct AreaContactLog {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterBraveSpecialLwCommand {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterBraveSpecialLwVariousKind {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterRidleyLinkEventMotion {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct LinkEventCapturePulled {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct DamageInfo {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct DamageNoReactionMode {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct BattleObjectSlow {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GimmickEventPipe {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct CameraStatus {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterManager {
+            pub _address: u64,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct stWaterAreaInfo {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GimmickEventDrumCheckNeedHide {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct LinkEventCaptureItem {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GimmickEventCatch {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct WeaponRobotHominglaserLinkEventBurst {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterInformation {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct LinkEventPos {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct LuaScriptStatusFuncID {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct KineticEnergyNormal {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterPikminLinkEventWeaponPikminSetInt {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct OnCalcParamEvent {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GimmickEventTornadoEscape {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct MaterialAnimeKind {
+            pub _address: u8,
+        }
+        #[repr(transparent)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GroundTouchFlag(pub i32);
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct WeaponShizueFishingrodLinkEventShoot {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct Rhombus2 {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct VisibilityMode {
+            pub _address: u8,
+        }
+        #[repr(transparent)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct ShieldStatus(pub i32);
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterPikminLinkEventWeaponPikminOnFlag {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct LinkEventCaptureDriver {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GroundCollisionLineHandle {
+            pub _address: u8,
+        }
+        #[repr(transparent)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct ArticleOperationTarget(pub i32);
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GimmickEventPos {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GimmickEvent {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct ShieldFront {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct WeaponRobotHominglaserLinkEventSearch {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterRyuLinkEventFinalMoveTarget {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct BossManager {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GimmickEventSpring {
+            pub _address: u8,
+        }
+        #[repr(transparent)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct AttackHeight(pub i32);
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct LinkEventMask {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct LinkEventThrow {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterKineticEnergyGravity {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct ItemParamAccessor {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GimmickEventTornadoMoveInfo {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GimmickEventBarrel {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct LinkEventStarShot {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct ItemSpecializedParamFloat {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct LinkEventCaptureFishingrodDamage {
+            pub _address: u8,
+        }
+        #[repr(transparent)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterEntryID(pub i32);
+        #[repr(transparent)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct AttackSetOffKind(pub i32);
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterSpiritsSupportSkill {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterInklingLinkEventPaint {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct StageManager {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterKineticEnergyMotion {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GimmickEventDrumRelease {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GimmickEventLadder {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        /// Use to hold hitbox data
+        ///
+        ///
+        /// # Potential Actual Struct
+        ///
+        /// ```
+        // offset_x : f32,
+        // offset_y : f32,
+        // offset_z : f32,
+        // offset2_x : f32,
+        // offset2_y : f32,
+        // offset2_z : f32,
+        // unk1: u64,
+        // power_: f32, //damage
+        // size_: f32, //size
+        // vector_: i32, //angle
+        // r_eff_: i32, //kbg
+        // r_fix_: i32, //fkb
+        // r_add_: i32, //bkb
+        // slip_: f32, //trip chance
+        // stop_frame_: f32, //hitlag multiplier
+        // stop_delay_: f32, //sdi multiplier
+        // node_: u64, //bone
+        // target_situation_: i32, //ground/air
+        // target_lr_: i32, //opponent's facing (for shulk back slash?)
+        // target_part_: i32, //collision part
+        // attr_: u64, //collision attribute
+        // sound_level_: i32, //SFX level
+        // sound_attr_: i32, //SFX type
+        // set_off_: i32, //clang/rebound
+        // no_scale_: bool, //ignore model scaling
+        // shield_: bool, //does it hit shields
+        // reflector_: bool, //reflectable
+        // absorber_: bool, //absorbable
+        // direct_: bool, //direct/indirect
+        // no_invincible_: bool, //ignore invincibility
+        // no_xlu_: bool, //ignore intangibility
+        // lr_check_: i32, // facing restrict
+        // catch_: bool, //is it a grab
+        // no_team_: bool, //friendly fire
+        // no_stop_: bool, //disable hitlag
+        // no_effect_: bool, //flinchless
+        // region_: i32, //type (ex: ATTACK_REGION_KICK)
+        // ignore_down_: bool, //ignore downed opponents
+        // check_type_: i32, //hitbits
+        // sub_shield_: u64, //shield damage
+        // camera_quake_: u64, //camera quake
+        // serial_hit_frame_: f32, //rehit rate
+        // force_reaction_: bool, //launch no matter what
+        // no_attacker_log_: bool, //ignore staling?
+        // no_weight_reaction_: bool, //set weight
+        // no_reaction_search_: bool, //search hitbox
+        // keep_rumble_: bool, //keep rumble
+        // composition_speed_: f32, //no idea
+        // target_pos_node_: u64, //which of opponent's bones is moved into position specified by target_pos_offset (used in autolink angles such as 368)
+        // target_pos_offset_x : f32, //where opponent is moved to (used in autolink angles such as 368)
+        // target_pos_offset_y : f32,
+        // target_pos_offset_z : f32,
+        // target_pos_frame_: f32, //how long it takes opponent to move into the position specified by target pos_offset (used in autolink angles such as 368)
+        // r_fix_damage_speed_up_: bool //whether or not to undergo balloon knockback during set knockback
+        /// ```
+        pub struct AttackData {
+            pub x : f32,
+            pub y : f32,
+            pub z : f32,
+            pub unk1: u32,
+            pub x2 : f32,
+            pub y2 : f32,
+            pub z2 : f32,
+            pub unk2: u32,
+            pub power: f32, //damage
+            pub size: f32, //size
+            pub vector: i32, //angle
+            pub r_eff: i32, //kbg
+            pub r_fix: i32, //fkb
+            pub r_add: i32, //bkb
+            pub slip: f32, //trip chance
+            pub stop_frame: f32, //hitlag multiplier
+            pub stop_delay: f32, //sdi multiplier
+            pub node: u64, //bone
+            pub check_type: u16, //hitbits
+            pub target_situation: u16, //ground/air
+            pub target_lr: u16, //opponent's facing (for shulk back slash?)
+            pub target_part: u16, //collision part
+            pub attr: u64, //collision attribute
+            pub sound_level: u16, //SFX level
+            pub sound_attr: u16, //SFX type
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GimmickEventDrumPos {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GimmickEventDrumShake {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GimmickEventDrumCheckNeedLock {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct ItemSize {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterBayonettaFinalModule {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct CutInTransactor {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterRyuLinkEventFinalDeadDamage {
+            pub _address: u8,
+        }
+        #[repr(transparent)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct ItemCommonParamFloat(f32);
+        #[repr(transparent)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct BossCommonParamFloat(f32);
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GroundCollisionLine {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterAvailableFinal {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterPikminLinkEventWeaponPikminSyncPos {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterPitBFinalModule {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct QuickItemTreatType {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct Item {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct ItemSpecializedParamInt {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct WeaponSnakeMissileKineticEnergyNormal {
+            pub _address: u8,
+        }
+        #[repr(transparent)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct SituationKind(pub i32);
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct LinkEventYoshiTamagoDamageEffect {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct LuaScriptLineID {
+            pub _address: u8,
+        }
+        #[repr(transparent)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GroundCorrectKind(pub i32);
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterPokemonLinkEventChange {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct BattleObjectWorld {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GimmickEventSlashEscape {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct AttackAbsoluteData {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct MotionNodeRotateCompose {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GimmickEventWarp {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct LinkEvent {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct ItemStatusParamFloat {
+            pub _address: u8,
+        }
+        ///A transparent struct to specify types of HIT_STATUS's
+        /// Example:
+        ///```
+        ///HitModule::set_whole(module_accessor, app::HitStatus(*HIT_STATUS_XLU), 0);
+        ///```
+        #[repr(transparent)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct HitStatus (pub i32);
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct HitStopMulTarget {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterPikminLinkEventWeaponPikminSetPowerMulStatus {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct CutInType {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct CutInData {
+            pub _address: u8,
+        }
+        #[repr(transparent)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct StopOtherKind(pub i32);
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct WeaponShizueFishingrodLinkEventCliff {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct ItemStatusParamInt {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct MODEL_COLOR_TYPE {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct LinkEventFinal {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct ItemAiType {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct CutInPriority {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct ShadowDrawFlag {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GimmickEventNotify {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct KineticEnergyRotNormal {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GimmickEventPresenter {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct BattleObjectManager {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct WeaponShizueFishingrodLinkEventReel {
+            pub _address: u8,
+        }
+        #[repr(transparent)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct AttackDirectionAxis(pub i32);
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct SpecialPaintKind {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct ItemPickupSearchMode {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterCutInManager {
+            pub _address: u8,
+        }
+        #[repr(transparent)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct ItemKind (pub i32);
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct WeaponSnakeNikitaMissileKineticEnergyNormal {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct MotionNodeRotateOrder {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterPikminLinkEventWeaponPikminConstraint {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct Circle {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterPikminLinkEventWeaponPikminChangeStatus {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct LinkAttribute {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct ItemManager {
+            pub _address: u8,
+        }
+        #[repr(transparent)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct WorkKind(pub i32);
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterParamAccessor2 {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct LinkEventCaptureMimikkyu {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct MaterialAnimeLoopFlag {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct WeaponKineticEnergyGravity {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct EffectScreenBlendType {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct DamageLog {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GimmickEventDrumEscape {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GimmickEventTornadoShootInfo {
+            pub _address: u8,
+        }
+        #[repr(transparent)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterKind(pub i32);
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterKineticEnergyController {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterPikminLinkEventWeaponPikminSetFloat {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GimmickEventSlashLockInfo {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterCloudLinkEventFinal {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterPikminLinkEventWeaponPikminChangeMotion {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct ItemSlopeType {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct KineticEnergy {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct ItemStatusParamBool {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterPikminLinkEventWeaponPikminSyncLR {
+            pub _address: u8,
+        }
+        #[repr(transparent)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GroundTouchID(pub i32);
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct EffectScreenLayer {
+            pub _address: u8,
+        }
+        #[repr(transparent)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct BossCommonParamInt(i32);
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct AttackerAttribute {
+            pub _address: u8,
+        }
+        #[repr(transparent)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct ItemCommonParamInt(i32);
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct LinkEventCapture {
+            pub _address: u8,
+        }
+        #[repr(transparent)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct ItemManagerItemKind(pub i32);
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct WeaponShizueFishingrodLinkEventCut {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct FighterEntry {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct ItemKineticFlag {
+            pub _address: u8,
+        }
+        #[repr(transparent)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct ShieldType(pub i32);
+        #[repr(transparent)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct GroundCliffCheckKind(pub i32);
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct enStatusBGMType {
+            pub _address: u8,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct LinkEventTouchItem {
+            pub _address: u8,
+        }
+        pub mod FL_sv_module_access {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app19FL_sv_module_access5slopeEP9lua_State"]
+                pub fn slope(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app19FL_sv_module_access7captureEP9lua_State"]
+                pub fn capture(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app19FL_sv_module_access4linkEP9lua_State"]
+                pub fn link(arg1: u64);
+            }
+        }
+        
+        pub mod utility {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            pub fn get_category(module_accessor: &mut root::app::BattleObjectModuleAccessor) -> i32 {
+                return (module_accessor.info >> 28) as u8 as i32;
+            }
 
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app7utility8get_kindEPKNS_26BattleObjectModuleAccessorE"]
-				pub fn get_kind(module_accessor: &mut root::app::BattleObjectModuleAccessor) -> i32;
-			}
-		}
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app7utility8get_kindEPKNS_26BattleObjectModuleAccessorE"]
+                pub fn get_kind(module_accessor: &mut root::app::BattleObjectModuleAccessor) -> i32;
+            }
+        }
 
-		pub mod debug {
-			#[allow(unused_imports)]
-			use super::super::super::root;
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app5debug17add_debug_commandEP9lua_StatePKci"]
-				pub fn add_debug_command(
-					arg1: u64,
-					arg2: libc::c_schar,
-					arg3: i32
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app5debug9draw_lineEP9lua_StateRKN3phx8Vector2fES6_i"]
-				pub fn draw_line(
-					arg1: u64,
-					arg2: *const root::phx::Vector2f,
-					arg3: *const root::phx::Vector2f,
-					arg4: i32
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app5debug9log_fatalEPKc"]
-				pub fn log_fatal(
-					arg1: libc::c_schar
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app5debug8log_infoEPKc"]
-				pub fn log_info(
-					arg1: libc::c_schar
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app5debug14set_draw_colorEP9lua_Stateffff"]
-				pub fn set_draw_color(
-					arg1: u64,
-					arg2: f32,
-					arg3: f32,
-					arg4: f32,
-					arg5: f32
-				)-> u64;
-			}
-		}
+        pub mod debug {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app5debug17add_debug_commandEP9lua_StatePKci"]
+                pub fn add_debug_command(
+                    arg1: u64,
+                    arg2: libc::c_schar,
+                    arg3: i32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app5debug9draw_lineEP9lua_StateRKN3phx8Vector2fES6_i"]
+                pub fn draw_line(
+                    arg1: u64,
+                    arg2: *const root::phx::Vector2f,
+                    arg3: *const root::phx::Vector2f,
+                    arg4: i32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app5debug9log_fatalEPKc"]
+                pub fn log_fatal(
+                    arg1: libc::c_schar
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app5debug8log_infoEPKc"]
+                pub fn log_info(
+                    arg1: libc::c_schar
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app5debug14set_draw_colorEP9lua_Stateffff"]
+                pub fn set_draw_color(
+                    arg1: u64,
+                    arg2: f32,
+                    arg3: f32,
+                    arg4: f32,
+                    arg5: f32
+                )-> u64;
+            }
+        }
 
 
-		pub mod item_private {
-			#[allow(unused_imports)]
-			use super::super::super::root;
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12item_private24regist_status_alias_hashEP9lua_StateiN3phx6Hash40E"]
-				pub fn regist_status_alias_hash(
-					arg1: u64,
-					arg2: i32,
-					arg3: root::phx::Hash40
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12item_private22restore_yoshi_hit_infoEP9lua_State"]
-				pub fn restore_yoshi_hit_info(
-					arg1: u64
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12item_private25send_event_mewtowo_thrownEP9lua_StateRKN3phx8Vector3fE"]
-				pub fn send_event_mewtowo_thrown(
-					arg1: u64,
-					arg2: *const root::phx::Vector3f
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12item_private41set_postponed_damage_check_on_process_hitEP9lua_Stateb"]
-				pub fn set_postponed_damage_check_on_process_hit(
-					arg1: u64,
-					arg2: bool
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12item_private22setup_ground_collisionEP9lua_State"]
-				pub fn setup_ground_collision(
-					arg1: u64
-				)-> u64;
-			}
-		}
+        pub mod item_private {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12item_private24regist_status_alias_hashEP9lua_StateiN3phx6Hash40E"]
+                pub fn regist_status_alias_hash(
+                    arg1: u64,
+                    arg2: i32,
+                    arg3: root::phx::Hash40
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12item_private22restore_yoshi_hit_infoEP9lua_State"]
+                pub fn restore_yoshi_hit_info(
+                    arg1: u64
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12item_private25send_event_mewtowo_thrownEP9lua_StateRKN3phx8Vector3fE"]
+                pub fn send_event_mewtowo_thrown(
+                    arg1: u64,
+                    arg2: *const root::phx::Vector3f
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12item_private41set_postponed_damage_check_on_process_hitEP9lua_Stateb"]
+                pub fn set_postponed_damage_check_on_process_hit(
+                    arg1: u64,
+                    arg2: bool
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12item_private22setup_ground_collisionEP9lua_State"]
+                pub fn setup_ground_collision(
+                    arg1: u64
+                )-> u64;
+            }
+        }
 
-		pub mod boss_private {
-			#[allow(unused_imports)]
-			use super::super::super::root;
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private20calc_boss_hp_mul_sumENS_8ItemKindERNS_26BattleObjectModuleAccessorE"]
-				pub fn calc_boss_hp_mul(
-					arg1: root::app::ItemKind,
-					arg2: *mut root::app::BattleObjectModuleAccessor
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private16clear_energy_allEP9lua_State"]
-				pub fn clear_energy_all(
-					arg1: u64
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private17clear_sub1_energyEP9lua_State"]
-				pub fn clear_sub1_energy(
-					arg1: u64
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private18common_param_floatENS_8ItemKindENS_20BossCommonParamFloatE"]
-				pub fn common_param_float(
-					arg1: root::app::ItemKind,
-					arg2: root::app::BossCommonParamFloat
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private16common_param_intENS_8ItemKindENS_18BossCommonParamIntE"]
-				pub fn common_param_int(
-					arg1: root::app::ItemKind,
-					arg2: root::app::BossCommonParamInt
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private37count_same_probability_mul_from_tableEP9lua_StateNS_8ItemKindEN3phx6Hash40Ef"]
-				pub fn count_same_probability_mul_from_table(
-					arg1: u64,
-					arg2: root::app::ItemKind,
-					arg3: root::phx::Hash40,
-					arg4: f32
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private32count_target_in_range_from_paramEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
-				pub fn count_target_in_range_from_param(
-					arg1: u64,
-					arg2: root::app::ItemKind,
-					arg3: root::phx::Hash40,
-					arg4: f32
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private11create_bossEP9lua_StateNS_8ItemKindEi"]
-				pub fn create_boss(
-					arg1: u64,
-					arg2: root::app::ItemKind,
-					arg3: i32
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private13create_weaponEP9lua_StateNS_8ItemKindEffff"]
-				pub fn create_weapon(
-					arg1: u64,
-					arg2: root::app::ItemKind,
-					arg3: f32,
-					arg4: f32,
-					arg5: f32,
-					arg6: f32
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private28create_weapon_with_variationEP9lua_StateNS_8ItemKindEiffff"]
-				pub fn create_weapon_with_variation(
-					arg1: u64,
-					arg2: root::app::ItemKind,
-					arg3: i32,
-					arg4: f32,
-					arg5: f32,
-					arg6: f32,
-					arg7: f32
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private26get_action_probability_mulEP9lua_StateN3phx6Hash40E"]
-				pub fn get_action_probability_mul(
-					arg1: u64,
-					arg2: root::phx::Hash40
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private30get_action_probability_mul_2ndEP9lua_StateN3phx6Hash40E"]
-				pub fn get_action_probability_mul_2nd(
-					arg1: u64,
-					arg2: root::phx::Hash40
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private14get_damage_mulEj"]
-				pub fn get_damage_mul(
-					arg1: libc::c_uint
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private31get_status_kind_from_alias_hashEP9lua_StateN3phx6Hash40E"]
-				pub fn get_status_kind_from_alias_hash(
-					arg1: u64,
-					arg2: root::phx::Hash40
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private15is_boss_no_deadEv"]
-				pub fn is_boss_no_dead()-> bool;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private12is_boss_stopEv"]
-				pub fn is_boss_stop()-> bool;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private18is_multi_play_modeEb"]
-				pub fn is_multi_play_mode(
-					arg1: bool
-				)-> bool;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private15is_stoppable_seEv"]
-				pub fn is_stoppable_se()-> bool;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private15is_target_aliveEP9lua_State"]
-				pub fn is_target_alive(
-					arg1: u64
-				)-> bool;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private22main_energy_from_paramEP9lua_StateNS_8ItemKindEN3phx6Hash40Ef"]
-				pub fn main_energy_from_param(
-					arg1: u64,
-					arg2: root::app::ItemKind,
-					arg3: root::phx::Hash40,
-					arg4: f32
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private30main_energy_from_param_inheritEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
-				pub fn main_energy_from_param_inherit(
-					arg1: u64,
-					arg2: root::app::ItemKind,
-					arg3: root::phx::Hash40
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private38main_energy_from_param_inherit_no_bossEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
-				pub fn main_energy_from_param_inherit_no_boss(
-					arg1: u64,
-					arg2: root::app::ItemKind,
-					arg3: root::phx::Hash40
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private30main_energy_from_param_no_bossEP9lua_StateNS_8ItemKindEN3phx6Hash40Ef"]
-				pub fn main_energy_from_param_no_boss(
-					arg1: u64,
-					arg2: root::app::ItemKind,
-					arg3: root::phx::Hash40,
-					arg4: f32
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private13search_targetEP9lua_StateNS_8ItemKindEf"]
-				pub fn search_target(
-					arg1: u64,
-					arg2: root::app::ItemKind,
-					arg3: f32
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private13select_actionEP9lua_StateNS_8ItemKindEN3phx6Hash40ES5_"]
-				pub fn select_action(
-					arg1: u64,
-					arg2: root::app::ItemKind,
-					arg3: root::phx::Hash40,
-					arg4: root::phx::Hash40
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private16self_param_floatEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
-				pub fn self_param_float(
-					arg1: u64,
-					arg2: root::app::ItemKind,
-					arg3: root::phx::Hash40
-				)-> f32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private14self_param_intEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
-				pub fn self_param_int(
-					arg1: u64,
-					arg2: root::app::ItemKind,
-					arg3: root::phx::Hash40
-				)-> f32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private23send_event_on_boss_deadEP9lua_State"]
-				pub fn send_event_on_boss_dead(
-					arg1: u64
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private25send_event_on_boss_defeatEP9lua_State"]
-				pub fn send_event_on_boss_defeat(
-					arg1: u64
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private25send_event_on_boss_finishEP9lua_StateN3phx6Hash40E"]
-				pub fn send_event_on_boss_finish(
-					arg1: u64,
-					arg2: root::phx::Hash40
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private29send_event_on_boss_keyoff_bgmEP9lua_State"]
-				pub fn send_event_on_boss_keyoff_bgm(
-					arg1: u64
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private30send_event_on_start_boss_entryEj"]
-				pub fn send_event_on_boss_entry(
-					arg1: u64
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private26set_action_probability_mulEP9lua_StateN3phx6Hash40Ef"]
-				pub fn set_action_probability_mul(
-					arg1: u64,
-					arg2: root::phx::Hash40,
-					arg3: f32
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private30set_action_probability_mul_2ndEP9lua_StateN3phx6Hash40Ef"]
-				pub fn set_action_probability_mul_2nd(
-					arg1: u64,
-					arg2: root::phx::Hash40,
-					arg3: f32
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private41set_action_probability_mul_2nd_from_tableEP9lua_StateNS_8ItemKindEN3phx6Hash40Ef"]
-				pub fn set_action_probability_mul_2nd_from_table(
-					arg1: u64,
-					arg2: root::app::ItemKind,
-					arg3: root::phx::Hash40,
-					arg4: f32
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private37set_action_probability_mul_from_tableEP9lua_StateNS_8ItemKindEN3phx6Hash40Ef"]
-				pub fn set_action_probability_mul_from_table(
-					arg1: u64,
-					arg2: root::app::ItemKind,
-					arg3: root::phx::Hash40,
-					arg4: f32
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private12set_stage_shEP9lua_State"]
-				pub fn set_stage_sh(
-					arg1: u64
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private21set_sub1_energy_angleEP9lua_Statef"]
-				pub fn set_sub1_energy_angle(
-					arg1: u64,
-					arg2: f32
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private22sub1_energy_from_paramEP9lua_StateNS_8ItemKindEN3phx6Hash40Ef"]
-				pub fn sub1_energy_from_param(
-					arg1: u64,
-					arg2: root::app::ItemKind,
-					arg3: root::phx::Hash40,
-					arg4: f32
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private30sub1_energy_from_param_inheritEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
-				pub fn sub1_energy_from_param_inherit(
-					arg1: u64,
-					arg2: root::app::ItemKind,
-					arg3: root::phx::Hash40
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private34sub1_energy_from_param_inherit_allEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
-				pub fn sub1_energy_from_param_inherit_all(
-					arg1: u64,
-					arg2: root::app::ItemKind,
-					arg3: root::phx::Hash40
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private42sub1_energy_from_param_inherit_all_no_bossEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
-				pub fn sub1_energy_from_param_inherit_all_no_boss(
-					arg1: u64,
-					arg2: root::app::ItemKind,
-					arg3: root::phx::Hash40
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private38sub1_energy_from_param_inherit_no_bossEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
-				pub fn sub1_energy_from_param_inherit_no_boss(
-					arg1: u64,
-					arg2: root::app::ItemKind,
-					arg3: root::phx::Hash40
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private30sub1_energy_from_param_no_bossEP9lua_StateNS_8ItemKindEN3phx6Hash40Ef"]
-				pub fn sub1_energy_from_param_no_boss(
-					arg1: u64,
-					arg2: root::app::ItemKind,
-					arg3: root::phx::Hash40,
-					arg4: f32
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private17unable_energy_allEP9lua_State"]
-				pub fn unable_energy_all(
-					arg1: u64
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private18unable_main_energyEP9lua_State"]
-				pub fn unable_main_energy(
-					arg1: u64
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app12boss_private18unable_sub1_energyEP9lua_State"]
-				pub fn unable_sub1_energy(
-					arg1: u64
-				)-> u64;
-			}
-		}
+        pub mod boss_private {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private20calc_boss_hp_mul_sumENS_8ItemKindERNS_26BattleObjectModuleAccessorE"]
+                pub fn calc_boss_hp_mul(
+                    arg1: root::app::ItemKind,
+                    arg2: *mut root::app::BattleObjectModuleAccessor
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private16clear_energy_allEP9lua_State"]
+                pub fn clear_energy_all(
+                    arg1: u64
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private17clear_sub1_energyEP9lua_State"]
+                pub fn clear_sub1_energy(
+                    arg1: u64
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private18common_param_floatENS_8ItemKindENS_20BossCommonParamFloatE"]
+                pub fn common_param_float(
+                    arg1: root::app::ItemKind,
+                    arg2: root::app::BossCommonParamFloat
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private16common_param_intENS_8ItemKindENS_18BossCommonParamIntE"]
+                pub fn common_param_int(
+                    arg1: root::app::ItemKind,
+                    arg2: root::app::BossCommonParamInt
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private37count_same_probability_mul_from_tableEP9lua_StateNS_8ItemKindEN3phx6Hash40Ef"]
+                pub fn count_same_probability_mul_from_table(
+                    arg1: u64,
+                    arg2: root::app::ItemKind,
+                    arg3: root::phx::Hash40,
+                    arg4: f32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private32count_target_in_range_from_paramEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
+                pub fn count_target_in_range_from_param(
+                    arg1: u64,
+                    arg2: root::app::ItemKind,
+                    arg3: root::phx::Hash40,
+                    arg4: f32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private11create_bossEP9lua_StateNS_8ItemKindEi"]
+                pub fn create_boss(
+                    arg1: u64,
+                    arg2: root::app::ItemKind,
+                    arg3: i32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private13create_weaponEP9lua_StateNS_8ItemKindEffff"]
+                pub fn create_weapon(
+                    arg1: u64,
+                    arg2: root::app::ItemKind,
+                    arg3: f32,
+                    arg4: f32,
+                    arg5: f32,
+                    arg6: f32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private28create_weapon_with_variationEP9lua_StateNS_8ItemKindEiffff"]
+                pub fn create_weapon_with_variation(
+                    arg1: u64,
+                    arg2: root::app::ItemKind,
+                    arg3: i32,
+                    arg4: f32,
+                    arg5: f32,
+                    arg6: f32,
+                    arg7: f32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private26get_action_probability_mulEP9lua_StateN3phx6Hash40E"]
+                pub fn get_action_probability_mul(
+                    arg1: u64,
+                    arg2: root::phx::Hash40
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private30get_action_probability_mul_2ndEP9lua_StateN3phx6Hash40E"]
+                pub fn get_action_probability_mul_2nd(
+                    arg1: u64,
+                    arg2: root::phx::Hash40
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private14get_damage_mulEj"]
+                pub fn get_damage_mul(
+                    arg1: libc::c_uint
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private31get_status_kind_from_alias_hashEP9lua_StateN3phx6Hash40E"]
+                pub fn get_status_kind_from_alias_hash(
+                    arg1: u64,
+                    arg2: root::phx::Hash40
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private15is_boss_no_deadEv"]
+                pub fn is_boss_no_dead()-> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private12is_boss_stopEv"]
+                pub fn is_boss_stop()-> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private18is_multi_play_modeEb"]
+                pub fn is_multi_play_mode(
+                    arg1: bool
+                )-> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private15is_stoppable_seEv"]
+                pub fn is_stoppable_se()-> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private15is_target_aliveEP9lua_State"]
+                pub fn is_target_alive(
+                    arg1: u64
+                )-> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private22main_energy_from_paramEP9lua_StateNS_8ItemKindEN3phx6Hash40Ef"]
+                pub fn main_energy_from_param(
+                    arg1: u64,
+                    arg2: root::app::ItemKind,
+                    arg3: root::phx::Hash40,
+                    arg4: f32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private30main_energy_from_param_inheritEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
+                pub fn main_energy_from_param_inherit(
+                    arg1: u64,
+                    arg2: root::app::ItemKind,
+                    arg3: root::phx::Hash40
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private38main_energy_from_param_inherit_no_bossEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
+                pub fn main_energy_from_param_inherit_no_boss(
+                    arg1: u64,
+                    arg2: root::app::ItemKind,
+                    arg3: root::phx::Hash40
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private30main_energy_from_param_no_bossEP9lua_StateNS_8ItemKindEN3phx6Hash40Ef"]
+                pub fn main_energy_from_param_no_boss(
+                    arg1: u64,
+                    arg2: root::app::ItemKind,
+                    arg3: root::phx::Hash40,
+                    arg4: f32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private13search_targetEP9lua_StateNS_8ItemKindEf"]
+                pub fn search_target(
+                    arg1: u64,
+                    arg2: root::app::ItemKind,
+                    arg3: f32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private13select_actionEP9lua_StateNS_8ItemKindEN3phx6Hash40ES5_"]
+                pub fn select_action(
+                    arg1: u64,
+                    arg2: root::app::ItemKind,
+                    arg3: root::phx::Hash40,
+                    arg4: root::phx::Hash40
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private16self_param_floatEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
+                pub fn self_param_float(
+                    arg1: u64,
+                    arg2: root::app::ItemKind,
+                    arg3: root::phx::Hash40
+                )-> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private14self_param_intEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
+                pub fn self_param_int(
+                    arg1: u64,
+                    arg2: root::app::ItemKind,
+                    arg3: root::phx::Hash40
+                )-> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private23send_event_on_boss_deadEP9lua_State"]
+                pub fn send_event_on_boss_dead(
+                    arg1: u64
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private25send_event_on_boss_defeatEP9lua_State"]
+                pub fn send_event_on_boss_defeat(
+                    arg1: u64
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private25send_event_on_boss_finishEP9lua_StateN3phx6Hash40E"]
+                pub fn send_event_on_boss_finish(
+                    arg1: u64,
+                    arg2: root::phx::Hash40
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private29send_event_on_boss_keyoff_bgmEP9lua_State"]
+                pub fn send_event_on_boss_keyoff_bgm(
+                    arg1: u64
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private30send_event_on_start_boss_entryEj"]
+                pub fn send_event_on_boss_entry(
+                    arg1: u64
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private26set_action_probability_mulEP9lua_StateN3phx6Hash40Ef"]
+                pub fn set_action_probability_mul(
+                    arg1: u64,
+                    arg2: root::phx::Hash40,
+                    arg3: f32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private30set_action_probability_mul_2ndEP9lua_StateN3phx6Hash40Ef"]
+                pub fn set_action_probability_mul_2nd(
+                    arg1: u64,
+                    arg2: root::phx::Hash40,
+                    arg3: f32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private41set_action_probability_mul_2nd_from_tableEP9lua_StateNS_8ItemKindEN3phx6Hash40Ef"]
+                pub fn set_action_probability_mul_2nd_from_table(
+                    arg1: u64,
+                    arg2: root::app::ItemKind,
+                    arg3: root::phx::Hash40,
+                    arg4: f32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private37set_action_probability_mul_from_tableEP9lua_StateNS_8ItemKindEN3phx6Hash40Ef"]
+                pub fn set_action_probability_mul_from_table(
+                    arg1: u64,
+                    arg2: root::app::ItemKind,
+                    arg3: root::phx::Hash40,
+                    arg4: f32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private12set_stage_shEP9lua_State"]
+                pub fn set_stage_sh(
+                    arg1: u64
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private21set_sub1_energy_angleEP9lua_Statef"]
+                pub fn set_sub1_energy_angle(
+                    arg1: u64,
+                    arg2: f32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private22sub1_energy_from_paramEP9lua_StateNS_8ItemKindEN3phx6Hash40Ef"]
+                pub fn sub1_energy_from_param(
+                    arg1: u64,
+                    arg2: root::app::ItemKind,
+                    arg3: root::phx::Hash40,
+                    arg4: f32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private30sub1_energy_from_param_inheritEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
+                pub fn sub1_energy_from_param_inherit(
+                    arg1: u64,
+                    arg2: root::app::ItemKind,
+                    arg3: root::phx::Hash40
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private34sub1_energy_from_param_inherit_allEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
+                pub fn sub1_energy_from_param_inherit_all(
+                    arg1: u64,
+                    arg2: root::app::ItemKind,
+                    arg3: root::phx::Hash40
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private42sub1_energy_from_param_inherit_all_no_bossEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
+                pub fn sub1_energy_from_param_inherit_all_no_boss(
+                    arg1: u64,
+                    arg2: root::app::ItemKind,
+                    arg3: root::phx::Hash40
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private38sub1_energy_from_param_inherit_no_bossEP9lua_StateNS_8ItemKindEN3phx6Hash40E"]
+                pub fn sub1_energy_from_param_inherit_no_boss(
+                    arg1: u64,
+                    arg2: root::app::ItemKind,
+                    arg3: root::phx::Hash40
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private30sub1_energy_from_param_no_bossEP9lua_StateNS_8ItemKindEN3phx6Hash40Ef"]
+                pub fn sub1_energy_from_param_no_boss(
+                    arg1: u64,
+                    arg2: root::app::ItemKind,
+                    arg3: root::phx::Hash40,
+                    arg4: f32
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private17unable_energy_allEP9lua_State"]
+                pub fn unable_energy_all(
+                    arg1: u64
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private18unable_main_energyEP9lua_State"]
+                pub fn unable_main_energy(
+                    arg1: u64
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app12boss_private18unable_sub1_energyEP9lua_State"]
+                pub fn unable_sub1_energy(
+                    arg1: u64
+                )-> u64;
+            }
+        }
 
-		pub mod smashball {
-			#[allow(unused_imports)]
-			use super::super::super::root;
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app9smashball16is_training_modeEv"]
-				pub fn is_training_mode()-> bool;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app9smashball15set_post_effectERNS_18ItemModuleAccessorEjb"]
-				pub fn set_post_effect(
-					arg1: *mut root::app::ItemModuleAccessor,
-					arg2: u32,
-					arg3: bool,
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app9smashball23force_clear_post_effectERNS_18ItemModuleAccessorE"]
-				pub fn force_clear_post_effect(
-					arg1: *mut root::app::ItemModuleAccessor,
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app9smashball14get_auto_handiEj"]
-				pub fn get_auto_handi(
-					arg1: u32,
-				)-> i32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app9smashball19escape_from_fighterERNS_18ItemModuleAccessorE"]
-				pub fn escape_from_fighter(
-					arg1: *mut root::app::ItemModuleAccessor,
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app9smashball13chase_fighterERNS_18ItemModuleAccessorE"]
-				pub fn chase_fighter(
-					arg1: *mut root::app::ItemModuleAccessor,
-				)-> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app9smashball26get_equip_draw_ability_numENS_14FighterEntryIDE"]
-				pub fn get_equip_draw_ability_num(
-					arg1: root::app::FighterEntryID,
-				)-> i32;
-			}
+        pub mod smashball {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app9smashball16is_training_modeEv"]
+                pub fn is_training_mode()-> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app9smashball15set_post_effectERNS_18ItemModuleAccessorEjb"]
+                pub fn set_post_effect(
+                    arg1: *mut root::app::ItemModuleAccessor,
+                    arg2: u32,
+                    arg3: bool,
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app9smashball23force_clear_post_effectERNS_18ItemModuleAccessorE"]
+                pub fn force_clear_post_effect(
+                    arg1: *mut root::app::ItemModuleAccessor,
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app9smashball14get_auto_handiEj"]
+                pub fn get_auto_handi(
+                    arg1: u32,
+                )-> i32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app9smashball19escape_from_fighterERNS_18ItemModuleAccessorE"]
+                pub fn escape_from_fighter(
+                    arg1: *mut root::app::ItemModuleAccessor,
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app9smashball13chase_fighterERNS_18ItemModuleAccessorE"]
+                pub fn chase_fighter(
+                    arg1: *mut root::app::ItemModuleAccessor,
+                )-> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app9smashball26get_equip_draw_ability_numENS_14FighterEntryIDE"]
+                pub fn get_equip_draw_ability_num(
+                    arg1: root::app::FighterEntryID,
+                )-> i32;
+            }
 
-		}
+        }
 
-		pub mod FighterSpecializer_Pikmin {
-			#[allow(unused_imports)]
-			use super::super::super::root;
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app25FighterSpecializer_Pikmin11hold_pikminERNS_21FighterModuleAccessorEi"]
-				pub fn hold_pikmin(
-					arg1: *mut root::app::FighterModuleAccessor,
-					arg2: i32,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app25FighterSpecializer_Pikmin17reduce_pikmin_allERNS_21FighterModuleAccessorE"]
-				pub fn reduce_pikmin_all(
-					arg1: *mut root::app::FighterModuleAccessor,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app25FighterSpecializer_Pikmin19set_glare_fog_colorERNS_21FighterModuleAccessorEf"]
-				pub fn set_glare_fog_color(
-					arg1: *mut root::app::FighterModuleAccessor,
-					arg2: f32,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app25FighterSpecializer_Pikmin18liberty_pikmin_allERNS_21FighterModuleAccessorE"]
-				pub fn liberty_pikmin_all(
-					arg1: *mut root::app::FighterModuleAccessor,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app25FighterSpecializer_Pikmin24update_hold_pikmin_paramERNS_21FighterModuleAccessorE"]
-				pub fn update_hold_pikmin_param(
-					arg1: *mut root::app::FighterModuleAccessor,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app25FighterSpecializer_Pikmin35reduce_pikmin_all_change_top_pikminERNS_21FighterModuleAccessorE"]
-				pub fn reduce_pikmin_all_change_top_pikmin(
-					arg1: *mut root::app::FighterModuleAccessor,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app25FighterSpecializer_Pikmin28sort_pikmin_no_change_statusERNS_21FighterModuleAccessorE"]
-				pub fn sort_pikmin_no_change_status(
-					arg1: *mut root::app::FighterModuleAccessor,
-				) -> u64;
-			}
+        pub mod FighterSpecializer_Pikmin {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app25FighterSpecializer_Pikmin11hold_pikminERNS_21FighterModuleAccessorEi"]
+                pub fn hold_pikmin(
+                    arg1: *mut root::app::FighterModuleAccessor,
+                    arg2: i32,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app25FighterSpecializer_Pikmin17reduce_pikmin_allERNS_21FighterModuleAccessorE"]
+                pub fn reduce_pikmin_all(
+                    arg1: *mut root::app::FighterModuleAccessor,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app25FighterSpecializer_Pikmin19set_glare_fog_colorERNS_21FighterModuleAccessorEf"]
+                pub fn set_glare_fog_color(
+                    arg1: *mut root::app::FighterModuleAccessor,
+                    arg2: f32,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app25FighterSpecializer_Pikmin18liberty_pikmin_allERNS_21FighterModuleAccessorE"]
+                pub fn liberty_pikmin_all(
+                    arg1: *mut root::app::FighterModuleAccessor,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app25FighterSpecializer_Pikmin24update_hold_pikmin_paramERNS_21FighterModuleAccessorE"]
+                pub fn update_hold_pikmin_param(
+                    arg1: *mut root::app::FighterModuleAccessor,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app25FighterSpecializer_Pikmin35reduce_pikmin_all_change_top_pikminERNS_21FighterModuleAccessorE"]
+                pub fn reduce_pikmin_all_change_top_pikmin(
+                    arg1: *mut root::app::FighterModuleAccessor,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app25FighterSpecializer_Pikmin28sort_pikmin_no_change_statusERNS_21FighterModuleAccessorE"]
+                pub fn sort_pikmin_no_change_status(
+                    arg1: *mut root::app::FighterModuleAccessor,
+                ) -> u64;
+            }
 
-		}
+        }
 
-		pub mod FighterSpecializer_Inkling {
-			#[allow(unused_imports)]
-			use super::super::super::root;
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling11get_ink_maxERNS_7FighterE"]
-				pub fn get_ink_max(
-					arg1: *mut root::app::Fighter,
-				) -> f32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling13request_paintERNS_7FighterEN3phx6Hash40ERNS3_8Vector3fERNS3_8Vector2fEf"]
-				pub fn request_paint(
-					arg1: *mut root::app::Fighter,
-					arg2: root::phx::Hash40,
-					arg3: *const root::phx::Vector3f,
-					arg4: *const root::phx::Vector2f,
-					arg5: f32,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling15get_ink_work_idEj"]
-				pub fn get_ink_work_id(
-					arg1: *mut root::app::Fighter,
-					arg2: u64,
-				) -> i32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling15is_body_visibleERNS_7FighterE"]
-				pub fn is_body_visible(
-					arg1: *mut root::app::Fighter,
-				) -> bool;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling18generate_rollerinkERNS_7FighterE"]
-				pub fn generate_rollerink(
-					arg1: *mut root::app::Fighter,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling19check_roller_groundERNS_7FighterERKN3phx8Vector2fES6_RS4_S7_b"]
-				pub fn check_roller_ground(
-					arg1: *mut root::app::Fighter,
-					arg2: *const root::phx::Vector2f,
-					arg3: *const root::phx::Vector2f,
-					arg4: *mut root::phx::Vector2f,
-					arg5: *mut root::phx::Vector2f,
-					arg6: bool,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling21get_sub_ink_special_nERNS_7FighterE"]
-				pub fn get_sub_ink_special_n(
-					arg1: *mut root::app::Fighter,
-				) -> f32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling22get_sub_ink_special_lwERNS_7FighterE"]
-				pub fn get_sub_ink_special_lw(
-					arg1: *mut root::app::Fighter,
-				) -> f32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling22is_paintable_rollerinkERNS_7FighterE"]
-				pub fn is_paintable_rollerink(
-					arg1: *mut root::app::Fighter,
-				) -> bool;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling23get_roller_check_velo_yERNS_7FighterE"]
-				pub fn get_roller_check_velo_y(
-					arg1: *mut root::app::Fighter,
-				) -> f32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling8lack_inkERNS_7FighterE"]
-				pub fn lack_ink(
-					arg1: *mut root::app::Fighter,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling10change_inkERNS_7FighterEf"]
-				pub fn change_ink(
-					arg1: *mut root::app::Fighter,
-					arg2: f32,
-				) -> u64;
-			}
-		}
+        pub mod FighterSpecializer_Inkling {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling11get_ink_maxERNS_7FighterE"]
+                pub fn get_ink_max(
+                    arg1: *mut root::app::Fighter,
+                ) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling13request_paintERNS_7FighterEN3phx6Hash40ERNS3_8Vector3fERNS3_8Vector2fEf"]
+                pub fn request_paint(
+                    arg1: *mut root::app::Fighter,
+                    arg2: root::phx::Hash40,
+                    arg3: *const root::phx::Vector3f,
+                    arg4: *const root::phx::Vector2f,
+                    arg5: f32,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling15get_ink_work_idEj"]
+                pub fn get_ink_work_id(
+                    arg1: *mut root::app::Fighter,
+                    arg2: u64,
+                ) -> i32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling15is_body_visibleERNS_7FighterE"]
+                pub fn is_body_visible(
+                    arg1: *mut root::app::Fighter,
+                ) -> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling18generate_rollerinkERNS_7FighterE"]
+                pub fn generate_rollerink(
+                    arg1: *mut root::app::Fighter,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling19check_roller_groundERNS_7FighterERKN3phx8Vector2fES6_RS4_S7_b"]
+                pub fn check_roller_ground(
+                    arg1: *mut root::app::Fighter,
+                    arg2: *const root::phx::Vector2f,
+                    arg3: *const root::phx::Vector2f,
+                    arg4: *mut root::phx::Vector2f,
+                    arg5: *mut root::phx::Vector2f,
+                    arg6: bool,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling21get_sub_ink_special_nERNS_7FighterE"]
+                pub fn get_sub_ink_special_n(
+                    arg1: *mut root::app::Fighter,
+                ) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling22get_sub_ink_special_lwERNS_7FighterE"]
+                pub fn get_sub_ink_special_lw(
+                    arg1: *mut root::app::Fighter,
+                ) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling22is_paintable_rollerinkERNS_7FighterE"]
+                pub fn is_paintable_rollerink(
+                    arg1: *mut root::app::Fighter,
+                ) -> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling23get_roller_check_velo_yERNS_7FighterE"]
+                pub fn get_roller_check_velo_y(
+                    arg1: *mut root::app::Fighter,
+                ) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling8lack_inkERNS_7FighterE"]
+                pub fn lack_ink(
+                    arg1: *mut root::app::Fighter,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app26FighterSpecializer_Inkling10change_inkERNS_7FighterEf"]
+                pub fn change_ink(
+                    arg1: *mut root::app::Fighter,
+                    arg2: f32,
+                ) -> u64;
+            }
+        }
 
-		pub mod FighterSpecializer_Jack {
-			#[allow(unused_imports)]
-			use super::super::super::root;
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app23FighterSpecializer_Jack15add_rebel_gaugeERNS_26BattleObjectModuleAccessorENS_14FighterEntryIDEf"]
-				pub fn add_rebel_gauge(
-					arg1: *mut root::app::BattleObjectModuleAccessor,
-					arg2: root::app::FighterEntryID,
-					arg3: f32,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app23FighterSpecializer_Jack16is_cut_in_effectERNS_26BattleObjectModuleAccessorE"]
-				pub fn is_cut_in_effect(
-					arg1: *mut root::app::BattleObjectModuleAccessor,
-				) -> bool;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app23FighterSpecializer_Jack17call_final_moduleERNS_7FighterEi"]
-				pub fn call_final_module(
-					arg1: *mut root::app::Fighter,
-					arg2: i32
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app23FighterSpecializer_Jack17set_cut_in_effectERNS_26BattleObjectModuleAccessorE"]
-				pub fn set_cut_in_effect(
-					arg1: *mut root::app::BattleObjectModuleAccessor,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app23FighterSpecializer_Jack17set_doyle_suspendERNS_26BattleObjectModuleAccessorEb"]
-				pub fn set_doyle_suspend(
-					arg1: *mut root::app::BattleObjectModuleAccessor,
-					arg2: bool,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app23FighterSpecializer_Jack24final_module_hit_successEv"]
-				pub fn final_module_hit_success() -> bool;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app23FighterSpecializer_Jack27check_doyle_summon_dispatchERNS_26BattleObjectModuleAccessorEbb"]
-				pub fn check_doyle_summon_dispatch(
-					arg1: *mut root::app::BattleObjectModuleAccessor,
-					arg2: bool,
-					arg3: bool,
-				) -> u64;
-			}
-		}
+        pub mod FighterSpecializer_Jack {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app23FighterSpecializer_Jack15add_rebel_gaugeERNS_26BattleObjectModuleAccessorENS_14FighterEntryIDEf"]
+                pub fn add_rebel_gauge(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                    arg2: root::app::FighterEntryID,
+                    arg3: f32,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app23FighterSpecializer_Jack16is_cut_in_effectERNS_26BattleObjectModuleAccessorE"]
+                pub fn is_cut_in_effect(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                ) -> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app23FighterSpecializer_Jack17call_final_moduleERNS_7FighterEi"]
+                pub fn call_final_module(
+                    arg1: *mut root::app::Fighter,
+                    arg2: i32
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app23FighterSpecializer_Jack17set_cut_in_effectERNS_26BattleObjectModuleAccessorE"]
+                pub fn set_cut_in_effect(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app23FighterSpecializer_Jack17set_doyle_suspendERNS_26BattleObjectModuleAccessorEb"]
+                pub fn set_doyle_suspend(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                    arg2: bool,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app23FighterSpecializer_Jack24final_module_hit_successEv"]
+                pub fn final_module_hit_success() -> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app23FighterSpecializer_Jack27check_doyle_summon_dispatchERNS_26BattleObjectModuleAccessorEbb"]
+                pub fn check_doyle_summon_dispatch(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                    arg2: bool,
+                    arg3: bool,
+                ) -> u64;
+            }
+        }
 
-		pub mod FighterSpecializer_Brave {
-			#[allow(unused_imports)]
-			use super::super::super::root;
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave12lot_criticalERNS_7FighterE"]
-				pub fn lot_critical(
-					arg1: *mut root::app::Fighter,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave15alloc_log_groupERNS_26BattleObjectModuleAccessorEi"]
-				pub fn alloc_log_group(
-					arg1: *mut root::app::BattleObjectModuleAccessor,
-					arg2: i32,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave17call_final_moduleERNS_7FighterEi"]
-				pub fn call_final_module(
-					arg1: *mut root::app::Fighter,
-					arg2: i32,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave17check_flying_ceilERNS_26BattleObjectModuleAccessorEfff"]
-				pub fn check_flying_ceil(
-					arg1: *mut root::app::BattleObjectModuleAccessor,
-					arg2: f32,
-					arg3: f32,
-					arg4: f32,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave18adjust_flying_ceilERNS_26BattleObjectModuleAccessorEfff"]
-				pub fn adjust_flying_ceil(
-					arg1: *mut root::app::BattleObjectModuleAccessor,
-					arg2: f32,
-					arg3: f32,
-					arg4: f32,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave21get_flying_target_posEv"]
-				pub fn get_flying_target_pos() -> root::phx::Vector2f;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave23special_lw_close_windowERNS_7FighterEbbb"]
-				pub fn special_lw_close_window(
-					arg1: *mut root::app::Fighter,
-					arg2: bool,
-					arg3: bool,
-					arg4: bool,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave23special_lw_open_commandERNS_7FighterE"]
-				pub fn special_lw_open_command(
-					arg1: *mut root::app::Fighter,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave23special_lw_select_indexERNS_7FighterEi"]
-				pub fn special_lw_select_index(
-					arg1: *mut root::app::Fighter,
-					arg2: i32,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave24final_module_hit_successEv"]
-				pub fn final_module_hit_success() -> bool;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave24special_lw_cursor_decideERNS_7FighterE"]
-				pub fn special_lw_cursor_decide(
-					arg1: *mut root::app::Fighter,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave25special_lw_active_commandERNS_7FighterE"]
-				pub fn special_lw_active_command(
-					arg1: *mut root::app::Fighter,
-				) -> i32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave25special_lw_decide_commandERNS_7FighterENS_28FighterBraveSpecialLwCommandEi"]
-				pub fn special_lw_decide_command(
-					arg1: *mut root::app::Fighter,
-					arg2: root::app::FighterBraveSpecialLwCommand,
-					arg3: i32,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave26get_special_lw_param_frameERNS_26BattleObjectModuleAccessorEN3phx6Hash40E"]
-				pub fn get_special_lw_param_frame(
-					arg1: *mut root::app::BattleObjectModuleAccessor,
-					arg2: root::phx::Hash40,
-				) -> f32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave27special_lw_deactive_commandERNS_7FighterE"]
-				pub fn special_lw_deactive_command(
-					arg1: *mut root::app::Fighter,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave27special_lw_on_start_commandERNS_7FighterE"]
-				pub fn special_lw_on_start_command(
-					arg1: *mut root::app::Fighter,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave29special_lw_start_cursor_blinkERNS_7FighterE"]
-				pub fn special_lw_start_cursor_blink(
-					arg1: *mut root::app::Fighter,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave30get_special_lw_command_sp_costERKNS_26BattleObjectModuleAccessorENS_28FighterBraveSpecialLwCommandEb"]
-				pub fn get_special_lw_command_sp_cost(
-					arg1: *mut root::app::BattleObjectModuleAccessor,
-					arg2: root::app::FighterBraveSpecialLwCommand,
-					arg3: bool,
-				) -> i32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave31special_lw_start_select_commandERNS_7FighterE"]
-				pub fn special_lw_start_select_command(
-					arg1: *mut root::app::Fighter,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave33get_special_lw_command_from_indexERNS_7FighterEi"]
-				pub fn get_special_lw_command_from_index(
-					arg1: *mut root::app::Fighter,
-					arg2: i32,
-				) -> i32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave34get_special_lw_various_motion_kindERNS_26BattleObjectModuleAccessorENS_32FighterBraveSpecialLwVariousKindEb"]
-				pub fn get_special_lw_various_motion_kind(
-					arg1: *mut root::app::BattleObjectModuleAccessor,
-					arg2: root::app::FighterBraveSpecialLwVariousKind,
-					arg3: bool,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave35get_special_lw_various_kind2commandENS_32FighterBraveSpecialLwVariousKindE"]
-				pub fn get_special_lw_various_kind2command(
-					arg1: root::app::FighterBraveSpecialLwVariousKind,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave6add_spERNS_7FighterEf"]
-				pub fn add_sp(
-					arg1: *mut root::app::Fighter,
-					arg2: f32,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave6set_spERNS_7FighterEfb"]
-				pub fn set_sp(
-					arg1: *mut root::app::Fighter,
-					arg2: f32,
-					arg3: bool,
-				) -> u64;
-			}
-		}
+        pub mod FighterSpecializer_Brave {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave12lot_criticalERNS_7FighterE"]
+                pub fn lot_critical(
+                    arg1: *mut root::app::Fighter,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave15alloc_log_groupERNS_26BattleObjectModuleAccessorEi"]
+                pub fn alloc_log_group(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                    arg2: i32,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave17call_final_moduleERNS_7FighterEi"]
+                pub fn call_final_module(
+                    arg1: *mut root::app::Fighter,
+                    arg2: i32,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave17check_flying_ceilERNS_26BattleObjectModuleAccessorEfff"]
+                pub fn check_flying_ceil(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                    arg2: f32,
+                    arg3: f32,
+                    arg4: f32,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave18adjust_flying_ceilERNS_26BattleObjectModuleAccessorEfff"]
+                pub fn adjust_flying_ceil(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                    arg2: f32,
+                    arg3: f32,
+                    arg4: f32,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave21get_flying_target_posEv"]
+                pub fn get_flying_target_pos() -> root::phx::Vector2f;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave23special_lw_close_windowERNS_7FighterEbbb"]
+                pub fn special_lw_close_window(
+                    arg1: *mut root::app::Fighter,
+                    arg2: bool,
+                    arg3: bool,
+                    arg4: bool,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave23special_lw_open_commandERNS_7FighterE"]
+                pub fn special_lw_open_command(
+                    arg1: *mut root::app::Fighter,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave23special_lw_select_indexERNS_7FighterEi"]
+                pub fn special_lw_select_index(
+                    arg1: *mut root::app::Fighter,
+                    arg2: i32,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave24final_module_hit_successEv"]
+                pub fn final_module_hit_success() -> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave24special_lw_cursor_decideERNS_7FighterE"]
+                pub fn special_lw_cursor_decide(
+                    arg1: *mut root::app::Fighter,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave25special_lw_active_commandERNS_7FighterE"]
+                pub fn special_lw_active_command(
+                    arg1: *mut root::app::Fighter,
+                ) -> i32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave25special_lw_decide_commandERNS_7FighterENS_28FighterBraveSpecialLwCommandEi"]
+                pub fn special_lw_decide_command(
+                    arg1: *mut root::app::Fighter,
+                    arg2: root::app::FighterBraveSpecialLwCommand,
+                    arg3: i32,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave26get_special_lw_param_frameERNS_26BattleObjectModuleAccessorEN3phx6Hash40E"]
+                pub fn get_special_lw_param_frame(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                    arg2: root::phx::Hash40,
+                ) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave27special_lw_deactive_commandERNS_7FighterE"]
+                pub fn special_lw_deactive_command(
+                    arg1: *mut root::app::Fighter,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave27special_lw_on_start_commandERNS_7FighterE"]
+                pub fn special_lw_on_start_command(
+                    arg1: *mut root::app::Fighter,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave29special_lw_start_cursor_blinkERNS_7FighterE"]
+                pub fn special_lw_start_cursor_blink(
+                    arg1: *mut root::app::Fighter,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave30get_special_lw_command_sp_costERKNS_26BattleObjectModuleAccessorENS_28FighterBraveSpecialLwCommandEb"]
+                pub fn get_special_lw_command_sp_cost(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                    arg2: root::app::FighterBraveSpecialLwCommand,
+                    arg3: bool,
+                ) -> i32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave31special_lw_start_select_commandERNS_7FighterE"]
+                pub fn special_lw_start_select_command(
+                    arg1: *mut root::app::Fighter,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave33get_special_lw_command_from_indexERNS_7FighterEi"]
+                pub fn get_special_lw_command_from_index(
+                    arg1: *mut root::app::Fighter,
+                    arg2: i32,
+                ) -> i32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave34get_special_lw_various_motion_kindERNS_26BattleObjectModuleAccessorENS_32FighterBraveSpecialLwVariousKindEb"]
+                pub fn get_special_lw_various_motion_kind(
+                    arg1: *mut root::app::BattleObjectModuleAccessor,
+                    arg2: root::app::FighterBraveSpecialLwVariousKind,
+                    arg3: bool,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave35get_special_lw_various_kind2commandENS_32FighterBraveSpecialLwVariousKindE"]
+                pub fn get_special_lw_various_kind2command(
+                    arg1: root::app::FighterBraveSpecialLwVariousKind,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave6add_spERNS_7FighterEf"]
+                pub fn add_sp(
+                    arg1: *mut root::app::Fighter,
+                    arg2: f32,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave6set_spERNS_7FighterEfb"]
+                pub fn set_sp(
+                    arg1: *mut root::app::Fighter,
+                    arg2: f32,
+                    arg3: bool,
+                ) -> u64;
+            }
+        }
 
-		pub mod WeaponSpecializer_PTrainerPTrainer {
-			#[allow(unused_imports)]
-			use super::super::super::root;
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app34WeaponSpecializer_PTrainerPTrainer20display_final_windowERNS_6WeaponEi"]
-				pub fn display_final_window(
-					arg1: *mut root::app::Weapon,
-					arg2: i32,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app34WeaponSpecializer_PTrainerPTrainer11owner_stockERNS_6WeaponE"]
-				pub fn owner_stock(
-					arg1: *mut root::app::Weapon,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app34WeaponSpecializer_PTrainerPTrainer10play_voiceERNS_6WeaponEi"]
-				pub fn play_voice(
-					arg1: *mut root::app::Weapon,
-					arg2: i32
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app34WeaponSpecializer_PTrainerPTrainer22request_change_pokemonERNS_6WeaponE"]
-				pub fn request_change_pokemon(
-					arg1: *mut root::app::Weapon,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app34WeaponSpecializer_PTrainerPTrainer11wait_motionERNS_6WeaponE"]
-				pub fn wait_motion(
-					arg1: *mut root::app::Weapon,
-				) -> u64;
-			}
-		}
+        pub mod WeaponSpecializer_PTrainerPTrainer {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app34WeaponSpecializer_PTrainerPTrainer20display_final_windowERNS_6WeaponEi"]
+                pub fn display_final_window(
+                    arg1: *mut root::app::Weapon,
+                    arg2: i32,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app34WeaponSpecializer_PTrainerPTrainer11owner_stockERNS_6WeaponE"]
+                pub fn owner_stock(
+                    arg1: *mut root::app::Weapon,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app34WeaponSpecializer_PTrainerPTrainer10play_voiceERNS_6WeaponEi"]
+                pub fn play_voice(
+                    arg1: *mut root::app::Weapon,
+                    arg2: i32
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app34WeaponSpecializer_PTrainerPTrainer22request_change_pokemonERNS_6WeaponE"]
+                pub fn request_change_pokemon(
+                    arg1: *mut root::app::Weapon,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app34WeaponSpecializer_PTrainerPTrainer11wait_motionERNS_6WeaponE"]
+                pub fn wait_motion(
+                    arg1: *mut root::app::Weapon,
+                ) -> u64;
+            }
+        }
 
 		pub mod lua_bind {
 			#[allow(unused_imports)]
@@ -10335,7 +10291,7 @@ pub mod root {
 						arg4: bool,
 						arg5: bool,
 						arg6: bool,
-						arg7: root::app::SoundModule::enSEType,
+						arg7: root::app::enSEType,
 					) -> u64;
 				}
 				extern "C" {
@@ -18118,1827 +18074,1835 @@ pub mod root {
 				}
 			}
 		}
-		pub mod sv_animcmd {
+        pub mod sv_animcmd {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd18ADD_SPEED_NO_LIMITEP9lua_State"]
+                pub fn ADD_SPEED_NO_LIMIT(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd26AFTER_IMAGE4_ON_WORK_arg29EP9lua_State"]
+                pub fn AFTER_IMAGE4_ON_WORK_arg29(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd21AFTER_IMAGE4_ON_arg29EP9lua_State"]
+                pub fn AFTER_IMAGE4_ON_arg29(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd15AFTER_IMAGE_OFFEP9lua_State"]
+                pub fn AFTER_IMAGE_OFF(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd13AREA_WIND_2NDEP9lua_State"]
+                pub fn AREA_WIND_2ND(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd17AREA_WIND_2ND_RADEP9lua_State"]
+                pub fn AREA_WIND_2ND_RAD(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd22AREA_WIND_2ND_RAD_arg9EP9lua_State"]
+                pub fn AREA_WIND_2ND_RAD_arg9(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd19AREA_WIND_2ND_arg10EP9lua_State"]
+                pub fn AREA_WIND_2ND_arg10(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd11ATK_HIT_ABSEP9lua_State"]
+                pub fn ATK_HIT_ABS(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd14ATK_LERP_RATIOEP9lua_State"]
+                pub fn ATK_LERP_RATIO(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd33ATK_NO_REACTION_SEARCH_WITCH_TIMEEP9lua_State"]
+                pub fn ATK_NO_REACTION_SEARCH_WITCH_TIME(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd9ATK_POWEREP9lua_State"]
+                pub fn ATK_POWER(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd25ATK_SET_SHIELD_SETOFF_MULEP9lua_State"]
+                pub fn ATK_SET_SHIELD_SETOFF_MUL(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd30ATK_SET_SHIELD_SETOFF_MUL_arg3EP9lua_State"]
+                pub fn ATK_SET_SHIELD_SETOFF_MUL_arg3(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd30ATK_SET_SHIELD_SETOFF_MUL_arg4EP9lua_State"]
+                pub fn ATK_SET_SHIELD_SETOFF_MUL_arg4(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd30ATK_SET_SHIELD_SETOFF_MUL_arg5EP9lua_State"]
+                pub fn ATK_SET_SHIELD_SETOFF_MUL_arg5(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd6ATTACKEP9lua_State"]
+                pub fn ATTACK(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd10ATTACK_ABSEP9lua_State"]
+                pub fn ATTACK_ABS(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd19ATTACK_IGNORE_THROWEP9lua_State"]
+                pub fn ATTACK_IGNORE_THROW(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd49BACK_GROUND_EFFECT_STAGE_SET_HIDING_FOR_DIRECTIONEP9lua_State"]
+                pub fn BACK_GROUND_EFFECT_STAGE_SET_HIDING_FOR_DIRECTION(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd10BURN_COLOREP9lua_State"]
+                pub fn BURN_COLOR(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd16BURN_COLOR_FRAMEEP9lua_State"]
+                pub fn BURN_COLOR_FRAME(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd17BURN_COLOR_NORMALEP9lua_State"]
+                pub fn BURN_COLOR_NORMAL(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd17CAM_ZOOM_IN_FINALEP9lua_State"]
+                pub fn CAM_ZOOM_IN_FINAL(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd23CAM_ZOOM_IN_FINAL_arg13EP9lua_State"]
+                pub fn CAM_ZOOM_IN_FINAL_arg13(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd16CAM_ZOOM_IN_arg5EP9lua_State"]
+                pub fn CAM_ZOOM_IN_arg5(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd16CAM_ZOOM_IN_arg6EP9lua_State"]
+                pub fn CAM_ZOOM_IN_arg6(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd12CAM_ZOOM_OUTEP9lua_State"]
+                pub fn CAM_ZOOM_OUT(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd18CAM_ZOOM_OUT_FINALEP9lua_State"]
+                pub fn CAM_ZOOM_OUT_FINAL(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd18CANCEL_FILL_SCREENEP9lua_State"]
+                pub fn CANCEL_FILL_SCREEN(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd5CATCHEP9lua_State"]
+                pub fn CATCH(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd19CHECK_FINISH_CAMERAEP9lua_State"]
+                pub fn CHECK_FINISH_CAMERA(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd34CHECK_FINISH_CAMERA_IF_NOT_HP_MODEEP9lua_State"]
+                pub fn CHECK_FINISH_CAMERA_IF_NOT_HP_MODE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd30CHECK_VALID_FINAL_START_CAMERAEP9lua_State"]
+                pub fn CHECK_VALID_FINAL_START_CAMERA(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd9CLR_SPEEDEP9lua_State"]
+                pub fn CLR_SPEED(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd16COLOR_COLLECTIONEP9lua_State"]
+                pub fn COLOR_COLLECTION(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd10COL_NORMALEP9lua_State"]
+                pub fn COL_NORMAL(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd7COL_PRIEP9lua_State"]
+                pub fn COL_PRI(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd7CORRECTEP9lua_State"]
+                pub fn CORRECT(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd11DOWN_EFFECTEP9lua_State"]
+                pub fn DOWN_EFFECT(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd6EFFECTEP9lua_State"]
+                pub fn EFFECT(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd12EFFECT_ALPHAEP9lua_State"]
+                pub fn EFFECT_ALPHA(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd11EFFECT_ATTREP9lua_State"]
+                pub fn EFFECT_ATTR(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd23EFFECT_BRANCH_SITUATIONEP9lua_State"]
+                pub fn EFFECT_BRANCH_SITUATION(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd12EFFECT_COLOREP9lua_State"]
+                pub fn EFFECT_COLOR(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd17EFFECT_COLOR_WORKEP9lua_State"]
+                pub fn EFFECT_COLOR_WORK(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd18EFFECT_DETACH_KINDEP9lua_State"]
+                pub fn EFFECT_DETACH_KIND(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd23EFFECT_DETACH_KIND_WORKEP9lua_State"]
+                pub fn EFFECT_DETACH_KIND_WORK(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd11EFFECT_FLIPEP9lua_State"]
+                pub fn EFFECT_FLIP(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd17EFFECT_FLIP_ALPHAEP9lua_State"]
+                pub fn EFFECT_FLIP_ALPHA(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd14EFFECT_FLW_POSEP9lua_State"]
+                pub fn EFFECT_FLW_POS(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd22EFFECT_FLW_POS_NO_STOPEP9lua_State"]
+                pub fn EFFECT_FLW_POS_NO_STOP(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd25EFFECT_FLW_POS_UNSYNC_VISEP9lua_State"]
+                pub fn EFFECT_FLW_POS_UNSYNC_VIS(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd21EFFECT_FLW_UNSYNC_VISEP9lua_State"]
+                pub fn EFFECT_FLW_UNSYNC_VIS(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd13EFFECT_FOLLOWEP9lua_State"]
+                pub fn EFFECT_FOLLOW(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd19EFFECT_FOLLOW_ALPHAEP9lua_State"]
+                pub fn EFFECT_FOLLOW_ALPHA(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd19EFFECT_FOLLOW_COLOREP9lua_State"]
+                pub fn EFFECT_FOLLOW_COLOR(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd18EFFECT_FOLLOW_FLIPEP9lua_State"]
+                pub fn EFFECT_FOLLOW_FLIP(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd24EFFECT_FOLLOW_FLIP_ALPHAEP9lua_State"]
+                pub fn EFFECT_FOLLOW_FLIP_ALPHA(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd24EFFECT_FOLLOW_FLIP_COLOREP9lua_State"]
+                pub fn EFFECT_FOLLOW_FLIP_COLOR(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd22EFFECT_FOLLOW_FLIP_RNDEP9lua_State"]
+                pub fn EFFECT_FOLLOW_FLIP_RND(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd24EFFECT_FOLLOW_FLIP_arg13EP9lua_State"]
+                pub fn EFFECT_FOLLOW_FLIP_arg13(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd19EFFECT_FOLLOW_LIGHTEP9lua_State"]
+                pub fn EFFECT_FOLLOW_LIGHT(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd22EFFECT_FOLLOW_NO_SCALEEP9lua_State"]
+                pub fn EFFECT_FOLLOW_NO_SCALE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd21EFFECT_FOLLOW_NO_STOPEP9lua_State"]
+                pub fn EFFECT_FOLLOW_NO_STOP(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd26EFFECT_FOLLOW_NO_STOP_FLIPEP9lua_State"]
+                pub fn EFFECT_FOLLOW_NO_STOP_FLIP(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd17EFFECT_FOLLOW_RNDEP9lua_State"]
+                pub fn EFFECT_FOLLOW_RND(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd22EFFECT_FOLLOW_RND_WORKEP9lua_State"]
+                pub fn EFFECT_FOLLOW_RND_WORK(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd30EFFECT_FOLLOW_UNSYNC_VIS_WHOLEEP9lua_State"]
+                pub fn EFFECT_FOLLOW_UNSYNC_VIS_WHOLE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd23EFFECT_FOLLOW_VARIATIONEP9lua_State"]
+                pub fn EFFECT_FOLLOW_VARIATION(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd18EFFECT_FOLLOW_WORKEP9lua_State"]
+                pub fn EFFECT_FOLLOW_WORK(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd19EFFECT_FOLLOW_arg11EP9lua_State"]
+                pub fn EFFECT_FOLLOW_arg11(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd19EFFECT_FOLLOW_arg12EP9lua_State"]
+                pub fn EFFECT_FOLLOW_arg12(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd13EFFECT_GLOBALEP9lua_State"]
+                pub fn EFFECT_GLOBAL(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd25EFFECT_GLOBAL_BACK_GROUNDEP9lua_State"]
+                pub fn EFFECT_GLOBAL_BACK_GROUND(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd41EFFECT_GLOBAL_BACK_GROUND_CENTER_TOP_NODEEP9lua_State"]
+                pub fn EFFECT_GLOBAL_BACK_GROUND_CENTER_TOP_NODE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd43EFFECT_GLOBAL_BACK_GROUND_CUT_IN_CENTER_POSEP9lua_State"]
+                pub fn EFFECT_GLOBAL_BACK_GROUND_CUT_IN_CENTER_POS(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd16EFFECT_LIGHT_ENDEP9lua_State"]
+                pub fn EFFECT_LIGHT_END(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd10EFFECT_OFFEP9lua_State"]
+                pub fn EFFECT_OFF(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd17EFFECT_OFF_HANDLEEP9lua_State"]
+                pub fn EFFECT_OFF_HANDLE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd15EFFECT_OFF_KINDEP9lua_State"]
+                pub fn EFFECT_OFF_KIND(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd20EFFECT_OFF_KIND_WORKEP9lua_State"]
+                pub fn EFFECT_OFF_KIND_WORK(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd18EFFECT_REMOVE_ATTREP9lua_State"]
+                pub fn EFFECT_REMOVE_ATTR(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd18EFFECT_STENCIL_OFFEP9lua_State"]
+                pub fn EFFECT_STENCIL_OFF(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd17EFFECT_STENCIL_ONEP9lua_State"]
+                pub fn EFFECT_STENCIL_ON(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd16EFFECT_VARIATIONEP9lua_State"]
+                pub fn EFFECT_VARIATION(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd11EFFECT_WORKEP9lua_State"]
+                pub fn EFFECT_WORK(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd13EFFECT_WORK_REP9lua_State"]
+                pub fn EFFECT_WORK_R(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd11ENABLE_AREAEP9lua_State"]
+                pub fn ENABLE_AREA(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd18FILL_SCREEN_LEGACYEP9lua_State"]
+                pub fn FILL_SCREEN_LEGACY(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd23FILL_SCREEN_MODEL_COLOREP9lua_State"]
+                pub fn FILL_SCREEN_MODEL_COLOR(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd16FILL_SCREEN_arg9EP9lua_State"]
+                pub fn FILL_SCREEN_arg9(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd5FLASHEP9lua_State"]
+                pub fn FLASH(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd9FLASH_FRMEP9lua_State"]
+                pub fn FLASH_FRM(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd13FLASH_NO_STOPEP9lua_State"]
+                pub fn FLASH_NO_STOP(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd31FLASH_SET_LAST_ATTACK_DIRECTIONEP9lua_State"]
+                pub fn FLASH_SET_LAST_ATTACK_DIRECTION(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd11FOOT_EFFECTEP9lua_State"]
+                pub fn FOOT_EFFECT(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd16FOOT_EFFECT_FLIPEP9lua_State"]
+                pub fn FOOT_EFFECT_FLIP(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd13FT_ADD_DAMAGEEP9lua_State"]
+                pub fn FT_ADD_DAMAGE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd26FT_ATTACK_ABS_CAMERA_QUAKEEP9lua_State"]
+                pub fn FT_ATTACK_ABS_CAMERA_QUAKE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd13FT_CATCH_STOPEP9lua_State"]
+                pub fn FT_CATCH_STOP(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd21FT_DISABLE_CURRY_FACEEP9lua_State"]
+                pub fn FT_DISABLE_CURRY_FACE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd27FT_IS_SAME_FIGHTER_CATEGORYEP9lua_State"]
+                pub fn FT_IS_SAME_FIGHTER_CATEGORY(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd21FT_LEAVE_NEAR_OTTOTTOEP9lua_State"]
+                pub fn FT_LEAVE_NEAR_OTTOTTO(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd26FT_MOTION_CHANGE_HAVE_ITEMEP9lua_State"]
+                pub fn FT_MOTION_CHANGE_HAVE_ITEM(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd23FT_MOTION_INTP_TURN_ENDEP9lua_State"]
+                pub fn FT_MOTION_INTP_TURN_END(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd19FT_MOTION_INTP_WAITEP9lua_State"]
+                pub fn FT_MOTION_INTP_WAIT(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd14FT_MOTION_RATEEP9lua_State"]
+                pub fn FT_MOTION_RATE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd20FT_REMOVE_FINAL_AURAEP9lua_State"]
+                pub fn FT_REMOVE_FINAL_AURA(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd22FT_SET_FINAL_FEAR_FACEEP9lua_State"]
+                pub fn FT_SET_FINAL_FEAR_FACE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd24FT_SET_FINAL_SMASH_LIGHTEP9lua_State"]
+                pub fn FT_SET_FINAL_SMASH_LIGHT(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd35FT_SHOOTING_ATTACK_GROUND_CHECK_NEWEP9lua_State"]
+                pub fn FT_SHOOTING_ATTACK_GROUND_CHECK_NEW(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd40FT_SHOOTING_ATTACK_GROUND_CHECK_NEW_arg5EP9lua_State"]
+                pub fn FT_SHOOTING_ATTACK_GROUND_CHECK_NEW_arg5(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd33FT_START_ADJUST_MOTION_FRAME_arg1EP9lua_State"]
+                pub fn FT_START_ADJUST_MOTION_FRAME_arg1(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd14FT_START_CUTINEP9lua_State"]
+                pub fn FT_START_CUTIN(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd25FT_START_CUTIN_JACK_FINALEP9lua_State"]
+                pub fn FT_START_CUTIN_JACK_FINAL(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd19FT_START_CUTIN_arg1EP9lua_State"]
+                pub fn FT_START_CUTIN_arg1(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd21FT_UPDATE_FACE_MOTIONEP9lua_State"]
+                pub fn FT_UPDATE_FACE_MOTION(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd16GET_VOICE_REGIONEP9lua_State"]
+                pub fn GET_VOICE_REGION(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd20GET_VOICE_REGION_NEWEP9lua_State"]
+                pub fn GET_VOICE_REGION_NEW(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd19GET_VOICE_VARIATIONEP9lua_State"]
+                pub fn GET_VOICE_VARIATION(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd6HIT_NOEP9lua_State"]
+                pub fn HIT_NO(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd8HIT_NODEEP9lua_State"]
+                pub fn HIT_NODE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd13HIT_RESET_ALLEP9lua_State"]
+                pub fn HIT_RESET_ALL(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd16IS_EXIST_ARTICLEEP9lua_State"]
+                pub fn IS_EXIST_ARTICLE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd22IS_FIGHTER_STATUS_KINDEP9lua_State"]
+                pub fn IS_FIGHTER_STATUS_KIND(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd22IS_GENERATABLE_ARTICLEEP9lua_State"]
+                pub fn IS_GENERATABLE_ARTICLE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd17IS_HAVE_ITEM_KINDEP9lua_State"]
+                pub fn IS_HAVE_ITEM_KIND(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd7IS_MENUEP9lua_State"]
+                pub fn IS_MENU(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd9IS_RANDOMEP9lua_State"]
+                pub fn IS_RANDOM(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd14IS_STATUS_KINDEP9lua_State"]
+                pub fn IS_STATUS_KIND(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd14LANDING_EFFECTEP9lua_State"]
+                pub fn LANDING_EFFECT(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd19LANDING_EFFECT_FLIPEP9lua_State"]
+                pub fn LANDING_EFFECT_FLIP(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd21LAST_EFFECT_SET_ALPHAEP9lua_State"]
+                pub fn LAST_EFFECT_SET_ALPHA(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd21LAST_EFFECT_SET_COLOREP9lua_State"]
+                pub fn LAST_EFFECT_SET_COLOR(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd35LAST_EFFECT_SET_DISABLE_SYSTEM_SLOWEP9lua_State"]
+                pub fn LAST_EFFECT_SET_DISABLE_SYSTEM_SLOW(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd37LAST_EFFECT_SET_OFFSET_TO_CAMERA_FLATEP9lua_State"]
+                pub fn LAST_EFFECT_SET_OFFSET_TO_CAMERA_FLAT(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd20LAST_EFFECT_SET_RATEEP9lua_State"]
+                pub fn LAST_EFFECT_SET_RATE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd25LAST_EFFECT_SET_RATE_WORKEP9lua_State"]
+                pub fn LAST_EFFECT_SET_RATE_WORK(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd23LAST_EFFECT_SET_SCALE_WEP9lua_State"]
+                pub fn LAST_EFFECT_SET_SCALE_W(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd26LAST_EFFECT_SET_TOP_OFFSETEP9lua_State"]
+                pub fn LAST_EFFECT_SET_TOP_OFFSET(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd24LAST_EFFECT_SET_WORK_INTEP9lua_State"]
+                pub fn LAST_EFFECT_SET_WORK_INT(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd23LAST_PARTICLE_SET_COLOREP9lua_State"]
+                pub fn LAST_PARTICLE_SET_COLOR(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd15PLAY_DAMAGESTOPEP9lua_State"]
+                pub fn PLAY_DAMAGESTOP(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd12PLAY_DOWN_SEEP9lua_State"]
+                pub fn PLAY_DOWN_SE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd14PLAY_FLY_VOICEEP9lua_State"]
+                pub fn PLAY_FLY_VOICE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd18PLAY_ITEM_EMPTY_SEEP9lua_State"]
+                pub fn PLAY_ITEM_EMPTY_SE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd15PLAY_LANDING_SEEP9lua_State"]
+                pub fn PLAY_LANDING_SE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd7PLAY_SEEP9lua_State"]
+                pub fn PLAY_SE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd13PLAY_SEQUENCEEP9lua_State"]
+                pub fn PLAY_SEQUENCE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd24PLAY_SEQUENCE_DAMAGESTOPEP9lua_State"]
+                pub fn PLAY_SEQUENCE_DAMAGESTOP(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd13PLAY_SE_NO_3DEP9lua_State"]
+                pub fn PLAY_SE_NO_3D(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd30PLAY_SE_NO_3D_FORCE_AUTO_PITCHEP9lua_State"]
+                pub fn PLAY_SE_NO_3D_FORCE_AUTO_PITCH(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd14PLAY_SE_REMAINEP9lua_State"]
+                pub fn PLAY_SE_REMAIN(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd18PLAY_SE_SET_HANDLEEP9lua_State"]
+                pub fn PLAY_SE_SET_HANDLE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd11PLAY_STATUSEP9lua_State"]
+                pub fn PLAY_STATUS(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd9PLAY_STEPEP9lua_State"]
+                pub fn PLAY_STEP(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd19PLAY_STEP_FLIPPABLEEP9lua_State"]
+                pub fn PLAY_STEP_FLIPPABLE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd5QUAKEEP9lua_State"]
+                pub fn QUAKE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd10QUAKE_STOPEP9lua_State"]
+                pub fn QUAKE_STOP(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd14REG_LANDING_SEEP9lua_State"]
+                pub fn REG_LANDING_SE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd26REMOVE_FINAL_SCREEN_EFFECTEP9lua_State"]
+                pub fn REMOVE_FINAL_SCREEN_EFFECT(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd22REQ_FINAL_START_CAMERAEP9lua_State"]
+                pub fn REQ_FINAL_START_CAMERA(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd27REQ_FINAL_START_CAMERA_arg3EP9lua_State"]
+                pub fn REQ_FINAL_START_CAMERA_arg3(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd10REVERSE_LREP9lua_State"]
+                pub fn REVERSE_LR(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd10RUMBLE_ALLEP9lua_State"]
+                pub fn RUMBLE_ALL(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd12RUMBLE_DUMMYEP9lua_State"]
+                pub fn RUMBLE_DUMMY(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd18RUMBLE_FINAL_OTHEREP9lua_State"]
+                pub fn RUMBLE_FINAL_OTHER(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd19RUMBLE_FINAL_TARGETEP9lua_State"]
+                pub fn RUMBLE_FINAL_TARGET(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd10RUMBLE_HITEP9lua_State"]
+                pub fn RUMBLE_HIT(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd17RUMBLE_HIT_STATUSEP9lua_State"]
+                pub fn RUMBLE_HIT_STATUS(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd6SA_SETEP9lua_State"]
+                pub fn SA_SET(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd24SCREEN_EFFECT_SLOW_WHOLEEP9lua_State"]
+                pub fn SCREEN_EFFECT_SLOW_WHOLE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd6SEARCHEP9lua_State"]
+                pub fn SEARCH(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd7SET_AIREP9lua_State"]
+                pub fn SET_AIR(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd16SET_PLAY_INHIVITEP9lua_State"]
+                pub fn SET_PLAY_INHIVIT(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd16SET_RATE_ARTICLEEP9lua_State"]
+                pub fn SET_RATE_ARTICLE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd18SET_RATE_ARTICLE_VEP9lua_State"]
+                pub fn SET_RATE_ARTICLE_V(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd21SET_SEARCH_SIZE_EXISTEP9lua_State"]
+                pub fn SET_SEARCH_SIZE_EXIST(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd9SET_SPEEDEP9lua_State"]
+                pub fn SET_SPEED(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd12SET_SPEED_EXEP9lua_State"]
+                pub fn SET_SPEED_EX(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd14SET_TAKEOUT_SEEP9lua_State"]
+                pub fn SET_TAKEOUT_SE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd21SET_TAKEOUT_SE_STATUSEP9lua_State"]
+                pub fn SET_TAKEOUT_SE_STATUS(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd17SHOOT_ITEM_BULLETEP9lua_State"]
+                pub fn SHOOT_ITEM_BULLET(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd24SHOOT_ITEM_BULLET_CHARGEEP9lua_State"]
+                pub fn SHOOT_ITEM_BULLET_CHARGE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd13SLOW_OPPONENTEP9lua_State"]
+                pub fn SLOW_OPPONENT(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd20START_INFO_FLASH_EYEEP9lua_State"]
+                pub fn START_INFO_FLASH_EYE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd8STICK_LREP9lua_State"]
+                pub fn STICK_LR(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd7STOP_SEEP9lua_State"]
+                pub fn STOP_SE(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd10THROW_ITEMEP9lua_State"]
+                pub fn THROW_ITEM(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd17THROW_ITEM_OFFSETEP9lua_State"]
+                pub fn THROW_ITEM_OFFSET(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd22THROW_ITEM_OFFSET_arg4EP9lua_State"]
+                pub fn THROW_ITEM_OFFSET_arg4(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd17THROW_ITEM_REFLETEP9lua_State"]
+                pub fn THROW_ITEM_REFLET(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd15THROW_ITEM_arg3EP9lua_State"]
+                pub fn THROW_ITEM_arg3(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd11UNABLE_AREAEP9lua_State"]
+                pub fn UNABLE_AREA(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd10UPDATE_ROTEP9lua_State"]
+                pub fn UPDATE_ROT(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd9WHOLE_HITEP9lua_State"]
+                pub fn WHOLE_HIT(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd7executeEP9lua_Statef"]
+                pub fn execute(arg1: u64, arg2: f32);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd5frameEP9lua_Statef"]
+                pub fn frame(arg1: u64, arg2: f32);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd11frame_clearEP9lua_State"]
+                pub fn frame_clear(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd15get_value_floatEP9lua_Statei"]
+                pub fn get_value_float(arg1: u64, arg2: libc::c_int);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd13get_value_intEP9lua_Statei"]
+                pub fn get_value_int(arg1: u64, arg2: libc::c_int);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd9is_excuteEP9lua_State"]
+                pub fn is_excute(arg1: u64) -> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd4stopEP9lua_State"]
+                pub fn stop(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd4waitEP9lua_Statef"]
+                pub fn wait(arg1: u64, arg2: f32);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd9wait_loopEP9lua_State"]
+                pub fn wait_loop(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd15wait_loop_clearEP9lua_State"]
+                pub fn wait_loop_clear(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app10sv_animcmd18wait_loop_sync_motEP9lua_State"]
+                pub fn wait_loop_sync_mot(arg1: u64);
+            }
+        }
+        pub mod sv_battle_object {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_battle_object17add_speed_outsideEjiRKN3phx8Vector3fE"]
+                pub fn add_speed_outside() -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_battle_object7is_nullEj"]
+                pub fn is_null(arg1: root::uint) -> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_battle_object20notify_event_msc_cmdEP9lua_State"]
+                pub fn notify_event_msc_cmd(arg1: u64) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_battle_object9is_activeEj"]
+                pub fn is_active(arg1: root::uint) -> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_battle_object8categoryEj"]
+                pub fn category() -> libc::c_int;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_battle_object13fixed_scalingEjbiifi"]
+                pub fn fixed_scaling(
+                    arg1: root::uint,
+                    arg2: bool,
+                    arg3: libc::c_int,
+                    arg4: libc::c_int,
+                    arg5: f32,
+                    arg6: libc::c_int,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_battle_object15log_attack_kindEj"]
+                pub fn log_attack_kind(arg1: root::uint) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_battle_object3posEj"]
+                pub fn pos(arg1: root::uint) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_battle_object18get_item_hold_kindEj"]
+                pub fn get_item_hold_kind(arg1: root::uint) -> libc::c_int;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_battle_object14get_founder_idEj"]
+                pub fn get_founder_id(arg1: root::uint) -> libc::c_int;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_battle_object9set_floatEjfi"]
+                pub fn set_float(arg1: root::uint, arg2: f32, arg3: libc::c_int) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_battle_object33joint_global_position_with_offsetEjN3phx6Hash40ERKNS1_8Vector3fERS3_"]
+                pub fn joint_global_position_with_offset(
+                    arg1: root::uint,
+                    arg2: u64,
+                    arg3: *mut root::Vector3f,
+                    arg4: *mut root::Vector3f,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_battle_object11end_inhaledEjb"]
+                pub fn end_inhaled(arg1: root::uint, arg2: bool) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_battle_object30set_power_mul_region_attr_infoERNS_26BattleObjectModuleAccessorES2_"]
+                pub fn set_power_mul_region_attr_info(arg1: u64) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_battle_object15module_accessorEj"]
+                pub fn module_accessor(arg1: root::uint) -> *mut root::app::BattleObjectModuleAccessor;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_battle_object4kindEj"]
+                pub fn kind(arg1: root::uint) -> libc::c_int;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_battle_object21joint_global_positionEjN3phx6Hash40ERNS1_8Vector3fE"]
+                pub fn joint_global_position(
+                    arg1: root::uint,
+                    arg2: u64,
+                    arg3: *mut root::Vector3f,
+                ) -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_battle_object8entry_idEj"]
+                pub fn entry_id(arg1: root::uint) -> libc::c_int;
+            }
+		}
+		pub mod sv_information {
 			#[allow(unused_imports)]
 			use super::super::super::root;
 			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd18ADD_SPEED_NO_LIMITEP9lua_State"]
-				pub fn ADD_SPEED_NO_LIMIT(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd26AFTER_IMAGE4_ON_WORK_arg29EP9lua_State"]
-				pub fn AFTER_IMAGE4_ON_WORK_arg29(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd21AFTER_IMAGE4_ON_arg29EP9lua_State"]
-				pub fn AFTER_IMAGE4_ON_arg29(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd15AFTER_IMAGE_OFFEP9lua_State"]
-				pub fn AFTER_IMAGE_OFF(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd13AREA_WIND_2NDEP9lua_State"]
-				pub fn AREA_WIND_2ND(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd17AREA_WIND_2ND_RADEP9lua_State"]
-				pub fn AREA_WIND_2ND_RAD(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd22AREA_WIND_2ND_RAD_arg9EP9lua_State"]
-				pub fn AREA_WIND_2ND_RAD_arg9(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd19AREA_WIND_2ND_arg10EP9lua_State"]
-				pub fn AREA_WIND_2ND_arg10(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd11ATK_HIT_ABSEP9lua_State"]
-				pub fn ATK_HIT_ABS(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd14ATK_LERP_RATIOEP9lua_State"]
-				pub fn ATK_LERP_RATIO(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd33ATK_NO_REACTION_SEARCH_WITCH_TIMEEP9lua_State"]
-				pub fn ATK_NO_REACTION_SEARCH_WITCH_TIME(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd9ATK_POWEREP9lua_State"]
-				pub fn ATK_POWER(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd25ATK_SET_SHIELD_SETOFF_MULEP9lua_State"]
-				pub fn ATK_SET_SHIELD_SETOFF_MUL(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd30ATK_SET_SHIELD_SETOFF_MUL_arg3EP9lua_State"]
-				pub fn ATK_SET_SHIELD_SETOFF_MUL_arg3(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd30ATK_SET_SHIELD_SETOFF_MUL_arg4EP9lua_State"]
-				pub fn ATK_SET_SHIELD_SETOFF_MUL_arg4(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd30ATK_SET_SHIELD_SETOFF_MUL_arg5EP9lua_State"]
-				pub fn ATK_SET_SHIELD_SETOFF_MUL_arg5(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd6ATTACKEP9lua_State"]
-				pub fn ATTACK(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd10ATTACK_ABSEP9lua_State"]
-				pub fn ATTACK_ABS(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd19ATTACK_IGNORE_THROWEP9lua_State"]
-				pub fn ATTACK_IGNORE_THROW(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd49BACK_GROUND_EFFECT_STAGE_SET_HIDING_FOR_DIRECTIONEP9lua_State"]
-				pub fn BACK_GROUND_EFFECT_STAGE_SET_HIDING_FOR_DIRECTION(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd10BURN_COLOREP9lua_State"]
-				pub fn BURN_COLOR(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd16BURN_COLOR_FRAMEEP9lua_State"]
-				pub fn BURN_COLOR_FRAME(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd17BURN_COLOR_NORMALEP9lua_State"]
-				pub fn BURN_COLOR_NORMAL(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd17CAM_ZOOM_IN_FINALEP9lua_State"]
-				pub fn CAM_ZOOM_IN_FINAL(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd23CAM_ZOOM_IN_FINAL_arg13EP9lua_State"]
-				pub fn CAM_ZOOM_IN_FINAL_arg13(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd16CAM_ZOOM_IN_arg5EP9lua_State"]
-				pub fn CAM_ZOOM_IN_arg5(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd16CAM_ZOOM_IN_arg6EP9lua_State"]
-				pub fn CAM_ZOOM_IN_arg6(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd12CAM_ZOOM_OUTEP9lua_State"]
-				pub fn CAM_ZOOM_OUT(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd18CAM_ZOOM_OUT_FINALEP9lua_State"]
-				pub fn CAM_ZOOM_OUT_FINAL(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd18CANCEL_FILL_SCREENEP9lua_State"]
-				pub fn CANCEL_FILL_SCREEN(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd5CATCHEP9lua_State"]
-				pub fn CATCH(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd19CHECK_FINISH_CAMERAEP9lua_State"]
-				pub fn CHECK_FINISH_CAMERA(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd34CHECK_FINISH_CAMERA_IF_NOT_HP_MODEEP9lua_State"]
-				pub fn CHECK_FINISH_CAMERA_IF_NOT_HP_MODE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd30CHECK_VALID_FINAL_START_CAMERAEP9lua_State"]
-				pub fn CHECK_VALID_FINAL_START_CAMERA(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd9CLR_SPEEDEP9lua_State"]
-				pub fn CLR_SPEED(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd16COLOR_COLLECTIONEP9lua_State"]
-				pub fn COLOR_COLLECTION(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd10COL_NORMALEP9lua_State"]
-				pub fn COL_NORMAL(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd7COL_PRIEP9lua_State"]
-				pub fn COL_PRI(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd7CORRECTEP9lua_State"]
-				pub fn CORRECT(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd11DOWN_EFFECTEP9lua_State"]
-				pub fn DOWN_EFFECT(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd6EFFECTEP9lua_State"]
-				pub fn EFFECT(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd12EFFECT_ALPHAEP9lua_State"]
-				pub fn EFFECT_ALPHA(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd11EFFECT_ATTREP9lua_State"]
-				pub fn EFFECT_ATTR(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd23EFFECT_BRANCH_SITUATIONEP9lua_State"]
-				pub fn EFFECT_BRANCH_SITUATION(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd12EFFECT_COLOREP9lua_State"]
-				pub fn EFFECT_COLOR(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd17EFFECT_COLOR_WORKEP9lua_State"]
-				pub fn EFFECT_COLOR_WORK(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd18EFFECT_DETACH_KINDEP9lua_State"]
-				pub fn EFFECT_DETACH_KIND(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd23EFFECT_DETACH_KIND_WORKEP9lua_State"]
-				pub fn EFFECT_DETACH_KIND_WORK(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd11EFFECT_FLIPEP9lua_State"]
-				pub fn EFFECT_FLIP(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd17EFFECT_FLIP_ALPHAEP9lua_State"]
-				pub fn EFFECT_FLIP_ALPHA(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd14EFFECT_FLW_POSEP9lua_State"]
-				pub fn EFFECT_FLW_POS(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd22EFFECT_FLW_POS_NO_STOPEP9lua_State"]
-				pub fn EFFECT_FLW_POS_NO_STOP(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd25EFFECT_FLW_POS_UNSYNC_VISEP9lua_State"]
-				pub fn EFFECT_FLW_POS_UNSYNC_VIS(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd21EFFECT_FLW_UNSYNC_VISEP9lua_State"]
-				pub fn EFFECT_FLW_UNSYNC_VIS(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd13EFFECT_FOLLOWEP9lua_State"]
-				pub fn EFFECT_FOLLOW(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd19EFFECT_FOLLOW_ALPHAEP9lua_State"]
-				pub fn EFFECT_FOLLOW_ALPHA(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd19EFFECT_FOLLOW_COLOREP9lua_State"]
-				pub fn EFFECT_FOLLOW_COLOR(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd18EFFECT_FOLLOW_FLIPEP9lua_State"]
-				pub fn EFFECT_FOLLOW_FLIP(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd24EFFECT_FOLLOW_FLIP_ALPHAEP9lua_State"]
-				pub fn EFFECT_FOLLOW_FLIP_ALPHA(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd24EFFECT_FOLLOW_FLIP_COLOREP9lua_State"]
-				pub fn EFFECT_FOLLOW_FLIP_COLOR(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd22EFFECT_FOLLOW_FLIP_RNDEP9lua_State"]
-				pub fn EFFECT_FOLLOW_FLIP_RND(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd24EFFECT_FOLLOW_FLIP_arg13EP9lua_State"]
-				pub fn EFFECT_FOLLOW_FLIP_arg13(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd19EFFECT_FOLLOW_LIGHTEP9lua_State"]
-				pub fn EFFECT_FOLLOW_LIGHT(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd22EFFECT_FOLLOW_NO_SCALEEP9lua_State"]
-				pub fn EFFECT_FOLLOW_NO_SCALE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd21EFFECT_FOLLOW_NO_STOPEP9lua_State"]
-				pub fn EFFECT_FOLLOW_NO_STOP(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd26EFFECT_FOLLOW_NO_STOP_FLIPEP9lua_State"]
-				pub fn EFFECT_FOLLOW_NO_STOP_FLIP(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd17EFFECT_FOLLOW_RNDEP9lua_State"]
-				pub fn EFFECT_FOLLOW_RND(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd22EFFECT_FOLLOW_RND_WORKEP9lua_State"]
-				pub fn EFFECT_FOLLOW_RND_WORK(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd30EFFECT_FOLLOW_UNSYNC_VIS_WHOLEEP9lua_State"]
-				pub fn EFFECT_FOLLOW_UNSYNC_VIS_WHOLE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd23EFFECT_FOLLOW_VARIATIONEP9lua_State"]
-				pub fn EFFECT_FOLLOW_VARIATION(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd18EFFECT_FOLLOW_WORKEP9lua_State"]
-				pub fn EFFECT_FOLLOW_WORK(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd19EFFECT_FOLLOW_arg11EP9lua_State"]
-				pub fn EFFECT_FOLLOW_arg11(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd19EFFECT_FOLLOW_arg12EP9lua_State"]
-				pub fn EFFECT_FOLLOW_arg12(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd13EFFECT_GLOBALEP9lua_State"]
-				pub fn EFFECT_GLOBAL(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd25EFFECT_GLOBAL_BACK_GROUNDEP9lua_State"]
-				pub fn EFFECT_GLOBAL_BACK_GROUND(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd41EFFECT_GLOBAL_BACK_GROUND_CENTER_TOP_NODEEP9lua_State"]
-				pub fn EFFECT_GLOBAL_BACK_GROUND_CENTER_TOP_NODE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd43EFFECT_GLOBAL_BACK_GROUND_CUT_IN_CENTER_POSEP9lua_State"]
-				pub fn EFFECT_GLOBAL_BACK_GROUND_CUT_IN_CENTER_POS(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd16EFFECT_LIGHT_ENDEP9lua_State"]
-				pub fn EFFECT_LIGHT_END(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd10EFFECT_OFFEP9lua_State"]
-				pub fn EFFECT_OFF(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd17EFFECT_OFF_HANDLEEP9lua_State"]
-				pub fn EFFECT_OFF_HANDLE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd15EFFECT_OFF_KINDEP9lua_State"]
-				pub fn EFFECT_OFF_KIND(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd20EFFECT_OFF_KIND_WORKEP9lua_State"]
-				pub fn EFFECT_OFF_KIND_WORK(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd18EFFECT_REMOVE_ATTREP9lua_State"]
-				pub fn EFFECT_REMOVE_ATTR(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd18EFFECT_STENCIL_OFFEP9lua_State"]
-				pub fn EFFECT_STENCIL_OFF(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd17EFFECT_STENCIL_ONEP9lua_State"]
-				pub fn EFFECT_STENCIL_ON(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd16EFFECT_VARIATIONEP9lua_State"]
-				pub fn EFFECT_VARIATION(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd11EFFECT_WORKEP9lua_State"]
-				pub fn EFFECT_WORK(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd13EFFECT_WORK_REP9lua_State"]
-				pub fn EFFECT_WORK_R(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd11ENABLE_AREAEP9lua_State"]
-				pub fn ENABLE_AREA(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd18FILL_SCREEN_LEGACYEP9lua_State"]
-				pub fn FILL_SCREEN_LEGACY(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd23FILL_SCREEN_MODEL_COLOREP9lua_State"]
-				pub fn FILL_SCREEN_MODEL_COLOR(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd16FILL_SCREEN_arg9EP9lua_State"]
-				pub fn FILL_SCREEN_arg9(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd5FLASHEP9lua_State"]
-				pub fn FLASH(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd9FLASH_FRMEP9lua_State"]
-				pub fn FLASH_FRM(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd13FLASH_NO_STOPEP9lua_State"]
-				pub fn FLASH_NO_STOP(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd31FLASH_SET_LAST_ATTACK_DIRECTIONEP9lua_State"]
-				pub fn FLASH_SET_LAST_ATTACK_DIRECTION(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd11FOOT_EFFECTEP9lua_State"]
-				pub fn FOOT_EFFECT(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd16FOOT_EFFECT_FLIPEP9lua_State"]
-				pub fn FOOT_EFFECT_FLIP(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd13FT_ADD_DAMAGEEP9lua_State"]
-				pub fn FT_ADD_DAMAGE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd26FT_ATTACK_ABS_CAMERA_QUAKEEP9lua_State"]
-				pub fn FT_ATTACK_ABS_CAMERA_QUAKE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd13FT_CATCH_STOPEP9lua_State"]
-				pub fn FT_CATCH_STOP(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd21FT_DISABLE_CURRY_FACEEP9lua_State"]
-				pub fn FT_DISABLE_CURRY_FACE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd27FT_IS_SAME_FIGHTER_CATEGORYEP9lua_State"]
-				pub fn FT_IS_SAME_FIGHTER_CATEGORY(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd21FT_LEAVE_NEAR_OTTOTTOEP9lua_State"]
-				pub fn FT_LEAVE_NEAR_OTTOTTO(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd26FT_MOTION_CHANGE_HAVE_ITEMEP9lua_State"]
-				pub fn FT_MOTION_CHANGE_HAVE_ITEM(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd23FT_MOTION_INTP_TURN_ENDEP9lua_State"]
-				pub fn FT_MOTION_INTP_TURN_END(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd19FT_MOTION_INTP_WAITEP9lua_State"]
-				pub fn FT_MOTION_INTP_WAIT(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd14FT_MOTION_RATEEP9lua_State"]
-				pub fn FT_MOTION_RATE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd20FT_REMOVE_FINAL_AURAEP9lua_State"]
-				pub fn FT_REMOVE_FINAL_AURA(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd22FT_SET_FINAL_FEAR_FACEEP9lua_State"]
-				pub fn FT_SET_FINAL_FEAR_FACE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd24FT_SET_FINAL_SMASH_LIGHTEP9lua_State"]
-				pub fn FT_SET_FINAL_SMASH_LIGHT(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd35FT_SHOOTING_ATTACK_GROUND_CHECK_NEWEP9lua_State"]
-				pub fn FT_SHOOTING_ATTACK_GROUND_CHECK_NEW(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd40FT_SHOOTING_ATTACK_GROUND_CHECK_NEW_arg5EP9lua_State"]
-				pub fn FT_SHOOTING_ATTACK_GROUND_CHECK_NEW_arg5(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd33FT_START_ADJUST_MOTION_FRAME_arg1EP9lua_State"]
-				pub fn FT_START_ADJUST_MOTION_FRAME_arg1(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd14FT_START_CUTINEP9lua_State"]
-				pub fn FT_START_CUTIN(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd25FT_START_CUTIN_JACK_FINALEP9lua_State"]
-				pub fn FT_START_CUTIN_JACK_FINAL(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd19FT_START_CUTIN_arg1EP9lua_State"]
-				pub fn FT_START_CUTIN_arg1(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd21FT_UPDATE_FACE_MOTIONEP9lua_State"]
-				pub fn FT_UPDATE_FACE_MOTION(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd16GET_VOICE_REGIONEP9lua_State"]
-				pub fn GET_VOICE_REGION(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd20GET_VOICE_REGION_NEWEP9lua_State"]
-				pub fn GET_VOICE_REGION_NEW(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd19GET_VOICE_VARIATIONEP9lua_State"]
-				pub fn GET_VOICE_VARIATION(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd6HIT_NOEP9lua_State"]
-				pub fn HIT_NO(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd8HIT_NODEEP9lua_State"]
-				pub fn HIT_NODE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd13HIT_RESET_ALLEP9lua_State"]
-				pub fn HIT_RESET_ALL(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd16IS_EXIST_ARTICLEEP9lua_State"]
-				pub fn IS_EXIST_ARTICLE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd22IS_FIGHTER_STATUS_KINDEP9lua_State"]
-				pub fn IS_FIGHTER_STATUS_KIND(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd22IS_GENERATABLE_ARTICLEEP9lua_State"]
-				pub fn IS_GENERATABLE_ARTICLE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd17IS_HAVE_ITEM_KINDEP9lua_State"]
-				pub fn IS_HAVE_ITEM_KIND(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd7IS_MENUEP9lua_State"]
-				pub fn IS_MENU(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd9IS_RANDOMEP9lua_State"]
-				pub fn IS_RANDOM(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd14IS_STATUS_KINDEP9lua_State"]
-				pub fn IS_STATUS_KIND(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd14LANDING_EFFECTEP9lua_State"]
-				pub fn LANDING_EFFECT(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd19LANDING_EFFECT_FLIPEP9lua_State"]
-				pub fn LANDING_EFFECT_FLIP(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd21LAST_EFFECT_SET_ALPHAEP9lua_State"]
-				pub fn LAST_EFFECT_SET_ALPHA(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd21LAST_EFFECT_SET_COLOREP9lua_State"]
-				pub fn LAST_EFFECT_SET_COLOR(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd35LAST_EFFECT_SET_DISABLE_SYSTEM_SLOWEP9lua_State"]
-				pub fn LAST_EFFECT_SET_DISABLE_SYSTEM_SLOW(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd37LAST_EFFECT_SET_OFFSET_TO_CAMERA_FLATEP9lua_State"]
-				pub fn LAST_EFFECT_SET_OFFSET_TO_CAMERA_FLAT(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd20LAST_EFFECT_SET_RATEEP9lua_State"]
-				pub fn LAST_EFFECT_SET_RATE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd25LAST_EFFECT_SET_RATE_WORKEP9lua_State"]
-				pub fn LAST_EFFECT_SET_RATE_WORK(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd23LAST_EFFECT_SET_SCALE_WEP9lua_State"]
-				pub fn LAST_EFFECT_SET_SCALE_W(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd26LAST_EFFECT_SET_TOP_OFFSETEP9lua_State"]
-				pub fn LAST_EFFECT_SET_TOP_OFFSET(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd24LAST_EFFECT_SET_WORK_INTEP9lua_State"]
-				pub fn LAST_EFFECT_SET_WORK_INT(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd23LAST_PARTICLE_SET_COLOREP9lua_State"]
-				pub fn LAST_PARTICLE_SET_COLOR(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd15PLAY_DAMAGESTOPEP9lua_State"]
-				pub fn PLAY_DAMAGESTOP(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd12PLAY_DOWN_SEEP9lua_State"]
-				pub fn PLAY_DOWN_SE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd14PLAY_FLY_VOICEEP9lua_State"]
-				pub fn PLAY_FLY_VOICE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd18PLAY_ITEM_EMPTY_SEEP9lua_State"]
-				pub fn PLAY_ITEM_EMPTY_SE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd15PLAY_LANDING_SEEP9lua_State"]
-				pub fn PLAY_LANDING_SE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd7PLAY_SEEP9lua_State"]
-				pub fn PLAY_SE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd13PLAY_SEQUENCEEP9lua_State"]
-				pub fn PLAY_SEQUENCE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd24PLAY_SEQUENCE_DAMAGESTOPEP9lua_State"]
-				pub fn PLAY_SEQUENCE_DAMAGESTOP(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd13PLAY_SE_NO_3DEP9lua_State"]
-				pub fn PLAY_SE_NO_3D(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd30PLAY_SE_NO_3D_FORCE_AUTO_PITCHEP9lua_State"]
-				pub fn PLAY_SE_NO_3D_FORCE_AUTO_PITCH(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd14PLAY_SE_REMAINEP9lua_State"]
-				pub fn PLAY_SE_REMAIN(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd18PLAY_SE_SET_HANDLEEP9lua_State"]
-				pub fn PLAY_SE_SET_HANDLE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd11PLAY_STATUSEP9lua_State"]
-				pub fn PLAY_STATUS(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd9PLAY_STEPEP9lua_State"]
-				pub fn PLAY_STEP(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd19PLAY_STEP_FLIPPABLEEP9lua_State"]
-				pub fn PLAY_STEP_FLIPPABLE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd5QUAKEEP9lua_State"]
-				pub fn QUAKE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd10QUAKE_STOPEP9lua_State"]
-				pub fn QUAKE_STOP(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd14REG_LANDING_SEEP9lua_State"]
-				pub fn REG_LANDING_SE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd26REMOVE_FINAL_SCREEN_EFFECTEP9lua_State"]
-				pub fn REMOVE_FINAL_SCREEN_EFFECT(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd22REQ_FINAL_START_CAMERAEP9lua_State"]
-				pub fn REQ_FINAL_START_CAMERA(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd27REQ_FINAL_START_CAMERA_arg3EP9lua_State"]
-				pub fn REQ_FINAL_START_CAMERA_arg3(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd10REVERSE_LREP9lua_State"]
-				pub fn REVERSE_LR(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd10RUMBLE_ALLEP9lua_State"]
-				pub fn RUMBLE_ALL(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd12RUMBLE_DUMMYEP9lua_State"]
-				pub fn RUMBLE_DUMMY(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd18RUMBLE_FINAL_OTHEREP9lua_State"]
-				pub fn RUMBLE_FINAL_OTHER(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd19RUMBLE_FINAL_TARGETEP9lua_State"]
-				pub fn RUMBLE_FINAL_TARGET(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd10RUMBLE_HITEP9lua_State"]
-				pub fn RUMBLE_HIT(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd17RUMBLE_HIT_STATUSEP9lua_State"]
-				pub fn RUMBLE_HIT_STATUS(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd6SA_SETEP9lua_State"]
-				pub fn SA_SET(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd24SCREEN_EFFECT_SLOW_WHOLEEP9lua_State"]
-				pub fn SCREEN_EFFECT_SLOW_WHOLE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd6SEARCHEP9lua_State"]
-				pub fn SEARCH(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd7SET_AIREP9lua_State"]
-				pub fn SET_AIR(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd16SET_PLAY_INHIVITEP9lua_State"]
-				pub fn SET_PLAY_INHIVIT(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd16SET_RATE_ARTICLEEP9lua_State"]
-				pub fn SET_RATE_ARTICLE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd18SET_RATE_ARTICLE_VEP9lua_State"]
-				pub fn SET_RATE_ARTICLE_V(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd21SET_SEARCH_SIZE_EXISTEP9lua_State"]
-				pub fn SET_SEARCH_SIZE_EXIST(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd9SET_SPEEDEP9lua_State"]
-				pub fn SET_SPEED(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd12SET_SPEED_EXEP9lua_State"]
-				pub fn SET_SPEED_EX(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd14SET_TAKEOUT_SEEP9lua_State"]
-				pub fn SET_TAKEOUT_SE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd21SET_TAKEOUT_SE_STATUSEP9lua_State"]
-				pub fn SET_TAKEOUT_SE_STATUS(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd17SHOOT_ITEM_BULLETEP9lua_State"]
-				pub fn SHOOT_ITEM_BULLET(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd24SHOOT_ITEM_BULLET_CHARGEEP9lua_State"]
-				pub fn SHOOT_ITEM_BULLET_CHARGE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd13SLOW_OPPONENTEP9lua_State"]
-				pub fn SLOW_OPPONENT(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd20START_INFO_FLASH_EYEEP9lua_State"]
-				pub fn START_INFO_FLASH_EYE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd8STICK_LREP9lua_State"]
-				pub fn STICK_LR(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd7STOP_SEEP9lua_State"]
-				pub fn STOP_SE(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd10THROW_ITEMEP9lua_State"]
-				pub fn THROW_ITEM(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd17THROW_ITEM_OFFSETEP9lua_State"]
-				pub fn THROW_ITEM_OFFSET(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd22THROW_ITEM_OFFSET_arg4EP9lua_State"]
-				pub fn THROW_ITEM_OFFSET_arg4(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd17THROW_ITEM_REFLETEP9lua_State"]
-				pub fn THROW_ITEM_REFLET(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd15THROW_ITEM_arg3EP9lua_State"]
-				pub fn THROW_ITEM_arg3(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd11UNABLE_AREAEP9lua_State"]
-				pub fn UNABLE_AREA(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd10UPDATE_ROTEP9lua_State"]
-				pub fn UPDATE_ROT(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd9WHOLE_HITEP9lua_State"]
-				pub fn WHOLE_HIT(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd7executeEP9lua_Statef"]
-				pub fn execute(arg1: u64, arg2: f32);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd5frameEP9lua_Statef"]
-				pub fn frame(arg1: u64, arg2: f32);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd11frame_clearEP9lua_State"]
-				pub fn frame_clear(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd15get_value_floatEP9lua_Statei"]
-				pub fn get_value_float(arg1: u64, arg2: libc::c_int);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd13get_value_intEP9lua_Statei"]
-				pub fn get_value_int(arg1: u64, arg2: libc::c_int);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd9is_excuteEP9lua_State"]
-				pub fn is_excute(arg1: u64) -> bool;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd4stopEP9lua_State"]
-				pub fn stop(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd4waitEP9lua_Statef"]
-				pub fn wait(arg1: u64, arg2: f32);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd9wait_loopEP9lua_State"]
-				pub fn wait_loop(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd15wait_loop_clearEP9lua_State"]
-				pub fn wait_loop_clear(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app10sv_animcmd18wait_loop_sync_motEP9lua_State"]
-				pub fn wait_loop_sync_mot(arg1: u64);
+				#[link_name = "\u{1}_ZN3app14sv_information11is_ready_goEv"]
+				pub fn is_ready_go() -> bool;
 			}
 		}
-		pub mod sv_battle_object {
-			#[allow(unused_imports)]
-			use super::super::super::root;
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_battle_object17add_speed_outsideEjiRKN3phx8Vector3fE"]
-				pub fn add_speed_outside() -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_battle_object7is_nullEj"]
-				pub fn is_null(arg1: root::uint) -> bool;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_battle_object20notify_event_msc_cmdEP9lua_State"]
-				pub fn notify_event_msc_cmd(arg1: u64) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_battle_object9is_activeEj"]
-				pub fn is_active(arg1: root::uint) -> bool;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_battle_object8categoryEj"]
-				pub fn category() -> libc::c_int;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_battle_object13fixed_scalingEjbiifi"]
-				pub fn fixed_scaling(
-					arg1: root::uint,
-					arg2: bool,
-					arg3: libc::c_int,
-					arg4: libc::c_int,
-					arg5: f32,
-					arg6: libc::c_int,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_battle_object15log_attack_kindEj"]
-				pub fn log_attack_kind(arg1: root::uint) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_battle_object3posEj"]
-				pub fn pos(arg1: root::uint) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_battle_object18get_item_hold_kindEj"]
-				pub fn get_item_hold_kind(arg1: root::uint) -> libc::c_int;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_battle_object14get_founder_idEj"]
-				pub fn get_founder_id(arg1: root::uint) -> libc::c_int;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_battle_object9set_floatEjfi"]
-				pub fn set_float(arg1: root::uint, arg2: f32, arg3: libc::c_int) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_battle_object33joint_global_position_with_offsetEjN3phx6Hash40ERKNS1_8Vector3fERS3_"]
-				pub fn joint_global_position_with_offset(
-					arg1: root::uint,
-					arg2: u64,
-					arg3: *mut root::Vector3f,
-					arg4: *mut root::Vector3f,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_battle_object11end_inhaledEjb"]
-				pub fn end_inhaled(arg1: root::uint, arg2: bool) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_battle_object30set_power_mul_region_attr_infoERNS_26BattleObjectModuleAccessorES2_"]
-				pub fn set_power_mul_region_attr_info(arg1: u64) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_battle_object15module_accessorEj"]
-				pub fn module_accessor(arg1: root::uint) -> *mut root::app::BattleObjectModuleAccessor;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_battle_object4kindEj"]
-				pub fn kind(arg1: root::uint) -> libc::c_int;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_battle_object21joint_global_positionEjN3phx6Hash40ERNS1_8Vector3fE"]
-				pub fn joint_global_position(
-					arg1: root::uint,
-					arg2: u64,
-					arg3: *mut root::Vector3f,
-				) -> u64;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_battle_object8entry_idEj"]
-				pub fn entry_id(arg1: root::uint) -> libc::c_int;
-			}
-		}
-		pub mod sv_kinetic_energy {
-			#[allow(unused_imports)]
-			use super::super::super::root;
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy11clear_speedEP9lua_State"]
-				pub fn clear_speed(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy11friction_onEP9lua_State"]
-				pub fn friction_on(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy11get_accel_yEP9lua_State"]
-				pub fn get_accel_y(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy11get_brake_yEP9lua_State"]
-				pub fn get_brake_y(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy11get_speed3fEP9lua_State"]
-				pub fn get_speed3f(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy11get_speed_xEP9lua_State"]
-				pub fn get_speed_x(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy11get_speed_yEP9lua_State"]
-				pub fn get_speed_y(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy12friction_offEP9lua_State"]
-				pub fn friction_off(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy12get_rotationEP9lua_State"]
-				pub fn get_rotation(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy12reset_energyEP9lua_State"]
-				pub fn reset_energy(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy13get_speed_mulEP9lua_State"]
-				pub fn get_speed_mul(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy13set_chara_dirEP9lua_State"]
-				pub fn set_chara_dir(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy13set_speed_mulEP9lua_State"]
-				pub fn set_speed_mul(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy14clear_speed_exEP9lua_State"]
-				pub fn clear_speed_ex(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy14get_rotation_xEP9lua_State"]
-				pub fn get_rotation_x(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy14get_rotation_yEP9lua_State"]
-				pub fn get_rotation_y(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy14get_rotation_zEP9lua_State"]
-				pub fn get_rotation_z(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy15mul_x_accel_addEP9lua_State"]
-				pub fn mul_x_accel_add(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy15mul_x_accel_mulEP9lua_State"]
-				pub fn mul_x_accel_mul(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy15mul_x_speed_maxEP9lua_State"]
-				pub fn mul_x_speed_max(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy15set_accel_x_addEP9lua_State"]
-				pub fn set_accel_x_add(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy15set_accel_x_mulEP9lua_State"]
-				pub fn set_accel_x_mul(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy15set_accel_y_addEP9lua_State"]
-				pub fn set_accel_y_add(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy15set_accel_y_mulEP9lua_State"]
-				pub fn set_accel_y_mul(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy15set_limit_speedEP9lua_State"]
-				pub fn set_limit_speed(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy16get_speed_lengthEP9lua_State"]
-				pub fn get_speed_length(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy16set_damage_speedEP9lua_State"]
-				pub fn set_damage_speed(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy16set_ground_transEP9lua_State"]
-				pub fn set_ground_trans(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy16set_stable_speedEP9lua_State"]
-				pub fn set_stable_speed(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy17get_limit_speed_xEP9lua_State"]
-				pub fn get_limit_speed_x(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy17get_limit_speed_yEP9lua_State"]
-				pub fn get_limit_speed_y(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy17set_speed_mul_2ndEP9lua_State"]
-				pub fn set_speed_mul_2nd(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy18get_stable_speed_xEP9lua_State"]
-				pub fn get_stable_speed_x(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy18get_stable_speed_yEP9lua_State"]
-				pub fn get_stable_speed_y(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy20is_gravity_fix_accelEP9lua_State"]
-				pub fn is_gravity_fix_accel(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy21is_cliff_ground_transEP9lua_State"]
-				pub fn is_cliff_ground_trans(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy23set_gravity_coefficientEP9lua_State"]
-				pub fn set_gravity_coefficient(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy26controller_set_accel_x_addEP9lua_State"]
-				pub fn controller_set_accel_x_add(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy26controller_set_accel_x_mulEP9lua_State"]
-				pub fn controller_set_accel_x_mul(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy29set_motion_energy_update_flagEP9lua_State"]
-				pub fn set_motion_energy_update_flag(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy6enableEP9lua_State"]
-				pub fn enable(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy6resumeEP9lua_State"]
-				pub fn resume(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy6unableEP9lua_State"]
-				pub fn unable(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy7suspendEP9lua_State"]
-				pub fn suspend(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy9add_speedEP9lua_State"]
-				pub fn add_speed(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy9get_accelEP9lua_State"]
-				pub fn get_accel(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy9get_speedEP9lua_State"]
-				pub fn get_speed(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy9is_enableEP9lua_State"]
-				pub fn is_enable(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy9mul_accelEP9lua_State"]
-				pub fn mul_accel(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy9mul_speedEP9lua_State"]
-				pub fn mul_speed(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy9set_accelEP9lua_State"]
-				pub fn set_accel(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy9set_angleEP9lua_State"]
-				pub fn set_angle(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy9set_brakeEP9lua_State"]
-				pub fn set_brake(arg1: u64);
-			}
-			extern "C" {
-				///Sets the current speed
-				///
-				/// This is a lua stack based function - it takes in one argument, the lua state, and relies on the current lua stack to
-				// figure out what args it is getting.
-				///
-				/// # Arguments
-				///
-				/// * `lua_state` - the lua state of the current L2CAgent
-				///
-				/// # Example
-				///
-				/// ```
-				/// l2c_agent.clear_lua_stack(); //clear the stack from any previous args
-				/// l2c_agent.push_lua_stack(&mut L2CValue::new_int(*FIGHTER_KINETIC_ENERGY_ID_CONTROL as u64)); //push the first arg, that being a KINETIC_ENERGY_ID const
-				/// l2c_agent.push_lua_stack(&mut L2CValue::new_num(5.0)); //push the second arg, that being a float of the new speed we want to set 
-				/// sv_kinetic_energy::set_speed(lua_state); //call the desired function with the lua state which will grab the args we previously pushed
-				/// ```
-				/// An L2CAgent can be obtained in multiple different contexts. One common place you'd have access to one is in `sys_line_system_control_fighter`
-				/// That function runs once-per-frame per-fighter. As an arg it takes an L2CFighterCommon, and when hooking it, we can use that L2CFighterCommon to get
-				/// an L2CAgent, which we can then use to manipulate the lua stack. To get an L2CAgent you might do something like this:
-				/// ```
-				/// use smash::lib::{L2CValue, L2CAgent};
-				/// use smash::lua2cpp::L2CFighterCommon;
-				/// use smash::app::sv_system;
-				/// #[skyline::hook(replace = smash::lua2cpp::L2CFighterCommon_sys_line_system_control_fighter)]
-				/// pub unsafe fn sys_line_system_control_fighter_hook(fighter: &mut L2CFighterCommon) -> L2CValue {
-				///     let module_accessor = sv_system::battle_object_module_accessor(fighter.lua_state_agent); //you can also use an L2CFighterCommon to get a module_accessor
-				///     let mut lua_state = fighter.lua_state_agent;
-				///     let mut l2c_agent = L2CAgent::new(lua_state);
-				///
-				///     original!()(fighter)
-				/// }
-				#[link_name = "\u{1}_ZN3app17sv_kinetic_energy9set_speedEP9lua_State"]
-				pub fn set_speed(arg1: u64);
-			}
-		}
-		pub mod sv_math {
-			#[allow(unused_imports)]
-			use super::super::super::root;
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app7sv_math10vec2_angleEffff"]
-				pub fn vec2_angle(arg1: f32, arg2: f32, arg3: f32, arg4: f32) -> f32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app7sv_math10vec3_crossEffffff"]
-				pub fn vec3_cross(
-					arg1: f32,
-					arg2: f32,
-					arg3: f32,
-					arg4: f32,
-					arg5: f32,
-					arg6: f32,
-				) -> *mut root::Vector3f;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app7sv_math11vec2_lengthEff"]
-				pub fn vec2_length(arg1: f32, arg2: f32) -> f32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app7sv_math11vec3_lengthEfff"]
-				pub fn vec3_length(arg1: f32, arg2: f32, arg3: f32) -> f32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app7sv_math12bezier_curveEfffff"]
-				pub fn bezier_curve(arg1: f32, arg2: f32, arg3: f32, arg4: f32, arg5: f32) -> f32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app7sv_math12vec2_is_zeroEff"]
-				pub fn vec2_is_zero(arg1: f32, arg2: f32) -> bool;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app7sv_math12vec3_is_zeroEfff"]
-				pub fn vec3_is_zero(arg1: f32, arg2: f32, arg3: f32) -> bool;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app7sv_math13vec2_distanceEffff"]
-				pub fn vec2_distance(arg1: f32, arg2: f32, arg3: f32, arg4: f32) -> f32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app7sv_math13vec3_distanceEffffff"]
-				pub fn vec3_distance(
-					arg1: f32,
-					arg2: f32,
-					arg3: f32,
-					arg4: f32,
-					arg5: f32,
-					arg6: f32,
-				) -> f32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app7sv_math14vec2_normalizeEff"]
-				pub fn vec2_normalize(arg1: f32, arg2: f32) -> f32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app7sv_math14vec3_normalizeEfff"]
-				pub fn vec3_normalize(arg1: f32, arg2: f32, arg3: f32) -> f32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app7sv_math15vec2_reflectionEffff"]
-				pub fn vec2_reflection(arg1: f32, arg2: f32, arg3: f32, arg4: f32) -> f32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app7sv_math18vec2_length_squareEff"]
-				pub fn vec2_length_square(arg1: f32, arg2: f32) -> f32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app7sv_math18vec3_between_angleEfffffffff"]
-				pub fn vec3_between_angle(
-					arg1: f32,
-					arg2: f32,
-					arg3: f32,
-					arg4: f32,
-					arg5: f32,
-					arg6: f32,
-					arg7: f32,
-					arg8: f32,
-					arg9: f32,
-				) -> f32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app7sv_math18vec3_length_squareEfff"]
-				pub fn vec3_length_square(arg1: f32, arg2: f32, arg3: f32) -> f32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app7sv_math4powfEff"]
-				pub fn powf(arg1: f32, arg2: f32) -> f32;
-			}
-			extern "C" {
-				/// Returns a random integer in the range 0 to X-1
-				///
-				/// # Arguments
-				///
-				/// * `rand_type` - Hash of battle object type
-				/// * `upper_lim` - upper limit of random range
-				///
-				/// # Example
-				///
-				/// ```
-				/// let rand_val = app::sv_math::rand(hash40("fighter"), 100);
-				/// if rand_val == 0 {
-				///     // do something with 1-in-100 chance for a fighter
-				/// }
-				/// ```
-				#[link_name = "\u{1}_ZN3app7sv_math4randEN3phx6Hash40Ei"]
-				pub fn rand(rand_type: u64, upper_lim: libc::c_int) -> libc::c_int;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app7sv_math5randfEN3phx6Hash40Ef"]
-				pub fn randf(arg1: u64, arg2: f32) -> f32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app7sv_math7is_zeroEf"]
-				pub fn is_zero(arg1: f32) -> bool;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app7sv_math8vec2_dotEffff"]
-				pub fn vec2_dot(arg1: f32, arg2: f32, arg3: f32, arg4: f32) -> f32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app7sv_math8vec2_rotEfff"]
-				pub fn vec2_rot(arg1: f32, arg2: f32, arg3: f32) -> f32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app7sv_math8vec3_dotEffffff"]
-				pub fn vec3_dot(
-					arg1: f32,
-					arg2: f32,
-					arg3: f32,
-					arg4: f32,
-					arg5: f32,
-					arg6: f32,
-				) -> f32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app7sv_math8vec3_rotEffffff"]
-				pub fn vec3_rot(
-					arg1: f32,
-					arg2: f32,
-					arg3: f32,
-					arg4: f32,
-					arg5: f32,
-					arg6: f32,
-				) -> f32;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app7sv_math9vec3_lerpEfffffff"]
-				pub fn vec3_lerp(
-					arg1: f32,
-					arg2: f32,
-					arg3: f32,
-					arg4: f32,
-					arg5: f32,
-					arg6: f32,
-					arg7: f32,
-				) -> f32;
-			}
-		}
-		pub mod sv_module_access {
-			#[allow(unused_imports)]
-			use super::super::super::root;
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_module_access11color_blendEP9lua_State"]
-				pub fn color_blend(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_module_access6searchEP9lua_State"]
-				pub fn search(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_module_access7articleEP9lua_State"]
-				pub fn article(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_module_access6_catchEP9lua_State"]
-				pub fn _catch(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_module_access4linkEP9lua_State"]
-				pub fn link(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_module_access6shieldEP9lua_State"]
-				pub fn shield(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_module_access6cameraEP9lua_State"]
-				pub fn camera(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_module_access6attackEP9lua_State"]
-				pub fn attack(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_module_access5soundEP9lua_State"]
-				pub fn sound(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_module_access7physicsEP9lua_State"]
-				pub fn physics(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_module_access7captureEP9lua_State"]
-				pub fn capture(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_module_access6effectEP9lua_State"]
-				pub fn effect(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_module_access5slopeEP9lua_State"]
-				pub fn slope(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_module_access4grabEP9lua_State"]
-				pub fn grab(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_module_access6cancelEP9lua_State"]
-				pub fn cancel(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_module_access4itemEP9lua_State"]
-				pub fn item(arg1: u64);
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app16sv_module_access6damageEP9lua_State"]
-				pub fn damage(arg1: u64);
-			}
-		}
-		pub mod sv_system {
-			#[allow(unused_imports)]
-			use super::super::super::root;
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app9sv_system13battle_objectEP9lua_State"]
-				pub fn battle_object(arg1: u64) -> &'static mut root::app::BattleObject;
-			}
-			extern "C" {
-				/// Returns a BattleObjectModuleAccessor
-				///
-				/// # Arguments
-				///
-				/// * `lua_state`
-				/// a lua_state is commonly obtained from an L2CAgent - however because of "cool Rust magic"
-				/// we can also obtain it from things that deref into L2CAgent's, like L2CFighterCommon's.
-				///
-				/// # Example
-				/// ```
-				///  pub fn once_per_fighter_frame(fighter : &mut L2CFighterCommon) {
-				///     let lua_state = fighter.lua_state_agent;
-				///     let module_accessor = app::sv_system::battle_object_module_accessor(lua_state);
-				/// }
-				#[link_name = "\u{1}_ZN3app9sv_system29battle_object_module_accessorEP9lua_State"]
-				pub fn battle_object_module_accessor(arg1: u64) -> &'static mut root::app::BattleObjectModuleAccessor;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app9sv_system22battle_object_categoryEP9lua_State"]
-				pub fn battle_object_category(arg1: u64) -> u8;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app9sv_system18battle_object_kindEP9lua_State"]
-				pub fn battle_object_kind(arg1: u64) -> libc::c_int;
-			}
-			extern "C" {
-				#[link_name = "\u{1}_ZN3app9sv_system8owner_idEP9lua_State"]
-				pub fn owner_id(arg1: u64) -> libc::c_int;
-			}
-		}
-	}
-	pub type __int8_t = libc::c_schar;
-	pub type __uint8_t = libc::c_uchar;
-	pub type __int16_t = libc::c_short;
-	pub type __uint16_t = libc::c_ushort;
-	pub type __int32_t = libc::c_int;
-	pub type __uint32_t = libc::c_uint;
-	pub type __int64_t = libc::c_long;
-	pub type __uint64_t = libc::c_ulong;
-	pub type __int_least8_t = libc::c_schar;
-	pub type __uint_least8_t = libc::c_uchar;
-	pub type __int_least16_t = libc::c_short;
-	pub type __uint_least16_t = libc::c_ushort;
-	pub type __int_least32_t = libc::c_int;
-	pub type __uint_least32_t = libc::c_uint;
-	pub type __int_least64_t = libc::c_long;
-	pub type __uint_least64_t = libc::c_ulong;
-	pub type __intmax_t = libc::c_long;
-	pub type __uintmax_t = libc::c_ulong;
-	pub type __intptr_t = libc::c_long;
-	pub type __uintptr_t = libc::c_ulong;
-	pub type intmax_t = root::__intmax_t;
-	pub type uintmax_t = root::__uintmax_t;
-	pub type int_least8_t = root::__int_least8_t;
-	pub type uint_least8_t = root::__uint_least8_t;
-	pub type int_least16_t = root::__int_least16_t;
-	pub type uint_least16_t = root::__uint_least16_t;
-	pub type int_least32_t = root::__int_least32_t;
-	pub type uint_least32_t = root::__uint_least32_t;
-	pub type int_least64_t = root::__int_least64_t;
-	pub type uint_least64_t = root::__uint_least64_t;
-	pub type int_fast8_t = libc::c_schar;
-	pub type uint_fast8_t = libc::c_uchar;
-	pub type int_fast16_t = libc::c_short;
-	pub type uint_fast16_t = libc::c_ushort;
-	pub type int_fast32_t = libc::c_int;
-	pub type uint_fast32_t = libc::c_uint;
-	pub type int_fast64_t = libc::c_long;
-	pub type uint_fast64_t = libc::c_ulong;
-	pub type size_t = libc::c_ulong;
-	#[repr(C)]
-	#[repr(align(16))]
-	#[derive(Debug, Copy, Clone)]
-	pub struct max_align_t {
-		pub __clang_max_align_nonce1: libc::c_longlong,
-		pub __bindgen_padding_0: u64,
-		pub __clang_max_align_nonce2: u128,
-	}
-	pub type s8 = i8;
-	pub type s16 = i16;
-	pub type s32 = i32;
-	pub type s64 = i64;
-	pub type s128 = root::__int128_t;
-	pub type vu8 = u8;
-	pub type vu16 = u16;
-	pub type vu32 = u32;
-	pub type vu64 = u64;
-	pub type vu128 = u128;
-	pub type vs8 = root::s8;
-	pub type vs16 = root::s16;
-	pub type vs32 = root::s32;
-	pub type vs64 = root::s64;
-	pub type vs128 = root::s128;
-	pub type Handle = u32;
-	pub type Result = u32;
-	pub type ThreadFunc = ::core::option::Option<unsafe extern "C" fn(arg1: *mut libc::c_void)>;
-	pub type VoidFn = ::core::option::Option<unsafe extern "C" fn()>;
-	#[repr(C)]
-	#[derive(Debug, Copy, Clone)]
-	pub struct Vector2f {
-		pub x: f32,
-		pub y: f32,
-	}
-	#[repr(C)]
-	#[derive(Debug, Copy, Clone)]
-	pub struct Vector3f {
-		pub x: f32,
-		pub y: f32,
-		pub z: f32,
-	}
-	#[repr(C)]
-	#[derive(Debug, Copy, Clone)]
-	pub struct Vector4f {
-		pub x: f32,
-		pub y: f32,
-		pub z: f32,
-		pub w: f32,
-	}
-	pub mod lib {
-		pub mod lua_const {
-			pub use crate::lua_const::*;
-		}
+        pub mod sv_kinetic_energy {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy11clear_speedEP9lua_State"]
+                pub fn clear_speed(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy11friction_onEP9lua_State"]
+                pub fn friction_on(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy11get_accel_yEP9lua_State"]
+                pub fn get_accel_y(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy11get_brake_yEP9lua_State"]
+                pub fn get_brake_y(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy11get_speed3fEP9lua_State"]
+                pub fn get_speed3f(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy11get_speed_xEP9lua_State"]
+                pub fn get_speed_x(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy11get_speed_yEP9lua_State"]
+                pub fn get_speed_y(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy12friction_offEP9lua_State"]
+                pub fn friction_off(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy12get_rotationEP9lua_State"]
+                pub fn get_rotation(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy12reset_energyEP9lua_State"]
+                pub fn reset_energy(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy13get_speed_mulEP9lua_State"]
+                pub fn get_speed_mul(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy13set_chara_dirEP9lua_State"]
+                pub fn set_chara_dir(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy13set_speed_mulEP9lua_State"]
+                pub fn set_speed_mul(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy14clear_speed_exEP9lua_State"]
+                pub fn clear_speed_ex(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy14get_rotation_xEP9lua_State"]
+                pub fn get_rotation_x(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy14get_rotation_yEP9lua_State"]
+                pub fn get_rotation_y(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy14get_rotation_zEP9lua_State"]
+                pub fn get_rotation_z(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy15mul_x_accel_addEP9lua_State"]
+                pub fn mul_x_accel_add(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy15mul_x_accel_mulEP9lua_State"]
+                pub fn mul_x_accel_mul(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy15mul_x_speed_maxEP9lua_State"]
+                pub fn mul_x_speed_max(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy15set_accel_x_addEP9lua_State"]
+                pub fn set_accel_x_add(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy15set_accel_x_mulEP9lua_State"]
+                pub fn set_accel_x_mul(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy15set_accel_y_addEP9lua_State"]
+                pub fn set_accel_y_add(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy15set_accel_y_mulEP9lua_State"]
+                pub fn set_accel_y_mul(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy15set_limit_speedEP9lua_State"]
+                pub fn set_limit_speed(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy16get_speed_lengthEP9lua_State"]
+                pub fn get_speed_length(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy16set_damage_speedEP9lua_State"]
+                pub fn set_damage_speed(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy16set_ground_transEP9lua_State"]
+                pub fn set_ground_trans(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy16set_stable_speedEP9lua_State"]
+                pub fn set_stable_speed(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy17get_limit_speed_xEP9lua_State"]
+                pub fn get_limit_speed_x(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy17get_limit_speed_yEP9lua_State"]
+                pub fn get_limit_speed_y(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy17set_speed_mul_2ndEP9lua_State"]
+                pub fn set_speed_mul_2nd(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy18get_stable_speed_xEP9lua_State"]
+                pub fn get_stable_speed_x(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy18get_stable_speed_yEP9lua_State"]
+                pub fn get_stable_speed_y(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy20is_gravity_fix_accelEP9lua_State"]
+                pub fn is_gravity_fix_accel(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy21is_cliff_ground_transEP9lua_State"]
+                pub fn is_cliff_ground_trans(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy23set_gravity_coefficientEP9lua_State"]
+                pub fn set_gravity_coefficient(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy26controller_set_accel_x_addEP9lua_State"]
+                pub fn controller_set_accel_x_add(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy26controller_set_accel_x_mulEP9lua_State"]
+                pub fn controller_set_accel_x_mul(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy29set_motion_energy_update_flagEP9lua_State"]
+                pub fn set_motion_energy_update_flag(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy6enableEP9lua_State"]
+                pub fn enable(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy6resumeEP9lua_State"]
+                pub fn resume(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy6unableEP9lua_State"]
+                pub fn unable(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy7suspendEP9lua_State"]
+                pub fn suspend(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy9add_speedEP9lua_State"]
+                pub fn add_speed(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy9get_accelEP9lua_State"]
+                pub fn get_accel(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy9get_speedEP9lua_State"]
+                pub fn get_speed(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy9is_enableEP9lua_State"]
+                pub fn is_enable(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy9mul_accelEP9lua_State"]
+                pub fn mul_accel(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy9mul_speedEP9lua_State"]
+                pub fn mul_speed(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy9set_accelEP9lua_State"]
+                pub fn set_accel(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy9set_angleEP9lua_State"]
+                pub fn set_angle(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy9set_brakeEP9lua_State"]
+                pub fn set_brake(arg1: u64);
+            }
+            extern "C" {
+                ///Sets the current speed
+                ///
+                /// This is a lua stack based function - it takes in one argument, the lua state, and relies on the current lua stack to
+                // figure out what args it is getting.
+                ///
+                /// # Arguments
+                ///
+                /// * `lua_state` - the lua state of the current L2CAgent
+                ///
+                /// # Example
+                ///
+                /// ```
+                /// l2c_agent.clear_lua_stack(); //clear the stack from any previous args
+                /// l2c_agent.push_lua_stack(&mut L2CValue::new_int(*FIGHTER_KINETIC_ENERGY_ID_CONTROL as u64)); //push the first arg, that being a KINETIC_ENERGY_ID const
+                /// l2c_agent.push_lua_stack(&mut L2CValue::new_num(5.0)); //push the second arg, that being a float of the new speed we want to set 
+                /// sv_kinetic_energy::set_speed(lua_state); //call the desired function with the lua state which will grab the args we previously pushed
+                /// ```
+                /// An L2CAgent can be obtained in multiple different contexts. One common place you'd have access to one is in `sys_line_system_control_fighter`
+                /// That function runs once-per-frame per-fighter. As an arg it takes an L2CFighterCommon, and when hooking it, we can use that L2CFighterCommon to get
+                /// an L2CAgent, which we can then use to manipulate the lua stack. To get an L2CAgent you might do something like this:
+                /// ```
+                /// use smash::lib::{L2CValue, L2CAgent};
+                /// use smash::lua2cpp::L2CFighterCommon;
+                /// use smash::app::sv_system;
+                /// #[skyline::hook(replace = smash::lua2cpp::L2CFighterCommon_sys_line_system_control_fighter)]
+                /// pub unsafe fn sys_line_system_control_fighter_hook(fighter: &mut L2CFighterCommon) -> L2CValue {
+                ///     let module_accessor = sv_system::battle_object_module_accessor(fighter.lua_state_agent); //you can also use an L2CFighterCommon to get a module_accessor
+                ///     let mut lua_state = fighter.lua_state_agent;
+                ///     let mut l2c_agent = L2CAgent::new(lua_state);
+                ///
+                ///     original!()(fighter)
+                /// }
+                #[link_name = "\u{1}_ZN3app17sv_kinetic_energy9set_speedEP9lua_State"]
+                pub fn set_speed(arg1: u64);
+            }
+        }
+        pub mod sv_math {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app7sv_math10vec2_angleEffff"]
+                pub fn vec2_angle(arg1: f32, arg2: f32, arg3: f32, arg4: f32) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app7sv_math10vec3_crossEffffff"]
+                pub fn vec3_cross(
+                    arg1: f32,
+                    arg2: f32,
+                    arg3: f32,
+                    arg4: f32,
+                    arg5: f32,
+                    arg6: f32,
+                ) -> *mut root::Vector3f;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app7sv_math11vec2_lengthEff"]
+                pub fn vec2_length(arg1: f32, arg2: f32) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app7sv_math11vec3_lengthEfff"]
+                pub fn vec3_length(arg1: f32, arg2: f32, arg3: f32) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app7sv_math12bezier_curveEfffff"]
+                pub fn bezier_curve(arg1: f32, arg2: f32, arg3: f32, arg4: f32, arg5: f32) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app7sv_math12vec2_is_zeroEff"]
+                pub fn vec2_is_zero(arg1: f32, arg2: f32) -> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app7sv_math12vec3_is_zeroEfff"]
+                pub fn vec3_is_zero(arg1: f32, arg2: f32, arg3: f32) -> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app7sv_math13vec2_distanceEffff"]
+                pub fn vec2_distance(arg1: f32, arg2: f32, arg3: f32, arg4: f32) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app7sv_math13vec3_distanceEffffff"]
+                pub fn vec3_distance(
+                    arg1: f32,
+                    arg2: f32,
+                    arg3: f32,
+                    arg4: f32,
+                    arg5: f32,
+                    arg6: f32,
+                ) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app7sv_math14vec2_normalizeEff"]
+                pub fn vec2_normalize(arg1: f32, arg2: f32) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app7sv_math14vec3_normalizeEfff"]
+                pub fn vec3_normalize(arg1: f32, arg2: f32, arg3: f32) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app7sv_math15vec2_reflectionEffff"]
+                pub fn vec2_reflection(arg1: f32, arg2: f32, arg3: f32, arg4: f32) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app7sv_math18vec2_length_squareEff"]
+                pub fn vec2_length_square(arg1: f32, arg2: f32) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app7sv_math18vec3_between_angleEfffffffff"]
+                pub fn vec3_between_angle(
+                    arg1: f32,
+                    arg2: f32,
+                    arg3: f32,
+                    arg4: f32,
+                    arg5: f32,
+                    arg6: f32,
+                    arg7: f32,
+                    arg8: f32,
+                    arg9: f32,
+                ) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app7sv_math18vec3_length_squareEfff"]
+                pub fn vec3_length_square(arg1: f32, arg2: f32, arg3: f32) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app7sv_math4powfEff"]
+                pub fn powf(arg1: f32, arg2: f32) -> f32;
+            }
+            extern "C" {
+                /// Returns a random integer in the range 0 to X-1
+                ///
+                /// # Arguments
+                ///
+                /// * `rand_type` - Hash of battle object type
+                /// * `upper_lim` - upper limit of random range
+                ///
+                /// # Example
+                ///
+                /// ```
+                /// let rand_val = app::sv_math::rand(hash40("fighter"), 100);
+                /// if rand_val == 0 {
+                ///     // do something with 1-in-100 chance for a fighter
+                /// }
+                /// ```
+                #[link_name = "\u{1}_ZN3app7sv_math4randEN3phx6Hash40Ei"]
+                pub fn rand(rand_type: u64, upper_lim: libc::c_int) -> libc::c_int;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app7sv_math5randfEN3phx6Hash40Ef"]
+                pub fn randf(arg1: u64, arg2: f32) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app7sv_math7is_zeroEf"]
+                pub fn is_zero(arg1: f32) -> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app7sv_math8vec2_dotEffff"]
+                pub fn vec2_dot(arg1: f32, arg2: f32, arg3: f32, arg4: f32) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app7sv_math8vec2_rotEfff"]
+                pub fn vec2_rot(arg1: f32, arg2: f32, arg3: f32) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app7sv_math8vec3_dotEffffff"]
+                pub fn vec3_dot(
+                    arg1: f32,
+                    arg2: f32,
+                    arg3: f32,
+                    arg4: f32,
+                    arg5: f32,
+                    arg6: f32,
+                ) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app7sv_math8vec3_rotEffffff"]
+                pub fn vec3_rot(
+                    arg1: f32,
+                    arg2: f32,
+                    arg3: f32,
+                    arg4: f32,
+                    arg5: f32,
+                    arg6: f32,
+                ) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app7sv_math9vec3_lerpEfffffff"]
+                pub fn vec3_lerp(
+                    arg1: f32,
+                    arg2: f32,
+                    arg3: f32,
+                    arg4: f32,
+                    arg5: f32,
+                    arg6: f32,
+                    arg7: f32,
+                ) -> f32;
+            }
+        }
+        pub mod sv_module_access {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_module_access11color_blendEP9lua_State"]
+                pub fn color_blend(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_module_access6searchEP9lua_State"]
+                pub fn search(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_module_access7articleEP9lua_State"]
+                pub fn article(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_module_access6_catchEP9lua_State"]
+                pub fn _catch(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_module_access4linkEP9lua_State"]
+                pub fn link(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_module_access6shieldEP9lua_State"]
+                pub fn shield(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_module_access6cameraEP9lua_State"]
+                pub fn camera(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_module_access6attackEP9lua_State"]
+                pub fn attack(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_module_access5soundEP9lua_State"]
+                pub fn sound(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_module_access7physicsEP9lua_State"]
+                pub fn physics(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_module_access7captureEP9lua_State"]
+                pub fn capture(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_module_access6effectEP9lua_State"]
+                pub fn effect(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_module_access5slopeEP9lua_State"]
+                pub fn slope(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_module_access4grabEP9lua_State"]
+                pub fn grab(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_module_access6cancelEP9lua_State"]
+                pub fn cancel(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_module_access4itemEP9lua_State"]
+                pub fn item(arg1: u64);
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app16sv_module_access6damageEP9lua_State"]
+                pub fn damage(arg1: u64);
+            }
+        }
+        pub mod sv_system {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app9sv_system13battle_objectEP9lua_State"]
+                pub fn battle_object(arg1: u64) -> &'static mut root::app::BattleObject;
+            }
+            extern "C" {
+                /// Returns a BattleObjectModuleAccessor
+                ///
+                /// # Arguments
+                ///
+                /// * `lua_state`
+                /// a lua_state is commonly obtained from an L2CAgent - however because of "cool Rust magic"
+                /// we can also obtain it from things that deref into L2CAgent's, like L2CFighterCommon's.
+                ///
+                /// # Example
+                /// ```
+                ///  pub fn once_per_fighter_frame(fighter : &mut L2CFighterCommon) {
+                ///     let lua_state = fighter.lua_state_agent;
+                ///     let module_accessor = app::sv_system::battle_object_module_accessor(lua_state);
+                /// }
+                #[link_name = "\u{1}_ZN3app9sv_system29battle_object_module_accessorEP9lua_State"]
+                pub fn battle_object_module_accessor(arg1: u64) -> &'static mut root::app::BattleObjectModuleAccessor;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app9sv_system22battle_object_categoryEP9lua_State"]
+                pub fn battle_object_category(arg1: u64) -> u8;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app9sv_system18battle_object_kindEP9lua_State"]
+                pub fn battle_object_kind(arg1: u64) -> libc::c_int;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app9sv_system8owner_idEP9lua_State"]
+                pub fn owner_id(arg1: u64) -> libc::c_int;
+            }
+        }
+    }
+    pub type __int8_t = libc::c_schar;
+    pub type __uint8_t = libc::c_uchar;
+    pub type __int16_t = libc::c_short;
+    pub type __uint16_t = libc::c_ushort;
+    pub type __int32_t = libc::c_int;
+    pub type __uint32_t = libc::c_uint;
+    pub type __int64_t = libc::c_long;
+    pub type __uint64_t = libc::c_ulong;
+    pub type __int_least8_t = libc::c_schar;
+    pub type __uint_least8_t = libc::c_uchar;
+    pub type __int_least16_t = libc::c_short;
+    pub type __uint_least16_t = libc::c_ushort;
+    pub type __int_least32_t = libc::c_int;
+    pub type __uint_least32_t = libc::c_uint;
+    pub type __int_least64_t = libc::c_long;
+    pub type __uint_least64_t = libc::c_ulong;
+    pub type __intmax_t = libc::c_long;
+    pub type __uintmax_t = libc::c_ulong;
+    pub type __intptr_t = libc::c_long;
+    pub type __uintptr_t = libc::c_ulong;
+    pub type intmax_t = root::__intmax_t;
+    pub type uintmax_t = root::__uintmax_t;
+    pub type int_least8_t = root::__int_least8_t;
+    pub type uint_least8_t = root::__uint_least8_t;
+    pub type int_least16_t = root::__int_least16_t;
+    pub type uint_least16_t = root::__uint_least16_t;
+    pub type int_least32_t = root::__int_least32_t;
+    pub type uint_least32_t = root::__uint_least32_t;
+    pub type int_least64_t = root::__int_least64_t;
+    pub type uint_least64_t = root::__uint_least64_t;
+    pub type int_fast8_t = libc::c_schar;
+    pub type uint_fast8_t = libc::c_uchar;
+    pub type int_fast16_t = libc::c_short;
+    pub type uint_fast16_t = libc::c_ushort;
+    pub type int_fast32_t = libc::c_int;
+    pub type uint_fast32_t = libc::c_uint;
+    pub type int_fast64_t = libc::c_long;
+    pub type uint_fast64_t = libc::c_ulong;
+    pub type size_t = libc::c_ulong;
+    #[repr(C)]
+    #[repr(align(16))]
+    #[derive(Debug, Copy, Clone)]
+    pub struct max_align_t {
+        pub __clang_max_align_nonce1: libc::c_longlong,
+        pub __bindgen_padding_0: u64,
+        pub __clang_max_align_nonce2: u128,
+    }
+    pub type s8 = i8;
+    pub type s16 = i16;
+    pub type s32 = i32;
+    pub type s64 = i64;
+    pub type s128 = root::__int128_t;
+    pub type vu8 = u8;
+    pub type vu16 = u16;
+    pub type vu32 = u32;
+    pub type vu64 = u64;
+    pub type vu128 = u128;
+    pub type vs8 = root::s8;
+    pub type vs16 = root::s16;
+    pub type vs32 = root::s32;
+    pub type vs64 = root::s64;
+    pub type vs128 = root::s128;
+    pub type Handle = u32;
+    pub type Result = u32;
+    pub type ThreadFunc = ::core::option::Option<unsafe extern "C" fn(arg1: *mut libc::c_void)>;
+    pub type VoidFn = ::core::option::Option<unsafe extern "C" fn()>;
+    #[repr(C)]
+    #[derive(Debug, Copy, Clone)]
+    pub struct Vector2f {
+        pub x: f32,
+        pub y: f32,
+    }
+    #[repr(C)]
+    #[derive(Debug, Copy, Clone)]
+    pub struct Vector3f {
+        pub x: f32,
+        pub y: f32,
+        pub z: f32,
+    }
+    #[repr(C)]
+    #[derive(Debug, Copy, Clone)]
+    pub struct Vector4f {
+        pub x: f32,
+        pub y: f32,
+        pub z: f32,
+        pub w: f32,
+    }
+    pub mod lib {
+        pub mod lua_const {
+            pub use crate::lua_const::*;
+        }
 
-		extern "C" {
-			#[link_name = "\u{1}_ZNK3lib8L2CValueixEN3phx6Hash40E"]
-			pub fn L2CValue__index_hash40_mut<'a>(this: &'a mut root::lib::L2CValue, hash40: u64) -> &'a mut root::lib::L2CValue;
+        extern "C" {
+            #[link_name = "\u{1}_ZNK3lib8L2CValueixEN3phx6Hash40E"]
+            pub fn L2CValue__index_hash40_mut<'a>(this: &'a mut root::lib::L2CValue, hash40: u64) -> &'a mut root::lib::L2CValue;
 
-			#[link_name = "\u{1}_ZNK3lib8L2CValueixEN3phx6Hash40E"]
-			pub fn L2CValue__index_hash40<'a>(this: &'a root::lib::L2CValue, hash40: u64) -> &'a root::lib::L2CValue;
+            #[link_name = "\u{1}_ZNK3lib8L2CValueixEN3phx6Hash40E"]
+            pub fn L2CValue__index_hash40<'a>(this: &'a root::lib::L2CValue, hash40: u64) -> &'a root::lib::L2CValue;
 
-			#[link_name = "\u{1}_ZNK3lib8L2CValueixEi"]
-			pub fn L2CValue__index_int_mut<'a>(this: &'a mut root::lib::L2CValue, int: i32) -> &'a mut root::lib::L2CValue;
+            #[link_name = "\u{1}_ZNK3lib8L2CValueixEi"]
+            pub fn L2CValue__index_int_mut<'a>(this: &'a mut root::lib::L2CValue, int: i32) -> &'a mut root::lib::L2CValue;
 
-			#[link_name = "\u{1}_ZNK3lib8L2CValueixEi"]
-			pub fn L2CValue__index_int<'a>(this: &'a root::lib::L2CValue, int: i32) -> &'a root::lib::L2CValue;
+            #[link_name = "\u{1}_ZNK3lib8L2CValueixEi"]
+            pub fn L2CValue__index_int<'a>(this: &'a root::lib::L2CValue, int: i32) -> &'a root::lib::L2CValue;
 
-			#[link_name = "\u{1}_ZNK3lib8L2CValueixERKS0_"]
-			pub fn L2CValue__index_L2CValue_mut<'a>(this: &'a mut root::lib::L2CValue, l2c_val: &L2CValue) -> &'a mut root::lib::L2CValue;
+            #[link_name = "\u{1}_ZNK3lib8L2CValueixERKS0_"]
+            pub fn L2CValue__index_L2CValue_mut<'a>(this: &'a mut root::lib::L2CValue, l2c_val: &L2CValue) -> &'a mut root::lib::L2CValue;
 
-			#[link_name = "\u{1}_ZNK3lib8L2CValueixERKS0_"]
-			pub fn L2CValue__index_L2CValue<'a>(this: &'a root::lib::L2CValue, l2c_val: &L2CValue) -> &'a root::lib::L2CValue;
-		}
+            #[link_name = "\u{1}_ZNK3lib8L2CValueixERKS0_"]
+            pub fn L2CValue__index_L2CValue<'a>(this: &'a root::lib::L2CValue, l2c_val: &L2CValue) -> &'a root::lib::L2CValue;
+        }
 
-		#[allow(unused_imports)]
-		use super::super::root;
-		extern "C" {
-			#[link_name = "\u{1}_ZN3lib18lua_bind_get_valueIiEEbmRT_"]
-			pub fn lua_bind_get_value(arg1: u64, arg2: *mut libc::c_int) -> bool;
-		}
+        #[allow(unused_imports)]
+        use super::super::root;
+        extern "C" {
+            #[link_name = "\u{1}_ZN3lib18lua_bind_get_valueIiEEbmRT_"]
+            pub fn lua_bind_get_value(arg1: u64, arg2: *mut libc::c_int) -> bool;
+        }
 
-		pub use super::super::l2c_value::*;
-		pub type L2CVarType = L2CValueType;
+        pub use super::super::l2c_value::*;
+        pub type L2CVarType = L2CValueType;
 
-		extern "C" {
-			#[link_name = "\u{1}_ZN3lib8L2CValue13push_variadicEmPKcRNS_7utility8VariadicE"]
-			pub fn L2CValue_push_variadic(
-				this: *mut root::lib::L2CValue,
-				arg1: u64,
-				arg2: *const libc::c_char,
-				arg3: *mut libc::c_void,
-			);
-		}
-		extern "C" {
-			#[link_name = "\u{1}_ZN3lib8L2CValueC1Ev"]
-			pub fn L2CValue_L2CValue(this: *mut root::lib::L2CValue);
-		}
-		extern "C" {
-			#[link_name = "\u{1}_ZN3lib8L2CValueC1Eb"]
-			pub fn L2CValue_L2CValue1(this: *mut root::lib::L2CValue, val: bool);
-		}
-		extern "C" {
-			#[link_name = "\u{1}_ZN3lib8L2CValueC1Ei"]
-			pub fn L2CValue_L2CValue2(this: *mut root::lib::L2CValue, val: libc::c_int);
-		}
-		extern "C" {
-			#[link_name = "\u{1}_ZN3lib8L2CValueC1Em"]
-			pub fn L2CValue_L2CValue3(this: *mut root::lib::L2CValue, val: u64);
-		}
-		extern "C" {
-			#[link_name = "\u{1}_ZN3lib8L2CValueC1Ef"]
-			pub fn L2CValue_L2CValue4(this: *mut root::lib::L2CValue, val: f32);
-		}
-		extern "C" {
-			#[link_name = "\u{1}_ZN3lib8L2CValueC1Ed"]
-			pub fn L2CValue_L2CValue5(this: *mut root::lib::L2CValue, val: f64);
-		}
-		extern "C" {
-			#[link_name = "\u{1}_ZN3lib8L2CValueC1EPKc"]
-			pub fn L2CValue_L2CValue6(this: *mut root::lib::L2CValue, str: *const libc::c_char);
-		}
-		impl L2CValue {
-			#[inline]
-			pub unsafe fn push_variadic(
-				&mut self,
-				arg1: u64,
-				arg2: *const libc::c_char,
-				arg3: *mut libc::c_void,
-			) {
-				L2CValue_push_variadic(self, arg1, arg2, arg3)
-			}
-			#[inline]
-			pub unsafe fn new() -> Self {
-				let mut __bindgen_tmp = ::core::mem::MaybeUninit::uninit();
-				L2CValue_L2CValue(__bindgen_tmp.as_mut_ptr());
-				__bindgen_tmp.assume_init()
-			}
-			#[inline]
-			pub unsafe fn new1(val: bool) -> Self {
-				let mut __bindgen_tmp = ::core::mem::MaybeUninit::uninit();
-				L2CValue_L2CValue1(__bindgen_tmp.as_mut_ptr(), val);
-				__bindgen_tmp.assume_init()
-			}
-			#[inline]
-			pub unsafe fn new2(val: libc::c_int) -> Self {
-				let mut __bindgen_tmp = ::core::mem::MaybeUninit::uninit();
-				L2CValue_L2CValue2(__bindgen_tmp.as_mut_ptr(), val);
-				__bindgen_tmp.assume_init()
-			}
-			#[inline]
-			pub unsafe fn new3(val: u64) -> Self {
-				let mut __bindgen_tmp = ::core::mem::MaybeUninit::uninit();
-				L2CValue_L2CValue3(__bindgen_tmp.as_mut_ptr(), val);
-				__bindgen_tmp.assume_init()
-			}
-			#[inline]
-			pub unsafe fn new4(val: f32) -> Self {
-				let mut __bindgen_tmp = ::core::mem::MaybeUninit::uninit();
-				L2CValue_L2CValue4(__bindgen_tmp.as_mut_ptr(), val);
-				__bindgen_tmp.assume_init()
-			}
-			#[inline]
-			pub unsafe fn new5(val: f64) -> Self {
-				let mut __bindgen_tmp = ::core::mem::MaybeUninit::uninit();
-				L2CValue_L2CValue5(__bindgen_tmp.as_mut_ptr(), val);
-				__bindgen_tmp.assume_init()
-			}
-			#[inline]
-			pub unsafe fn new6(str: *const libc::c_char) -> Self {
-				let mut __bindgen_tmp = ::core::mem::MaybeUninit::uninit();
-				L2CValue_L2CValue6(__bindgen_tmp.as_mut_ptr(), str);
-				__bindgen_tmp.assume_init()
-			}
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct L2CAgent {
-			pub vtable: u64,
-			pub lua_state_agent: u64,
-			pub unk10: u64,
-			pub unk18: u64,
-			pub unk20: u64,
-			pub unk28: u64,
-			pub unk30: u64,
-			pub unk38: u64,
-			pub lua_state_agentbase: u64
-		}
-		extern "C" {
-			#[link_name = "\u{1}_ZN3lib8L2CAgentC2EP9lua_State"]
-			pub fn L2CAgent_L2CAgent_constr(
-				this: *mut root::lib::L2CAgent,
-				lua_state: u64,
-			) -> *mut root::lib::L2CAgent;
-		}
-		extern "C" {
-			#[link_name = "\u{1}_ZN3lib8L2CAgent14push_lua_stackERKNS_8L2CValueE"]
-			pub fn L2CAgent_push_lua_stack(
-				this: *mut root::lib::L2CAgent,
-				l2c_value: *mut root::lib::L2CValue,
-			) -> u64;
-		}
-		extern "C" {
-			#[link_name = "\u{1}_ZN3lib8L2CAgent13pop_lua_stackEi"]
-			pub fn L2CAgent_pop_lua_stack(
-				this: *mut root::lib::L2CAgent,
-				index: libc::c_int,
-			) -> L2CValue;
-		}
-		extern "C" {
-			#[link_name = "\u{1}_ZN3lib8L2CAgent20sv_set_function_hashEPvN3phx6Hash40E"]
-			pub fn L2CAgent_sv_set_function_hash(
-				this: *mut root::lib::L2CAgent,
-				func: ::core::option::Option<
-					unsafe extern "C" fn(
-						arg1: *mut root::lib::L2CAgent,
-						arg2: *mut libc::c_void,
-					) -> u64,
-				>,
-				hash: u64,
-			) -> u64;
-		}
-		extern "C" {
-			#[link_name = "\u{1}_ZN3lib8L2CAgent15clear_lua_stackEv"]
-			pub fn L2CAgent_clear_lua_stack(this: *mut root::lib::L2CAgent) -> u64;
-		}
-		extern "C" {
-			#[link_name = "\u{1}_ZN3lib8L2CAgent16_clear_lua_stackEv"]
-			pub fn L2CAgent__clear_lua_stack(this: *mut root::lib::L2CAgent) -> u64;
-		}
-		impl L2CAgent {
-			#[inline]
-			pub unsafe fn L2CAgent_constr(
-				&mut self,
-				lua_state: u64,
-			) -> *mut root::lib::L2CAgent {
-				L2CAgent_L2CAgent_constr(self, lua_state)
-			}
-			#[inline]
-			pub unsafe fn push_lua_stack(
-				&mut self,
-				l2c_value: *mut root::lib::L2CValue,
-			) -> u64 {
-				L2CAgent_push_lua_stack(self, l2c_value)
-			}
-			#[inline]
-			pub unsafe fn pop_lua_stack(
-				&mut self,
-				index: libc::c_int
-			) -> L2CValue {
-				L2CAgent_pop_lua_stack(self, index)
-			}
-			#[inline]
-			pub unsafe fn sv_set_function_hash(
-				&mut self,
-				func: ::core::option::Option<
-					unsafe extern "C" fn(
-						arg1: *mut root::lib::L2CAgent,
-						arg2: *mut libc::c_void,
-					) -> u64,
-				>,
-				hash: u64,
-			) -> u64 {
-				L2CAgent_sv_set_function_hash(self, func, hash)
-			}
-			#[inline]
-			pub unsafe fn clear_lua_stack(&mut self) -> u64 {
-				L2CAgent_clear_lua_stack(self)
-			}
-			#[inline]
-			pub unsafe fn _clear_lua_stack(&mut self) -> u64 {
-				L2CAgent__clear_lua_stack(self)
-			}
-		}
-		pub mod utility {
-			#[allow(unused_imports)]
-			use super::super::super::root;
-			pub mod Variadic {
-				#[allow(unused_imports)]
-				use super::super::super::super::root;
-				extern "C" {
-					#[link_name = "\u{1}_ZNK3lib7utility8Variadic10get_formatEv"]
-					pub fn get_format(variadic: *mut libc::c_void) -> *const libc::c_char;
-				}
-			}
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct Rect {
-			pub _address: u8,
-		}
-	}
-	pub mod phx {
-		#[allow(unused_imports)]
-		use super::super::root;
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct Vector2f {
-			pub x: f32,
-			pub y: f32,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct Vector3f {
-			pub x: f32,
-			pub y: f32,
-			pub z: f32,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct Vector4f {
-			pub x: f32,
-			pub y: f32,
-			pub z: f32,
-			pub w: f32,
-		}
-		#[repr(C)]
-		#[derive(Debug, Copy, Clone)]
-		pub struct Hash40 {
-			pub hash: u64,
-		}
-	}
-	pub type __uint128_t = u128;
-	pub type __int128_t = i128;
-	pub type __builtin_va_list = root::__va_list;
-	#[repr(C)]
-	#[derive(Debug, Copy, Clone)]
-	pub struct __va_list {
-		pub __stack: *mut libc::c_void,
-		pub __gr_top: *mut libc::c_void,
-		pub __vr_top: *mut libc::c_void,
-		pub __gr_offs: libc::c_int,
-		pub __vr_offs: libc::c_int,
-	}
+        extern "C" {
+            #[link_name = "\u{1}_ZN3lib8L2CValue13push_variadicEmPKcRNS_7utility8VariadicE"]
+            pub fn L2CValue_push_variadic(
+                this: *mut root::lib::L2CValue,
+                arg1: u64,
+                arg2: *const libc::c_char,
+                arg3: *mut libc::c_void,
+            );
+        }
+        extern "C" {
+            #[link_name = "\u{1}_ZN3lib8L2CValueC1Ev"]
+            pub fn L2CValue_L2CValue(this: *mut root::lib::L2CValue);
+        }
+        extern "C" {
+            #[link_name = "\u{1}_ZN3lib8L2CValueC1Eb"]
+            pub fn L2CValue_L2CValue1(this: *mut root::lib::L2CValue, val: bool);
+        }
+        extern "C" {
+            #[link_name = "\u{1}_ZN3lib8L2CValueC1Ei"]
+            pub fn L2CValue_L2CValue2(this: *mut root::lib::L2CValue, val: libc::c_int);
+        }
+        extern "C" {
+            #[link_name = "\u{1}_ZN3lib8L2CValueC1Em"]
+            pub fn L2CValue_L2CValue3(this: *mut root::lib::L2CValue, val: u64);
+        }
+        extern "C" {
+            #[link_name = "\u{1}_ZN3lib8L2CValueC1Ef"]
+            pub fn L2CValue_L2CValue4(this: *mut root::lib::L2CValue, val: f32);
+        }
+        extern "C" {
+            #[link_name = "\u{1}_ZN3lib8L2CValueC1Ed"]
+            pub fn L2CValue_L2CValue5(this: *mut root::lib::L2CValue, val: f64);
+        }
+        extern "C" {
+            #[link_name = "\u{1}_ZN3lib8L2CValueC1EPKc"]
+            pub fn L2CValue_L2CValue6(this: *mut root::lib::L2CValue, str: *const libc::c_char);
+        }
+        impl L2CValue {
+            #[inline]
+            pub unsafe fn push_variadic(
+                &mut self,
+                arg1: u64,
+                arg2: *const libc::c_char,
+                arg3: *mut libc::c_void,
+            ) {
+                L2CValue_push_variadic(self, arg1, arg2, arg3)
+            }
+            #[inline]
+            pub unsafe fn new() -> Self {
+                let mut __bindgen_tmp = ::core::mem::MaybeUninit::uninit();
+                L2CValue_L2CValue(__bindgen_tmp.as_mut_ptr());
+                __bindgen_tmp.assume_init()
+            }
+            #[inline]
+            pub unsafe fn new1(val: bool) -> Self {
+                let mut __bindgen_tmp = ::core::mem::MaybeUninit::uninit();
+                L2CValue_L2CValue1(__bindgen_tmp.as_mut_ptr(), val);
+                __bindgen_tmp.assume_init()
+            }
+            #[inline]
+            pub unsafe fn new2(val: libc::c_int) -> Self {
+                let mut __bindgen_tmp = ::core::mem::MaybeUninit::uninit();
+                L2CValue_L2CValue2(__bindgen_tmp.as_mut_ptr(), val);
+                __bindgen_tmp.assume_init()
+            }
+            #[inline]
+            pub unsafe fn new3(val: u64) -> Self {
+                let mut __bindgen_tmp = ::core::mem::MaybeUninit::uninit();
+                L2CValue_L2CValue3(__bindgen_tmp.as_mut_ptr(), val);
+                __bindgen_tmp.assume_init()
+            }
+            #[inline]
+            pub unsafe fn new4(val: f32) -> Self {
+                let mut __bindgen_tmp = ::core::mem::MaybeUninit::uninit();
+                L2CValue_L2CValue4(__bindgen_tmp.as_mut_ptr(), val);
+                __bindgen_tmp.assume_init()
+            }
+            #[inline]
+            pub unsafe fn new5(val: f64) -> Self {
+                let mut __bindgen_tmp = ::core::mem::MaybeUninit::uninit();
+                L2CValue_L2CValue5(__bindgen_tmp.as_mut_ptr(), val);
+                __bindgen_tmp.assume_init()
+            }
+            #[inline]
+            pub unsafe fn new6(str: *const libc::c_char) -> Self {
+                let mut __bindgen_tmp = ::core::mem::MaybeUninit::uninit();
+                L2CValue_L2CValue6(__bindgen_tmp.as_mut_ptr(), str);
+                __bindgen_tmp.assume_init()
+            }
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct L2CAgent {
+            pub vtable: u64,
+            pub lua_state_agent: u64,
+            pub unk10: u64,
+            pub unk18: u64,
+            pub unk20: u64,
+            pub unk28: u64,
+            pub unk30: u64,
+            pub unk38: u64,
+            pub lua_state_agentbase: u64
+        }
+        extern "C" {
+            #[link_name = "\u{1}_ZN3lib8L2CAgentC2EP9lua_State"]
+            pub fn L2CAgent_L2CAgent_constr(
+                this: *mut root::lib::L2CAgent,
+                lua_state: u64,
+            ) -> *mut root::lib::L2CAgent;
+        }
+        extern "C" {
+            #[link_name = "\u{1}_ZN3lib8L2CAgent14push_lua_stackERKNS_8L2CValueE"]
+            pub fn L2CAgent_push_lua_stack(
+                this: *mut root::lib::L2CAgent,
+                l2c_value: *mut root::lib::L2CValue,
+            ) -> u64;
+        }
+        extern "C" {
+            #[link_name = "\u{1}_ZN3lib8L2CAgent13pop_lua_stackEi"]
+            pub fn L2CAgent_pop_lua_stack(
+                this: *mut root::lib::L2CAgent,
+                index: libc::c_int,
+            ) -> L2CValue;
+        }
+        extern "C" {
+            #[link_name = "\u{1}_ZN3lib8L2CAgent20sv_set_function_hashEPvN3phx6Hash40E"]
+            pub fn L2CAgent_sv_set_function_hash(
+                this: *mut root::lib::L2CAgent,
+                func: ::core::option::Option<
+                    unsafe extern "C" fn(
+                        arg1: *mut root::lib::L2CAgent,
+                        arg2: *mut libc::c_void,
+                    ) -> u64,
+                >,
+                hash: u64,
+            ) -> u64;
+        }
+        extern "C" {
+            #[link_name = "\u{1}_ZN3lib8L2CAgent15clear_lua_stackEv"]
+            pub fn L2CAgent_clear_lua_stack(this: *mut root::lib::L2CAgent) -> u64;
+        }
+        extern "C" {
+            #[link_name = "\u{1}_ZN3lib8L2CAgent16_clear_lua_stackEv"]
+            pub fn L2CAgent__clear_lua_stack(this: *mut root::lib::L2CAgent) -> u64;
+        }
+        impl L2CAgent {
+            #[inline]
+            pub unsafe fn L2CAgent_constr(
+                &mut self,
+                lua_state: u64,
+            ) -> *mut root::lib::L2CAgent {
+                L2CAgent_L2CAgent_constr(self, lua_state)
+            }
+            #[inline]
+            pub unsafe fn push_lua_stack(
+                &mut self,
+                l2c_value: *mut root::lib::L2CValue,
+            ) -> u64 {
+                L2CAgent_push_lua_stack(self, l2c_value)
+            }
+            #[inline]
+            pub unsafe fn pop_lua_stack(
+                &mut self,
+                index: libc::c_int
+            ) -> L2CValue {
+                L2CAgent_pop_lua_stack(self, index)
+            }
+            #[inline]
+            pub unsafe fn sv_set_function_hash(
+                &mut self,
+                func: ::core::option::Option<
+                    unsafe extern "C" fn(
+                        arg1: *mut root::lib::L2CAgent,
+                        arg2: *mut libc::c_void,
+                    ) -> u64,
+                >,
+                hash: u64,
+            ) -> u64 {
+                L2CAgent_sv_set_function_hash(self, func, hash)
+            }
+            #[inline]
+            pub unsafe fn clear_lua_stack(&mut self) -> u64 {
+                L2CAgent_clear_lua_stack(self)
+            }
+            #[inline]
+            pub unsafe fn _clear_lua_stack(&mut self) -> u64 {
+                L2CAgent__clear_lua_stack(self)
+            }
+        }
+        pub mod utility {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            pub mod Variadic {
+                #[allow(unused_imports)]
+                use super::super::super::super::root;
+                extern "C" {
+                    #[link_name = "\u{1}_ZNK3lib7utility8Variadic10get_formatEv"]
+                    pub fn get_format(variadic: *mut libc::c_void) -> *const libc::c_char;
+                }
+            }
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct Rect {
+            pub _address: u8,
+        }
+    }
+    pub mod phx {
+        #[allow(unused_imports)]
+        use super::super::root;
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct Vector2f {
+            pub x: f32,
+            pub y: f32,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct Vector3f {
+            pub x: f32,
+            pub y: f32,
+            pub z: f32,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct Vector4f {
+            pub x: f32,
+            pub y: f32,
+            pub z: f32,
+            pub w: f32,
+        }
+        #[repr(C)]
+        #[derive(Debug, Copy, Clone)]
+        pub struct Hash40 {
+            pub hash: u64,
+        }
+    }
+    pub type __uint128_t = u128;
+    pub type __int128_t = i128;
+    pub type __builtin_va_list = root::__va_list;
+    #[repr(C)]
+    #[derive(Debug, Copy, Clone)]
+    pub struct __va_list {
+        pub __stack: *mut libc::c_void,
+        pub __gr_top: *mut libc::c_void,
+        pub __vr_top: *mut libc::c_void,
+        pub __gr_offs: libc::c_int,
+        pub __vr_offs: libc::c_int,
+    }
 }
