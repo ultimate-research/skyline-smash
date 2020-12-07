@@ -10291,7 +10291,7 @@ pub mod root {
 						arg4: bool,
 						arg5: bool,
 						arg6: bool,
-						arg7: root::app::SoundModule::enSEType,
+						arg7: root::app::enSEType,
 					) -> u64;
 				}
 				extern "C" {
