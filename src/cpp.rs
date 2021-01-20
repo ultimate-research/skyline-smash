@@ -2069,7 +2069,82 @@ pub mod root {
                     arg1: *mut root::app::Weapon,
                 ) -> u64;
             }
-        }
+		}
+		pub mod WeaponSpecializer_SimonWhip {
+            #[allow(unused_imports)]
+			use super::super::super::root;
+			extern "C" {
+                #[link_name = "\u{1}_ZN3app27WeaponSpecializer_SimonWhip9add_speedERNS_6WeaponEiff"]
+                pub fn add_speed(
+					arg1: *mut root::app::Weapon,
+					arg2: i32,
+					arg3: f32,
+					arg4: f32
+                ) -> u64;
+			}
+			extern "C" {
+                #[link_name = "\u{1}_ZN3app27WeaponSpecializer_SimonWhip24reset_node_fix_flag_listERNS_6WeaponE"]
+                pub fn reset_node_fix_flag_list(
+					arg1: *mut root::app::Weapon
+                ) -> u64;
+			}
+			extern "C" {
+                #[link_name = "\u{1}_ZN3app27WeaponSpecializer_SimonWhip22set_2nd_air_resistanceERNS_6WeaponEf"]
+                pub fn set_2nd_air_resistance(
+					arg1: *mut root::app::Weapon,
+					arg1: f32
+                ) -> u64;
+			}
+			extern "C" {
+                #[link_name = "\u{1}_ZN3app27WeaponSpecializer_SimonWhip15set_2nd_gravityERNS_6WeaponEf"]
+                pub fn set_2nd_gravity(
+					arg1: *mut root::app::Weapon,
+					arg1: f32
+                ) -> u64;
+			}
+			extern "C" {
+                #[link_name = "\u{1}_ZN3app27WeaponSpecializer_SimonWhip22set_node_fix_flag_listERNS_6WeaponEiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"]
+                pub fn set_node_fix_flag_list(
+					arg1: *mut root::app::Weapon,
+					arg2: i32,
+					arg3: i32,
+					arg4: i32,
+					arg5: i32,
+					arg6: i32,
+					arg7: i32,
+					arg8: i32,
+					arg9: i32,
+					arg10: i32,
+					arg11: i32,
+					arg12: i32,
+					arg13: i32,
+					arg14: i32,
+					arg15: i32,
+					arg16: i32,
+					arg17: i32,
+					arg18: i32,
+					arg19: i32,
+					arg20: i32,
+					arg21: i32,
+					arg22: i32,
+					arg23: i32,
+					arg24: i32,
+					arg25: i32,
+					arg26: i32,
+					arg27: i32,
+					arg28: i32,
+					arg29: i32,
+					arg30: i32,
+					arg31: i32
+                ) -> u64;
+			}
+			extern "C" {
+                #[link_name = "\u{1}_ZN3app27WeaponSpecializer_SimonWhip21sleep_attack_by_speedERNS_6WeaponE"]
+                pub fn sleep_attack_by_speed(
+					arg1: *mut root::app::Weapon
+                ) -> u64;
+			}
+		}
 
 		pub mod lua_bind {
 			#[allow(unused_imports)]
@@ -6082,7 +6157,7 @@ pub mod root {
 						arg1: *mut root::app::BattleObjectModuleAccessor,
 						arg2: libc::c_int,
 						arg3: bool,
-					) -> root::phx::Vector3f;
+					) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind27AttackModule__set_node_implEPNS_26BattleObjectModuleAccessorEiN3phx6Hash40E"]
@@ -6108,7 +6183,7 @@ pub mod root {
 						arg3: bool,
 						arg4: f32,
 						arg5: bool,
-					) -> f32;
+					) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind24AttackModule__group_implEPNS_26BattleObjectModuleAccessorEi"]
@@ -6123,7 +6198,7 @@ pub mod root {
 						arg1: *mut root::app::BattleObjectModuleAccessor,
 						arg2: libc::c_int,
 						arg3: bool,
-					) -> i32;
+					) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind38AttackModule__set_reaction_effect_implEPNS_26BattleObjectModuleAccessorEiib"]
@@ -6140,7 +6215,7 @@ pub mod root {
 						arg1: *mut root::app::BattleObjectModuleAccessor,
 						arg2: libc::c_int,
 						arg3: bool,
-					) -> i32;
+					) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind35AttackModule__set_reaction_fix_implEPNS_26BattleObjectModuleAccessorEiib"]
@@ -6157,7 +6232,7 @@ pub mod root {
 						arg1: *mut root::app::BattleObjectModuleAccessor,
 						arg2: libc::c_int,
 						arg3: bool,
-					) -> i32;
+					) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind35AttackModule__set_reaction_add_implEPNS_26BattleObjectModuleAccessorEiib"]
@@ -6172,7 +6247,7 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind31AttackModule__reaction_mul_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn reaction_mul(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-					) -> f32;
+					) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind28AttackModule__set_pos_x_implEPNS_26BattleObjectModuleAccessorEif"]
@@ -6188,15 +6263,15 @@ pub mod root {
 						arg1: *mut root::app::BattleObjectModuleAccessor,
 						arg2: libc::c_int,
 						arg3: bool,
-					) -> f32;
+					) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind26AttackModule__pos_x_2_implEPNS_26BattleObjectModuleAccessorE"]
-					pub fn pos_x_2(arg1: *mut root::app::BattleObjectModuleAccessor) -> f32;
+					pub fn pos_x_2(arg1: *mut root::app::BattleObjectModuleAccessor) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind24AttackModule__pos_y_implEPNS_26BattleObjectModuleAccessorE"]
-					pub fn pos_y(arg1: *mut root::app::BattleObjectModuleAccessor) -> f32;
+					pub fn pos_y(arg1: *mut root::app::BattleObjectModuleAccessor) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind29AttackModule__center_pos_implEPNS_26BattleObjectModuleAccessorEib"]
@@ -6204,7 +6279,7 @@ pub mod root {
 						arg1: *mut root::app::BattleObjectModuleAccessor,
 						arg2: libc::c_int,
 						arg3: bool,
-					) -> f32;
+					) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind26AttackModule__speed_x_implEPNS_26BattleObjectModuleAccessorE"]
@@ -6212,7 +6287,7 @@ pub mod root {
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind24AttackModule__speed_implEPNS_26BattleObjectModuleAccessorE"]
-					pub fn speed(arg1: *mut root::app::BattleObjectModuleAccessor) -> root::phx::Vector2f;
+					pub fn speed(arg1: *mut root::app::BattleObjectModuleAccessor) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind28AttackModule__set_speed_implEPNS_26BattleObjectModuleAccessorERKN3phx8Vector2fE"]
@@ -6240,7 +6315,7 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind35AttackModule__power_mul_status_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn power_mul_status(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-					) -> f32;
+					) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind39AttackModule__set_power_add_status_implEPNS_26BattleObjectModuleAccessorEf"]
@@ -6253,7 +6328,7 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind35AttackModule__power_add_status_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn power_add_status(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-					) -> f32;
+					) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind41AttackModule__set_power_speed_status_implEPNS_26BattleObjectModuleAccessorEf"]
@@ -6291,7 +6366,7 @@ pub mod root {
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind28AttackModule__power_mul_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn power_mul(arg1: *mut root::app::BattleObjectModuleAccessor)
-						-> f32;
+						-> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind36AttackModule__set_power_mul_2nd_implEPNS_26BattleObjectModuleAccessorEf"]
@@ -6304,7 +6379,7 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind32AttackModule__power_mul_2nd_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn power_mul_2nd(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-					) -> f32;
+					) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind36AttackModule__set_power_mul_3rd_implEPNS_26BattleObjectModuleAccessorEf"]
@@ -6317,7 +6392,7 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind32AttackModule__power_mul_3rd_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn power_mul_3rd(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-					) -> f32;
+					) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind36AttackModule__set_power_mul_4th_implEPNS_26BattleObjectModuleAccessorEf"]
@@ -6330,7 +6405,7 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind32AttackModule__power_mul_4th_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn power_mul_4th(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-					) -> f32;
+					) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind36AttackModule__set_power_mul_5th_implEPNS_26BattleObjectModuleAccessorEf"]
@@ -6343,7 +6418,7 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind32AttackModule__power_mul_5th_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn power_mul_5th(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-					) -> f32;
+					) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind45AttackModule__set_customize_attack_ratio_implEPNS_26BattleObjectModuleAccessorEf"]
@@ -6356,7 +6431,7 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind41AttackModule__customize_attack_ratio_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn customize_attack_ratio(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-					) -> f32;
+					) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind35AttackModule__set_reaction_mul_implEPNS_26BattleObjectModuleAccessorEf"]
@@ -6376,7 +6451,7 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind35AttackModule__reaction_mul_2nd_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn reaction_mul_2nd(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-					) -> f32;
+					) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind39AttackModule__set_reaction_mul_3rd_implEPNS_26BattleObjectModuleAccessorEf"]
@@ -6389,7 +6464,7 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind35AttackModule__reaction_mul_3rd_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn reaction_mul_3rd(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-					) -> f32;
+					) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind39AttackModule__set_reaction_mul_4th_implEPNS_26BattleObjectModuleAccessorEf"]
@@ -6402,7 +6477,7 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind35AttackModule__reaction_mul_4th_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn reaction_mul_4th(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-					) -> f32;
+					) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind42AttackModule__set_damage_reaction_mul_implEPNS_26BattleObjectModuleAccessorEf"]
@@ -6428,7 +6503,7 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind35AttackModule__shield_stiff_mul_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn shield_stiff_mul(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-					) -> f32;
+					) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind41AttackModule__set_ignore_just_shield_implEPNS_26BattleObjectModuleAccessorEb"]
@@ -6590,7 +6665,7 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind31AttackModule__get_power_up_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn get_power_up(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-					) -> f32;
+					) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind31AttackModule__set_power_up_implEPNS_26BattleObjectModuleAccessorEf"]
@@ -6603,7 +6678,7 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind36AttackModule__get_power_up_attr_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn get_power_up_attr(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-					) -> f32;
+					) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind36AttackModule__set_power_up_attr_implEPNS_26BattleObjectModuleAccessorEf"]
@@ -6616,7 +6691,7 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind41AttackModule__get_attacker_attribute_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn get_attacker_attribute(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-					) -> app::AttackerAttribute;
+					) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind41AttackModule__set_attacker_attribute_implEPNS_26BattleObjectModuleAccessorENS_17AttackerAttributeE"]
@@ -6726,7 +6801,7 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind47AttackModule__get_attack_power_mul_pattern_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn get_attack_power_mul_pattern(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-					) -> f32;
+					) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind45AttackModule__set_attack_power_mul_scale_implEPNS_26BattleObjectModuleAccessorEf"]
@@ -6739,7 +6814,7 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind45AttackModule__get_attack_power_mul_scale_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn get_attack_power_mul_scale(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-					) -> f32;
+					) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind39AttackModule__set_lr_check_default_implEPNS_26BattleObjectModuleAccessorEh"]
@@ -6752,7 +6827,7 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind35AttackModule__lr_check_default_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn lr_check_default(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-					) -> libc::c_uchar;
+					) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind37AttackModule__set_lr_check_front_implEPNS_26BattleObjectModuleAccessorEi"]
@@ -6793,7 +6868,7 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind37AttackModule__damage_shake_scale_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn damage_shake_scale(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-					) -> f32;
+					) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind41AttackModule__set_damage_shake_scale_implEPNS_26BattleObjectModuleAccessorEf"]
@@ -6901,7 +6976,7 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind42AttackModule__damage_effect_mul_scale_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn damage_effect_mul_scale(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-					) -> f32;
+					) -> u64;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind35AttackModule__set_attack_level_implEPNS_26BattleObjectModuleAccessorEih"]
