@@ -2069,7 +2069,82 @@ pub mod root {
                     arg1: *mut root::app::Weapon,
                 ) -> u64;
             }
-        }
+		}
+		pub mod WeaponSpecializer_SimonWhip {
+            #[allow(unused_imports)]
+			use super::super::super::root;
+			extern "C" {
+                #[link_name = "\u{1}_ZN3app27WeaponSpecializer_SimonWhip9add_speedERNS_6WeaponEiff"]
+                pub fn add_speed(
+					arg1: *mut root::app::Weapon,
+					arg2: i32,
+					arg3: f32,
+					arg4: f32
+                ) -> u64;
+			}
+			extern "C" {
+                #[link_name = "\u{1}_ZN3app27WeaponSpecializer_SimonWhip24reset_node_fix_flag_listERNS_6WeaponE"]
+                pub fn reset_node_fix_flag_list(
+					arg1: *mut root::app::Weapon
+                ) -> u64;
+			}
+			extern "C" {
+                #[link_name = "\u{1}_ZN3app27WeaponSpecializer_SimonWhip22set_2nd_air_resistanceERNS_6WeaponEf"]
+                pub fn set_2nd_air_resistance(
+					arg1: *mut root::app::Weapon,
+					arg1: f32
+                ) -> u64;
+			}
+			extern "C" {
+                #[link_name = "\u{1}_ZN3app27WeaponSpecializer_SimonWhip15set_2nd_gravityERNS_6WeaponEf"]
+                pub fn set_2nd_gravity(
+					arg1: *mut root::app::Weapon,
+					arg1: f32
+                ) -> u64;
+			}
+			extern "C" {
+                #[link_name = "\u{1}_ZN3app27WeaponSpecializer_SimonWhip22set_node_fix_flag_listERNS_6WeaponEiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"]
+                pub fn set_node_fix_flag_list(
+					arg1: *mut root::app::Weapon,
+					arg2: i32,
+					arg3: i32,
+					arg4: i32,
+					arg5: i32,
+					arg6: i32,
+					arg7: i32,
+					arg8: i32,
+					arg9: i32,
+					arg10: i32,
+					arg11: i32,
+					arg12: i32,
+					arg13: i32,
+					arg14: i32,
+					arg15: i32,
+					arg16: i32,
+					arg17: i32,
+					arg18: i32,
+					arg19: i32,
+					arg20: i32,
+					arg21: i32,
+					arg22: i32,
+					arg23: i32,
+					arg24: i32,
+					arg25: i32,
+					arg26: i32,
+					arg27: i32,
+					arg28: i32,
+					arg29: i32,
+					arg30: i32,
+					arg31: i32
+                ) -> u64;
+			}
+			extern "C" {
+                #[link_name = "\u{1}_ZN3app27WeaponSpecializer_SimonWhip21sleep_attack_by_speedERNS_6WeaponE"]
+                pub fn sleep_attack_by_speed(
+					arg1: *mut root::app::Weapon
+                ) -> u64;
+			}
+		}
 
 		pub mod lua_bind {
 			#[allow(unused_imports)]
