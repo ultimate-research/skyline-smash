@@ -133,5 +133,6 @@ macro_rules! impl_table_index_traits {
     };
 }
 
-impl_static_mut_traits!(CommonParams, FighterParams);
-impl_table_index_traits!((FighterParams, fighter_param_table));
+impl_static_mut_traits!(CommonParams);
+//impl_static_mut_traits!(CommonParams, FighterParams);
+//impl_table_index_traits!((FighterParams, fighter_param_table));
