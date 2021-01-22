@@ -6691,7 +6691,7 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind41AttackModule__get_attacker_attribute_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn get_attacker_attribute(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-					) -> app::AttackerAttribute;
+					) -> root::app::AttackerAttribute;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind41AttackModule__set_attacker_attribute_implEPNS_26BattleObjectModuleAccessorENS_17AttackerAttributeE"]
