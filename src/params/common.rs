@@ -19,7 +19,7 @@ pub struct JostleData {
 #[repr(C)]
 #[derive(Debug)]
 pub struct CommonParams {
-    pub params: super::Params,
+    pub params: u64,
     pub precede: i32,
     pub precede_extension: i32,
     pub clatter_cont_value: f32,
@@ -141,6 +141,7 @@ pub struct CommonParams {
     pub x20d241cd64: f32,
     pub x2434ca61df: f32,
     pub guard_damage_just_shield_disable_frame: i32,
+    pub x16a1c7df3f: f32,
     pub escape_flick_y: i32,
     pub escape_stick_y: f32,
     pub escape_fb_flick_x: i32,
@@ -260,6 +261,10 @@ pub struct CommonParams {
     pub air_lasso_fall_hit_speed_diff: f32,
     pub air_lasso_landing_frame: i32,
     pub cliff_jump_disable_attack_frame: i32,
+    pub x2350989590: f32,
+    pub x1e569ef02: f32,
+    pub x1dacfbdd50: f32,
+    pub x1e5e1d72a8: f32,
     pub cliff_max_count: i32,
     pub x189f0b0c96: i32,
     pub cliff_dive_flick_frame_value: i32,
@@ -291,6 +296,7 @@ pub struct CommonParams {
     pub stop_ceil_speed_x_mul: f32,
     pub stop_ceil_speed_y_mul: f32,
     pub stop_ceil_speed_x_stable_mul: f32,
+    pub x158bb5418d: f32,
     pub wall_jump_flick_x: i32,
     pub wall_jump_stick_x: f32,
     pub wall_jump_stop_frame: i32,
@@ -564,6 +570,7 @@ pub struct CommonParams {
     pub dolly_super_special2_capture_cut_dist_y: f32,
     pub dolly_final_motion_rate: f32,
     pub master_final_target_motion_rate_scene03: f32,
+    pub x171c818663: i32,
     pub x1c6b1d2d15: f32,
     pub x1a99c94c70: i32,
     pub ground_damage_disable_frame: i32,
