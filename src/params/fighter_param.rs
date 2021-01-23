@@ -193,7 +193,7 @@ pub struct FighterParamTable {
     pub master_final_target_offset_x: f32,
     pub master_final_target_offset_y: f32,
     pub master_final_target_offset_z: f32,
-    pub x1ec3673edd: u64,
+    pub x1ec3673edd: u64, // hash40("waist")
     pub x2234f9e1e4: f32,
     pub x2243fed172: f32,
     pub x22daf780c8: f32,
@@ -203,6 +203,32 @@ pub struct FighterParamTable {
     pub x24b91ddbfe: f32,
     pub x24ce1aeb68: f32,
     pub x245713bad2: f32,
+    pub x223ce059e4: u64, // hash40 == 0x0aef48d400
+    pub x23ed975439: f32,
+    pub x1f905c13fb: f32,
+    pub x1fe75b236d: f32,
+    pub x1f7e5272d7: f32,
+    pub x1cba8b77b5: f32,
+    pub x23ca50df2b: u64, // hash40("hip")
+    pub x295785c851: f32,
+    pub x24dea774ab: f32,
+    pub x2be31da05e: f32,
+    pub x2b7e124128: f32,
+    pub x19373c12d3: f32,
+    pub x19327d6d0a: i32,
+    pub x1a4e9ff7cc: f32,
+    pub x1dea250ce6: f32,
+    pub x1d9d223c70: f32,
+    pub x19f190006a: i32,
+    pub xf5c75804b: u64, // hash40("waist"),
+    pub x137b567280: f32,
+    pub x130c514216: f32,
+    pub x13955813ac: f32,
+    pub x11e69673b4: f32,
+    pub x161eafe03d: f32,
+    pub x1607b4d17c: f32,
+    pub x1687a6b187: f32,
+    pub x169ebd80c6: f32,
     pub item_lift_accel_mul: f32,
     pub item_lift_accel_add: f32,
     pub item_lift_speed_max: f32,
@@ -335,7 +361,7 @@ pub struct FighterParamTable {
 #[derive(Debug)]
 pub struct FighterParams {
     pub params: super::Params,
-    pub fighter_param_table: *mut [FighterParamTable; 88],
+    pub fighter_param_table: *mut [FighterParamTable; 90],
     pad_00: [u64; 2],
 }
 
