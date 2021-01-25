@@ -18217,7 +18217,8 @@ pub mod root {
                 pub fn ATK_SET_SHIELD_SETOFF_MUL_arg5(arg1: u64);
             }
             extern "C" {
-                #[link_name = "\u{1}_ZN3app10sv_animcmd6ATTACKEP9lua_State"]
+				#[link_name = "\u{1}_ZN3app10sv_animcmd6ATTACKEP9lua_State"]
+				#[unwind(allowed)]
                 pub fn ATTACK(arg1: u64);
             }
             extern "C" {
@@ -19699,7 +19700,43 @@ pub mod root {
     pub mod lib {
         pub mod lua_const {
             pub use crate::lua_const::*;
-        }
+		}
+		
+		pub mod utility {
+			extern "C" {
+				#[link_name = "\u{1}_ZNK3lib7utility8Variadic10get_formatEv"]
+				fn Variadic_get_format(_: &Variadic) -> *const skyline::libc::c_char;
+				#[link_name = "\u{1}_ZN3lib7utility8VariadicD1Ev"]
+				fn Variadic_dtor(_: &mut Variadic);
+				#[link_name = "\u{1}_ZN3lib7utility8VariadicC1Ev"]
+				fn Variadic_ctor(_: &mut Variadic);
+			}
+			#[repr(C)]
+			pub struct Variadic {
+				_internal: u64
+			}
+			impl Variadic {
+				pub fn new() -> Self {
+					let mut ret = Variadic { _internal : 0 };
+					unsafe {
+						Variadic_ctor(&mut ret);
+					}
+					ret
+			   }
+			   pub fn get_format(&self) -> *const skyline::libc::c_char { 
+				   unsafe {
+					   Variadic_get_format(self)
+				   }
+			   }
+			}
+			impl Drop for Variadic {
+				fn drop(&mut self) {
+					unsafe {
+						Variadic_dtor(self);
+					}
+				}
+			}
+		}
 
         extern "C" {
             #[link_name = "\u{1}_ZNK3lib8L2CValueixEN3phx6Hash40E"]
@@ -19737,7 +19774,7 @@ pub mod root {
                 this: *mut root::lib::L2CValue,
                 arg1: u64,
                 arg2: *const libc::c_char,
-                arg3: *mut libc::c_void,
+                arg3: *mut utility::Variadic,
             );
         }
         extern "C" {
@@ -19774,7 +19811,7 @@ pub mod root {
                 &mut self,
                 arg1: u64,
                 arg2: *const libc::c_char,
-                arg3: *mut libc::c_void,
+                arg3: *mut utility::Variadic,
             ) {
                 L2CValue_push_variadic(self, arg1, arg2, arg3)
             }
@@ -19845,7 +19882,7 @@ pub mod root {
             #[link_name = "\u{1}_ZN3lib8L2CAgent14push_lua_stackERKNS_8L2CValueE"]
             pub fn L2CAgent_push_lua_stack(
                 this: *mut root::lib::L2CAgent,
-                l2c_value: *mut root::lib::L2CValue,
+                l2c_value: &mut root::lib::L2CValue,
             ) -> u64;
         }
         extern "C" {
@@ -19887,7 +19924,7 @@ pub mod root {
             #[inline]
             pub unsafe fn push_lua_stack(
                 &mut self,
-                l2c_value: *mut root::lib::L2CValue,
+                l2c_value: &mut root::lib::L2CValue,
             ) -> u64 {
                 L2CAgent_push_lua_stack(self, l2c_value)
             }
@@ -19918,18 +19955,6 @@ pub mod root {
             #[inline]
             pub unsafe fn _clear_lua_stack(&mut self) -> u64 {
                 L2CAgent__clear_lua_stack(self)
-            }
-        }
-        pub mod utility {
-            #[allow(unused_imports)]
-            use super::super::super::root;
-            pub mod Variadic {
-                #[allow(unused_imports)]
-                use super::super::super::super::root;
-                extern "C" {
-                    #[link_name = "\u{1}_ZNK3lib7utility8Variadic10get_formatEv"]
-                    pub fn get_format(variadic: *mut libc::c_void) -> *const libc::c_char;
-                }
             }
         }
         #[repr(C)]
@@ -19966,7 +19991,13 @@ pub mod root {
         #[derive(Debug, Copy, Clone)]
         pub struct Hash40 {
             pub hash: u64,
-        }
+		}
+		
+		impl Into<crate::cpp::l2c_value::L2CValue> for Hash40 {
+			fn into(self) -> crate::cpp::l2c_value::L2CValue {
+				crate::cpp::l2c_value::L2CValue::new_hash(self.hash)
+			}
+		}
     }
     pub type __uint128_t = u128;
     pub type __int128_t = i128;
