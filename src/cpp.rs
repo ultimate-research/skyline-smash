@@ -18659,7 +18659,7 @@ pub mod root {
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app10sv_animcmd22IS_GENERATABLE_ARTICLEEP9lua_State"]
-                pub fn IS_GENERATABLE_ARTICLE(arg1: u64);
+                pub fn IS_GENERATABLE_ARTICLE(arg1: u64) -> bool;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app10sv_animcmd17IS_HAVE_ITEM_KINDEP9lua_State"]

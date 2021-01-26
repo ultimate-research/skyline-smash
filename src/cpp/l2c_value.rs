@@ -201,6 +201,15 @@ impl L2CValue {
         }
     }
 
+    pub const fn new_ptr(val: *mut skyline::libc::c_void) -> Self {
+        Self {
+            val_type: L2CValueType::Pointer,
+            unk1: 0,
+            inner: L2CValueInner { raw_pointer: val },
+            unk2: 0
+        }
+    }
+
     pub const fn new_hash(val: u64) -> Self {
         Self {
             val_type: L2CValueType::Hash,
@@ -446,6 +455,14 @@ impl Clone for LuaConst {
     }
 }
 
+impl std::hash::Hash for LuaConst {
+    fn hash<H: std::hash::Hasher>(&self, state: &mut H) {
+        self.lua_bind_hash.hash(state);
+    }
+}
+
+impl Eq for LuaConst {}
+
 macro_rules! lua_const_partialeq_impl {
     (
         $(
@@ -484,6 +501,12 @@ impl PartialEq<L2CValue> for LuaConst {
     #[track_caller]
     fn eq(&self, other: &L2CValue) -> bool {
         return *self == other.get_int() as i32;
+    }
+}
+
+impl PartialEq for LuaConst {
+    fn eq(&self, other: &LuaConst) -> bool {
+        *self == *other
     }
 }
 
