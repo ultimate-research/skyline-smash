@@ -10,7 +10,7 @@ pub union L2CValueInner {
     pub raw_float: f32,
     pub raw_pointer: *mut libc::c_void,
     pub raw_table: *mut L2CTable,
-    pub raw_innerfunc: *mut L2CInnerFunctionBase,
+    pub raw_innerfunc: *mut L2CInnerFunctionBase
 }
 
 impl fmt::Debug for L2CValueInner {
@@ -198,6 +198,15 @@ impl L2CValue {
             unk1: 0,
             inner: L2CValueInner { raw_float: val },
             unk2: 0
+        }
+    }
+
+    pub const fn new_hash(val: u64) -> Self {
+        Self {
+            val_type: L2CValueType::Hash,
+            unk1: 0,
+            inner: L2CValueInner { raw: val },
+            unk2: 0,
         }
     }
 
