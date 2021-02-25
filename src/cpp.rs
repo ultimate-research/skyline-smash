@@ -9163,7 +9163,7 @@ pub mod root {
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind28MotionModule__frame_2nd_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn frame_2nd(arg1: *mut root::app::BattleObjectModuleAccessor)
-						-> u64;
+						-> f32;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind28MotionModule__trans_tra_implEPNS_26BattleObjectModuleAccessorERN3phx8Vector3fEbb"]
