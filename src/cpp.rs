@@ -2483,7 +2483,7 @@ pub mod root {
 					pub fn get_clatter_time(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
 						arg2: libc::c_int,
-					) -> u64;
+					) -> f32;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind36ControlModule__set_clatter_stop_implEPNS_26BattleObjectModuleAccessorEb"]
