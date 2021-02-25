@@ -389,7 +389,7 @@ impl super::root::lib::L2CAgent {
             unk28: 0,
             unk30: 0,
             unk38: 0,
-            module_accessor: 0 as *mut root::app::BattleObjectModuleAccessor
+            module_accessor: 0 as *mut super::root::app::BattleObjectModuleAccessor
         };
         unsafe {
             super::root::lib::L2CAgent_L2CAgent_constr(&mut l2c_agent, lua_state); 
