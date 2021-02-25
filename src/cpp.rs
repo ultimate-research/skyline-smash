@@ -17319,7 +17319,7 @@ pub mod root {
 					pub fn get_parent_lr(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
 						arg2: libc::c_int,
-					) -> u64;
+					) -> f32;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind37LinkModule__get_parent_sum_speed_implEPNS_26BattleObjectModuleAccessorEii"]
