@@ -13210,7 +13210,7 @@ pub mod root {
 						arg1: *mut root::app::FighterParamAccessor2,
 						arg2: libc::c_int,
 						arg3: libc::c_int,
-					) -> f32;
+					) -> super::root::phx::Vector3f;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind49FighterParamAccessor2__ridley_dragged_offset_implEPNS_21FighterParamAccessor2Eii"]
