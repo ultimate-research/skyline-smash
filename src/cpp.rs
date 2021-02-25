@@ -19869,7 +19869,7 @@ pub mod root {
             pub unk28: u64,
             pub unk30: u64,
             pub unk38: u64,
-            pub module_accessor: *mut root::app::BattleObjectMOduleAccessor
+            pub module_accessor: *mut root::app::BattleObjectModuleAccessor
         }
         extern "C" {
             #[link_name = "\u{1}_ZN3lib8L2CAgentC2EP9lua_State"]
