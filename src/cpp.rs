@@ -15991,7 +15991,7 @@ pub mod root {
 					pub fn get_have_item_trait(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
 						arg2: libc::c_int,
-					) -> u64;
+					) -> bool;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind40ItemModule__get_have_item_hold_kind_implEPNS_26BattleObjectModuleAccessorEi"]
