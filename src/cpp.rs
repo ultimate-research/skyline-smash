@@ -9544,7 +9544,7 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind30MotionModule__update_rate_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn update_rate(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-					) -> u64;
+					) -> f32;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind32MotionModule__set_recalc_ik_implEPNS_26BattleObjectModuleAccessorEb"]
