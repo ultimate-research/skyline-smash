@@ -5537,7 +5537,7 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind40GroundModule__get_correct_pos_local_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn get_correct_pos_local(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-					) -> u64;
+					) -> root::phx::Vector2f;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind35GroundModule__set_update_shape_implEPNS_26BattleObjectModuleAccessorEb"]
@@ -8962,6 +8962,12 @@ pub mod root {
 			pub mod MotionModule {
 				#[allow(unused_imports)]
 				use super::super::super::super::root;
+				extern "C" {
+					#[link_name = "\u{1}_ZN3app8lua_bind30MotionModule__is_changing_implEPNS_26BattleObjectModuleAccessorE"]
+					pub fn is_changing(
+						arg1: *mut root::app::BattleObjectModuleAccessor
+					) -> bool;
+				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind32MotionModule__change_motion_implEPNS_26BattleObjectModuleAccessorEN3phx6Hash40Effbfbb"]
 					pub fn change_motion(
@@ -18651,7 +18657,7 @@ pub mod root {
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app10sv_animcmd16IS_EXIST_ARTICLEEP9lua_State"]
-                pub fn IS_EXIST_ARTICLE(arg1: u64);
+                pub fn IS_EXIST_ARTICLE(arg1: u64) -> bool;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app10sv_animcmd22IS_FIGHTER_STATUS_KINDEP9lua_State"]
@@ -19111,11 +19117,11 @@ pub mod root {
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app17sv_kinetic_energy11get_speed_xEP9lua_State"]
-                pub fn get_speed_x(arg1: u64);
+                pub fn get_speed_x(arg1: u64) -> f32;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app17sv_kinetic_energy11get_speed_yEP9lua_State"]
-                pub fn get_speed_y(arg1: u64);
+                pub fn get_speed_y(arg1: u64) -> f32;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app17sv_kinetic_energy12friction_offEP9lua_State"]
@@ -19462,7 +19468,7 @@ pub mod root {
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app7sv_math8vec2_rotEfff"]
-                pub fn vec2_rot(arg1: f32, arg2: f32, arg3: f32) -> f32;
+                pub fn vec2_rot(arg1: f32, arg2: f32, arg3: f32) -> root::phx::Vector2f;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app7sv_math8vec3_dotEffffff"]
@@ -19868,7 +19874,7 @@ pub mod root {
             pub unk20: u64,
             pub unk28: u64,
             pub unk30: u64,
-            pub unk38: u64,
+            pub battle_object: *mut root::app::BattleObject,
             pub module_accessor: *mut root::app::BattleObjectModuleAccessor
         }
         extern "C" {
@@ -19991,12 +19997,6 @@ pub mod root {
         #[derive(Debug, Copy, Clone)]
         pub struct Hash40 {
             pub hash: u64,
-		}
-		
-		impl Into<crate::cpp::l2c_value::L2CValue> for Hash40 {
-			fn into(self) -> crate::cpp::l2c_value::L2CValue {
-				crate::cpp::l2c_value::L2CValue::new_hash(self.hash)
-			}
 		}
     }
     pub type __uint128_t = u128;

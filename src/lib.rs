@@ -2,6 +2,7 @@
 #![feature(const_if_match, const_loop, track_caller, proc_macro_hygiene)]
 #![feature(asm)]
 #![feature(unwind_attributes)]
+#![feature(specialization)]
 
 pub mod crc32;
 
