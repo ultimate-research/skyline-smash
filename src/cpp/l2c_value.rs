@@ -58,6 +58,8 @@ extern "C" {
     fn L2CValue_idx_l2c<'a>(arg: *const L2CValue, idx: *const L2CValue) -> &'a L2CValue;
     #[link_name = "\u{1}_ZNK3lib8L2CValueixERKS0_"]
     fn L2CValue_idx_l2c_mut<'a>(arg: *const L2CValue, idx: *const L2CValue) -> &'a mut L2CValue;
+    #[link_name = "\u{1}_ZN3lib8L2CValueD1Ev"]
+    fn L2CValue_dtor(arg: *mut L2CValue);
     #[link_name = "\u{1}_ZN3lib8L2CTableC1Ei"]
     fn L2CTable_L2CTable(arg: *mut L2CTable, count: i32);
     #[link_name = "\u{1}_Znwm"]
@@ -102,7 +104,7 @@ pub enum L2CValueType {
     String = 8
 }
 
-#[derive(Copy, Default)]
+#[derive(Default)]
 #[repr(C)]
 pub struct L2CValue {
     pub val_type: L2CValueType,
@@ -368,6 +370,14 @@ impl L2CValue {
 
     pub fn get_string(&self) -> String {
         self.into()
+    }
+}
+
+impl Drop for L2CValue {
+    fn drop(&mut self) {
+        unsafe {
+            L2CValue_dtor(self as *mut Self);
+        }
     }
 }
 
