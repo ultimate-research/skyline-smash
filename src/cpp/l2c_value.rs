@@ -350,7 +350,13 @@ impl L2CValue {
         self.into()
     }
 
-    pub fn get_ptr<T>(&self) -> *mut T {
+    pub fn get_ptr<T>(&self) -> *const T {
+        unsafe {
+            L2CValue_as_pointer(self as *const L2CValue) as *const T
+        }
+    }
+
+    pub fn get_ptr_mut<T>(&self) -> *mut T {
         unsafe {
             L2CValue_as_pointer(self as *const L2CValue) as *mut T
         }
