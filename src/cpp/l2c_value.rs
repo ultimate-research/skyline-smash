@@ -667,6 +667,18 @@ impl_partialeq_float_l2cvalue!(f32 f64);
 impl_into_int_l2cvalue!(i8 u8 i16 u16 i32 u32 u64 i64);
 impl_into_float_l2cvalue!(f32 f64);
 
+impl PartialEq<LuaConst> for L2CValue {
+    fn eq(&self, other: &LuaConst) -> bool {
+        self.val_type == L2CValueType::Int && self.get_i32() == **other
+    }
+}
+
+impl PartialEq<L2CValue> for LuaConst {
+    fn eq(&self, other: &L2CValue) -> bool {
+        other.val_type == L2CValueType::Int && other.get_i32() == **self
+    }
+}
+
 impl Default for L2CValueInner {
     fn default() -> Self {
         Self { raw: 0 }
@@ -835,39 +847,18 @@ macro_rules! lua_const_partialeq_impl {
     };
 }
 
-impl PartialEq<L2CValue> for LuaConst {
-    #[track_caller]
-    fn eq(&self, other: &L2CValue) -> bool {
-        other.val_type == L2CValueType::Int && *self == other.get_i32()
-    }
-}
-
 impl PartialEq for LuaConst {
     fn eq(&self, other: &LuaConst) -> bool {
         *self == *other
     }
 }
 
-impl PartialOrd<L2CValue> for LuaConst {
-    #[track_caller]
-    fn partial_cmp(&self, other: &L2CValue) -> Option<Ordering> {
-        Some((**self).cmp(&(other.get_i32())))
-    }
-}
-
-impl PartialEq<LuaConst> for L2CValue {
-    #[track_caller]
-    fn eq(&self, other: &LuaConst) -> bool {
-        return self.get_i32() == **other;
-    }
-}
-
-impl PartialOrd<LuaConst> for L2CValue {
-    #[track_caller]
-    fn partial_cmp(&self, other: &LuaConst) -> Option<Ordering> {
-        Some((self.get_i32()).cmp(&**other))
-    }
-}
+// impl PartialOrd<LuaConst> for L2CValue {
+//     #[track_caller]
+//     fn partial_cmp(&self, other: &LuaConst) -> Option<Ordering> {
+//         Some((self.get_i32()).cmp(&**other))
+//     }
+// }
 
 lua_const_partialeq_impl!(i32 u32 u64);
 
