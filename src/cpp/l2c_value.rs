@@ -617,6 +617,53 @@ macro_rules! impl_into_float_l2cvalue {
     };
 }
 
+macro_rules! impl_partialeq_int_l2cvalue {
+    (
+        $(
+            $ty:ty
+        )*
+    ) => {
+        $(
+            impl PartialEq<$ty> for L2CValue {
+                fn eq(&self, other: &$ty) -> bool {
+                    self.val_type == L2CValueType::Int && (self.get_u64() as $ty) == *other
+                }
+            }
+
+            impl PartialEq<L2CValue> for $ty {
+                fn eq(&self, other: &L2CValue) -> bool {
+                    other.val_type == L2CValueType::Int && (other.get_u64() as $ty) == *self
+                }
+            }
+        )*
+    }
+}
+
+macro_rules! impl_partialeq_float_l2cvalue {
+    (
+        $(
+            $ty:ty
+        )*
+    ) => {
+        $(
+            impl PartialEq<$ty> for L2CValue {
+                fn eq(&self, other: &$ty) -> bool {
+                    self.val_type == L2CValueType::Num && (self.get_f32() as $ty) == *other
+                }
+            }
+
+            impl PartialEq<L2CValue> for $ty {
+                fn eq(&self, other: &L2CValue) -> bool {
+                    other.val_type == L2CValueType::Num && (other.get_f32() as $ty) == *self
+                }
+            }
+        )*
+    }
+}
+
+impl_partialeq_int_l2cvalue!(i8 u8 i16 u16 i32 u32 u64 i64);
+impl_partialeq_float_l2cvalue!(f32 f64);
+
 impl_into_int_l2cvalue!(i8 u8 i16 u16 i32 u32 u64 i64);
 impl_into_float_l2cvalue!(f32 f64);
 
@@ -791,7 +838,7 @@ macro_rules! lua_const_partialeq_impl {
 impl PartialEq<L2CValue> for LuaConst {
     #[track_caller]
     fn eq(&self, other: &L2CValue) -> bool {
-        return *self == other.get_i32();
+        other.val_type == L2CValueType::Int && *self == other.get_i32()
     }
 }
 
