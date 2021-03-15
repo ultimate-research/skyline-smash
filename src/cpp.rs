@@ -19085,6 +19085,10 @@ pub mod root {
 				#[link_name = "\u{1}_ZN3app14sv_information11is_ready_goEv"]
 				pub fn is_ready_go() -> bool;
 			}
+			extern "C" {
+				#[link_name = "\u{1}_ZN3app14sv_information9slow_rateEv"]
+				pub fn slow_rate() -> f32;
+			}
 		}
         pub mod sv_kinetic_energy {
             #[allow(unused_imports)]
