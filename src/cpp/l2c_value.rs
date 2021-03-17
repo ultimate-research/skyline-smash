@@ -110,7 +110,7 @@ pub struct L2CValue {
     pub val_type: L2CValueType,
     pub unk1: u32,
     pub inner: L2CValueInner,
-    // pub unk2: u8, // for enforcing X8 AArch64 struct behavior
+    pub unk2: u8, // for enforcing X8 AArch64 struct behavior
 }
 
 impl fmt::Debug for L2CValue {
@@ -145,6 +145,7 @@ impl fmt::Debug for L2CValue {
                         .field(&self.val_type)
                         .field(&self.unk1)
                         .field(&self.inner.raw)
+                        .field(&self.unk2)
                         .finish()
             }
         }
