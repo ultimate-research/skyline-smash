@@ -145,7 +145,6 @@ impl fmt::Debug for L2CValue {
                         .field(&self.val_type)
                         .field(&self.unk1)
                         .field(&self.inner.raw)
-                        .field(&self.unk2)
                         .finish()
             }
         }
