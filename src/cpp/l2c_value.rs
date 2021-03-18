@@ -384,6 +384,13 @@ impl L2CValue {
     pub fn get_string(&self) -> String {
         self.into()
     }
+
+    pub fn assign(&mut self, other: &Self) {
+        unsafe {
+            L2CValue_dtor(self);
+            L2CValue_L2CValue2(self, other);
+        }
+    }
 }
 
 impl Drop for L2CValue {
