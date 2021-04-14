@@ -112,4 +112,10 @@ impl L2CValue {
             panic!("L2CValue: {:?} is not a pointer", self);
         }
     }
+
+    pub fn assign(&mut self, other: &Self) {
+        self.val_type = other.val_type;
+        self.unk1 = other.unk1;
+        self.inner = other.inner;
+    }
 }
