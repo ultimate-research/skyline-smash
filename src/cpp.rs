@@ -2,6 +2,20 @@
 
 pub mod l2c_value;
 
+#[cfg(feature = "weak_l2cvalue")]
+pub mod l2c_weak;
+
+#[cfg(not(feature = "weak_l2cvalue"))]
+pub mod l2c_strong;
+
+#[cfg(feature = "weak_l2cvalue")]
+pub use l2c_weak as l2c_impl;
+
+#[cfg(not(feature = "weak_l2cvalue"))]
+pub use l2c_strong as l2c_impl;
+
+pub use l2c_impl::*;
+
 #[allow(non_snake_case, non_camel_case_types, non_upper_case_globals)]
 pub mod root {
     use super::root;
@@ -19991,12 +20005,6 @@ pub mod root {
         #[derive(Debug, Copy, Clone)]
         pub struct Hash40 {
             pub hash: u64,
-		}
-		
-		impl Into<crate::cpp::l2c_value::L2CValue> for Hash40 {
-			fn into(self) -> crate::cpp::l2c_value::L2CValue {
-				crate::cpp::l2c_value::L2CValue::new_hash(self.hash)
-			}
 		}
     }
     pub type __uint128_t = u128;
