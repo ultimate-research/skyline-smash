@@ -19877,13 +19877,12 @@ pub mod root {
         pub struct L2CAgent {
             pub vtable: u64,
             pub lua_state_agent: u64,
-            pub unk10: u64,
-            pub unk18: u64,
+            pub functions: crate::CppHash40Map<*const extern "C" fn(&mut Self, &mut utility::Variadic)>,
             pub unk20: u64,
             pub unk28: u64,
             pub unk30: u64,
-            pub unk38: u64,
-            pub lua_state_agentbase: u64
+            pub battle_object: *mut root::app::BattleObject,
+            pub module_accessor: *mut root::app::BattleObjectModuleAccessor
         }
         extern "C" {
             #[link_name = "\u{1}_ZN3lib8L2CAgentC2EP9lua_State"]
@@ -19910,14 +19909,9 @@ pub mod root {
             #[link_name = "\u{1}_ZN3lib8L2CAgent20sv_set_function_hashEPvN3phx6Hash40E"]
             pub fn L2CAgent_sv_set_function_hash(
                 this: *mut root::lib::L2CAgent,
-                func: ::core::option::Option<
-                    unsafe extern "C" fn(
-                        arg1: *mut root::lib::L2CAgent,
-                        arg2: *mut libc::c_void,
-                    ) -> u64,
-                >,
-                hash: u64,
-            ) -> u64;
+                func: unsafe extern "C" fn(arg1: *mut root::lib::L2CAgent, arg2: *mut libc::c_void) -> u64,
+                hash: root::phx::Hash40,
+            );
         }
         extern "C" {
             #[link_name = "\u{1}_ZN3lib8L2CAgent15clear_lua_stackEv"]
@@ -19952,14 +19946,9 @@ pub mod root {
             #[inline]
             pub unsafe fn sv_set_function_hash(
                 &mut self,
-                func: ::core::option::Option<
-                    unsafe extern "C" fn(
-                        arg1: *mut root::lib::L2CAgent,
-                        arg2: *mut libc::c_void,
-                    ) -> u64,
-                >,
-                hash: u64,
-            ) -> u64 {
+                func: unsafe extern "C" fn(arg1: *mut root::lib::L2CAgent, arg2: *mut libc::c_void) -> u64,
+                hash: root::phx::Hash40,
+            ) {
                 L2CAgent_sv_set_function_hash(self, func, hash)
             }
             #[inline]
@@ -19981,20 +19970,20 @@ pub mod root {
         #[allow(unused_imports)]
         use super::super::root;
         #[repr(C)]
-        #[derive(Debug, Copy, Clone)]
+        #[derive(Debug, Copy, Clone, PartialEq)]
         pub struct Vector2f {
             pub x: f32,
             pub y: f32,
         }
         #[repr(C)]
-        #[derive(Debug, Copy, Clone)]
+        #[derive(Debug, Copy, Clone, PartialEq)]
         pub struct Vector3f {
             pub x: f32,
             pub y: f32,
             pub z: f32,
         }
         #[repr(C)]
-        #[derive(Debug, Copy, Clone)]
+        #[derive(Debug, Copy, Clone, PartialEq)]
         pub struct Vector4f {
             pub x: f32,
             pub y: f32,
@@ -20002,7 +19991,7 @@ pub mod root {
             pub w: f32,
         }
         #[repr(C)]
-        #[derive(Debug, Copy, Clone)]
+        #[derive(Debug, Copy, Clone, Hash, Eq, PartialEq)]
         pub struct Hash40 {
             pub hash: u64,
 		}

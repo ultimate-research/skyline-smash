@@ -2,6 +2,7 @@
 #![feature(const_if_match, const_loop, track_caller, proc_macro_hygiene)]
 #![feature(asm)]
 #![feature(unwind_attributes)]
+#![feature(associated_type_bounds)]
 
 pub mod crc32;
 
@@ -42,3 +43,70 @@ impl phx::Hash40 {
 }
 
 mod lua_const;
+
+#[repr(C)]
+pub struct CppHash40MapEntry<T> {
+    pub next: *mut Self,
+    pub key: phx::Hash40,
+    pub also_key: phx::Hash40,
+    pub value: T
+}
+
+#[repr(C)]
+#[derive(Debug, Copy, Clone)] // really bad, don't do this :P
+pub struct CppHash40Map<T: Sized> {
+    pub buckets: *const *mut CppHash40MapEntry<T>,
+    pub bucket_count: u64
+}
+
+impl<T: Sized> CppHash40Map<T> {
+    pub fn get<'a>(&'a self, key: &phx::Hash40) -> Option<&'a T> {
+        let bucket_idx = key.hash % self.bucket_count;
+        if !self.buckets.is_null() {
+            unsafe {
+                let mut current = *self.buckets.add(bucket_idx as usize);
+                if !current.is_null() {
+                    current = (*current).next;
+                    while !current.is_null() {
+                        let current_key = (*current).key;
+                        if current_key != *key && (current_key.hash % self.bucket_count) != bucket_idx {
+                            break;
+                        }
+                        if current_key == *key && (*current).also_key == *key {
+                            return Some(&(*current).value);
+                        }
+                        current = (*current).next;
+                    }
+                }
+                None
+            }
+        } else {
+            None
+        }
+    }
+
+    pub fn get_mut(&mut self, key: &phx::Hash40) -> Option<&mut T> {
+        let bucket_idx = key.hash % self.bucket_count;
+        if !self.buckets.is_null() {
+            unsafe {
+                let mut current = *self.buckets.add(bucket_idx as usize);
+                if !current.is_null() {
+                    current = (*current).next;
+                    while !current.is_null() {
+                        let current_key = (*current).key;
+                        if current_key != *key && (current_key.hash % self.bucket_count) != bucket_idx {
+                            break;
+                        }
+                        if current_key == *key && (*current).also_key == *key {
+                            return Some(&mut (*current).value);
+                        }
+                        current = (*current).next;
+                    }
+                }
+                None
+            }
+        } else {
+            None
+        }
+    }
+}

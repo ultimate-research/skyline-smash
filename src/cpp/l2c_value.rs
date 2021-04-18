@@ -215,22 +215,11 @@ pub struct L2CInnerFunctionBase {
 
 impl super::root::lib::L2CAgent {
     pub fn new(lua_state: u64) -> Self {
-        let mut l2c_agent = Self {
-            vtable: 0,
-            lua_state_agent: 0,
-            unk10: 0,
-            unk18: 0,
-            unk20: 0,
-            unk28: 0,
-            unk30: 0,
-            unk38: 0,
-            lua_state_agentbase: 0
-        };
         unsafe {
-            super::root::lib::L2CAgent_L2CAgent_constr(&mut l2c_agent, lua_state); 
+            let mut l2c_agent = std::mem::MaybeUninit::uninit();
+            super::root::lib::L2CAgent_L2CAgent_constr(l2c_agent.as_mut_ptr(), lua_state); 
+            l2c_agent.assume_init()
         }
-
-        l2c_agent
     }
 }
 
@@ -269,7 +258,6 @@ impl LuaConst {
         L2CValue::new_int(**self as u64)
     }
 }
-
 //Release
 
 impl From<LuaConst> for i32 {
