@@ -105,7 +105,7 @@ pub enum L2CValueType {
 }
 
 #[repr(C)]
-#[cfg_attr(not(feature = "weak_l2cvalue"), derive(Copy, Clone, Default))]
+#[cfg_attr(not(feature = "weak_l2cvalue"), derive(Copy, Clone))]
 pub struct L2CValue {
     pub val_type: L2CValueType,
     pub unk1: u32,
@@ -326,7 +326,7 @@ impl LuaConst {
     }
 
     pub fn as_lua_int(&self) -> L2CValue {
-        L2CValue::I32(**self)
+        L2CValue::new_int(**self as u64)
     }
 }
 //Release
@@ -393,7 +393,7 @@ macro_rules! lua_const_partialeq_impl {
 
 impl PartialEq for LuaConst {
     fn eq(&self, other: &LuaConst) -> bool {
-        *self == *other
+        *self == **other
     }
 }
 
