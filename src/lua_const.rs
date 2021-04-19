@@ -24,9 +24,23 @@ macro_rules! lua_consts {
     };
 }
 
-pub const LUA_VOID: L2CValue = L2CValue::new_void();
-pub const LUA_TRUE: L2CValue = L2CValue::new_bool(true);
-pub const LUA_FALSE: L2CValue = L2CValue::new_bool(false);
+#[cfg(not(feature = "weak_l2cvalue"))]
+pub mod const_vals {
+	use crate::lib::L2CValue;
+	pub const LUA_VOID: L2CValue = L2CValue::new_void();
+	pub const LUA_TRUE: L2CValue = L2CValue::new_bool(true);
+	pub const LUA_FALSE: L2CValue = L2CValue::new_bool(false);
+}
+
+#[cfg(feature = "weak_l2cvalue")]
+pub mod const_vals {
+	use crate::lib::L2CValue;
+	pub const LUA_VOID: L2CValue = L2CValue::const_new_void();
+	pub const LUA_TRUE: L2CValue = L2CValue::const_new_bool(true);
+	pub const LUA_FALSE: L2CValue = L2CValue::const_new_bool(false);
+}
+
+pub use const_vals::*;
 
 lua_consts!(
 	ABNORMAL_STATUS_KIND_NONE: "ABNORMAL_STATUS_KIND_NONE",
