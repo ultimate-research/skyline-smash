@@ -3,6 +3,69 @@ use core::cell::UnsafeCell;
 use core::cmp::Ordering;
 use core::fmt;
 
+extern "C" {
+    #[link_name = "\u{1}_ZN3lib8L2CValueC1Ev"]
+    fn L2CValue_L2CValue(arg: *mut L2CValue);
+    #[link_name = "\u{1}_ZN3lib8L2CValueC1ERKS0_"]
+    fn L2CValue_L2CValue2(arg: *mut L2CValue, src: *const L2CValue);
+    #[link_name = "\u{1}_ZN3lib8L2CValueC1Eb"]
+    fn L2CValue_L2CValue3(arg: *mut L2CValue, val: bool);
+    #[link_name = "\u{1}_ZN3lib8L2CValueC1Ei"]
+    fn L2CValue_L2CValue4(arg: *mut L2CValue, val: i32);
+    #[link_name = "\u{1}_ZN3lib8L2CValueC1Ej"]
+    fn L2CValue_L2CValue5(arg: *mut L2CValue, val: u32);
+    #[link_name = "\u{1}_ZN3lib8L2CValueC1El"]
+    fn L2CValue_L2CValue6(arg: *mut L2CValue, val: i64);
+    #[link_name = "\u{1}_ZN3lib8L2CValueC1Em"]
+    fn L2CValue_L2CValue7(arg: *mut L2CValue, val: u64);
+    #[link_name = "\u{1}_ZN3lib8L2CValueC1Ef"]
+    fn L2CValue_L2CValue8(arg: *mut L2CValue, val: f32);
+    #[link_name = "\u{1}_ZN3lib8L2CValueC1EPv"]
+    fn L2CValue_L2CValue9(arg: *mut L2CValue, val: *mut libc::c_void);
+    #[link_name = "\u{1}_ZN3lib8L2CValueC1EPNS_8L2CTableE"]
+    fn L2CValue_L2CValue10(arg: *mut L2CValue, val: *mut L2CTable);
+    #[link_name = "\u{1}_ZN3lib8L2CValueC1EPNS_20L2CInnerFunctionBaseE"]
+    fn L2CValue_L2CValue11(arg: *mut L2CValue, val: *mut L2CInnerFunctionBase);
+    #[link_name = "\u{1}_ZN3lib8L2CValueC1EN3phx6Hash40E"]
+    fn L2CValue_L2CValue12(arg: *mut L2CValue, val: crate::phx::Hash40);
+    #[link_name = "\u{1}_ZN3lib8L2CValueC1EPKc"]
+    fn L2CValue_L2CValue13(arg: *mut L2CValue, val: *const libc::c_char);
+    #[link_name = "\u{1}_ZNK3lib8L2CValue7as_boolEv"]
+    fn L2CValue_as_bool(arg: *const L2CValue) -> bool;
+    #[link_name = "\u{1}_ZNK3lib8L2CValue7as_hashEv"]
+    fn L2CValue_as_hash(arg: *const L2CValue) -> crate::phx::Hash40;
+    #[link_name = "\u{1}_ZNK3lib8L2CValue17as_inner_functionEv"]
+    fn L2CValue_as_inner_function(arg: *const L2CValue) -> *mut L2CInnerFunctionBase;
+    #[link_name = "\u{1}_ZNK3lib8L2CValue10as_integerEv"]
+    fn L2CValue_as_integer(arg: *const L2CValue) -> u64;
+    #[link_name = "\u{1}_ZNK3lib8L2CValue9as_numberEv"]
+    fn L2CValue_as_number(arg: *const L2CValue) -> f32;
+    #[link_name = "\u{1}_ZNK3lib8L2CValue10as_pointerEv"]
+    fn L2CValue_as_pointer(arg: *const L2CValue) -> *mut libc::c_void;
+    #[link_name = "\u{1}_ZNK3lib8L2CValue9as_stringEv"]
+    fn L2CValue_as_string(arg: *const L2CValue) -> *const libc::c_char;
+    #[link_name = "\u{1}_ZNK3lib8L2CValue8as_tableEv"]
+    fn L2CValue_as_table(arg: *const L2CValue) -> *mut L2CTable;
+    #[link_name = "\u{1}_ZNK3lib8L2CValueixEi"]
+    fn L2CValue_idx<'a>(arg: *const L2CValue, idx: i32) -> &'a L2CValue;
+    #[link_name = "\u{1}_ZNK3lib8L2CValueixEi"]
+    fn L2CValue_idx_mut<'a>(arg: *const L2CValue, idx: i32) -> &'a mut L2CValue;
+    #[link_name = "\u{1}_ZNK3lib8L2CValueixEN3phx6Hash40E"]
+    fn L2CValue_idx_hash<'a>(arg: *const L2CValue, idx: crate::phx::Hash40) -> &'a L2CValue;
+    #[link_name = "\u{1}_ZNK3lib8L2CValueixEN3phx6Hash40E"]
+    fn L2CValue_idx_hash_mut<'a>(arg: *const L2CValue, idx: crate::phx::Hash40) -> &'a mut L2CValue;
+    #[link_name = "\u{1}_ZNK3lib8L2CValueixERKS0_"]
+    fn L2CValue_idx_l2c<'a>(arg: *const L2CValue, idx: *const L2CValue) -> &'a L2CValue;
+    #[link_name = "\u{1}_ZNK3lib8L2CValueixERKS0_"]
+    fn L2CValue_idx_l2c_mut<'a>(arg: *const L2CValue, idx: *const L2CValue) -> &'a mut L2CValue;
+    #[link_name = "\u{1}_ZN3lib8L2CValueD1Ev"]
+    fn L2CValue_dtor(arg: *mut L2CValue);
+    #[link_name = "\u{1}_ZN3lib8L2CTableC1Ei"]
+    fn L2CTable_L2CTable(arg: *mut L2CTable, count: i32);
+    #[link_name = "\u{1}_Znwm"]
+    fn cpp_new(size: u64) -> *mut libc::c_void;
+}
+
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union L2CValueInner {
@@ -48,6 +111,14 @@ pub struct L2CValue {
     pub unk1: u32,
     pub inner: L2CValueInner,
     pub unk2: u8, // for enforcing X8 AArch64 struct behavior
+}
+
+impl Default for L2CValue {
+    fn default() -> Self {
+        unsafe {
+            std::mem::uninitialized::<Self>()
+        }
+    }
 }
 
 impl fmt::Debug for L2CValue {
@@ -255,7 +326,7 @@ impl LuaConst {
     }
 
     pub fn as_lua_int(&self) -> L2CValue {
-        L2CValue::new_int(**self as u64)
+        L2CValue::I32(**self)
     }
 }
 //Release
@@ -320,39 +391,18 @@ macro_rules! lua_const_partialeq_impl {
     };
 }
 
-impl PartialEq<L2CValue> for LuaConst {
-    #[track_caller]
-    fn eq(&self, other: &L2CValue) -> bool {
-        return *self == other.get_int() as i32;
-    }
-}
-
 impl PartialEq for LuaConst {
     fn eq(&self, other: &LuaConst) -> bool {
         *self == *other
     }
 }
 
-impl PartialOrd<L2CValue> for LuaConst {
-    #[track_caller]
-    fn partial_cmp(&self, other: &L2CValue) -> Option<Ordering> {
-        Some((**self).cmp(&(other.get_int() as i32)))
-    }
-}
-
-impl PartialEq<LuaConst> for L2CValue {
-    #[track_caller]
-    fn eq(&self, other: &LuaConst) -> bool {
-        return self.get_int() as i32 == **other;
-    }
-}
-
-impl PartialOrd<LuaConst> for L2CValue {
-    #[track_caller]
-    fn partial_cmp(&self, other: &LuaConst) -> Option<Ordering> {
-        Some((self.get_int() as i32).cmp(&**other))
-    }
-}
+// impl PartialOrd<LuaConst> for L2CValue {
+//     #[track_caller]
+//     fn partial_cmp(&self, other: &LuaConst) -> Option<Ordering> {
+//         Some((self.get_i32()).cmp(&**other))
+//     }
+// }
 
 lua_const_partialeq_impl!(i32 u32 u64);
 
