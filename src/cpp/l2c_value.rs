@@ -28,7 +28,7 @@ impl fmt::Debug for L2CValueInner {
 }
 
 #[repr(u32)]
-#[derive(Copy, Clone, Debug)]
+#[derive(Copy, Clone, Debug, PartialEq)]
 pub enum L2CValueType {
     Void = 0,
     Bool = 1,
@@ -41,8 +41,8 @@ pub enum L2CValueType {
     String = 8
 }
 
-#[derive(Copy, Clone, Default)]
 #[repr(C)]
+#[cfg_attr(not(feature = "weak_l2cvalue"), derive(Copy, Clone, Default))]
 pub struct L2CValue {
     pub val_type: L2CValueType,
     pub unk1: u32,
@@ -164,164 +164,8 @@ impl<Idx: LuaTableIndex> core::ops::IndexMut<Idx> for L2CValue {
     }
 }
 
-impl L2CValue {
-    pub const fn new_void() -> Self {
-        Self {
-            val_type: L2CValueType::Void,
-            unk1: 0,
-            inner: L2CValueInner { raw: 0 as u64 },
-            unk2: 0
-        }
-    }
-
-    pub const fn new_bool(val: bool) -> Self {
-        Self {
-            val_type: L2CValueType::Bool,
-            unk1: 0,
-            inner: L2CValueInner { raw: val as u64 },
-            unk2: 0
-        }
-    }
-
-    pub const fn new_int(val: u64) -> Self {
-        Self {
-            val_type: L2CValueType::Int,
-            unk1: 0,
-            inner: L2CValueInner { raw: val as u64 },
-            unk2: 0
-        }
-    }
-
-    pub const fn new_num(val: f32) -> Self {
-        Self {
-            val_type: L2CValueType::Num,
-            unk1: 0,
-            inner: L2CValueInner { raw_float: val },
-            unk2: 0
-        }
-    }
-
-    pub const fn new_ptr(val: *mut skyline::libc::c_void) -> Self {
-        Self {
-            val_type: L2CValueType::Pointer,
-            unk1: 0,
-            inner: L2CValueInner { raw_pointer: val },
-            unk2: 0
-        }
-    }
-
-    pub const fn new_hash(val: u64) -> Self {
-        Self {
-            val_type: L2CValueType::Hash,
-            unk1: 0,
-            inner: L2CValueInner { raw: val },
-            unk2: 0,
-        }
-    }
-
-    pub fn try_get_bool(&self) -> Option<bool> {
-        if let L2CValueType::Bool = self.val_type {
-            Some(unsafe { self.inner.raw } & 1 != 0)
-        } else {
-            None
-        }
-    }
-
-    #[track_caller]
-    pub fn get_bool(&self) -> bool {
-        if let Some(val) = self.try_get_bool() {
-            val
-        } else {
-            panic!("L2CValue: {:?} not a bool", self);
-        }
-    }
-
-    pub fn try_get_int(&self) -> Option<u64> {
-        if let L2CValueType::Int = self.val_type {
-            Some(unsafe { self.inner.raw })
-        } else {
-            None
-        }
-    }
-
-    #[track_caller]
-    pub fn get_int(&self) -> u64 {
-        if let Some(val) = self.try_get_int() {
-            val
-        } else {
-            panic!("L2CValue: {:?} not an int", self);
-        }
-    }
-
-    pub fn try_get_num(&self) -> Option<f32> {
-        if let L2CValueType::Num = self.val_type {
-            Some(unsafe { self.inner.raw_float })
-        } else {
-            None
-        }
-    }
-
-    #[track_caller]
-    pub fn get_num(&self) -> f32 {
-        if let Some(val) = self.try_get_num() {
-            val
-        } else {
-            panic!("L2CValue: {:?} not a float", self);
-        }
-    }
-
-    pub fn try_get_ptr<T>(&self) -> Option<*mut T> {
-        if let L2CValueType::Pointer = self.val_type {
-            Some(unsafe { self.inner.raw as *mut T })
-        } else {
-            None
-        }
-    }
-
-    #[track_caller]
-    pub fn get_ptr<T>(&self) -> *mut T {
-        if let Some(val) = self.try_get_ptr() {
-            val
-        } else {
-            panic!("L2CValue: {:?} is not a pointer", self);
-        }
-    }
-}
-
 pub fn lua_val<T: Into<L2CValue> + Sized>(val: T) -> L2CValue {
     val.into()
-}
-
-macro_rules! impl_into_l2cvalue_int {
-    (
-        $(
-            $ty:ty
-        )*
-    ) => {
-        $(
-            impl Into<L2CValue> for $ty {
-                fn into(self) -> L2CValue {
-                    L2CValue::new_int(self as u64)
-                }
-            }
-        )*
-    };
-}
-
-macro_rules! impl_into_l2cvalue_float {
-    (
-        $(
-            $ty:ty
-        )*
-    ) => {
-        $(
-            impl Into<L2CValue> for $ty {
-                fn into(self) -> L2CValue {
-                    L2CValue::new_num(self as f32)
-                }
-            }
-        )*
-    };
 }
 
 impl Into<L2CValue> for LuaConst {
@@ -329,15 +173,6 @@ impl Into<L2CValue> for LuaConst {
         L2CValue::new_int(*self as u64)
     }
 }
-
-impl Into<L2CValue> for bool {
-    fn into(self) -> L2CValue {
-        L2CValue::new_bool(self)
-    }
-}
-
-impl_into_l2cvalue_int!(i8 u8 i16 u16 i32 u32 u64 i64);
-impl_into_l2cvalue_float!(f32 f64);
 
 impl Default for L2CValueInner {
     fn default() -> Self {
@@ -380,22 +215,11 @@ pub struct L2CInnerFunctionBase {
 
 impl super::root::lib::L2CAgent {
     pub fn new(lua_state: u64) -> Self {
-        let mut l2c_agent = Self {
-            vtable: 0,
-            lua_state_agent: 0,
-            unk10: 0,
-            unk18: 0,
-            unk20: 0,
-            unk28: 0,
-            unk30: 0,
-            unk38: 0,
-            module_accessor: 0 as *mut super::root::app::BattleObjectModuleAccessor
-        };
         unsafe {
-            super::root::lib::L2CAgent_L2CAgent_constr(&mut l2c_agent, lua_state); 
+            let mut l2c_agent = std::mem::MaybeUninit::uninit();
+            super::root::lib::L2CAgent_L2CAgent_constr(l2c_agent.as_mut_ptr(), lua_state); 
+            l2c_agent.assume_init()
         }
-
-        l2c_agent
     }
 }
 
@@ -434,7 +258,6 @@ impl LuaConst {
         L2CValue::new_int(**self as u64)
     }
 }
-
 //Release
 
 impl From<LuaConst> for i32 {
