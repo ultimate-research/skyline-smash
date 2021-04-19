@@ -19881,11 +19881,7 @@ pub mod root {
             pub unk20: u64,
             pub unk28: u64,
             pub unk30: u64,
-<<<<<<< HEAD
-            pub unk38: u64,
-=======
             pub battle_object: *mut root::app::BattleObject,
->>>>>>> 0878b3e2a3e1865b8acbf674a66223de0b9da0e2
             pub module_accessor: *mut root::app::BattleObjectModuleAccessor
         }
         extern "C" {
