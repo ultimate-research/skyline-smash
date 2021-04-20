@@ -170,6 +170,12 @@ impl L2CValue {
 
     #[allow(non_snake_case)]
     #[inline]
+    pub fn Hash40s<S: AsRef<str>>(val: S) -> Self {
+        Self::Hash40(Hash40::new(val))
+    }
+
+    #[allow(non_snake_case)]
+    #[inline]
     pub fn String<S: AsRef<str>>(val: S) -> Self {
         unsafe {
             let mut ret = MaybeUninit::uninit();
