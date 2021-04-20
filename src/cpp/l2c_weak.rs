@@ -171,7 +171,7 @@ impl L2CValue {
     #[allow(non_snake_case)]
     #[inline]
     pub fn Hash40s<S: AsRef<str>>(val: S) -> Self {
-        Self::Hash40(Hash40::new(val))
+        Self::Hash40(Hash40::new(val.as_ref()))
     }
 
     #[allow(non_snake_case)]
