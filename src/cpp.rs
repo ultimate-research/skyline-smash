@@ -8085,7 +8085,7 @@ pub mod root {
 						arg1: *mut root::app::BattleObjectModuleAccessor,
 						arg2: root::phx::Hash40,
 						arg3: bool,
-					) -> i32;
+					) -> f32;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind51FighterMotionModuleImpl__is_valid_cancel_frame_implEPNS_26BattleObjectModuleAccessorEib"]
