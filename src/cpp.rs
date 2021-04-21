@@ -1555,8 +1555,7 @@ pub mod root {
 				);
 				#[link_name = "\u{1}_ZN3app11FighterUtil30is_valid_just_shield_reflectorERNS_26BattleObjectModuleAccessorE"]
 				pub fn is_valid_just_shield_reflector(
-					module_accessor: *mut root::app::BattleObjectModuleAccessor,
-					arg2: root::app::FighterFacial
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
 				) -> bool;
 				#[link_name = "\u{1}_ZN3app11FighterUtil31calc_add_damage_power_for_finalEjjf"]
 				pub fn calc_add_damage_power_for_final(
