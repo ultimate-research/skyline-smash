@@ -3,6 +3,7 @@
 #![feature(asm)]
 #![feature(unwind_attributes)]
 #![feature(associated_type_bounds)]
+#![feature(simd_ffi)] // lol sorry jam
 
 pub mod crc32;
 
