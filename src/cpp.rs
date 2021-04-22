@@ -1447,7 +1447,7 @@ pub mod root {
 				pub fn get_effect_team_color(
 					arg1: root::app::EColorKind,
 					arg2: root::phx::Hash40
-				) -> skyline::nn::util::Vector3f;
+				) -> nnsdk::root::nn::util::Vector3f;
 				#[link_name = "\u{1}_ZN3app11FighterUtil21set_water_dive_effectERNS_26BattleObjectModuleAccessorERKN3phx8Vector3fE"]
 				pub fn set_water_dive_effect(
 					module_accessor: *mut root::app::BattleObjectModuleAccessor,
@@ -20135,8 +20135,8 @@ pub mod root {
         pub z: f32,
     }
 
-	impl From<skyline::nn::util::Vector3f> for Vector3f {
-		fn from(other: skyline::nn::util::Vector3f) -> Self {
+	impl From<nnsdk::root::nn::util::Vector3f> for Vector3f {
+		fn from(other: nnsdk::root::nn::util::Vector3f) -> Self {
 			Self {
 				x: other.x,
 				y: other.y,
@@ -20154,8 +20154,8 @@ pub mod root {
         pub w: f32,
     }
 
-	impl From<skyline::nn::util::Vector4f> for Vector4f {
-		fn from(other: skyline::nn::util::Vector4f) -> Self {
+	impl From<nnsdk::root::nn::util::Vector4f> for Vector4f {
+		fn from(other: nnsdk::root::nn::util::Vector4f) -> Self {
 			Self {
 				x: other.x,
 				y: other.y,
