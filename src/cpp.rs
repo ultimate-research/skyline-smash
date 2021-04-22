@@ -20135,16 +20135,6 @@ pub mod root {
         pub z: f32,
     }
 
-	impl From<nnsdk::root::nn::util::Vector3f> for Vector3f {
-		fn from(other: nnsdk::root::nn::util::Vector3f) -> Self {
-			Self {
-				x: other.x,
-				y: other.y,
-				z: other.z
-			}
-		}
-	}
-
     #[repr(C)]
     #[derive(Debug, Copy, Clone)]
     pub struct Vector4f {
@@ -20153,17 +20143,6 @@ pub mod root {
         pub z: f32,
         pub w: f32,
     }
-
-	impl From<nnsdk::root::nn::util::Vector4f> for Vector4f {
-		fn from(other: nnsdk::root::nn::util::Vector4f) -> Self {
-			Self {
-				x: other.x,
-				y: other.y,
-				z: other.z,
-				w: other.w
-			}
-		}
-	}
 
     pub mod lib {
         pub mod lua_const {
