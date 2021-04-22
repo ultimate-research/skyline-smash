@@ -9091,7 +9091,7 @@ pub mod root {
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind23PostureModule__pos_implEPNS_26BattleObjectModuleAccessorE"]
-					pub fn pos(arg1: *mut root::app::BattleObjectModuleAccessor) -> root::phx::Vector3f;
+					pub fn pos(arg1: *mut root::app::BattleObjectModuleAccessor) -> *const root::phx::Vector3f;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind26PostureModule__pos_2d_implEPNS_26BattleObjectModuleAccessorE"]
