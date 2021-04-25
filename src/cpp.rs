@@ -19523,6 +19523,187 @@ pub mod root {
                 pub fn entry_id(arg1: root::uint) -> libc::c_int;
             }
 		}
+		pub mod sv_fighter_util {
+			#[allow(unused_imports)]
+			use super::super::super::root;
+			extern "C" {
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util11adjust_ceilEP9lua_Statefb"]
+				pub fn adjust_ceil(
+					lua_state: u64,
+					arg2: f32,
+					arg3: bool
+				);
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util30adjust_joint_pos_change_motionEP9lua_StateN3phx6Hash40E"]
+				pub fn adjust_joint_pos_change_motion(
+					lua_state: u64,
+					motion: root::phx::Hash40
+				);
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util11adjust_wallEP9lua_Statefffbb"]
+				pub fn adjust_wall(
+					lua_state: u64,
+					arg2: f32,
+					arg3: f32,
+					arg4: f32,
+					arg5: bool,
+					arg6: bool
+				);
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util33check_dead_mode_sub_fighter_afterEP9lua_Statei"]
+				pub fn check_dead_mode_sub_fighter_after(
+					lua_state: u64,
+					arg2: i32
+				) -> i32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util34check_dead_mode_sub_fighter_beforeEP9lua_State"]
+				pub fn check_dead_mode_sub_fighter_before(
+					lua_state: u64
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util20exit_thrown_lay_downEP9lua_State"]
+				pub fn exit_thrown_lay_down(
+					lua_state: u64
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util21get_attack_hi3_motionEP9lua_State"]
+				pub fn get_attack_hi3_motion(
+					lua_state: u64
+				) -> root::phx::Hash40;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util21get_attack_lw3_motionEP9lua_State"]
+				pub fn get_attack_lw3_motion(
+					lua_state: u64
+				) -> root::phx::Hash40;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util22get_attack_s3_s_motionEP9lua_State"]
+				pub fn get_attack_s3_s_motion(
+					lua_state: u64
+				) -> root::phx::Hash40;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util29get_damage_effect_line_radiusEP9lua_State"]
+				pub fn get_damage_effect_line_radius(
+					lua_state: u64
+				) -> f32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util42get_dead_up_camera_hit_first_rand_offset_xEP9lua_State"]
+				pub fn get_dead_up_camera_hit_first_rand_offset_x(
+					lua_state: u64
+				) -> i32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util39get_dead_up_camera_hit_first_rand_rot_zEP9lua_State"]
+				pub fn get_dead_up_camera_hit_first_rand_rot_z(
+					lua_state: u64
+				) -> i32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util27get_dead_up_camera_hit_probEP9lua_State"]
+				pub fn get_dead_up_camera_hit_prob(
+					lua_state: u64
+				) -> i32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util26get_dead_up_star_fall_probEP9lua_State"]
+				pub fn get_dead_up_start_fall_prob(
+					lua_state: u64
+				) -> i32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util37get_default_fighter_param_air_brake_xEP9lua_State"]
+				pub fn get_default_fighter_param_air_brake_x(
+					lua_state: u64
+				) -> f32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util38get_default_fighter_param_ground_brakeEP9lua_State"]
+				pub fn get_default_fighter_param_ground_brake(
+					lua_state: u64
+				) -> f32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util44get_default_fighter_param_ground_speed_limitEP9lua_State"]
+				pub fn get_default_fighter_param_ground_speed_limit(
+					lua_state: u64
+				) -> f32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util40get_default_fighter_param_walk_speed_maxEP9lua_State"]
+				pub fn get_default_fighter_param_walk_speed_max(
+					lua_state: u64
+				) -> f32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util18get_gravity_radianEP9lua_State"]
+				pub fn get_gravity_radian(
+					lua_state: u64
+				) -> f32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util28get_guard_damage_motion_rateEP9lua_Statem"]
+				pub fn get_guard_damage_motion_rate(
+					lua_state: u64
+				) -> f32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util29get_item_lift_motion_rate_mulEP9lua_State"]
+				pub fn get_item_lift_motion_rate_mul(
+					lua_state: u64
+				) -> f32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util26get_item_swing_motion_rateEP9lua_Stateii"]
+				pub fn get_item_swing_motion_rate(
+					lua_state: u64,
+					arg2: i32,
+					arg3: i32
+				) -> f32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util21get_kirifuda_positionEP9lua_Statei"]
+				pub fn get_kirifuda_position(
+					lua_state: u64,
+					arg2: i32
+				) -> u64;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util18get_walk_speed_mulEP9lua_State"]
+				pub fn get_walk_speed_mul(
+					lua_state: u64
+				) -> f32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util19get_world_move_seedEv"]
+				pub fn get_world_move_seed() -> u64;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util20is_attack_air_statusEP9lua_Statei"]
+				pub fn is_attack_air_status(
+					lua_state: u64,
+					status: i32
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util21is_exist_lose_fighterEP9lua_Statei"]
+				pub fn is_exist_lose_fighter(
+					lua_state: u64,
+					arg: i32
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util23is_free_move_rot_legacyEv"]
+				pub fn is_free_move_rot_legacy() -> bool;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util21set_angle_wall_normalEP9lua_Statef"]
+				pub fn set_angle_wall_normal(
+					lua_state: u64,
+					angle: f32
+				);
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util26set_dead_camera_hit_rumbleEP9lua_State"]
+				pub fn set_dead_camera_hit_rumble(
+					lua_state: u64
+				);
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util15set_dead_rumbleEP9lua_State"]
+				pub fn set_dead_rumble(
+					lua_state: u64
+				);
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util33set_dead_up_camera_hit_vis_changeEP9lua_State"]
+				pub fn set_dead_up_camera_hit_vis_change(
+					lua_state: u64
+				);
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util14set_on_rebirthEP9lua_Stateb"]
+				pub fn set_on_rebirth(
+					lua_state: u64,
+					arg2: bool
+				);
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util28set_restart_pos_bezier_curveEP9lua_Stateffffffii"]
+				pub fn set_restart_pos_bezier_curve(
+					lua_state: u64,
+					arg2: f32,
+					arg3: f32,
+					arg4: f32,
+					arg5: f32,
+					arg6: f32,
+					arg7: f32,
+					arg8: i32,
+					arg9: i32
+				);
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util20stage_restart_scrollEP9lua_State"]
+				pub fn stage_restart_scroll(
+					lua_state: u64
+				);
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util19switch_squat_motionEP9lua_Statei"]
+				pub fn switch_squat_motion(
+					lua_state: u64,
+					arg2: i32
+				) -> i32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util18switch_wait_motionEP9lua_Statei"]
+				pub fn switch_wait_motion(
+					lua_state: u64,
+					arg2: i32
+				) -> i32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util46update_dead_up_camera_hit_first_distance_groupEP9lua_State"]
+				pub fn update_dead_up_camera_hit_first_distance_group(
+					lua_state: u64
+				) -> bool;
+			}
+		}
+
 		pub mod sv_information {
 			#[allow(unused_imports)]
 			use super::super::super::root;
