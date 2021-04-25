@@ -19614,7 +19614,8 @@ pub mod root {
 				) -> f32;
 				#[link_name = "\u{1}_ZN3app15sv_fighter_util28get_guard_damage_motion_rateEP9lua_Statem"]
 				pub fn get_guard_damage_motion_rate(
-					lua_state: u64
+					lua_state: u64,
+					motion: root::phx::Hash40
 				) -> f32;
 				#[link_name = "\u{1}_ZN3app15sv_fighter_util29get_item_lift_motion_rate_mulEP9lua_State"]
 				pub fn get_item_lift_motion_rate_mul(
