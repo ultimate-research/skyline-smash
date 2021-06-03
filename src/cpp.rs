@@ -5774,7 +5774,7 @@ pub mod root {
 						arg2: *const root::phx::Vector3f,
 						arg3: f32,
 						arg4: bool,
-					) -> u64;
+					) -> f32;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind36GroundModule__is_still_on_floor_implEPNS_26BattleObjectModuleAccessorEfb"]
