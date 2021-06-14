@@ -14131,6 +14131,13 @@ pub mod root {
 						arg1: *mut root::app::ItemManager,
 					) -> u64;
 				}
+				
+				extern "C" {
+					#[link_name = "\u{1}_ZN3app12item_manager22get_num_of_active_itemENS_8ItemKindE"]
+					pub fn get_num_of_active_item(
+						item_kind: i32
+					) -> u64;
+				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind33ItemManager__get_active_item_implEPNS_11ItemManagerEm"]
 					pub fn get_active_item(
