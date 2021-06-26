@@ -13,7 +13,7 @@ name = "smash"
 libc-nnsdk = { git = "https://github.com/ultimate-research/libc-nnsdk" }
 nnsdk = { git = "https://github.com/ultimate-research/nnsdk-rs" }
 skyline = { git = "https://github.com/ultimate-research/skyline-rs" }
-lazy_static = "1.4"
+lazy_static = "1.4.0"
 compile-time-lua-bind-hash = "1.1"
 paste = "1.0"
 
