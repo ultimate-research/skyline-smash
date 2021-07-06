@@ -8977,6 +8977,12 @@ pub mod root {
 				#[allow(unused_imports)]
 				use super::super::super::super::root;
 				extern "C" {
+					#[link_name = "\u{1}_ZN3app8lua_bind30MotionModule__is_changing_implEPNS_26BattleObjectModuleAccessorE"]
+					pub fn is_changing(
+						arg1: *mut root::app::BattleObjectModuleAccessor
+					) -> bool;
+				}
+				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind32MotionModule__change_motion_implEPNS_26BattleObjectModuleAccessorEN3phx6Hash40Effbfbb"]
 					pub fn change_motion(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
