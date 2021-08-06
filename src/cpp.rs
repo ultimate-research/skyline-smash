@@ -1213,6 +1213,26 @@ pub mod root {
             }
         }
 
+		pub mod stage {
+			#[allow(unused_imports)]
+			use super::super::super::root;
+			extern "C" {
+				#[link_name = "\u{1}_ZN3app5stage11back_line_zEv"]
+				pub fn back_line_z() -> f32;
+				#[link_name = "\u{1}_ZN3app5stage24calc_offset_with_gravityERKN3phx8Vector2fERKNS1_8Vector3fE"]
+				pub fn calc_offset_with_gravity(
+					arg1: *const root::phx::Vector2f,
+					arg2: *const root::phx::Vector3f,
+				) -> Vector4f;				
+				#[link_name = "\u{1}_ZN3app5stage20get_gravity_positionEv"]
+				pub fn get_gravity_position() -> Vector4f;
+				#[link_name = "\u{1}_ZN3app5stage18get_smashball_rectEv"]
+				pub fn get_smashball_rect() -> Vector4f;
+				#[link_name = "\u{1}_ZN3app5stage12get_stage_idEv"]
+				pub fn get_stage_id() -> i32;
+			}
+		}
+
 		pub mod FighterUtil {
 			#[allow(unused_imports)]
 			use super::super::super::root;
@@ -7693,6 +7713,15 @@ pub mod root {
 					);
 				}
 				extern "C" {
+					#[link_name = "\u{1}_ZN3app8lua_bind49AttackModule__set_add_reaction_frame_revised_implEPNS_26BattleObjectModuleAccessorEifb"]
+					pub fn set_add_reaction_frame_revised(
+						arg1: *mut root::app::BattleObjectModuleAccessor,
+						arg2: libc::c_int,
+						arg3: f32,
+						arg4: bool,
+					);
+				}
+				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind30AttackModule__set_set_off_implEPNS_26BattleObjectModuleAccessorEiNS_16AttackSetOffKindE"]
 					pub fn set_set_off(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
@@ -9274,7 +9303,7 @@ pub mod root {
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind28PostureModule__rot_y_lr_implEPNS_26BattleObjectModuleAccessorE"]
-					pub fn rot_y_lr(arg1: *mut root::app::BattleObjectModuleAccessor) -> u64;
+					pub fn rot_y_lr(arg1: *mut root::app::BattleObjectModuleAccessor) -> f32;
 				}
 				extern "C" {
 					/// Updates the current battle object's orientation. Usually used in conjunction with PostureModule::set_lr or PostureModule::reverse_lr
