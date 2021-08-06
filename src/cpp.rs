@@ -1219,15 +1219,23 @@ pub mod root {
 			extern "C" {
 				#[link_name = "\u{1}_ZN3app5stage11back_line_zEv"]
 				pub fn back_line_z() -> f32;
+			}
+			extern "C" {
 				#[link_name = "\u{1}_ZN3app5stage24calc_offset_with_gravityERKN3phx8Vector2fERKNS1_8Vector3fE"]
 				pub fn calc_offset_with_gravity(
 					arg1: *const root::phx::Vector2f,
 					arg2: *const root::phx::Vector3f,
 				) -> Vector4f;				
+			}
+			extern "C" {
 				#[link_name = "\u{1}_ZN3app5stage20get_gravity_positionEv"]
 				pub fn get_gravity_position() -> Vector4f;
+			}
+			extern "C" {
 				#[link_name = "\u{1}_ZN3app5stage18get_smashball_rectEv"]
 				pub fn get_smashball_rect() -> Vector4f;
+			}
+			extern "C" {
 				#[link_name = "\u{1}_ZN3app5stage12get_stage_idEv"]
 				pub fn get_stage_id() -> i32;
 			}
@@ -7577,6 +7585,15 @@ pub mod root {
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind42AttackModule__set_attack_camera_quake_implEPNS_26BattleObjectModuleAccessorEiib"]
 					pub fn set_attack_camera_quake(
+						arg1: *mut root::app::BattleObjectModuleAccessor,
+						arg2: libc::c_int,
+						arg3: libc::c_int,
+						arg4: bool,
+					);
+				}
+				extern "C" {
+					#[link_name = "\u{1}_ZN3app8lua_bind49AttackModule__set_attack_camera_quake_forced_implEPNS_26BattleObjectModuleAccessorEiib"]
+					pub fn set_attack_camera_quake_forced(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
 						arg2: libc::c_int,
 						arg3: libc::c_int,
