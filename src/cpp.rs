@@ -1225,15 +1225,15 @@ pub mod root {
 				pub fn calc_offset_with_gravity(
 					arg1: *const root::phx::Vector2f,
 					arg2: *const root::phx::Vector3f,
-				) -> Vector4f;				
+				) -> root::phx::Vector4f;				
 			}
 			extern "C" {
 				#[link_name = "\u{1}_ZN3app5stage20get_gravity_positionEv"]
-				pub fn get_gravity_position() -> Vector4f;
+				pub fn get_gravity_position() -> root::phx::Vector4f;
 			}
 			extern "C" {
 				#[link_name = "\u{1}_ZN3app5stage18get_smashball_rectEv"]
-				pub fn get_smashball_rect() -> Vector4f;
+				pub fn get_smashball_rect() -> root::phx::Vector4f;
 			}
 			extern "C" {
 				#[link_name = "\u{1}_ZN3app5stage12get_stage_idEv"]
