@@ -119,3 +119,50 @@ impl L2CValue {
         self.inner = other.inner;
     }
 }
+
+macro_rules! impl_into_l2cvalue_int {
+    (
+        $(
+            $ty:ty
+        )*
+    ) => {
+        $(
+            impl Into<L2CValue> for $ty {
+                fn into(self) -> L2CValue {
+                    L2CValue::new_int(self as u64)
+                }
+            }
+        )*
+    };
+}
+
+macro_rules! impl_into_l2cvalue_float {
+    (
+        $(
+            $ty:ty
+        )*
+    ) => {
+        $(
+            impl Into<L2CValue> for $ty {
+                fn into(self) -> L2CValue {
+                    L2CValue::new_num(self as f32)
+                }
+            }
+        )*
+    };
+}
+
+impl Into<L2CValue> for LuaConst {
+    fn into(self) -> L2CValue {
+        L2CValue::new_int(*self as u64)
+    }
+}
+
+impl Into<L2CValue> for bool {
+    fn into(self) -> L2CValue {
+        L2CValue::new_bool(self)
+    }
+}
+
+impl_into_l2cvalue_int!(i8 u8 i16 u16 i32 u32 u64 i64);
+impl_into_l2cvalue_float!(f32 f64);
