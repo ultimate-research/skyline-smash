@@ -152,12 +152,6 @@ macro_rules! impl_into_l2cvalue_float {
     };
 }
 
-impl Into<L2CValue> for LuaConst {
-    fn into(self) -> L2CValue {
-        L2CValue::new_int(*self as u64)
-    }
-}
-
 impl Into<L2CValue> for bool {
     fn into(self) -> L2CValue {
         L2CValue::new_bool(self)
