@@ -5578,7 +5578,7 @@ pub mod root {
 					pub fn get_touch_normal(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
 						arg2: libc::c_uint,
-					) -> u64;
+					) -> root::phx::Vector2f;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind37GroundModule__get_touch_normal_x_implEPNS_26BattleObjectModuleAccessorEj"]
@@ -5793,7 +5793,7 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind36GroundModule__get_down_friction_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn get_down_friction(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-					) -> u64;
+					) -> f32;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind40GroundModule__get_distance_to_floor_implEPNS_26BattleObjectModuleAccessorERKN3phx8Vector3fEfb"]
@@ -19955,7 +19955,7 @@ pub mod root {
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app17sv_kinetic_energy9get_speedEP9lua_State"]
-                pub fn get_speed(arg1: u64);
+                pub fn get_speed(arg1: u64) -> root::phx::Vector2f;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app17sv_kinetic_energy9is_enableEP9lua_State"]
@@ -20073,7 +20073,7 @@ pub mod root {
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app7sv_math14vec2_normalizeEff"]
-                pub fn vec2_normalize(arg1: f32, arg2: f32) -> f32;
+                pub fn vec2_normalize(arg1: f32, arg2: f32) -> root::phx::Vector2f;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app7sv_math14vec3_normalizeEfff"]
@@ -20081,7 +20081,7 @@ pub mod root {
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app7sv_math15vec2_reflectionEffff"]
-                pub fn vec2_reflection(arg1: f32, arg2: f32, arg3: f32, arg4: f32) -> f32;
+                pub fn vec2_reflection(arg1: f32, arg2: f32, arg3: f32, arg4: f32) -> root::phx::Vector2f;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app7sv_math18vec2_length_squareEff"]
