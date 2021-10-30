@@ -42,12 +42,20 @@ pub enum L2CValueType {
 }
 
 #[repr(C)]
-#[cfg_attr(not(feature = "weak_l2cvalue"), derive(Copy, Clone, Default))]
+#[cfg_attr(not(feature = "weak_l2cvalue"), derive(Copy, Clone))]
 pub struct L2CValue {
     pub val_type: L2CValueType,
     pub unk1: u32,
     pub inner: L2CValueInner,
     pub unk2: u8, // for enforcing X8 AArch64 struct behavior
+}
+
+impl Default for L2CValue {
+    fn default() -> Self {
+        unsafe {
+            std::mem::uninitialized::<Self>()
+        }
+    }
 }
 
 impl fmt::Debug for L2CValue {
@@ -278,6 +286,14 @@ impl Clone for LuaConst {
     }
 }
 
+impl std::hash::Hash for LuaConst {
+    fn hash<H: std::hash::Hasher>(&self, state: &mut H) {
+        self.lua_bind_hash.hash(state);
+    }
+}
+
+impl Eq for LuaConst {}
+
 macro_rules! lua_const_partialeq_impl {
     (
         $(
@@ -312,24 +328,21 @@ macro_rules! lua_const_partialeq_impl {
     };
 }
 
-impl PartialEq<L2CValue> for LuaConst {
-    #[track_caller]
-    fn eq(&self, other: &L2CValue) -> bool {
-        return *self == other.get_int() as i32;
-    }
-}
-
-impl PartialOrd<L2CValue> for LuaConst {
-    #[track_caller]
-    fn partial_cmp(&self, other: &L2CValue) -> Option<Ordering> {
-        Some((**self).cmp(&(other.get_int() as i32)))
+impl PartialEq for LuaConst {
+    fn eq(&self, other: &LuaConst) -> bool {
+        *self == **other
     }
 }
 
 impl PartialEq<LuaConst> for L2CValue {
-    #[track_caller]
     fn eq(&self, other: &LuaConst) -> bool {
-        return self.get_int() as i32 == **other;
+        self.val_type == L2CValueType::Int && **other == self.get_int() as i32
+    }
+}
+
+impl PartialEq<L2CValue> for LuaConst {
+    fn eq(&self, other: &L2CValue) -> bool {
+        other.val_type == L2CValueType::Int && **self == other.get_int() as i32
     }
 }
 

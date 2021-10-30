@@ -890,6 +890,24 @@ pub mod root {
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone)]
         pub struct HitStatus (pub i32);
+		#[repr(transparent)]
+		#[derive(Debug, Copy, Clone)]
+		pub struct CollisionPart (pub i32);
+		#[repr(transparent)]
+		#[derive(Debug, Copy, Clone)]
+		pub struct HitHeight (pub i32);
+		#[repr(transparent)]
+		#[derive(Debug, Copy, Clone)]
+		pub struct CollisionShapeType (pub i32);
+		#[repr(transparent)]
+		#[derive(Debug, Copy, Clone)]
+		pub struct FighterCheckMeleeRuleTime (pub i32);
+		#[repr(transparent)]
+		#[derive(Debug, Copy, Clone)]
+		pub struct FighterFacial (pub i32);
+		#[repr(transparent)]
+		#[derive(Debug, Copy, Clone)]
+		pub struct EColorKind (pub i32);
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct HitStopMulTarget {
@@ -1194,6 +1212,441 @@ pub mod root {
                 pub fn link(arg1: u64);
             }
         }
+
+		pub mod stage {
+			#[allow(unused_imports)]
+			use super::super::super::root;
+			extern "C" {
+				#[link_name = "\u{1}_ZN3app5stage11back_line_zEv"]
+				pub fn back_line_z() -> f32;
+			}
+			extern "C" {
+				#[link_name = "\u{1}_ZN3app5stage24calc_offset_with_gravityERKN3phx8Vector2fERKNS1_8Vector3fE"]
+				pub fn calc_offset_with_gravity(
+					arg1: *const root::phx::Vector2f,
+					arg2: *const root::phx::Vector3f,
+				) -> root::phx::Vector4f;				
+			}
+			extern "C" {
+				#[link_name = "\u{1}_ZN3app5stage20get_gravity_positionEv"]
+				pub fn get_gravity_position() -> root::phx::Vector4f;
+			}
+			extern "C" {
+				#[link_name = "\u{1}_ZN3app5stage18get_smashball_rectEv"]
+				pub fn get_smashball_rect() -> root::phx::Vector4f;
+			}
+			extern "C" {
+				#[link_name = "\u{1}_ZN3app5stage12get_stage_idEv"]
+				pub fn get_stage_id() -> i32;
+			}
+		}
+
+		pub mod FighterUtil {
+			#[allow(unused_imports)]
+			use super::super::super::root;
+			extern "C" {
+				#[link_name = "\u{1}_ZN3app11FighterUtil9get_handiENS_14FighterEntryIDE"]
+				pub fn get_handi(
+					arg: root::app::FighterEntryID
+				) -> f32;
+				#[link_name = "\u{1}_ZN3app11FighterUtil10is_hp_modeERNS_26BattleObjectModuleAccessorE"]
+				pub fn is_hp_mode(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app11FighterUtil10is_scalingERNS_26BattleObjectModuleAccessorE"]
+				pub fn is_scaling(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app11FighterUtil12cheer_damageERNS_26BattleObjectModuleAccessorE"]
+				pub fn cheer_damage(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil12set_hit_dataERNS_26BattleObjectModuleAccessorEiiRKN3phx8Vector3fES6_fNS3_6Hash40ENS_13CollisionPartENS_9HitHeightENS_9HitStatusENS_18CollisionShapeTypeE"]
+				pub fn set_hit_data(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor,
+					arg3: i32,
+					arg4: i32,
+					arg5: *const root::phx::Vector3f,
+					arg6: *const root::phx::Vector3f,
+					arg7: f32,
+					arg8: root::phx::Hash40,
+					arg9: root::app::CollisionPart,
+					arg10: root::app::HitHeight,
+					arg11: root::app::HitStatus,
+					arg12: root::app::CollisionShapeType
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil13get_cliff_posERNS_26BattleObjectModuleAccessorE"]
+				pub fn get_cliff_pos(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				) -> root::phx::Vector3f;
+				#[link_name = "\u{1}_ZN3app11FighterUtil13get_ice_frameERNS_26BattleObjectModuleAccessorEfi"]
+				pub fn get_ice_frame(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				) -> f32;
+				#[link_name = "\u{1}_ZN3app11FighterUtil13jump_board_onERNS_26BattleObjectModuleAccessorE"]
+				pub fn jump_board_on(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil14exec_big_smallERNS_26BattleObjectModuleAccessorE"]
+				pub fn exec_big_small(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil14exec_free_moveERNS_26BattleObjectModuleAccessorE"]
+				pub fn exec_free_move(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil14exit_big_smallERNS_26BattleObjectModuleAccessorE"]
+				pub fn exit_big_small(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil14flash_eye_infoERNS_26BattleObjectModuleAccessorE"]
+				pub fn flash_eye_info(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil14get_bezier_posERKN3phx8Vector3fES4_fffRS2_"]
+				pub fn get_bezier_pos(
+					arg1: *const root::phx::Vector3f,
+					arg2: *const root::phx::Vector3f,
+					arg3: f32,
+					arg4: f32,
+					arg5: f32,
+					arg6: *mut root::phx::Vector3f
+				) -> root::phx::Vector3f;
+				#[link_name = "\u{1}_ZN3app11FighterUtil14get_team_colorERKNS_26BattleObjectModuleAccessorE"]
+				pub fn get_team_color(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				) -> u32;
+				#[link_name = "\u{1}_ZN3app11FighterUtil14init_big_smallERNS_26BattleObjectModuleAccessorE"]
+				pub fn init_big_small(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil14reset_hit_dataERNS_26BattleObjectModuleAccessorE"]
+				pub fn reset_hit_data(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil14set_ice_effectERNS_26BattleObjectModuleAccessorEi"]
+				pub fn set_ice_effect(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor,
+					arg2: i32
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil14start_zoom_outEN3phx8Vector3fES2_i"]
+				pub fn start_zoom_out(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor,
+					arg2: *const root::phx::Vector3f,
+					arg3: i32
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil15get_cliff_transERNS_26BattleObjectModuleAccessorE"]
+				pub fn get_cliff_trans(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				) -> root::phx::Vector2f;
+				#[link_name = "\u{1}_ZN3app11FighterUtil15get_pos_on_lineERNS_26BattleObjectModuleAccessorEPKNS_19GroundCollisionLineEffRN3phx8Vector2fE"]
+				pub fn get_pos_on_line(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor,
+					arg2: root::app::GroundCollisionLine,
+					arg3: f32,
+					arg4: f32,
+					arg5: *mut root::phx::Vector2f
+				) -> u64;
+				#[link_name = "\u{1}_ZN3app11FighterUtil15is_photo_cameraEv"]
+				pub fn is_photo_camera() -> bool;
+				#[link_name = "\u{1}_ZN3app11FighterUtil16check_attack_hi4ERNS_26BattleObjectModuleAccessorE"]
+				pub fn check_attack_hi4(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app11FighterUtil16end_butterflynetERNS_26BattleObjectModuleAccessorE"]
+				pub fn end_butterflynet(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil16is_hammer_motionEN3phx6Hash40E"]
+				pub fn is_hammer_motion(
+					motion: root::phx::Hash40
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app11FighterUtil16is_hammer_statusEi"]
+				pub fn is_hammer_status(
+					status_kind: i32
+				) -> i32;
+				#[link_name = "\u{1}_ZN3app11FighterUtil16is_meteor_vectorEi"]
+				pub fn is_meteor_vector(
+					attack_vec_kind: i32
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app11FighterUtil16play_sleep_voiceERNS_26BattleObjectModuleAccessorE"]
+				pub fn play_sleep_voice(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil16start_catch_stopERNS_26BattleObjectModuleAccessorEif"]
+				pub fn start_catch_stop(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor,
+					arg2: i32,
+					arg3: f32
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil17is_valid_entry_idERNS_26BattleObjectModuleAccessorE"]
+				pub fn is_valid_entry_id(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil18get_item_fix_scaleERNS_26BattleObjectModuleAccessorEii"]
+				pub fn get_item_fix_scale(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor,
+					arg2: i32,
+					arg3: i32
+				) -> f32;
+				#[link_name = "\u{1}_ZN3app11FighterUtil18get_just_shield_seEi"]
+				pub fn get_just_shield_se(
+					arg: i32
+				) -> root::phx::Hash40;
+				#[link_name = "\u{1}_ZN3app11FighterUtil18play_wake_up_voiceERNS_26BattleObjectModuleAccessorE"]
+				pub fn play_wake_up_voice(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil18search_inside_rectERNS_26BattleObjectModuleAccessorEiPKN3lib4RectE"]
+				pub fn search_inside_rect(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor,
+					arg2: i32,
+					rect: *const root::lib::Rect
+				) -> i32;
+				#[link_name = "\u{1}_ZN3app11FighterUtil18yoshi_egg_time_mulERNS_26BattleObjectModuleAccessorE"]
+				pub fn yoshi_egg_time_mul(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				) -> f32;
+				#[link_name = "\u{1}_ZN3app11FighterUtil19adjust_bitten_warioERNS_26BattleObjectModuleAccessorE"]
+				pub fn adjust_bitten_wario(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil19adjust_butterflynetERNS_26BattleObjectModuleAccessorE"]
+				pub fn adjust_butterflynet(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil19get_cliff_xlu_frameERNS_26BattleObjectModuleAccessorEN3phx6Hash40E"]
+				pub fn get_cliff_xlu_frame(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor,
+					arg2: root::phx::Hash40
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil19get_water_area_infoERNS_26BattleObjectModuleAccessorERNS_15stWaterAreaInfoE"]
+				pub fn get_water_area_info(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor,
+					info: *mut root::app::stWaterAreaInfo
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app11FighterUtil19set_ice_exit_effectERNS_26BattleObjectModuleAccessorE"]
+				pub fn set_ice_exit_effect(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil19set_turn_squat_autoERNS_26BattleObjectModuleAccessorE"]
+				pub fn set_turn_squat_auto(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil20get_bury_effect_dataEiN3phx6Hash40Eff"]
+				pub fn get_bury_effect_data(
+					arg1: i32,
+					arg2: root::phx::Hash40,
+					arg3: f32,
+					arg4: f32
+				) -> f32;
+				#[link_name = "\u{1}_ZN3app11FighterUtil20is_valid_just_shieldERNS_26BattleObjectModuleAccessorE"]
+				pub fn is_valid_just_shield(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app11FighterUtil20set_damage_fly_angleERNS_26BattleObjectModuleAccessorEfffNS_23MotionNodeRotateComposeE"]
+				pub fn set_damage_fly_angle(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor,
+					arg2: f32,
+					arg3: f32,
+					arg4: f32,
+					arg5: root::app::MotionNodeRotateCompose
+				) -> f32;
+				#[link_name = "\u{1}_ZN3app11FighterUtil21check_cliff_separatedERNS_26BattleObjectModuleAccessorE"]
+				pub fn check_cliff_separated(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app11FighterUtil21check_damage_speed_upERNS_26BattleObjectModuleAccessorEf"]
+				pub fn check_damage_speed_up(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor,
+					arg2: f32
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app11FighterUtil21check_hit_dead_effectERNS_26BattleObjectModuleAccessorE"]
+				pub fn check_hit_dead_effect(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app11FighterUtil21check_melee_rule_timeEfNS_25FighterCheckMeleeRuleTimeEb"]
+				pub fn check_melee_rule_time(
+					arg1: f32,
+					arg2: root::app::FighterCheckMeleeRuleTime,
+					arg3: bool
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app11FighterUtil21get_effect_team_colorENS_10EColorKindEN3phx6Hash40E"]
+				pub fn get_effect_team_color(
+					arg1: root::app::EColorKind,
+					arg2: root::phx::Hash40
+				) -> nnsdk::root::nn::util::Vector3f;
+				#[link_name = "\u{1}_ZN3app11FighterUtil21set_water_dive_effectERNS_26BattleObjectModuleAccessorERKN3phx8Vector3fE"]
+				pub fn set_water_dive_effect(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor,
+					arg2: *const root::phx::Vector3f
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil22calc_water_surface_posERNS_26BattleObjectModuleAccessorERNS_15stWaterAreaInfoERN3phx8Vector2fE"]
+				pub fn calc_water_surface_pos(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor,
+					arg2: *const root::app::stWaterAreaInfo,
+					arg3: *mut root::phx::Vector2f
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app11FighterUtil22is_neighbor_floor_lineEPKNS_19GroundCollisionLineES3_"]
+				pub fn is_neighbor_floor_line(
+					arg1: *const root::app::GroundCollisionLine,
+					arg2: *const root::app::GroundCollisionLine
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app11FighterUtil22is_smash_appeal_timingERNS_26BattleObjectModuleAccessorE"]
+				pub fn is_smash_appeal_timing(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app11FighterUtil23check_cloud_through_outERNS_26BattleObjectModuleAccessorE"]
+				pub fn check_cloud_through_out(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app11FighterUtil23check_final_dash_groundERNS_26BattleObjectModuleAccessorE"]
+				pub fn check_final_dash_ground(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app11FighterUtil23is_touch_passive_groundERNS_26BattleObjectModuleAccessorEj"]
+				pub fn is_touch_passive_ground(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor,
+					ground_touch_flag: u32
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app11FighterUtil23renderer_get_color_rateEv"]
+				pub fn renderer_get_color_rate() -> f32;
+				#[link_name = "\u{1}_ZN3app11FighterUtil23set_cloud_through_checkERNS_26BattleObjectModuleAccessorE"]
+				pub fn set_cloud_through_rate(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil23set_restart_up_positionERNS_26BattleObjectModuleAccessorE"]
+				pub fn set_restart_up_position(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil23tread_remove_constraintERNS_26BattleObjectModuleAccessorE"]
+				pub fn tread_remove_constraint(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil24get_opponent_fighter_numERNS_26BattleObjectModuleAccessorEb"]
+				pub fn get_opponent_fighter_num(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor,
+					arg2: bool
+				) -> i32;
+				#[link_name = "\u{1}_ZN3app11FighterUtil24get_shield_type_of_guardEi"]
+				pub fn get_shield_type_of_guard(
+					arg: i32
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app11FighterUtil24is_avaiable_smash_appealERNS_26BattleObjectModuleAccessorE"]
+				pub fn is_available_smash_appeal(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app11FighterUtil24is_miienemy_fighter_kindEi"]
+				pub fn is_miienemy_fighter_kind(
+					fighter_kind: i32
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app11FighterUtil24is_valid_auto_catch_itemERNS_26BattleObjectModuleAccessorEb"]
+				pub fn is_valid_auto_catch_item(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor,
+					arg2: bool
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app11FighterUtil24renderer_get_clear_colorEv"]
+				pub fn renderer_get_clear_color() -> root::phx::Vector4f;
+				#[link_name = "\u{1}_ZN3app11FighterUtil24renderer_set_clear_colorEN3phx8Vector4fE"]
+				pub fn renderer_set_clear_color(
+					color: root::phx::Vector4f
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil25get_air_ground_touch_infoERNS_26BattleObjectModuleAccessorERN3phx8Vector2fES5_"]
+				pub fn get_air_ground_touch_info(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor,
+					arg1: *mut root::phx::Vector2f,
+					arg2: *mut root::phx::Vector2f
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil25set_stage_pause_for_finalEbRNS_26BattleObjectModuleAccessorE"]
+				pub fn set_stage_pause_for_final(
+					arg1: bool,
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil27get_cliff_catch_motion_rateERNS_26BattleObjectModuleAccessorE"]
+				pub fn get_cliff_catch_motion_rate(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				) -> f32;
+				#[link_name = "\u{1}_ZN3app11FighterUtil27set_face_motion_by_priorityERNS_26BattleObjectModuleAccessorENS_13FighterFacialEN3phx6Hash40E"]
+				pub fn set_face_motion_by_priority(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor,
+					arg2: root::app::FighterFacial,
+					arg3: root::phx::Hash40
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil27set_pickelblock_mode_normalERNS_26BattleObjectModuleAccessorE"]
+				pub fn set_pickelblock_mode_normal(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil30cancel_face_motion_by_priorityERNS_26BattleObjectModuleAccessorENS_13FighterFacialE"]
+				pub fn cancel_face_motion_by_priority(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor,
+					arg2: root::app::FighterFacial
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil30is_valid_just_shield_reflectorERNS_26BattleObjectModuleAccessorE"]
+				pub fn is_valid_just_shield_reflector(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app11FighterUtil31calc_add_damage_power_for_finalEjjf"]
+				pub fn calc_add_damage_power_for_final(
+					arg1: u32,
+					arg2: u32,
+					arg3: f32
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil32set_stage_disable_reverse_screenEb"]
+				pub fn set_stage_disable_reverse_screen(
+					arg: bool
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil33clung_thrown_diddy_unlink_captureERNS_26BattleObjectModuleAccessorE"]
+				pub fn clung_thrown_diddy_unlink_capture(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil33get_ground_correct_kind_air_transERNS_26BattleObjectModuleAccessorEi"]
+				pub fn get_ground_correct_kind_air_trans(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor,
+					arg2: i32
+				) -> i32;
+				#[link_name = "\u{1}_ZN3app11FighterUtil33is_exist_past_log_for_back_shieldEjRKNS_26BattleObjectModuleAccessorE"]
+				pub fn is_exist_past_log_for_back_shield(
+					arg1: u32,
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app11FighterUtil33request_critical_hit_cut_in_forceERNS_26BattleObjectModuleAccessorEjRKN3phx8Vector2fEiNS3_6Hash40Eibib"]
+				pub fn request_critical_hit_cut_in_force(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor,
+					arg2: u32,
+					arg3: *const root::phx::Vector2f,
+					arg4: i32,
+					arg5: root::phx::Hash40,
+					arg6: i32,
+					arg7: bool,
+					arg8: i32,
+					arg9: bool
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil36get_line_pos_shortest_distance_pointERKN3phx8Vector3fES4_S4_"]
+				pub fn get_line_pos_shortest_distance_point(
+					arg1: *const root::phx::Vector3f,
+					arg2: *const root::phx::Vector3f,
+					arg3: *const root::phx::Vector3f
+				) -> f32;
+				#[link_name = "\u{1}_ZN3app11FighterUtil36set_parent_external_stat_bank_handleERNS_26BattleObjectModuleAccessorE"]
+				pub fn set_parent_external_stat_bank_handle(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil36set_pickelblock_mode_ignoreandattackERNS_26BattleObjectModuleAccessorE"]
+				pub fn set_pickelblock_mode_ignoreandattack(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil39renderer_set_enable_clear_color_settingEb"]
+				pub fn renderer_set_enable_clear_color_setting(
+					enable: bool
+				);
+				#[link_name = "\u{1}_ZN3app11FighterUtil39request_critical_hit_cut_in_dolly_stageERNS_26BattleObjectModuleAccessorEjRKN3phx8Vector2fE"]
+				pub fn request_critical_hit_cut_in_dolly_stage(
+					module_accessor: *mut root::app::BattleObjectModuleAccessor,
+					arg1: u32,
+					arg2: *const root::phx::Vector2f
+				) -> bool;
+			}
+		}
         
         pub mod utility {
             #[allow(unused_imports)]
@@ -2048,6 +2501,19 @@ pub mod root {
             }
         }
 
+		pub mod FighterSpecializer_Demon {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app24FighterSpecializer_Demon9set_devilERNS_26BattleObjectModuleAccessorEbf"]
+                pub fn set_devil(
+                	module_accessor: *mut root::app::BattleObjectModuleAccessor,
+					arg2: bool,
+					arg3: f32
+                ) -> u64;
+            }
+        }
+
         pub mod WeaponSpecializer_PTrainerPTrainer {
             #[allow(unused_imports)]
             use super::super::super::root;
@@ -2497,7 +2963,7 @@ pub mod root {
 					pub fn get_clatter_time(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
 						arg2: libc::c_int,
-					) -> u64;
+					) -> f32;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind36ControlModule__set_clatter_stop_implEPNS_26BattleObjectModuleAccessorEb"]
@@ -5125,7 +5591,7 @@ pub mod root {
 					pub fn get_touch_normal(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
 						arg2: libc::c_uint,
-					) -> u64;
+					) -> root::phx::Vector2f;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind37GroundModule__get_touch_normal_x_implEPNS_26BattleObjectModuleAccessorEj"]
@@ -5340,7 +5806,7 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind36GroundModule__get_down_friction_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn get_down_friction(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-					) -> u64;
+					) -> f32;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind40GroundModule__get_distance_to_floor_implEPNS_26BattleObjectModuleAccessorERKN3phx8Vector3fEfb"]
@@ -5349,7 +5815,7 @@ pub mod root {
 						arg2: *const root::phx::Vector3f,
 						arg3: f32,
 						arg4: bool,
-					) -> u64;
+					) -> f32;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind36GroundModule__is_still_on_floor_implEPNS_26BattleObjectModuleAccessorEfb"]
@@ -5551,7 +6017,7 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind40GroundModule__get_correct_pos_local_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn get_correct_pos_local(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-					) -> u64;
+					) -> root::phx::Vector2f;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind35GroundModule__set_update_shape_implEPNS_26BattleObjectModuleAccessorEb"]
@@ -7139,6 +7605,15 @@ pub mod root {
 					);
 				}
 				extern "C" {
+					#[link_name = "\u{1}_ZN3app8lua_bind49AttackModule__set_attack_camera_quake_forced_implEPNS_26BattleObjectModuleAccessorEiib"]
+					pub fn set_attack_camera_quake_forced(
+						arg1: *mut root::app::BattleObjectModuleAccessor,
+						arg2: libc::c_int,
+						arg3: libc::c_int,
+						arg4: bool,
+					);
+				}
+				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind48AttackModule__set_attack_no_weight_reaction_implEPNS_26BattleObjectModuleAccessorEihb"]
 					pub fn set_attack_no_weight_reaction(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
@@ -7261,6 +7736,15 @@ pub mod root {
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind41AttackModule__set_add_reaction_frame_implEPNS_26BattleObjectModuleAccessorEifb"]
 					pub fn set_add_reaction_frame(
+						arg1: *mut root::app::BattleObjectModuleAccessor,
+						arg2: libc::c_int,
+						arg3: f32,
+						arg4: bool,
+					);
+				}
+				extern "C" {
+					#[link_name = "\u{1}_ZN3app8lua_bind49AttackModule__set_add_reaction_frame_revised_implEPNS_26BattleObjectModuleAccessorEifb"]
+					pub fn set_add_reaction_frame_revised(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
 						arg2: libc::c_int,
 						arg3: f32,
@@ -7659,7 +8143,7 @@ pub mod root {
 						arg1: *mut root::app::BattleObjectModuleAccessor,
 						arg2: root::phx::Hash40,
 						arg3: bool,
-					) -> i32;
+					) -> f32;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind51FighterMotionModuleImpl__is_valid_cancel_frame_implEPNS_26BattleObjectModuleAccessorEib"]
@@ -8666,7 +9150,7 @@ pub mod root {
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind23PostureModule__pos_implEPNS_26BattleObjectModuleAccessorE"]
-					pub fn pos(arg1: *mut root::app::BattleObjectModuleAccessor) -> root::phx::Vector3f;
+					pub fn pos(arg1: *mut root::app::BattleObjectModuleAccessor) -> *const root::phx::Vector3f;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind26PostureModule__pos_2d_implEPNS_26BattleObjectModuleAccessorE"]
@@ -8849,7 +9333,7 @@ pub mod root {
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind28PostureModule__rot_y_lr_implEPNS_26BattleObjectModuleAccessorE"]
-					pub fn rot_y_lr(arg1: *mut root::app::BattleObjectModuleAccessor) -> u64;
+					pub fn rot_y_lr(arg1: *mut root::app::BattleObjectModuleAccessor) -> f32;
 				}
 				extern "C" {
 					/// Updates the current battle object's orientation. Usually used in conjunction with PostureModule::set_lr or PostureModule::reverse_lr
@@ -9183,7 +9667,7 @@ pub mod root {
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind28MotionModule__frame_2nd_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn frame_2nd(arg1: *mut root::app::BattleObjectModuleAccessor)
-						-> u64;
+						-> f32;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind28MotionModule__trans_tra_implEPNS_26BattleObjectModuleAccessorERN3phx8Vector3fEbb"]
@@ -9564,7 +10048,7 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind30MotionModule__update_rate_implEPNS_26BattleObjectModuleAccessorE"]
 					pub fn update_rate(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-					) -> u64;
+					) -> f32;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind32MotionModule__set_recalc_ik_implEPNS_26BattleObjectModuleAccessorEb"]
@@ -13230,7 +13714,7 @@ pub mod root {
 						arg1: *mut root::app::FighterParamAccessor2,
 						arg2: libc::c_int,
 						arg3: libc::c_int,
-					) -> u64;
+					) -> super::root::phx::Vector3f;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind49FighterParamAccessor2__ridley_dragged_offset_implEPNS_21FighterParamAccessor2Eii"]
@@ -13704,6 +14188,13 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind44ItemManager__get_num_of_active_item_all_implEPNS_11ItemManagerE"]
 					pub fn get_num_of_active_item_all(
 						arg1: *mut root::app::ItemManager,
+					) -> u64;
+				}
+				
+				extern "C" {
+					#[link_name = "\u{1}_ZN3app12item_manager22get_num_of_active_itemENS_8ItemKindE"]
+					pub fn get_num_of_active_item(
+						item_kind: i32
 					) -> u64;
 				}
 				extern "C" {
@@ -16011,7 +16502,7 @@ pub mod root {
 					pub fn get_have_item_trait(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
 						arg2: libc::c_int,
-					) -> u64;
+					) -> bool;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind40ItemModule__get_have_item_hold_kind_implEPNS_26BattleObjectModuleAccessorEi"]
@@ -17339,7 +17830,7 @@ pub mod root {
 					pub fn get_parent_lr(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
 						arg2: libc::c_int,
-					) -> u64;
+					) -> f32;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind37LinkModule__get_parent_sum_speed_implEPNS_26BattleObjectModuleAccessorEii"]
@@ -18671,7 +19162,7 @@ pub mod root {
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app10sv_animcmd16IS_EXIST_ARTICLEEP9lua_State"]
-                pub fn IS_EXIST_ARTICLE(arg1: u64);
+                pub fn IS_EXIST_ARTICLE(arg1: u64) -> bool;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app10sv_animcmd22IS_FIGHTER_STATUS_KINDEP9lua_State"]
@@ -18679,7 +19170,7 @@ pub mod root {
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app10sv_animcmd22IS_GENERATABLE_ARTICLEEP9lua_State"]
-                pub fn IS_GENERATABLE_ARTICLE(arg1: u64);
+                pub fn IS_GENERATABLE_ARTICLE(arg1: u64) -> bool;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app10sv_animcmd17IS_HAVE_ITEM_KINDEP9lua_State"]
@@ -19098,6 +19589,188 @@ pub mod root {
                 pub fn entry_id(arg1: root::uint) -> libc::c_int;
             }
 		}
+		pub mod sv_fighter_util {
+			#[allow(unused_imports)]
+			use super::super::super::root;
+			extern "C" {
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util11adjust_ceilEP9lua_Statefb"]
+				pub fn adjust_ceil(
+					lua_state: u64,
+					arg2: f32,
+					arg3: bool
+				);
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util30adjust_joint_pos_change_motionEP9lua_StateN3phx6Hash40E"]
+				pub fn adjust_joint_pos_change_motion(
+					lua_state: u64,
+					motion: root::phx::Hash40
+				);
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util11adjust_wallEP9lua_Statefffbb"]
+				pub fn adjust_wall(
+					lua_state: u64,
+					arg2: f32,
+					arg3: f32,
+					arg4: f32,
+					arg5: bool,
+					arg6: bool
+				);
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util33check_dead_mode_sub_fighter_afterEP9lua_Statei"]
+				pub fn check_dead_mode_sub_fighter_after(
+					lua_state: u64,
+					arg2: i32
+				) -> i32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util34check_dead_mode_sub_fighter_beforeEP9lua_State"]
+				pub fn check_dead_mode_sub_fighter_before(
+					lua_state: u64
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util20exit_thrown_lay_downEP9lua_State"]
+				pub fn exit_thrown_lay_down(
+					lua_state: u64
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util21get_attack_hi3_motionEP9lua_State"]
+				pub fn get_attack_hi3_motion(
+					lua_state: u64
+				) -> root::phx::Hash40;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util21get_attack_lw3_motionEP9lua_State"]
+				pub fn get_attack_lw3_motion(
+					lua_state: u64
+				) -> root::phx::Hash40;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util22get_attack_s3_s_motionEP9lua_State"]
+				pub fn get_attack_s3_s_motion(
+					lua_state: u64
+				) -> root::phx::Hash40;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util29get_damage_effect_line_radiusEP9lua_State"]
+				pub fn get_damage_effect_line_radius(
+					lua_state: u64
+				) -> f32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util42get_dead_up_camera_hit_first_rand_offset_xEP9lua_State"]
+				pub fn get_dead_up_camera_hit_first_rand_offset_x(
+					lua_state: u64
+				) -> i32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util39get_dead_up_camera_hit_first_rand_rot_zEP9lua_State"]
+				pub fn get_dead_up_camera_hit_first_rand_rot_z(
+					lua_state: u64
+				) -> i32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util27get_dead_up_camera_hit_probEP9lua_State"]
+				pub fn get_dead_up_camera_hit_prob(
+					lua_state: u64
+				) -> i32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util26get_dead_up_star_fall_probEP9lua_State"]
+				pub fn get_dead_up_start_fall_prob(
+					lua_state: u64
+				) -> i32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util37get_default_fighter_param_air_brake_xEP9lua_State"]
+				pub fn get_default_fighter_param_air_brake_x(
+					lua_state: u64
+				) -> f32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util38get_default_fighter_param_ground_brakeEP9lua_State"]
+				pub fn get_default_fighter_param_ground_brake(
+					lua_state: u64
+				) -> f32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util44get_default_fighter_param_ground_speed_limitEP9lua_State"]
+				pub fn get_default_fighter_param_ground_speed_limit(
+					lua_state: u64
+				) -> f32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util40get_default_fighter_param_walk_speed_maxEP9lua_State"]
+				pub fn get_default_fighter_param_walk_speed_max(
+					lua_state: u64
+				) -> f32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util18get_gravity_radianEP9lua_State"]
+				pub fn get_gravity_radian(
+					lua_state: u64
+				) -> f32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util28get_guard_damage_motion_rateEP9lua_Statem"]
+				pub fn get_guard_damage_motion_rate(
+					lua_state: u64,
+					motion: root::phx::Hash40
+				) -> f32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util29get_item_lift_motion_rate_mulEP9lua_State"]
+				pub fn get_item_lift_motion_rate_mul(
+					lua_state: u64
+				) -> f32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util26get_item_swing_motion_rateEP9lua_Stateii"]
+				pub fn get_item_swing_motion_rate(
+					lua_state: u64,
+					arg2: i32,
+					arg3: i32
+				) -> f32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util21get_kirifuda_positionEP9lua_Statei"]
+				pub fn get_kirifuda_position(
+					lua_state: u64,
+					arg2: i32
+				) -> u64;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util18get_walk_speed_mulEP9lua_State"]
+				pub fn get_walk_speed_mul(
+					lua_state: u64
+				) -> f32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util19get_world_move_seedEv"]
+				pub fn get_world_move_seed() -> u64;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util20is_attack_air_statusEP9lua_Statei"]
+				pub fn is_attack_air_status(
+					lua_state: u64,
+					status: i32
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util21is_exist_lose_fighterEP9lua_Statei"]
+				pub fn is_exist_lose_fighter(
+					lua_state: u64,
+					arg: i32
+				) -> bool;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util23is_free_move_rot_legacyEv"]
+				pub fn is_free_move_rot_legacy() -> bool;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util21set_angle_wall_normalEP9lua_Statef"]
+				pub fn set_angle_wall_normal(
+					lua_state: u64,
+					angle: f32
+				);
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util26set_dead_camera_hit_rumbleEP9lua_State"]
+				pub fn set_dead_camera_hit_rumble(
+					lua_state: u64
+				);
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util15set_dead_rumbleEP9lua_State"]
+				pub fn set_dead_rumble(
+					lua_state: u64
+				);
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util33set_dead_up_camera_hit_vis_changeEP9lua_State"]
+				pub fn set_dead_up_camera_hit_vis_change(
+					lua_state: u64
+				);
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util14set_on_rebirthEP9lua_Stateb"]
+				pub fn set_on_rebirth(
+					lua_state: u64,
+					arg2: bool
+				);
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util28set_restart_pos_bezier_curveEP9lua_Stateffffffii"]
+				pub fn set_restart_pos_bezier_curve(
+					lua_state: u64,
+					arg2: f32,
+					arg3: f32,
+					arg4: f32,
+					arg5: f32,
+					arg6: f32,
+					arg7: f32,
+					arg8: i32,
+					arg9: i32
+				);
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util20stage_restart_scrollEP9lua_State"]
+				pub fn stage_restart_scroll(
+					lua_state: u64
+				);
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util19switch_squat_motionEP9lua_Statei"]
+				pub fn switch_squat_motion(
+					lua_state: u64,
+					arg2: i32
+				) -> i32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util18switch_wait_motionEP9lua_Statei"]
+				pub fn switch_wait_motion(
+					lua_state: u64,
+					arg2: i32
+				) -> i32;
+				#[link_name = "\u{1}_ZN3app15sv_fighter_util46update_dead_up_camera_hit_first_distance_groupEP9lua_State"]
+				pub fn update_dead_up_camera_hit_first_distance_group(
+					lua_state: u64
+				) -> bool;
+			}
+		}
+
 		pub mod sv_information {
 			#[allow(unused_imports)]
 			use super::super::super::root;
@@ -19131,11 +19804,11 @@ pub mod root {
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app17sv_kinetic_energy11get_speed_xEP9lua_State"]
-                pub fn get_speed_x(arg1: u64);
+                pub fn get_speed_x(arg1: u64) -> f32;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app17sv_kinetic_energy11get_speed_yEP9lua_State"]
-                pub fn get_speed_y(arg1: u64);
+                pub fn get_speed_y(arg1: u64) -> f32;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app17sv_kinetic_energy12friction_offEP9lua_State"]
@@ -19295,7 +19968,7 @@ pub mod root {
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app17sv_kinetic_energy9get_speedEP9lua_State"]
-                pub fn get_speed(arg1: u64);
+                pub fn get_speed(arg1: u64) -> root::phx::Vector2f;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app17sv_kinetic_energy9is_enableEP9lua_State"]
@@ -19413,7 +20086,7 @@ pub mod root {
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app7sv_math14vec2_normalizeEff"]
-                pub fn vec2_normalize(arg1: f32, arg2: f32) -> f32;
+                pub fn vec2_normalize(arg1: f32, arg2: f32) -> root::phx::Vector2f;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app7sv_math14vec3_normalizeEfff"]
@@ -19421,7 +20094,7 @@ pub mod root {
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app7sv_math15vec2_reflectionEffff"]
-                pub fn vec2_reflection(arg1: f32, arg2: f32, arg3: f32, arg4: f32) -> f32;
+                pub fn vec2_reflection(arg1: f32, arg2: f32, arg3: f32, arg4: f32) -> root::phx::Vector2f;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app7sv_math18vec2_length_squareEff"]
@@ -19482,7 +20155,7 @@ pub mod root {
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app7sv_math8vec2_rotEfff"]
-                pub fn vec2_rot(arg1: f32, arg2: f32, arg3: f32) -> f32;
+                pub fn vec2_rot(arg1: f32, arg2: f32, arg3: f32) -> root::phx::Vector2f;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app7sv_math8vec3_dotEffffff"]
@@ -19709,6 +20382,7 @@ pub mod root {
         pub y: f32,
         pub z: f32,
     }
+
     #[repr(C)]
     #[derive(Debug, Copy, Clone)]
     pub struct Vector4f {
@@ -19717,6 +20391,7 @@ pub mod root {
         pub z: f32,
         pub w: f32,
     }
+
     pub mod lib {
         pub mod lua_const {
             pub use crate::lua_const::*;

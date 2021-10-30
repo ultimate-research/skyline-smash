@@ -170,6 +170,12 @@ impl L2CValue {
 
     #[allow(non_snake_case)]
     #[inline]
+    pub fn Hash40s<S: AsRef<str>>(val: S) -> Self {
+        Self::Hash40(Hash40::new(val.as_ref()))
+    }
+
+    #[allow(non_snake_case)]
+    #[inline]
     pub fn String<S: AsRef<str>>(val: S) -> Self {
         unsafe {
             let mut ret = MaybeUninit::uninit();
@@ -420,6 +426,14 @@ macro_rules! impl_into_int_l2cvalue {
         )*
     ) => {
         $(
+            impl Into<$ty> for L2CValue {
+                fn into(self) -> $ty {
+                    unsafe {
+                        L2CValue_as_integer(&self as *const L2CValue) as $ty
+                    }
+                }
+            }
+
             impl Into<$ty> for &L2CValue {
                 fn into(self) -> $ty {
                     unsafe { 
@@ -438,6 +452,14 @@ macro_rules! impl_into_float_l2cvalue {
         )*
     ) => {
         $(
+            impl Into<$ty> for L2CValue {
+                fn into(self) -> $ty {
+                    unsafe {
+                        L2CValue_as_number(&self as *const L2CValue) as $ty
+                    }
+                }
+            }
+
             impl Into<$ty> for &L2CValue {
                 fn into(self) -> $ty {
                     unsafe {
