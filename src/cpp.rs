@@ -19518,7 +19518,7 @@ pub mod root {
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app16sv_battle_object8categoryEj"]
-                pub fn category() -> libc::c_int;
+                pub fn category(arg1: root::uint) -> libc::c_int;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app16sv_battle_object13fixed_scalingEjbiifi"]
