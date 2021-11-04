@@ -13118,8 +13118,8 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind20SlowModule__set_implEPNS_26BattleObjectModuleAccessorEiiibj"]
 					pub fn set(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-						arg2: libc::c_int,
-						arg3: libc::c_int,
+						frames: libc::c_int,
+						slow_mul: libc::c_int,
 						arg4: libc::c_int,
 						arg5: bool,
 						arg6: libc::c_uint,
@@ -13158,7 +13158,7 @@ pub mod root {
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind21SlowModule__rate_implEPNS_26BattleObjectModuleAccessorE"]
-					pub fn rate(arg1: *mut root::app::BattleObjectModuleAccessor) -> u64;
+					pub fn rate(arg1: *mut root::app::BattleObjectModuleAccessor) -> f32;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind24SlowModule__is_skip_implEPNS_26BattleObjectModuleAccessorE"]
@@ -13172,8 +13172,8 @@ pub mod root {
 					#[link_name = "\u{1}_ZN3app8lua_bind26SlowModule__set_whole_implEPNS_26BattleObjectModuleAccessorEhi"]
 					pub fn set_whole(
 						arg1: *mut root::app::BattleObjectModuleAccessor,
-						arg2: libc::c_uchar,
-						arg3: libc::c_int,
+						frames: libc::c_uchar,
+						slow_mul: libc::c_int,
 					);
 				}
 				extern "C" {
@@ -19518,7 +19518,7 @@ pub mod root {
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app16sv_battle_object8categoryEj"]
-                pub fn category() -> libc::c_int;
+                pub fn category(arg1: root::uint) -> libc::c_int;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app16sv_battle_object13fixed_scalingEjbiifi"]
@@ -19777,6 +19777,10 @@ pub mod root {
 			extern "C" {
 				#[link_name = "\u{1}_ZN3app14sv_information11is_ready_goEv"]
 				pub fn is_ready_go() -> bool;
+			}
+			extern "C" {
+				#[link_name = "\u{1}_ZN3app14sv_information9slow_rateEv"]
+				pub fn slow_rate() -> f32;
 			}
 		}
         pub mod sv_kinetic_energy {
