@@ -13158,7 +13158,7 @@ pub mod root {
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind21SlowModule__rate_implEPNS_26BattleObjectModuleAccessorE"]
-					pub fn rate(arg1: *mut root::app::BattleObjectModuleAccessor) -> u64;
+					pub fn rate(arg1: *mut root::app::BattleObjectModuleAccessor) -> f32;
 				}
 				extern "C" {
 					#[link_name = "\u{1}_ZN3app8lua_bind24SlowModule__is_skip_implEPNS_26BattleObjectModuleAccessorE"]
@@ -19777,6 +19777,10 @@ pub mod root {
 			extern "C" {
 				#[link_name = "\u{1}_ZN3app14sv_information11is_ready_goEv"]
 				pub fn is_ready_go() -> bool;
+			}
+			extern "C" {
+				#[link_name = "\u{1}_ZN3app14sv_information9slow_rateEv"]
+				pub fn slow_rate() -> f32;
 			}
 		}
         pub mod sv_kinetic_energy {
