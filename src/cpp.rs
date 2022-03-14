@@ -2491,7 +2491,7 @@ pub mod root {
                     arg2: f32,
                 ) -> u64;
             }
-            extern "C" {
+                        extern "C" {
                 #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave6set_spERNS_7FighterEfb"]
                 pub fn set_sp(
                     arg1: *mut root::app::Fighter,
@@ -2500,8 +2500,30 @@ pub mod root {
                 ) -> u64;
             }
         }
-
-		pub mod FighterSpecializer_Demon {
+        
+        pub mod FighterSpecializer_Pickel {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                /// Subtracts Materials from Steve
+                ///
+                /// # Arguments
+                ///
+                /// * module_accessor - BattleObjectModuleAccessor of Steve
+                ///
+                /// * material_kind - FIGHTER_PICKEL_MATERIAL_KIND you want to subtract from
+                ///
+                /// * to_subtract - How much of the material you would like to subtract
+                #[link_name = "\u{1}_ZN3app25FighterSpecializer_Pickel16sub_material_numERNS_26BattleObjectModuleAccessorEii"]
+                pub fn sub_material_num(
+                    module_accessor: *mut root::app::BattleObjectModuleAccessor,
+                    material_kind: i32,
+                    to_subtract: i32,
+                ) -> u64;
+            }
+        }
+        
+        pub mod FighterSpecializer_Demon {
             #[allow(unused_imports)]
             use super::super::super::root;
             extern "C" {
