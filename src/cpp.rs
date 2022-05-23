@@ -18751,7 +18751,6 @@ pub mod root {
             }
             extern "C" {
 				#[link_name = "\u{1}_ZN3app10sv_animcmd6ATTACKEP9lua_State"]
-				#[unwind(allowed)]
                 pub fn ATTACK(arg1: u64);
             }
             extern "C" {
