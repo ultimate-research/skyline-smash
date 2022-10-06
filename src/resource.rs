@@ -121,6 +121,7 @@ impl fmt::Display for Table1Entry {
                 f,
                 "Table2 index: {} (In Table2: {})",
                 table2_index,
+                self.in_table_2 != 0
             )
         }
     }
