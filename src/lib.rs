@@ -11,6 +11,8 @@ pub mod params;
 #[cfg(feature = "std")]
 pub mod resource;
 
+pub mod ui2d;
+
 #[doc(hidden)]
 pub mod cpp;
 
