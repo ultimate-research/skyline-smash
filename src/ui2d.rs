@@ -1,5 +1,5 @@
 use skyline::libc::c_char;
-use skyline::nn::ui2d::{Pane, TextBox};
+use nnsdk::ui2d::{Pane, TextBox};
 
 // TODO: Offset search
 #[skyline::from_offset(0x59970)]

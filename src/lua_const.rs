@@ -1,7 +1,5 @@
 #![allow(non_upper_case_globals)]
 #![allow(non_snake_case)]
-#![allow(non_snake_case)]
-use crate::cpp::l2c_value::L2CValue;
 
 macro_rules! lua_consts {
     ($($ident:ident),* $(,)?) => {

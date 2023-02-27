@@ -116,14 +116,12 @@ impl Table1Entry {
 impl fmt::Display for Table1Entry {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let table2_index = self.table2_index;
-        unsafe {
-            write!(
-                f,
-                "Table2 index: {} (In Table2: {})",
-                table2_index,
-                self.in_table_2 != 0
-            )
-        }
+        write!(
+            f,
+            "Table2 index: {} (In Table2: {})",
+            table2_index,
+            self.in_table_2 != 0
+        )
     }
 }
 
