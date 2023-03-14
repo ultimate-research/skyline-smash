@@ -362,7 +362,7 @@ impl core::ops::Deref for LuaConst {
         let cache = self.cache.get();
         #[cfg_attr(not(feature = "cacheless_lua_consts"))] {
             unsafe {
-                if let Some(ref val) = unsafe { *cache } {
+                if let Some(ref val) = *cache {
                     // if there is a bug with this implementation
                     // DEFINITELY start here
                     core::mem::transmute(val)
