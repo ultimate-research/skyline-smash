@@ -225,7 +225,7 @@ impl super::root::lib::L2CAgent {
     pub fn new(lua_state: u64) -> Self {
         unsafe {
             let mut l2c_agent = std::mem::MaybeUninit::uninit();
-            super::root::lib::L2CAgent_L2CAgent_constr(l2c_agent.as_mut_ptr(), lua_state); 
+            super::root::lib::L2CAgent_L2CAgent_constr(l2c_agent.as_mut_ptr(), lua_state);
             l2c_agent.assume_init()
         }
     }
@@ -233,7 +233,7 @@ impl super::root::lib::L2CAgent {
 
 impl core::ops::Deref for super::root::lib::L2CAgent {
     type Target = u64;
-    
+
     fn deref(&self) -> &Self::Target {
         &self.lua_state_agent
     }
@@ -360,22 +360,21 @@ impl core::ops::Deref for LuaConst {
 
     fn deref(&self) -> &Self::Target {
         let cache = self.cache.get();
-
-        if let Some(ref val) = unsafe { *cache }  {
+        #[cfg_attr(not(feature = "cacheless_lua_consts"))] {
             unsafe {
-                // if there is a bug with this implementation
-                // DEFINITELY start here
-                core::mem::transmute(val)
-            }
-        } else {
-            let mut val : i32 = -1;
-            if unsafe { lib::lua_bind_get_value(self.lua_bind_hash, &mut val) } {
-                unsafe {
-                    *cache = Some(val);
-
-                    (*cache).as_ref().unwrap()
+                if let Some(ref val) = unsafe { *cache } {
+                    // if there is a bug with this implementation
+                    // DEFINITELY start here
+                    core::mem::transmute(val)
                 }
-            } else{
+            }
+        }
+        let mut val: i32 = -1;
+        unsafe {
+            if lib::lua_bind_get_value(self.lua_bind_hash, &mut val) {
+                *cache = Some(val);
+                (*cache).as_ref().unwrap()
+            } else {
                 &-1
             }
         }
