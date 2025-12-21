@@ -1,5 +1,3 @@
-use super::root::lib;
-use core::cell::UnsafeCell;
 use core::cmp::Ordering;
 use core::fmt;
 
@@ -10,19 +8,19 @@ pub union L2CValueInner {
     pub raw_float: f32,
     pub raw_pointer: *mut libc::c_void,
     pub raw_table: *mut L2CTable,
-    pub raw_innerfunc: *mut L2CInnerFunctionBase
+    pub raw_innerfunc: *mut L2CInnerFunctionBase,
 }
 
 impl fmt::Debug for L2CValueInner {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         unsafe {
             f.debug_tuple("")
-            .field(&self.raw)
-            .field(&self.raw_float)
-            .field(&self.raw_pointer)
-            .field(&self.raw_table)
-            .field(&self.raw_innerfunc)
-            .finish()
+                .field(&self.raw)
+                .field(&self.raw_float)
+                .field(&self.raw_pointer)
+                .field(&self.raw_table)
+                .field(&self.raw_innerfunc)
+                .finish()
         }
     }
 }
@@ -38,7 +36,7 @@ pub enum L2CValueType {
     Table = 5,
     InnerFunc = 6,
     Hash = 7,
-    String = 8
+    String = 8,
 }
 
 #[repr(C)]
@@ -52,9 +50,7 @@ pub struct L2CValue {
 
 impl Default for L2CValue {
     fn default() -> Self {
-        unsafe {
-            std::mem::uninitialized::<Self>()
-        }
+        unsafe { std::mem::MaybeUninit::<Self>::uninit().assume_init() }
     }
 }
 
@@ -62,36 +58,43 @@ impl fmt::Debug for L2CValue {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         unsafe {
             match self.val_type {
-                L2CValueType::Void => f.debug_tuple("")
-                                        .field(&self.val_type)
-                                        .field(&self.inner.raw)
-                                        .finish(),
-                L2CValueType::Bool => f.debug_tuple("")
-                                        .field(&self.val_type)
-                                        .field(&(self.inner.raw != 0))
-                                        .finish(),
-                L2CValueType::Int => f.debug_tuple("")
-                                        .field(&self.val_type)
-                                        .field(&self.inner.raw)
-                                        .finish(),
-                L2CValueType::Num => f.debug_tuple("")
-                                        .field(&self.val_type)
-                                        .field(&self.inner.raw_float)
-                                        .finish(),
-                L2CValueType::InnerFunc => f.debug_tuple("")
-                                        .field(&self.val_type)
-                                        .field(&self.inner.raw_innerfunc)
-                                        .finish(),
-                L2CValueType::Hash => f.debug_tuple("")
-                                        .field(&self.val_type)
-                                        .field(&self.inner.raw)
-                                        .finish(),
-                _ => f.debug_tuple("")
-                        .field(&self.val_type)
-                        .field(&self.unk1)
-                        .field(&self.inner.raw)
-                        .field(&self.unk2)
-                        .finish()
+                L2CValueType::Void => f
+                    .debug_tuple("")
+                    .field(&self.val_type)
+                    .field(&self.inner.raw)
+                    .finish(),
+                L2CValueType::Bool => f
+                    .debug_tuple("")
+                    .field(&self.val_type)
+                    .field(&(self.inner.raw != 0))
+                    .finish(),
+                L2CValueType::Int => f
+                    .debug_tuple("")
+                    .field(&self.val_type)
+                    .field(&self.inner.raw)
+                    .finish(),
+                L2CValueType::Num => f
+                    .debug_tuple("")
+                    .field(&self.val_type)
+                    .field(&self.inner.raw_float)
+                    .finish(),
+                L2CValueType::InnerFunc => f
+                    .debug_tuple("")
+                    .field(&self.val_type)
+                    .field(&self.inner.raw_innerfunc)
+                    .finish(),
+                L2CValueType::Hash => f
+                    .debug_tuple("")
+                    .field(&self.val_type)
+                    .field(&self.inner.raw)
+                    .finish(),
+                _ => f
+                    .debug_tuple("")
+                    .field(&self.val_type)
+                    .field(&self.unk1)
+                    .field(&self.inner.raw)
+                    .field(&self.unk2)
+                    .finish(),
             }
         }
     }
@@ -104,43 +107,31 @@ pub trait LuaTableIndex: Sized {
 
 impl LuaTableIndex for i32 {
     fn index_with<'a>(&self, l2c_val: &'a L2CValue) -> &'a L2CValue {
-        unsafe {
-            crate::lib::L2CValue__index_int(l2c_val, *self)
-        }
+        unsafe { crate::lib::L2CValue__index_int(l2c_val, *self) }
     }
 
     fn index_with_mut<'a>(&self, l2c_val: &'a mut L2CValue) -> &'a mut L2CValue {
-        unsafe {
-            crate::lib::L2CValue__index_int_mut(l2c_val, *self)
-        }
+        unsafe { crate::lib::L2CValue__index_int_mut(l2c_val, *self) }
     }
 }
 
 impl LuaTableIndex for L2CValue {
     fn index_with<'a>(&self, l2c_val: &'a L2CValue) -> &'a L2CValue {
-        unsafe {
-            crate::lib::L2CValue__index_L2CValue(l2c_val, self)
-        }
+        unsafe { crate::lib::L2CValue__index_L2CValue(l2c_val, self) }
     }
 
     fn index_with_mut<'a>(&self, l2c_val: &'a mut L2CValue) -> &'a mut L2CValue {
-        unsafe {
-            crate::lib::L2CValue__index_L2CValue_mut(l2c_val, self)
-        }
+        unsafe { crate::lib::L2CValue__index_L2CValue_mut(l2c_val, self) }
     }
 }
 
 impl LuaTableIndex for u64 {
     fn index_with<'a>(&self, l2c_val: &'a L2CValue) -> &'a L2CValue {
-        unsafe {
-            crate::lib::L2CValue__index_hash40(l2c_val, *self)
-        }
+        unsafe { crate::lib::L2CValue__index_hash40(l2c_val, *self) }
     }
 
     fn index_with_mut<'a>(&self, l2c_val: &'a mut L2CValue) -> &'a mut L2CValue {
-        unsafe {
-            crate::lib::L2CValue__index_hash40_mut(l2c_val, *self)
-        }
+        unsafe { crate::lib::L2CValue__index_hash40_mut(l2c_val, *self) }
     }
 }
 
@@ -225,20 +216,11 @@ impl super::root::lib::L2CAgent {
     pub fn new(lua_state: u64) -> Self {
         unsafe {
             let mut l2c_agent = std::mem::MaybeUninit::uninit();
-            super::root::lib::L2CAgent_L2CAgent_constr(l2c_agent.as_mut_ptr(), lua_state); 
+            super::root::lib::L2CAgent_L2CAgent_constr(l2c_agent.as_mut_ptr(), lua_state);
             l2c_agent.assume_init()
         }
     }
 }
-
-impl core::ops::Deref for super::root::lib::L2CAgent {
-    type Target = u64;
-    
-    fn deref(&self) -> &Self::Target {
-        &self.lua_state_agent
-    }
-}
-
 /*pub unsafe fn lua_const<S: AsRef<[u8]>>(string: S) -> libc::c_int {
     let mut val : i32 = -1;
     if lib::lua_bind_get_value(lua_bind_hash::lua_bind_hash(string), &mut val) {
@@ -248,18 +230,14 @@ impl core::ops::Deref for super::root::lib::L2CAgent {
     }
 }*/
 
+#[derive(Debug, Copy, Clone, Eq)]
 pub struct LuaConst {
-    lua_bind_hash: u64,
-    // do not try this at home
-    cache: UnsafeCell<Option<i32>>,
+    value: i32,
 }
 
 impl LuaConst {
-    pub const fn new(lua_bind_hash: u64) -> Self {
-        Self {
-            lua_bind_hash,
-            cache: UnsafeCell::new(None)
-        }
+    pub const fn new(value: u32) -> Self {
+        Self { value: value as i32 }
     }
 
     pub fn as_lua_int(&self) -> L2CValue {
@@ -279,20 +257,6 @@ impl From<LuaConst> for u32 {
         *lua_const as u32
     }
 }
-
-impl Clone for LuaConst {
-    fn clone(&self) -> Self {
-        LuaConst::new(self.lua_bind_hash)
-    }
-}
-
-impl std::hash::Hash for LuaConst {
-    fn hash<H: std::hash::Hasher>(&self, state: &mut H) {
-        self.lua_bind_hash.hash(state);
-    }
-}
-
-impl Eq for LuaConst {}
 
 macro_rules! lua_const_partialeq_impl {
     (
@@ -359,25 +323,6 @@ impl core::ops::Deref for LuaConst {
     type Target = i32;
 
     fn deref(&self) -> &Self::Target {
-        let cache = self.cache.get();
-
-        if let Some(ref val) = unsafe { *cache }  {
-            unsafe {
-                // if there is a bug with this implementation
-                // DEFINITELY start here
-                core::mem::transmute(val)
-            }
-        } else {
-            let mut val : i32 = -1;
-            if unsafe { lib::lua_bind_get_value(self.lua_bind_hash, &mut val) } {
-                unsafe {
-                    *cache = Some(val);
-
-                    (*cache).as_ref().unwrap()
-                }
-            } else{
-                &-1
-            }
-        }
+        &self.value
     }
 }
