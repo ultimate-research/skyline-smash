@@ -1,16 +1,12 @@
 #![cfg_attr(not(feature = "std"), no_std)]
-#![feature(proc_macro_hygiene)]
+#![feature(const_if_match, const_loop, track_caller, proc_macro_hygiene)]
+#![feature(asm)]
 #![feature(associated_type_bounds)]
 #![feature(simd_ffi)] // lol sorry jam
 
 pub mod crc32;
 
 pub mod params;
-
-#[cfg(feature = "std")]
-pub mod resource;
-
-pub mod ui2d;
 
 #[doc(hidden)]
 pub mod cpp;
@@ -62,9 +58,9 @@ pub struct CppHash40Map<T: Sized> {
 
 impl<T: Sized> CppHash40Map<T> {
     pub fn get<'a>(&'a self, key: &phx::Hash40) -> Option<&'a T> {
-        let bucket_idx = key.hash % self.bucket_count;
         if !self.buckets.is_null() {
             unsafe {
+                let bucket_idx = key.hash % self.bucket_count;
                 let mut current = *self.buckets.add(bucket_idx as usize);
                 if !current.is_null() {
                     current = (*current).next;
