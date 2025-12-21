@@ -14,6 +14,7 @@ pub use l2c_weak as l2c_impl;
 #[cfg(not(feature = "weak_l2cvalue"))]
 pub use l2c_strong as l2c_impl;
 
+#[allow(unused_imports)]
 pub use l2c_impl::*;
 
 #[allow(non_snake_case, non_camel_case_types, non_upper_case_globals)]
@@ -21453,6 +21454,7 @@ pub mod root {
             }
         }
 
+		#[allow(clashing_extern_declarations)]
         extern "C" {
             #[link_name = "\u{1}_ZNK3lib8L2CValueixEN3phx6Hash40E"]
             pub fn L2CValue__index_hash40_mut<'a>(this: &'a mut root::lib::L2CValue, hash40: u64) -> &'a mut root::lib::L2CValue;
