@@ -1,12 +1,19 @@
-use nnsdk::ui2d::{Pane, TextBox};
 use skyline::libc::c_char;
+use nnsdk::ui2d::{Pane, TextBox};
 
 // TODO: Offset search
 #[skyline::from_offset(0x59970)]
-pub unsafe fn find_pane_by_name_recursive(pane: *const Pane, s: *const c_char) -> *mut Pane;
+pub unsafe fn find_pane_by_name_recursive(
+    pane: *const Pane,
+    s: *const c_char,
+) -> *mut Pane;
 
 #[skyline::from_offset(0x583c0)]
-pub unsafe fn find_pane_by_name(pane: *const Pane, s: *const c_char, recursive: bool) -> *mut Pane;
+pub unsafe fn find_pane_by_name(
+    pane: *const Pane,
+    s: *const c_char,
+    recursive: bool,
+) -> *mut Pane;
 
 #[skyline::from_offset(0x37a22f0)]
 pub unsafe fn pane_set_text_string(pane: *mut TextBox, s: *const c_char);

@@ -1,8 +1,10 @@
 pub mod common;
+pub mod battle_object;
 pub mod fighter_list;
 pub mod fighter_param;
 
 pub use common::*;
+pub use battle_object::*;
 pub use fighter_list::*;
 pub use fighter_param::*;
 
@@ -133,5 +135,5 @@ macro_rules! impl_table_index_traits {
     };
 }
 
-impl_static_mut_traits!(CommonParams, FighterParams);
+impl_static_mut_traits!(CommonParams, FighterParams, BattleObjectParams);
 impl_table_index_traits!((FighterParams, fighter_param_table));

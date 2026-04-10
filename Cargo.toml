@@ -10,7 +10,7 @@ description = "A library for helping mod Smash Ultimate using skyline-rs"
 name = "smash"
 
 [dependencies]
-libc-nnsdk = { git = "https://github.com/ultimate-research/libc-nnsdk" }
+libc-nnsdk = "0.4.0"
 nnsdk = { git = "https://github.com/ultimate-research/nnsdk-rs" }
 skyline = { git = "https://github.com/ultimate-research/skyline-rs" }
 smash_rs = { package = "smash", git = "https://github.com/WuBoytH/smash-rs" }
