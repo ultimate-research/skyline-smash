@@ -9187,7 +9187,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind36ArticleModule__generate_article_implEPNS_26BattleObjectModuleAccessorEibi"]
                     pub fn generate_article(
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: libc::c_int,
+                        article: libc::c_int,
                         arg3: bool,
                         arg4: libc::c_int,
                     ) -> u64;
@@ -9196,7 +9196,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind43ArticleModule__generate_article_enable_implEPNS_26BattleObjectModuleAccessorEibi"]
                     pub fn generate_article_enable(
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: libc::c_int,
+                        article: libc::c_int,
                         arg3: bool,
                         arg4: libc::c_int,
                     ) -> u64;
@@ -9214,9 +9214,9 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind24ArticleModule__have_implEPNS_26BattleObjectModuleAccessorEiN3phx6Hash40ENS_22ArticleOperationTargetEjb"]
                     pub fn have(
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: libc::c_int,
+                        article: libc::c_int,
                         arg3: root::phx::Hash40,
-                        arg4: root::app::ArticleOperationTarget,
+                        operation_target: root::app::ArticleOperationTarget,
                         arg5: libc::c_uint,
                         arg6: bool,
                     ) -> u64;
@@ -9225,8 +9225,8 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind25ArticleModule__shoot_implEPNS_26BattleObjectModuleAccessorEiNS_22ArticleOperationTargetEb"]
                     pub fn shoot(
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: libc::c_int,
-                        arg3: root::app::ArticleOperationTarget,
+                        article: libc::c_int,
+                        operation_target: root::app::ArticleOperationTarget,
                         arg4: bool,
                     ) -> u64;
                 }
@@ -9234,8 +9234,8 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind31ArticleModule__shoot_exist_implEPNS_26BattleObjectModuleAccessorEiNS_22ArticleOperationTargetEb"]
                     pub fn shoot_exist(
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: libc::c_int,
-                        arg3: root::app::ArticleOperationTarget,
+                        article: libc::c_int,
+                        operation_target: root::app::ArticleOperationTarget,
                         arg4: bool,
                     ) -> u64;
                 }
@@ -9243,16 +9243,16 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind27ArticleModule__set_pos_implEPNS_26BattleObjectModuleAccessorEiN3phx8Vector3fE"]
                     pub fn set_pos(
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: libc::c_int,
-                        arg3: root::phx::Vector3f,
+                        article: libc::c_int,
+                        pos: root::phx::Vector3f,
                     );
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind31ArticleModule__motion_kind_implEPNS_26BattleObjectModuleAccessorEiNS_22ArticleOperationTargetE"]
                     pub fn motion_kind(
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: libc::c_int,
-                        arg3: root::app::ArticleOperationTarget,
+                        article: libc::c_int,
+                        operation_target: root::app::ArticleOperationTarget,
                     ) -> u64;
                 }
                 extern "C" {
@@ -17825,7 +17825,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind40StatusModule__change_status_request_implEPNS_26BattleObjectModuleAccessorEib"]
                     pub fn change_status_request(
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: libc::c_int,
+                        status: libc::c_int,
                         arg3: bool,
                     ) -> u64;
                 }
