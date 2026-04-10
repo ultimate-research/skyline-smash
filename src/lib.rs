@@ -1,6 +1,8 @@
 #![cfg_attr(not(feature = "std"), no_std)]
 #![feature(proc_macro_hygiene)]
 #![feature(simd_ffi)] // lol sorry jam
+#![feature(core_intrinsics)]
+#![feature(repr_simd)]
 
 pub mod crc32;
 

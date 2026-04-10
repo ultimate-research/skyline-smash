@@ -5717,8 +5717,8 @@ pub mod root {
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
                         effHash: root::phx::Hash40,
                         boneHash: root::phx::Hash40,
-                        radius: smash_rs::cpp::simd::Vector2,
-                        offsets: smash_rs::cpp::simd::Vector3,
+                        radius: root::phx::Vector2SIMD,
+                        offsets: root::phx::Vector3SIMD,
                         arg6: bool,
                         duration: f32,
                         fade: f32,
@@ -5729,8 +5729,8 @@ pub mod root {
                     pub fn set_post_effect_line_circle_target(
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
                         boneHash: root::phx::Hash40,
-                        radius: smash_rs::cpp::simd::Vector2,
-                        offsets: smash_rs::cpp::simd::Vector3,
+                        radius: root::phx::Vector2SIMD,
+                        offsets: root::phx::Vector3SIMD,
                         arg5: bool,
                     );
                 }
@@ -5739,10 +5739,10 @@ pub mod root {
                     pub fn request_post_effect_line_parallel_2d(
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
                         effHash: root::phx::Hash40,
-                        arg3: smash_rs::cpp::simd::Vector2,
-                        arg4: smash_rs::cpp::simd::Vector2,
-                        arg5: smash_rs::cpp::simd::Vector2,
-                        arg6: smash_rs::cpp::simd::Vector2,
+                        arg3: root::phx::Vector2SIMD,
+                        arg4: root::phx::Vector2SIMD,
+                        arg5: root::phx::Vector2SIMD,
+                        arg6: root::phx::Vector2SIMD,
                         arg7: bool,
                         duration: f32,
                         fade: f32,
@@ -21710,6 +21710,78 @@ pub mod root {
             pub z: f32,
             pub w: f32,
         }
+        #[derive(Clone, Copy)]
+        #[repr(simd)]
+        pub struct Vector2SIMD {
+            pub vec: [f32; 2]
+        }
+
+        impl Vector2SIMD {
+            pub fn x(self) -> f32 {
+                unsafe {
+                    core::intrinsics::simd::simd_extract(self, 0)
+                }
+            }
+            pub fn y(self) -> f32 {
+                unsafe {
+                    core::intrinsics::simd::simd_extract(self, 1)
+                }
+            }
+        }
+
+        #[derive(Clone, Copy)]
+        #[repr(simd)]
+        pub struct Vector3SIMD {
+            pub vec: [f32; 3]
+        }
+
+        impl Vector3SIMD {
+            pub fn x(self) -> f32 {
+                unsafe {
+                    core::intrinsics::simd::simd_extract(self, 0)
+                }
+            }
+            pub fn y(self) -> f32 {
+                unsafe {
+                    core::intrinsics::simd::simd_extract(self, 1)
+                }
+            }
+            pub fn z(self) -> f32 {
+                unsafe {
+                    core::intrinsics::simd::simd_extract(self, 2)
+                }
+            }
+        }
+
+        #[derive(Clone, Copy)]
+        #[repr(simd)]
+        pub struct Vector4SIMD {
+            pub vec: [f32; 4]
+        }
+
+        impl Vector4SIMD {
+            pub fn x(self) -> f32 {
+                unsafe {
+                    core::intrinsics::simd::simd_extract(self, 0)
+                }
+            }
+            pub fn y(self) -> f32 {
+                unsafe {
+                    core::intrinsics::simd::simd_extract(self, 1)
+                }
+            }
+            pub fn z(self) -> f32 {
+                unsafe {
+                    core::intrinsics::simd::simd_extract(self, 2)
+                }
+            }
+            pub fn w(self) -> f32 {
+                unsafe {
+                    core::intrinsics::simd::simd_extract(self, 3)
+                }
+            }
+        }
+
         #[repr(C)]
         #[derive(Debug, Copy, Clone, Hash, Eq, PartialEq)]
         pub struct Hash40 {
