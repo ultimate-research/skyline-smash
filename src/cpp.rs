@@ -20568,7 +20568,7 @@ pub mod root {
                 #[link_name = "\u{1}_ZN3app17sv_camera_manager10dead_rangeEP9lua_State"]
                 pub fn dead_range(
                     arg1: u64
-                ) -> bool;
+                ) -> root::phx::Vector4f;
             }
         }
 
@@ -20680,7 +20680,7 @@ pub mod root {
                 pub fn get_kirifuda_position(
                     lua_state: u64,
                     arg2: i32
-                ) -> skyline::nn::util::Vector3f;
+                ) -> root::phx::simd::Vector2f;
                 #[link_name = "\u{1}_ZN3app15sv_fighter_util18get_walk_speed_mulEP9lua_State"]
                 pub fn get_walk_speed_mul(
                     lua_state: u64

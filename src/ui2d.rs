@@ -65,6 +65,7 @@ pub trait SmashTextBox {
     unsafe fn set_text_string(&mut self, s: &str);
 }
 
+
 impl SmashTextBox for TextBox {
     unsafe fn set_text_string(&mut self, s: &str) {
         pane_set_text_string(self, c_str!(s));
