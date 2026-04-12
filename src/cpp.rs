@@ -5717,8 +5717,8 @@ pub mod root {
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
                         effHash: root::phx::Hash40,
                         boneHash: root::phx::Hash40,
-                        radius: root::phx::Vector2SIMD,
-                        offsets: root::phx::Vector3SIMD,
+                        radius: root::phx::simd::Vector2f,
+                        offsets: root::phx::simd::Vector3f,
                         arg6: bool,
                         duration: f32,
                         fade: f32,
@@ -5729,8 +5729,8 @@ pub mod root {
                     pub fn set_post_effect_line_circle_target(
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
                         boneHash: root::phx::Hash40,
-                        radius: root::phx::Vector2SIMD,
-                        offsets: root::phx::Vector3SIMD,
+                        radius: root::phx::simd::Vector2f,
+                        offsets: root::phx::simd::Vector3f,
                         arg5: bool,
                     );
                 }
@@ -5739,10 +5739,10 @@ pub mod root {
                     pub fn request_post_effect_line_parallel_2d(
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
                         effHash: root::phx::Hash40,
-                        arg3: root::phx::Vector2SIMD,
-                        arg4: root::phx::Vector2SIMD,
-                        arg5: root::phx::Vector2SIMD,
-                        arg6: root::phx::Vector2SIMD,
+                        arg3: root::phx::simd::Vector2f,
+                        arg4: root::phx::simd::Vector2f,
+                        arg5: root::phx::simd::Vector2f,
+                        arg6: root::phx::simd::Vector2f,
                         arg7: bool,
                         duration: f32,
                         fade: f32,
@@ -14595,7 +14595,7 @@ pub mod root {
                         arg2: libc::c_int,
                         arg3: libc::c_int,
                         arg4: libc::c_int,
-                    ) -> u64;
+                    ) -> root::phx::simd::Vector3f;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind48FighterParamAccessor2__donkey_thrown_offset_implEPNS_21FighterParamAccessor2Eii"]
@@ -14603,7 +14603,7 @@ pub mod root {
                         arg1: *mut root::app::FighterParamAccessor2,
                         arg2: libc::c_int,
                         arg3: libc::c_int,
-                    ) -> super::root::phx::Vector3f;
+                    ) -> root::phx::simd::Vector3f;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind49FighterParamAccessor2__ridley_dragged_offset_implEPNS_21FighterParamAccessor2Eii"]
@@ -14611,21 +14611,21 @@ pub mod root {
                         arg1: *mut root::app::FighterParamAccessor2,
                         arg2: libc::c_int,
                         arg3: libc::c_int,
-                    ) -> u64;
+                    ) -> root::phx::simd::Vector3f;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind50FighterParamAccessor2__diddy_special_s_offset_implEPNS_21FighterParamAccessor2Ei"]
                     pub fn diddy_special_s_offset(
                         arg1: *mut root::app::FighterParamAccessor2,
                         arg2: libc::c_int,
-                    ) -> u64;
+                    ) -> root::phx::simd::Vector3f;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind52FighterParamAccessor2__miifighter_suplex_offset_implEPNS_21FighterParamAccessor2Ei"]
                     pub fn miifighter_suplex_offset(
                         arg1: *mut root::app::FighterParamAccessor2,
                         arg2: libc::c_int,
-                    ) -> u64;
+                    ) -> root::phx::simd::Vector3f;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind48FighterParamAccessor2__gaogaen_final_offset_implEPNS_21FighterParamAccessor2Eii"]
@@ -14633,7 +14633,7 @@ pub mod root {
                         arg1: *mut root::app::FighterParamAccessor2,
                         arg2: libc::c_int,
                         arg3: libc::c_int,
-                    ) -> u64;
+                    ) -> root::phx::simd::Vector3f;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind41FighterParamAccessor2__hit_target_no_implEPNS_21FighterParamAccessor2Eii"]
@@ -21710,78 +21710,79 @@ pub mod root {
             pub z: f32,
             pub w: f32,
         }
-        #[derive(Clone, Copy)]
-        #[repr(simd)]
-        pub struct Vector2SIMD {
-            pub vec: [f32; 2]
-        }
+        pub mod simd{
+            #[derive(Clone, Copy)]
+            #[repr(simd)]
+            pub struct Vector2f {
+                pub vec: [f32; 2]
+            }
 
-        impl Vector2SIMD {
-            pub fn x(self) -> f32 {
-                unsafe {
-                    core::intrinsics::simd::simd_extract(self, 0)
+            impl Vector2f {
+                pub fn x(self) -> f32 {
+                    unsafe {
+                        core::intrinsics::simd::simd_extract(self, 0)
+                    }
+                }
+                pub fn y(self) -> f32 {
+                    unsafe {
+                        core::intrinsics::simd::simd_extract(self, 1)
+                    }
                 }
             }
-            pub fn y(self) -> f32 {
-                unsafe {
-                    core::intrinsics::simd::simd_extract(self, 1)
+
+            #[derive(Clone, Copy)]
+            #[repr(simd)]
+            pub struct Vector3f {
+                pub vec: [f32; 3]
+            }
+
+            impl Vector3f {
+                pub fn x(self) -> f32 {
+                    unsafe {
+                        core::intrinsics::simd::simd_extract(self, 0)
+                    }
+                }
+                pub fn y(self) -> f32 {
+                    unsafe {
+                        core::intrinsics::simd::simd_extract(self, 1)
+                    }
+                }
+                pub fn z(self) -> f32 {
+                    unsafe {
+                        core::intrinsics::simd::simd_extract(self, 2)
+                    }
+                }
+            }
+
+            #[derive(Clone, Copy)]
+            #[repr(simd)]
+            pub struct Vector4f {
+                pub vec: [f32; 4]
+            }
+
+            impl Vector4f {
+                pub fn x(self) -> f32 {
+                    unsafe {
+                        core::intrinsics::simd::simd_extract(self, 0)
+                    }
+                }
+                pub fn y(self) -> f32 {
+                    unsafe {
+                        core::intrinsics::simd::simd_extract(self, 1)
+                    }
+                }
+                pub fn z(self) -> f32 {
+                    unsafe {
+                        core::intrinsics::simd::simd_extract(self, 2)
+                    }
+                }
+                pub fn w(self) -> f32 {
+                    unsafe {
+                        core::intrinsics::simd::simd_extract(self, 3)
+                    }
                 }
             }
         }
-
-        #[derive(Clone, Copy)]
-        #[repr(simd)]
-        pub struct Vector3SIMD {
-            pub vec: [f32; 3]
-        }
-
-        impl Vector3SIMD {
-            pub fn x(self) -> f32 {
-                unsafe {
-                    core::intrinsics::simd::simd_extract(self, 0)
-                }
-            }
-            pub fn y(self) -> f32 {
-                unsafe {
-                    core::intrinsics::simd::simd_extract(self, 1)
-                }
-            }
-            pub fn z(self) -> f32 {
-                unsafe {
-                    core::intrinsics::simd::simd_extract(self, 2)
-                }
-            }
-        }
-
-        #[derive(Clone, Copy)]
-        #[repr(simd)]
-        pub struct Vector4SIMD {
-            pub vec: [f32; 4]
-        }
-
-        impl Vector4SIMD {
-            pub fn x(self) -> f32 {
-                unsafe {
-                    core::intrinsics::simd::simd_extract(self, 0)
-                }
-            }
-            pub fn y(self) -> f32 {
-                unsafe {
-                    core::intrinsics::simd::simd_extract(self, 1)
-                }
-            }
-            pub fn z(self) -> f32 {
-                unsafe {
-                    core::intrinsics::simd::simd_extract(self, 2)
-                }
-            }
-            pub fn w(self) -> f32 {
-                unsafe {
-                    core::intrinsics::simd::simd_extract(self, 3)
-                }
-            }
-        }
-
         #[repr(C)]
         #[derive(Debug, Copy, Clone, Hash, Eq, PartialEq)]
         pub struct Hash40 {
