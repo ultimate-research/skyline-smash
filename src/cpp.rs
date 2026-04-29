@@ -16537,7 +16537,7 @@ pub mod root {
                         arg2: root::phx::Hash40,
                         arg3: *mut root::phx::Vector3f,
                         arg4: bool,
-                    ) -> root::phx::Vector3f;
+                    );
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind51ModelModule__joint_global_position_with_offset_implEPNS_26BattleObjectModuleAccessorEN3phx6Hash40ERKNS3_8Vector3fERS5_b"]
@@ -16547,7 +16547,7 @@ pub mod root {
                         arg3: *const root::phx::Vector3f,
                         arg4: *mut root::phx::Vector3f,
                         arg5: bool,
-                    ) -> root::phx::Vector3f;
+                    );
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind46ModelModule__joint_global_offset_from_top_implEPNS_26BattleObjectModuleAccessorEN3phx6Hash40ERNS3_8Vector3fE"]
@@ -16555,7 +16555,7 @@ pub mod root {
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
                         arg2: root::phx::Hash40,
                         arg3: *mut root::phx::Vector3f,
-                    ) -> root::phx::Vector3f;
+                    );
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind54ModelModule__top_joint_global_position_from_joint_implEPNS_26BattleObjectModuleAccessorEN3phx6Hash40ERKNS3_8Vector3fERS5_"]
@@ -16564,7 +16564,7 @@ pub mod root {
                         arg2: root::phx::Hash40,
                         arg3: *const root::phx::Vector3f,
                         arg4: *mut root::phx::Vector3f,
-                    ) -> root::phx::Vector3f;
+                    );
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind39ModelModule__joint_global_rotation_implEPNS_26BattleObjectModuleAccessorEN3phx6Hash40ERNS3_8Vector3fEb"]
@@ -16573,7 +16573,7 @@ pub mod root {
                         arg2: root::phx::Hash40,
                         arg3: *mut root::phx::Vector3f,
                         arg4: bool,
-                    ) -> root::phx::Vector3f;
+                    );
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind35ModelModule__joint_global_axis_implEPNS_26BattleObjectModuleAccessorEN3phx6Hash40Eib"]
