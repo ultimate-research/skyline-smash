@@ -10617,13 +10617,13 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind35MotionModule__trans_move_speed_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn trans_move_speed(
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> nnsdk::root::nn::util::Vector3f;
+                    ) -> root::phx::simd::Vector3;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind39MotionModule__trans_move_speed_2nd_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn trans_move_speed_2nd(
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> nnsdk::root::nn::util::Vector3f;
+                    ) -> root::phx::simd::Vector2;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind48MotionModule__set_trans_move_speed_no_scale_implEPNS_26BattleObjectModuleAccessorEb"]
