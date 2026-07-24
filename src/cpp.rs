@@ -2906,7 +2906,7 @@ pub mod root {
                     module_accessor: *mut root::app::BattleObjectModuleAccessor,
                     arg2: root::app::FighterBraveSpecialLwCommand,
                     arg3: bool,
-                ) -> i32;
+                ) -> f32;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app24FighterSpecializer_Brave31special_lw_start_select_commandERNS_7FighterE"]
