@@ -15276,8 +15276,8 @@ pub mod root {
                     pub fn set_area_shape_aabb(
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                        arg3: *const root::phx::Vector2f,
-                        arg4: *const root::phx::Vector2f,
+                        arg3: root::phx::simd::Vector2,
+                        arg4: root::phx::simd::Vector2,
                     );
                 }
                 extern "C" {
