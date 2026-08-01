@@ -20623,7 +20623,10 @@ pub mod root {
                 pub fn dead_range(
                     arg1: u64
                 ) -> root::phx::Vector4f;
+                #[link_name = "\u{1}_ZN3app17sv_camera_manager7get_fovEv"]
+                pub fn get_fov() -> f32;
             }
+            
         }
 
         pub mod sv_fighter_util {
