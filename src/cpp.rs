@@ -13187,6 +13187,27 @@ pub mod root {
                         arg3: *const root::phx::Vector3f,
                     ) -> u64;
                 }
+                extern "C" {
+                    #[link_name = "\u{1}_ZN3app4item16self_param_floatENS_8ItemKindEN3phx6Hash40E"]
+                    pub fn self_param_float(
+                        item_kind: i32,
+                        param_hash: u64,
+                    ) -> f32;
+                }
+                extern "C" {
+                    #[link_name = "\u{1}_ZN3app4item14self_param_intENS_8ItemKindEN3phx6Hash40E"]
+                    pub fn self_param_int(
+                        item_kind: i32,
+                        param_hash: u64,
+                    ) -> i32;
+                }
+                extern "C" {
+                    #[link_name = "\u{1}_ZN3app4item15self_param_hashENS_8ItemKindEN3phx6Hash40E"]
+                    pub fn self_param_hash(
+                        item_kind: i32,
+                        param_hash: u64,
+                    ) -> u64;
+                }
             }
             pub mod FighterPokemonLinkEventChange {
                 #[allow(unused_imports)]
