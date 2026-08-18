@@ -10327,7 +10327,7 @@ pub mod root {
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app18LinkEventTouchItem13new_l2c_tableEv"]
-                    pub fn new_l2c_table()-> L2CValue;
+                    pub fn new_l2c_table()-> root::lib::L2CValue;
                 }
             }
             pub mod GimmickEventCatch {
