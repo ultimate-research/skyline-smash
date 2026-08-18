@@ -10325,6 +10325,10 @@ pub mod root {
                         arg2: *const root::lib::L2CValue,
                     ) -> u64;
                 }
+                extern "C" {
+                    #[link_name = "\u{1}_ZN3app18LinkEventTouchItem13new_l2c_tableEv"]
+                    pub fn new_l2c_table()-> u64;
+                }
             }
             pub mod GimmickEventCatch {
                 #[allow(unused_imports)]
