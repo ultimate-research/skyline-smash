@@ -19683,7 +19683,7 @@ pub mod root {
                         arg1: *mut root::app::FighterEntry,
                         arg2: *mut root::app::LinkEventTouchItem,
                         arg3: bool,
-                    ) -> u64;
+                    ) -> bool;
                 }
             }
         }
