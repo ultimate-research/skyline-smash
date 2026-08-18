@@ -3876,7 +3876,7 @@ pub mod lua2cpp {
         #[link_name = "\u{1}_ZN7lua2cpp16L2CFighterCommon13sub_exit_TurnEv"]
         pub fn L2CFighterCommon_sub_exit_Turn(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -45749,7 +45749,7 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn sub_exit_Turn(&mut self) -> root::lib::L2CValue {
+        pub unsafe fn sub_exit_Turn(&mut self) {
             L2CFighterCommon_sub_exit_Turn(self)
         }
 
