@@ -18799,7 +18799,7 @@ pub mod root {
                         arg2: libc::c_int,
                         arg3: root::phx::Hash40,
                         arg4: bool,
-                    ) -> u64;
+                    ) -> root::phx::simd::Vector3;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind55LinkModule__get_parent_model_joint_global_rotation_implEPNS_26BattleObjectModuleAccessorEiN3phx6Hash40Eb"]
