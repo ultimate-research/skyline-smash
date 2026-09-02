@@ -11131,7 +11131,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind26WorkModule__set_int64_implEPNS_26BattleObjectModuleAccessorEli"]
                     pub fn set_int64(
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
-                        value: libc::c_long,
+                        value: libc::c_ulong,
                         int_const: libc::c_int,
                     );
                 }
@@ -18093,8 +18093,8 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind32VisibilityModule__set_int64_implEPNS_26BattleObjectModuleAccessorEll"]
                     pub fn set_int64(
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: libc::c_long,
-                        arg3: libc::c_long,
+                        arg2: libc::c_ulong,
+                        arg3: libc::c_ulong,
                     );
                 }
                 extern "C" {
@@ -18109,8 +18109,8 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind47VisibilityModule__set_status_default_int64_implEPNS_26BattleObjectModuleAccessorEll"]
                     pub fn set_status_default_int64(
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: libc::c_long,
-                        arg3: libc::c_long,
+                        arg2: libc::c_ulong,
+                        arg3: libc::c_ulong,
                     );
                 }
                 extern "C" {
@@ -18124,7 +18124,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind49VisibilityModule__reset_status_default_int64_implEPNS_26BattleObjectModuleAccessorEl"]
                     pub fn reset_status_default_int64(
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: libc::c_long,
+                        arg2: libc::c_ulong,
                     ) -> u64;
                 }
                 extern "C" {
@@ -18150,7 +18150,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind48VisibilityModule__set_mesh_visibility_int64_implEPNS_26BattleObjectModuleAccessorElib"]
                     pub fn set_mesh_visibility_int64(
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: libc::c_long,
+                        arg2: libc::c_ulong,
                         arg3: libc::c_int,
                         arg4: bool,
                     );
@@ -18187,7 +18187,7 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind40VisibilityModule__set_default_int64_implEPNS_26BattleObjectModuleAccessorEl"]
                     pub fn set_default_int64(
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
-                        arg2: libc::c_long,
+                        arg2: libc::c_ulong,
                     );
                 }
                 extern "C" {
