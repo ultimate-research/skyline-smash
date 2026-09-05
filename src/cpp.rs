@@ -10325,6 +10325,10 @@ pub mod root {
                         arg2: *const root::lib::L2CValue,
                     ) -> u64;
                 }
+                extern "C" {
+                    #[link_name = "\u{1}_ZN3app18LinkEventTouchItem13new_l2c_tableEv"]
+                    pub fn new_l2c_table()-> root::lib::L2CValue;
+                }
             }
             pub mod GimmickEventCatch {
                 #[allow(unused_imports)]
@@ -10617,13 +10621,13 @@ pub mod root {
                     #[link_name = "\u{1}_ZN3app8lua_bind35MotionModule__trans_move_speed_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn trans_move_speed(
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> nnsdk::root::nn::util::Vector3f;
+                    ) -> root::phx::simd::Vector3;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind39MotionModule__trans_move_speed_2nd_implEPNS_26BattleObjectModuleAccessorE"]
                     pub fn trans_move_speed_2nd(
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
-                    ) -> nnsdk::root::nn::util::Vector3f;
+                    ) -> root::phx::simd::Vector2;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind48MotionModule__set_trans_move_speed_no_scale_implEPNS_26BattleObjectModuleAccessorEb"]
@@ -11649,7 +11653,7 @@ pub mod root {
                         arg2: root::phx::Hash40,
                         arg3: libc::c_int,
                         arg4: bool,
-                        arg5: *const root::phx::Vector2f,
+                        arg5: root::phx::simd::Vector2,
                         arg6: f32,
                         arg7: f32,
                         arg8: bool,
@@ -13185,6 +13189,27 @@ pub mod root {
                         arg1: *mut root::app::Item,
                         arg2: f32,
                         arg3: *const root::phx::Vector3f,
+                    ) -> u64;
+                }
+                extern "C" {
+                    #[link_name = "\u{1}_ZN3app4item16self_param_floatENS_8ItemKindEN3phx6Hash40E"]
+                    pub fn self_param_float(
+                        item_kind: i32,
+                        param_hash: u64,
+                    ) -> f32;
+                }
+                extern "C" {
+                    #[link_name = "\u{1}_ZN3app4item14self_param_intENS_8ItemKindEN3phx6Hash40E"]
+                    pub fn self_param_int(
+                        item_kind: i32,
+                        param_hash: u64,
+                    ) -> i32;
+                }
+                extern "C" {
+                    #[link_name = "\u{1}_ZN3app4item15self_param_hashENS_8ItemKindEN3phx6Hash40E"]
+                    pub fn self_param_hash(
+                        item_kind: i32,
+                        param_hash: u64,
                     ) -> u64;
                 }
             }
@@ -15276,8 +15301,8 @@ pub mod root {
                     pub fn set_area_shape_aabb(
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                        arg3: *const root::phx::Vector2f,
-                        arg4: *const root::phx::Vector2f,
+                        arg3: root::phx::simd::Vector2,
+                        arg4: root::phx::simd::Vector2,
                     );
                 }
                 extern "C" {
@@ -15285,7 +15310,7 @@ pub mod root {
                     pub fn set_area_shape_circle(
                         module_accessor: *mut root::app::BattleObjectModuleAccessor,
                         arg2: libc::c_int,
-                        arg3: *const root::phx::Vector2f,
+                        arg3: root::phx::simd::Vector2,
                         arg4: f32,
                     );
                 }
@@ -18774,7 +18799,7 @@ pub mod root {
                         arg2: libc::c_int,
                         arg3: root::phx::Hash40,
                         arg4: bool,
-                    ) -> u64;
+                    ) -> root::phx::simd::Vector3;
                 }
                 extern "C" {
                     #[link_name = "\u{1}_ZN3app8lua_bind55LinkModule__get_parent_model_joint_global_rotation_implEPNS_26BattleObjectModuleAccessorEiN3phx6Hash40Eb"]
@@ -19658,7 +19683,7 @@ pub mod root {
                         arg1: *mut root::app::FighterEntry,
                         arg2: *mut root::app::LinkEventTouchItem,
                         arg3: bool,
-                    ) -> u64;
+                    ) -> bool;
                 }
             }
         }
@@ -20623,7 +20648,10 @@ pub mod root {
                 pub fn dead_range(
                     arg1: u64
                 ) -> root::phx::Vector4f;
+                #[link_name = "\u{1}_ZN3app17sv_camera_manager7get_fovEv"]
+                pub fn get_fov() -> f32;
             }
+            
         }
 
         pub mod sv_fighter_util {
@@ -20822,7 +20850,22 @@ pub mod root {
                 ) -> bool;
             }
         }
-
+        pub mod sv_global_parameter {
+            #[allow(unused_imports)]
+            use super::super::super::root;
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app19sv_global_parameter15melee_rule_typeEv"]
+                pub fn melee_rule_type() -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app19sv_global_parameter15melee_rule_modeEv"]
+                pub fn melee_rule_mode() -> u64;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app19sv_global_parameter28melee_melee_info_item_appearEv"]
+                pub fn melee_melee_info_item_appear() -> u64;
+            }
+        }
         pub mod sv_information {
             #[allow(unused_imports)]
             use super::super::super::root;
@@ -20843,6 +20886,70 @@ pub mod root {
             extern "C" {
                 #[link_name = "\u{1}_ZN3app14sv_information8stage_idEv"]
                 pub fn stage_id() -> i32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app14sv_information13is_flat_stageEv"]
+                pub fn is_flat_stage() -> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app14sv_information27get_remaining_time_as_frameEv"]
+                pub fn get_remaining_time_as_frame() -> i32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app14sv_information14sleep_time_mulEP9lua_State"]
+                pub fn sleep_time_mul(
+                    lua_state: u64
+                ) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app14sv_information10owner_rankEP9lua_State"]
+                pub fn owner_rank(
+                    lua_state: u64
+                ) -> i32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app14sv_information11owner_handiEP9lua_State"]
+                pub fn owner_handi(
+                    lua_state: u64
+                ) -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app14sv_information23is_stage_can_dead_frontEv"]
+                pub fn is_stage_can_dead_front() -> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app14sv_information22is_stage_can_dead_backEv"]
+                pub fn is_stage_can_dead_back() -> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app14sv_information20is_master_hand_stageEv"]
+                pub fn is_master_hand_stage() -> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app14sv_information21is_enabled_time_limitEv"]
+                pub fn is_enabled_time_limit() -> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app14sv_information20is_disable_lock_downEv"]
+                pub fn is_disable_lock_down() -> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app14sv_information22is_dead_up_force_crushEP9lua_State"]
+                pub fn is_dead_up_force_crush(
+                    lua_state: u64
+                ) -> bool;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app14sv_information15get_delta_frameEv"]
+                pub fn get_delta_frame() -> f32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app14sv_information12dead_up_typeEv"]
+                pub fn dead_up_type() -> i32;
+            }
+            extern "C" {
+                #[link_name = "\u{1}_ZN3app14sv_information24dead_up_camera_hit_countEv"]
+                pub fn dead_up_camera_hit_count() -> i32;
             }
         }
         pub mod sv_kinetic_energy {
