@@ -20893,25 +20893,25 @@ pub mod root {
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app14sv_information27get_remaining_time_as_frameEv"]
-                pub fn get_remaining_time_as_frame() -> i32; // return type is a guess
+                pub fn get_remaining_time_as_frame() -> i32;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app14sv_information14sleep_time_mulEP9lua_State"]
                 pub fn sleep_time_mul(
                     lua_state: u64
-                ) -> f32; // return type is a guess
+                ) -> f32;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app14sv_information10owner_rankEP9lua_State"]
                 pub fn owner_rank(
                     lua_state: u64
-                ) -> i32; // return type is a guess
+                ) -> i32;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app14sv_information11owner_handiEP9lua_State"]
                 pub fn owner_handi(
                     lua_state: u64
-                ) -> i32; // return type is a guess
+                ) -> f32;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app14sv_information23is_stage_can_dead_frontEv"]
@@ -20941,7 +20941,7 @@ pub mod root {
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app14sv_information15get_delta_frameEv"]
-                pub fn get_delta_frame() -> f32;  //return type is a guess
+                pub fn get_delta_frame() -> f32;
             }
             extern "C" {
                 #[link_name = "\u{1}_ZN3app14sv_information12dead_up_typeEv"]
