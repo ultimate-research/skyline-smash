@@ -29207,7 +29207,7 @@ pub mod lua2cpp {
         #[link_name = "\u{1}_ZN7lua2cpp16L2CFighterCommon40sub_check_charge_cancel_jump_mini_attackEv"]
         pub fn L2CFighterCommon_sub_check_charge_cancel_jump_mini_attack(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -66320,7 +66320,7 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn sub_check_charge_cancel_jump_mini_attack(&mut self) -> root::lib::L2CValue {
+        pub unsafe fn sub_check_charge_cancel_jump_mini_attack(&mut self) {
             L2CFighterCommon_sub_check_charge_cancel_jump_mini_attack(self)
         }
 
