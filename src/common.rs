@@ -13742,7 +13742,7 @@ pub mod lua2cpp {
         #[link_name = "\u{1}_ZN7lua2cpp16L2CFighterCommon26status_ItemShootAir_beforeEv"]
         pub fn L2CFighterCommon_status_ItemShootAir_before(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -17527,7 +17527,7 @@ pub mod lua2cpp {
         #[link_name = "\u{1}_ZN7lua2cpp16L2CFighterCommon30status_ItemShootAir_before_NewEv"]
         pub fn L2CFighterCommon_status_ItemShootAir_before_New(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -53968,7 +53968,7 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn status_ItemShootAir_before(&mut self) -> root::lib::L2CValue {
+        pub unsafe fn status_ItemShootAir_before(&mut self) {
             L2CFighterCommon_status_ItemShootAir_before(self)
         }
 
@@ -57128,7 +57128,7 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn status_ItemShootAir_before_New(&mut self) -> root::lib::L2CValue {
+        pub unsafe fn status_ItemShootAir_before_New(&mut self) {
             L2CFighterCommon_status_ItemShootAir_before_New(self)
         }
 
