@@ -11707,7 +11707,7 @@ pub mod lua2cpp {
         #[link_name = "\u{1}_ZN7lua2cpp16L2CFighterCommon23sub_ItemShootAir_CommonEv"]
         pub fn L2CFighterCommon_sub_ItemShootAir_Common(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -12576,7 +12576,7 @@ pub mod lua2cpp {
         pub fn L2CFighterCommon_sub_ItemShootWait_Common(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon,
             arg1: root::lib::L2CValue
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -13367,14 +13367,14 @@ pub mod lua2cpp {
         #[link_name = "\u{1}_ZN7lua2cpp16L2CFighterCommon25sub_ItemShootDashB_CommonEv"]
         pub fn L2CFighterCommon_sub_ItemShootDashB_Common(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
         #[link_name = "\u{1}_ZN7lua2cpp16L2CFighterCommon25sub_ItemShootDashF_CommonEv"]
         pub fn L2CFighterCommon_sub_ItemShootDashF_Common(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -13382,7 +13382,7 @@ pub mod lua2cpp {
         pub fn L2CFighterCommon_sub_ItemShootWalkB_Common(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon,
             arg1: root::lib::L2CValue
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -13390,7 +13390,7 @@ pub mod lua2cpp {
         pub fn L2CFighterCommon_sub_ItemShootWalkF_Common(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon,
             arg1: root::lib::L2CValue
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -15263,7 +15263,7 @@ pub mod lua2cpp {
         #[link_name = "\u{1}_ZN7lua2cpp16L2CFighterCommon27sub_ItemShootAir_Common_NewEv"]
         pub fn L2CFighterCommon_sub_ItemShootAir_Common_New(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -15278,7 +15278,7 @@ pub mod lua2cpp {
         pub fn L2CFighterCommon_sub_ItemShootLanding_Common(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon,
             arg1: root::lib::L2CValue
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -16157,7 +16157,7 @@ pub mod lua2cpp {
         #[link_name = "\u{1}_ZN7lua2cpp16L2CFighterCommon28sub_ItemShootTurn_Common_NewEv"]
         pub fn L2CFighterCommon_sub_ItemShootTurn_Common_New(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -16165,7 +16165,7 @@ pub mod lua2cpp {
         pub fn L2CFighterCommon_sub_ItemShootWait_Common_New(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon,
             arg1: root::lib::L2CValue
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -17018,21 +17018,21 @@ pub mod lua2cpp {
         #[link_name = "\u{1}_ZN7lua2cpp16L2CFighterCommon29sub_ItemShootDashB_Common_NewEv"]
         pub fn L2CFighterCommon_sub_ItemShootDashB_Common_New(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
         #[link_name = "\u{1}_ZN7lua2cpp16L2CFighterCommon29sub_ItemShootDashF_Common_NewEv"]
         pub fn L2CFighterCommon_sub_ItemShootDashF_Common_New(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
         #[link_name = "\u{1}_ZN7lua2cpp16L2CFighterCommon29sub_ItemShootJumpSquat_CommonEv"]
         pub fn L2CFighterCommon_sub_ItemShootJumpSquat_Common(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -17068,7 +17068,7 @@ pub mod lua2cpp {
         pub fn L2CFighterCommon_sub_ItemShootWalkB_Common_New(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon,
             arg1: root::lib::L2CValue
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -17083,7 +17083,7 @@ pub mod lua2cpp {
         pub fn L2CFighterCommon_sub_ItemShootWalkF_Common_New(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon,
             arg1: root::lib::L2CValue
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -17894,7 +17894,7 @@ pub mod lua2cpp {
         #[link_name = "\u{1}_ZN7lua2cpp16L2CFighterCommon30sub_ItemShootJumpAerial_CommonEv"]
         pub fn L2CFighterCommon_sub_ItemShootJumpAerial_Common(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -17915,7 +17915,7 @@ pub mod lua2cpp {
         #[link_name = "\u{1}_ZN7lua2cpp16L2CFighterCommon30sub_ItemShootWalkBBrake_CommonEv"]
         pub fn L2CFighterCommon_sub_ItemShootWalkBBrake_Common(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -17936,7 +17936,7 @@ pub mod lua2cpp {
         #[link_name = "\u{1}_ZN7lua2cpp16L2CFighterCommon30sub_ItemShootWalkFBrake_CommonEv"]
         pub fn L2CFighterCommon_sub_ItemShootWalkFBrake_Common(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -18559,7 +18559,7 @@ pub mod lua2cpp {
         pub fn L2CFighterCommon_sub_ItemShootLanding_Common_New(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon,
             arg1: root::lib::L2CValue
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -20757,7 +20757,7 @@ pub mod lua2cpp {
         #[link_name = "\u{1}_ZN7lua2cpp16L2CFighterCommon33sub_ItemShootJumpSquat_Common_NewEv"]
         pub fn L2CFighterCommon_sub_ItemShootJumpSquat_Common_New(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -21912,7 +21912,7 @@ pub mod lua2cpp {
         #[link_name = "\u{1}_ZN7lua2cpp16L2CFighterCommon34sub_ItemShootJumpAerial_Common_NewEv"]
         pub fn L2CFighterCommon_sub_ItemShootJumpAerial_Common_New(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -21961,7 +21961,7 @@ pub mod lua2cpp {
         #[link_name = "\u{1}_ZN7lua2cpp16L2CFighterCommon34sub_ItemShootWalkBBrake_Common_NewEv"]
         pub fn L2CFighterCommon_sub_ItemShootWalkBBrake_Common_New(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -21996,7 +21996,7 @@ pub mod lua2cpp {
         #[link_name = "\u{1}_ZN7lua2cpp16L2CFighterCommon34sub_ItemShootWalkFBrake_Common_NewEv"]
         pub fn L2CFighterCommon_sub_ItemShootWalkFBrake_Common_New(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -52248,7 +52248,7 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn sub_ItemShootAir_Common(&mut self) -> root::lib::L2CValue {
+        pub unsafe fn sub_ItemShootAir_Common(&mut self) {
             L2CFighterCommon_sub_ItemShootAir_Common(self)
         }
 
@@ -52986,7 +52986,7 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn sub_ItemShootWait_Common(&mut self, arg1: root::lib::L2CValue) -> root::lib::L2CValue {
+        pub unsafe fn sub_ItemShootWait_Common(&mut self, arg1: root::lib::L2CValue) {
             L2CFighterCommon_sub_ItemShootWait_Common(self, arg1)
         }
 
@@ -53652,25 +53652,25 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn sub_ItemShootDashB_Common(&mut self) -> root::lib::L2CValue {
+        pub unsafe fn sub_ItemShootDashB_Common(&mut self) {
             L2CFighterCommon_sub_ItemShootDashB_Common(self)
         }
 
 
         #[inline]
-        pub unsafe fn sub_ItemShootDashF_Common(&mut self) -> root::lib::L2CValue {
+        pub unsafe fn sub_ItemShootDashF_Common(&mut self) {
             L2CFighterCommon_sub_ItemShootDashF_Common(self)
         }
 
 
         #[inline]
-        pub unsafe fn sub_ItemShootWalkB_Common(&mut self, arg1: root::lib::L2CValue) -> root::lib::L2CValue {
+        pub unsafe fn sub_ItemShootWalkB_Common(&mut self, arg1: root::lib::L2CValue) {
             L2CFighterCommon_sub_ItemShootWalkB_Common(self, arg1)
         }
 
 
         #[inline]
-        pub unsafe fn sub_ItemShootWalkF_Common(&mut self, arg1: root::lib::L2CValue) -> root::lib::L2CValue {
+        pub unsafe fn sub_ItemShootWalkF_Common(&mut self, arg1: root::lib::L2CValue) {
             L2CFighterCommon_sub_ItemShootWalkF_Common(self, arg1)
         }
 
@@ -55258,7 +55258,7 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn sub_ItemShootAir_Common_New(&mut self) -> root::lib::L2CValue {
+        pub unsafe fn sub_ItemShootAir_Common_New(&mut self) {
             L2CFighterCommon_sub_ItemShootAir_Common_New(self)
         }
 
@@ -55270,7 +55270,7 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn sub_ItemShootLanding_Common(&mut self, arg1: root::lib::L2CValue) -> root::lib::L2CValue {
+        pub unsafe fn sub_ItemShootLanding_Common(&mut self, arg1: root::lib::L2CValue) {
             L2CFighterCommon_sub_ItemShootLanding_Common(self, arg1)
         }
 
@@ -56014,13 +56014,13 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn sub_ItemShootTurn_Common_New(&mut self) -> root::lib::L2CValue {
+        pub unsafe fn sub_ItemShootTurn_Common_New(&mut self) {
             L2CFighterCommon_sub_ItemShootTurn_Common_New(self)
         }
 
 
         #[inline]
-        pub unsafe fn sub_ItemShootWait_Common_New(&mut self, arg1: root::lib::L2CValue) -> root::lib::L2CValue {
+        pub unsafe fn sub_ItemShootWait_Common_New(&mut self, arg1: root::lib::L2CValue) {
             L2CFighterCommon_sub_ItemShootWait_Common_New(self, arg1)
         }
 
@@ -56716,19 +56716,19 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn sub_ItemShootDashB_Common_New(&mut self) -> root::lib::L2CValue {
+        pub unsafe fn sub_ItemShootDashB_Common_New(&mut self) {
             L2CFighterCommon_sub_ItemShootDashB_Common_New(self)
         }
 
 
         #[inline]
-        pub unsafe fn sub_ItemShootDashF_Common_New(&mut self) -> root::lib::L2CValue {
+        pub unsafe fn sub_ItemShootDashF_Common_New(&mut self) {
             L2CFighterCommon_sub_ItemShootDashF_Common_New(self)
         }
 
 
         #[inline]
-        pub unsafe fn sub_ItemShootJumpSquat_Common(&mut self) -> root::lib::L2CValue {
+        pub unsafe fn sub_ItemShootJumpSquat_Common(&mut self) {
             L2CFighterCommon_sub_ItemShootJumpSquat_Common(self)
         }
 
@@ -56758,7 +56758,7 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn sub_ItemShootWalkB_Common_New(&mut self, arg1: root::lib::L2CValue) -> root::lib::L2CValue {
+        pub unsafe fn sub_ItemShootWalkB_Common_New(&mut self, arg1: root::lib::L2CValue) {
             L2CFighterCommon_sub_ItemShootWalkB_Common_New(self, arg1)
         }
 
@@ -56770,7 +56770,7 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn sub_ItemShootWalkF_Common_New(&mut self, arg1: root::lib::L2CValue) -> root::lib::L2CValue {
+        pub unsafe fn sub_ItemShootWalkF_Common_New(&mut self, arg1: root::lib::L2CValue) {
             L2CFighterCommon_sub_ItemShootWalkF_Common_New(self, arg1)
         }
 
@@ -57440,7 +57440,7 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn sub_ItemShootJumpAerial_Common(&mut self) -> root::lib::L2CValue {
+        pub unsafe fn sub_ItemShootJumpAerial_Common(&mut self) {
             L2CFighterCommon_sub_ItemShootJumpAerial_Common(self)
         }
 
@@ -57458,7 +57458,7 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn sub_ItemShootWalkBBrake_Common(&mut self) -> root::lib::L2CValue {
+        pub unsafe fn sub_ItemShootWalkBBrake_Common(&mut self) {
             L2CFighterCommon_sub_ItemShootWalkBBrake_Common(self)
         }
 
@@ -57476,7 +57476,7 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn sub_ItemShootWalkFBrake_Common(&mut self) -> root::lib::L2CValue {
+        pub unsafe fn sub_ItemShootWalkFBrake_Common(&mut self) {
             L2CFighterCommon_sub_ItemShootWalkFBrake_Common(self)
         }
 
@@ -57980,7 +57980,7 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn sub_ItemShootLanding_Common_New(&mut self, arg1: root::lib::L2CValue) -> root::lib::L2CValue {
+        pub unsafe fn sub_ItemShootLanding_Common_New(&mut self, arg1: root::lib::L2CValue) {
             L2CFighterCommon_sub_ItemShootLanding_Common_New(self, arg1)
         }
 
@@ -59762,7 +59762,7 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn sub_ItemShootJumpSquat_Common_New(&mut self) -> root::lib::L2CValue {
+        pub unsafe fn sub_ItemShootJumpSquat_Common_New(&mut self) {
             L2CFighterCommon_sub_ItemShootJumpSquat_Common_New(self)
         }
 
@@ -60680,7 +60680,7 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn sub_ItemShootJumpAerial_Common_New(&mut self) -> root::lib::L2CValue {
+        pub unsafe fn sub_ItemShootJumpAerial_Common_New(&mut self) {
             L2CFighterCommon_sub_ItemShootJumpAerial_Common_New(self)
         }
 
@@ -60722,7 +60722,7 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn sub_ItemShootWalkBBrake_Common_New(&mut self) -> root::lib::L2CValue {
+        pub unsafe fn sub_ItemShootWalkBBrake_Common_New(&mut self) {
             L2CFighterCommon_sub_ItemShootWalkBBrake_Common_New(self)
         }
 
@@ -60752,7 +60752,7 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn sub_ItemShootWalkFBrake_Common_New(&mut self) -> root::lib::L2CValue {
+        pub unsafe fn sub_ItemShootWalkFBrake_Common_New(&mut self) {
             L2CFighterCommon_sub_ItemShootWalkFBrake_Common_New(self)
         }
 
