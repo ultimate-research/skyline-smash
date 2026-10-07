@@ -18551,7 +18551,7 @@ pub mod lua2cpp {
         #[link_name = "\u{1}_ZN7lua2cpp16L2CFighterCommon31sub_ItemShootJump_enable_aerialEv"]
         pub fn L2CFighterCommon_sub_ItemShootJump_enable_aerial(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -23020,7 +23020,7 @@ pub mod lua2cpp {
         #[link_name = "\u{1}_ZN7lua2cpp16L2CFighterCommon35sub_ItemShootJump_enable_aerial_NewEv"]
         pub fn L2CFighterCommon_sub_ItemShootJump_enable_aerial_New(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -57974,7 +57974,7 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn sub_ItemShootJump_enable_aerial(&mut self) -> root::lib::L2CValue {
+        pub unsafe fn sub_ItemShootJump_enable_aerial(&mut self) {
             L2CFighterCommon_sub_ItemShootJump_enable_aerial(self)
         }
 
@@ -61556,7 +61556,7 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn sub_ItemShootJump_enable_aerial_New(&mut self) -> root::lib::L2CValue {
+        pub unsafe fn sub_ItemShootJump_enable_aerial_New(&mut self) {
             L2CFighterCommon_sub_ItemShootJump_enable_aerial_New(self)
         }
 
