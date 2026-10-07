@@ -34404,7 +34404,7 @@ pub mod lua2cpp {
         #[link_name = "\u{1}_ZN7lua2cpp16L2CFighterCommon45sub_ftStatusUniqProcessShoot_execShoot_CommonEv"]
         pub fn L2CFighterCommon_sub_ftStatusUniqProcessShoot_execShoot_Common(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -37731,7 +37731,7 @@ pub mod lua2cpp {
         #[link_name = "\u{1}_ZN7lua2cpp16L2CFighterCommon49sub_ftStatusUniqProcessShoot_execShoot_Common_NewEv"]
         pub fn L2CFighterCommon_sub_ftStatusUniqProcessShoot_execShoot_Common_New(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -70280,7 +70280,7 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn sub_ftStatusUniqProcessShoot_execShoot_Common(&mut self) -> root::lib::L2CValue {
+        pub unsafe fn sub_ftStatusUniqProcessShoot_execShoot_Common(&mut self) {
             L2CFighterCommon_sub_ftStatusUniqProcessShoot_execShoot_Common(self)
         }
 
@@ -72824,7 +72824,7 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn sub_ftStatusUniqProcessShoot_execShoot_Common_New(&mut self) -> root::lib::L2CValue {
+        pub unsafe fn sub_ftStatusUniqProcessShoot_execShoot_Common_New(&mut self) {
             L2CFighterCommon_sub_ftStatusUniqProcessShoot_execShoot_Common_New(self)
         }
 
