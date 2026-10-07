@@ -34421,7 +34421,7 @@ pub mod lua2cpp {
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon,
             arg1: root::lib::L2CValue,
             arg2: root::lib::L2CValue
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -37749,7 +37749,7 @@ pub mod lua2cpp {
             arg1: root::lib::L2CValue,
             arg2: root::lib::L2CValue,
             arg3: root::lib::L2CValue
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -42075,7 +42075,7 @@ pub mod lua2cpp {
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon,
             arg1: root::lib::L2CValue,
             arg2: root::lib::L2CValue
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -70292,7 +70292,7 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn sub_ftStatusUniqProcessShoot_initShoot_Common(&mut self, arg1: root::lib::L2CValue, arg2: root::lib::L2CValue) -> root::lib::L2CValue {
+        pub unsafe fn sub_ftStatusUniqProcessShoot_initShoot_Common(&mut self, arg1: root::lib::L2CValue, arg2: root::lib::L2CValue) {
             L2CFighterCommon_sub_ftStatusUniqProcessShoot_initShoot_Common(self, arg1, arg2)
         }
 
@@ -72836,7 +72836,7 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn sub_ftStatusUniqProcessShoot_initShoot_Common_New(&mut self, arg1: root::lib::L2CValue, arg2: root::lib::L2CValue, arg3: root::lib::L2CValue) -> root::lib::L2CValue {
+        pub unsafe fn sub_ftStatusUniqProcessShoot_initShoot_Common_New(&mut self, arg1: root::lib::L2CValue, arg2: root::lib::L2CValue, arg3: root::lib::L2CValue) {
             L2CFighterCommon_sub_ftStatusUniqProcessShoot_initShoot_Common_New(self, arg1, arg2, arg3)
         }
 
@@ -76202,7 +76202,7 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn sub_ftStatusUniqProcessShoot_initShoot_CommonAirUpper_New(&mut self, arg1: root::lib::L2CValue, arg2: root::lib::L2CValue) -> root::lib::L2CValue {
+        pub unsafe fn sub_ftStatusUniqProcessShoot_initShoot_CommonAirUpper_New(&mut self, arg1: root::lib::L2CValue, arg2: root::lib::L2CValue) {
             L2CFighterCommon_sub_ftStatusUniqProcessShoot_initShoot_CommonAirUpper_New(self, arg1, arg2)
         }
 
