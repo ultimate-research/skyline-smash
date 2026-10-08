@@ -2729,7 +2729,7 @@ pub mod root {
                     arg1: *mut root::app::Fighter,
                     article: i32,
                     target: root::app::ArticleOperationTarget
-                ) -> u64;
+                ) -> bool;
             }
         }
 
