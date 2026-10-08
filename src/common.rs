@@ -34412,7 +34412,7 @@ pub mod lua2cpp {
         pub fn L2CFighterCommon_sub_ftStatusUniqProcessShoot_exitShoot_Common(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon,
             arg1: root::lib::L2CValue
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -37739,7 +37739,7 @@ pub mod lua2cpp {
         pub fn L2CFighterCommon_sub_ftStatusUniqProcessShoot_exitShoot_Common_New(
             this: *mut crate::common::root::lua2cpp::L2CFighterCommon,
             arg1: root::lib::L2CValue
-        ) -> root::lib::L2CValue;
+        );
 
 
         // #[null_check]
@@ -70286,7 +70286,7 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn sub_ftStatusUniqProcessShoot_exitShoot_Common(&mut self, arg1: root::lib::L2CValue) -> root::lib::L2CValue {
+        pub unsafe fn sub_ftStatusUniqProcessShoot_exitShoot_Common(&mut self, arg1: root::lib::L2CValue) {
             L2CFighterCommon_sub_ftStatusUniqProcessShoot_exitShoot_Common(self, arg1)
         }
 
@@ -72830,7 +72830,7 @@ pub mod lua2cpp {
 
 
         #[inline]
-        pub unsafe fn sub_ftStatusUniqProcessShoot_exitShoot_Common_New(&mut self, arg1: root::lib::L2CValue) -> root::lib::L2CValue {
+        pub unsafe fn sub_ftStatusUniqProcessShoot_exitShoot_Common_New(&mut self, arg1: root::lib::L2CValue) {
             L2CFighterCommon_sub_ftStatusUniqProcessShoot_exitShoot_Common_New(self, arg1)
         }
 
